@@ -104,5 +104,5 @@ and https://localhost:4430/
 Samples
 -------
 
-* `Xitrum Demo <https://github.com/ngocdaothanh/xitrum-demo>`_
+* `Xitrum Demos <https://github.com/ngocdaothanh/xitrum-demos>`_
 * `Comy <https://github.com/ngocdaothanh/comy>`_
