@@ -121,8 +121,7 @@ SkipCSRFCheck
 -------------
 
 When you create APIs for machines, e.g. smartphones, you may want to skip this
-check. To skip for an action (and its subclasses), make your action extend the
-trait xitrum.SkipCSRFCheck:
+automatic CSRF check. Add the trait xitrum.SkipCSRFCheck to you controller:
 
 ::
 
@@ -139,3 +138,14 @@ trait xitrum.SkipCSRFCheck:
     pathPrefix = "api/todos"
     def create = POST {...}
   }
+
+Read entire request body
+------------------------
+
+To get the entire request body, use `request.getContent <http://netty.io/docs/stable/api/org/jboss/netty/handler/codec/http/HttpRequest.html>`_.
+It returns `ChannelBuffer <http://netty.io/docs/stable/api/org/jboss/netty/buffer/ChannelBuffer.html>`_,
+which has ``toString(Charset)`` method.
+
+::
+
+  val body = request.getContent.toString(io.netty.util.CharsetUtil.UTF_8)
