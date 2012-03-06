@@ -6,47 +6,54 @@ Tutorial
 This chapter describes how to create and run a Xitrum project.
 **It assumes that you are using Linux and you have installed Java.**
 
-Create a new Xitrum project
----------------------------
+Create a new empty Xitrum project
+---------------------------------
 
-Clone the xitrum-quickstart project:
+To create a new empty project, in Rails you have ``rails new``, in Cake you have
+``cake new``. In `Xitrum <http://ngocdaothanh.github.com/xitrum>`_ you download
+`xitrum-new.zip <http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip>`_:
 
 ::
 
-  $ git clone https://github.com/ngocdaothanh/xitrum-quickstart.git
-
-The de facto stardard way of building Scala projects is using
-`SBT <https://github.com/harrah/xsbt/wiki/Setup>`_. The quickstart project
-has already included SBT 0.11.2 in ``sbt`` directory. If you want to install
-SBT yourself, see its `setup guide <https://github.com/harrah/xsbt/wiki/Setup>`_.
+  $ wget http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip
+  $ unzip xitrum-new.zip
 
 Run
 ---
 
-Change to the newly created project directory and run ``sbt/sbt run``. This command
-will download all dependencies, compile the project, and run the class
-``quickstart.Boot``, which starts the web server.
+The de facto stardard way of building Scala projects is using
+`SBT <https://github.com/harrah/xsbt/wiki/Setup>`_. The newly created project
+has already included SBT 0.11.2 in ``sbt`` directory. If you want to install
+SBT yourself, see its `setup guide <https://github.com/harrah/xsbt/wiki/Setup>`_.
 
-Open http://localhost:8000/ or https://localhost:4430/ in your browser.
+Change to the newly created project directory and run ``sbt/sbt run``:
 
-In the console, you will see all the routes and request information:
+::
+
+  $ cd xitrum-new
+  $ sbt/sbt run
+
+This command will download all dependencies, compile the project, and run the
+class ``quickstart.Boot``, which starts the web server. In the console, you will
+see all the routes:
 
 ::
 
   [INFO] Routes:
-  GET / quickstart.controller.Site#index
+  GET   /                       quickstart.controller.Site#index
+  POST  /xiturm/comet/:channel  xitrum.comet.CometController#publish
 
-  [INFO] HTTP server started on port 8364
-  [INFO] HTTPS server started on port 4364
+  [INFO] HTTP server started on port 8000
+  [INFO] HTTPS server started on port 4430
   [INFO] Xitrum started in development mode
-  [DEBUG] GET quickstart.action.IndexAction, 1 [ms]
 
 On startup, all routes will be collected and output to log. It is very
 convenient for you to have a list of routes if you want to write documentation
 for 3rd parties about the RESTful APIs in your web application.
 
-For better startup speed, routes are cached to file ``routes.sclasner``.
-While developing, routes in .class files in the ``target`` directory are not
-cached. If you change library dependencies that contain routes, you may need to
-delete ``routes.sclasner``. This file should not be committed to your project
-source code repository.
+Open http://localhost:8000/ or https://localhost:4430/ in your browser. In the
+console you will see request information:
+
+::
+
+  [DEBUG] GET quickstart.controller.Site#index, 1 [ms]
