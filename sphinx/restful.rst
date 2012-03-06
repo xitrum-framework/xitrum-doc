@@ -71,6 +71,15 @@ You must make sure the second route be checked first. ``first`` is for this purp
 
 ``last`` is similar.
 
+Regex in route
+--------------
+
+Regex can be used in routes to specify requirements:
+
+::
+
+  def show = GET("/articles/:id<[0-9]+>") { ... }
+
 Anti-CSRF
 ---------
 
