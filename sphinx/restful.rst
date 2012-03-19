@@ -99,11 +99,12 @@ When you include ``antiCSRFMeta`` in your layout:
         <head>
           {antiCSRFMeta}
           {xitrumCSS}
+          {jsDefaults}
           <title>Welcome to Xitrum</title>
         </head>
         <body>
           {renderedView}
-          {jsAtBottom}
+          {jsForView}
         </body>
       </html>
     )

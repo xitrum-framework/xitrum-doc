@@ -70,11 +70,12 @@ AppController.scala
         <head>
           {antiCSRFMeta}
           {xitrumCSS}
+          {jsDefaults}
           <title>{if (RVar.title.isDefined) "My Site - " + RVar.title.get else "My Site"}</title>
         </head>
         <body>
           {renderedView}
-          {jsAtBottom}
+          {jsForView}
         </body>
       </html>
     )

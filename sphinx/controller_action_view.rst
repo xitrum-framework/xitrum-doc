@@ -66,11 +66,12 @@ AppController.scala
         <head>
           {antiCSRFMeta}
           {xitrumCSS}
+          {jsDefaults}
           <title>Welcome to Xitrum</title>
         </head>
         <body>
           {respondedView}
-          {jsAtBottom}
+          {jsForView}
         </body>
       </html>
     )
@@ -78,8 +79,10 @@ AppController.scala
 
 ``xitrumCSS`` includes the default CSS for Xitrum. You may remove it if you
 don't like.
-
-``jsAtBottom`` includes jQuery, jQuery Validate plugin etc.
+``jsDefaults`` includes jQuery, jQuery Validate plugin etc.
+should be put at layout's <head>.
+``jsForView`` contains JS fragments added by ``jsAddToView``,
+should be put at layout's bottom.
 
 MyController.scala
 
@@ -149,11 +152,12 @@ scr/main/scalate/quickstart/controller/AppController.jade:
     head
       = antiCSRFMeta
       = xitrumCSS
+      = jsDefaults
       title Welcome to Xitrum
 
     body
       != respondedView
-      = jsAtBottom
+      = jsForView
 
 scr/main/scalate/quickstart/controller/MyController/index.jade:
 

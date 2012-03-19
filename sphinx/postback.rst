@@ -26,11 +26,12 @@ AppController.scala
         <head>
           {antiCSRFMeta}
           {xitrumCSS}
+          {jsDefaults}
           <title>Welcome to Xitrum</title>
         </head>
         <body>
           {renderedView}
-          {jsAtBottom}
+          {jsForView}
         </body>
       </html>
     )

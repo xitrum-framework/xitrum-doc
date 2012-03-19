@@ -24,7 +24,7 @@ In your action, call ``jsAddToView`` (multiple times if you need):
     }
   }
 
-In your layout, call ``jsAtBottom``:
+In your layout, call ``jsForView``:
 
 ::
 
@@ -37,11 +37,12 @@ In your layout, call ``jsAtBottom``:
         <head>
           {antiCSRFMeta}
           {xitrumCSS}
+          {jsDefaults}
         </head>
         <body>
           <div id="flash">{jsFlash}</div>
           {renderedView}
-          {jsAtBottom}
+          {jsForView}
         </body>
       </html>
     )
