@@ -97,9 +97,8 @@ Chat example
     def index = GET("chat") {
       jsCometGet("chat", """
         function(channel, timestamp, body) {
-          var wasScrollAtBottom = xitrum.isScrollAtBottom('#chatOutput');
-          $('#chatOutput').append('- ' + xitrum.escape(body.chatInput[0]) + '<br />');
-          if (wasScrollAtBottom) xitrum.scrollToBottom('#chatOutput');
+          var text = '- ' + xitrum.escapeHtml(body.chatInput[0]) + '<br />';
+          xitrum.appendAndScroll('#chatOutput', text);
         }
       """)
 
