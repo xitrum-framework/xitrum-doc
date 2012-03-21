@@ -90,13 +90,13 @@ Chat example
 ::
 
   import xitrum.Controller
-  import xitrum.comet.CometPublishController
+  import xitrum.comet.CometController
   import xitrum.validator.{Required, Validated}
 
   class ChatController {
     def index = GET("chat") {
       jsCometGet("chat", """
-        function(channel, timestamp, body) {
+        function(topic, timestamp, body) {
           var text = '- ' + xitrum.escapeHtml(body.chatInput[0]) + '<br />';
           xitrum.appendAndScroll('#chatOutput', text);
         }
@@ -106,7 +106,7 @@ Chat example
         <div id="chatOutput"></div>
 
         <form data-postback="submit" action={CometController.publish.url} data-after="$('#chatInput').value('')">
-          <input type="hidden" name="channel" value="chat" class="required" />
+          <input type="hidden" name="topic" value="chat" class="required" />
           <input type="text" id="chatInput" name="chatInput" class="required" />
         </form>
       )
@@ -115,12 +115,12 @@ Chat example
 
 ``jsCometGet`` will send long polling Ajax requests, get published messages,
 and call your callback function. The 3rd argument ``body`` is a hash
-containing everything inside the form commited to ``CometPublishController``.
+containing everything inside the form commited to ``CometController``.
 
 Publish message
 ~~~~~~~~~~~~~~~
 
-In the example above, ``CometPublishController`` will receive form post and publish
+In the example above, ``CometController`` will receive form post and publish
 the message for you. If you want to publish the message yourself, call ``Comet.publish``:
 
 ::
