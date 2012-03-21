@@ -52,25 +52,25 @@ Notes:
 WebSocket
 ---------
 
-Example:
-
 ::
-
-  package quickstart.controller
 
   import xitrum.Controller
 
   class HelloWebSocket extends Controller {
     val index = WEBSOCKET("hello_websocket") {  // Entry point
-      webSocketHandshake()  // Call this if you want to accept the WebSocket connection
-    }
+      acceptWebSocket(new WebSocketHandler() {
+        def onOpen() {
+          log.debug("onOpen")
+        }
 
-    override def onWebSocketFrame(text: String) {
-      respondWebSocket(text.toUpperCase)  // Send back data to the WebSocket client
-    }
+        def onMessage(text: String) {
+          respondWebSocket(text.toUpperCase)  // Send back data to the WebSocket client
+        }
 
-    override def onWebSocketClose {
-      println("The WebSocket connection has been closed")
+        def onClose() {
+          log.debug("onClose")
+        }
+      })
     }
   }
 
