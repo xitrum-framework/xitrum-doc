@@ -74,6 +74,15 @@ WebSocket
     }
   }
 
+To get URL to the above WebSocket action:
+
+::
+
+  object HelloWebSocket extends HelloWebSocket
+
+  // Probably you want to use this in Scalate view etc.
+  val url = HelloWebSocket.index.webSocketAbsoluteUrl
+
 Comet
 -----
 
