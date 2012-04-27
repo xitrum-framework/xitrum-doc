@@ -97,7 +97,7 @@ Cookie
 ------
 
 Inside an action, you can use ``cookies``. It is a subclass of Java's `TreeSet <http://download.oracle.com/javase/6/docs/api/java/util/TreeSet.html>`_
-that contains `Cookie <https://github.com/netty/netty/blob/master/src/main/java/org/jboss/netty/handler/codec/http/Cookie.java>`_.
+that contains `Cookie <http://netty.io/docs/stable/api/org/jboss/netty/handler/codec/http/Cookie.html>`_.
 It is basically a normal TreeSet with an additional ``get`` method to lookup a cookie:
 
 ::
@@ -107,7 +107,7 @@ It is basically a normal TreeSet with an additional ``get`` method to lookup a c
     case Some(string) => ...
   }
 
-To add a cookie, create an instance of `DefaultCookie <https://github.com/netty/netty/blob/master/src/main/java/org/jboss/netty/handler/codec/http/DefaultCookie.java>`_
+To add a cookie, create an instance of `DefaultCookie <http://netty.io/docs/stable/api/org/jboss/netty/handler/codec/http/DefaultCookie.html>`_
 and add it to ``cookies``:
 
 ::

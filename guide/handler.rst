@@ -7,7 +7,7 @@ This chapter is a little advanced, normally you don't need to read.
 `WSGI <http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_, and
 `PSGI <http://en.wikipedia.org/wiki/PSGI>`_ have middleware architecture.
 You can create middleware and customize the order of middlewares.
-Xitrum is based on `Netty <http://www.jboss.org/netty>`_. Netty has the same
+Xitrum is based on `Netty <http://netty.io/>`_. Netty has the same
 thing called handlers.
 
 This chaper describes:
@@ -23,7 +23,7 @@ In Netty, there are 2 types of handlers:
 * upstream: the request direction client -> server
 * downstream: the response direction server -> client
 
-Please see the doc of `ChannelPipeline <http://docs.jboss.org/netty/3.2/api/org/jboss/netty/channel/ChannelPipeline.html>`_
+Please see the doc of `ChannelPipeline <http://netty.io/docs/stable/api/org/jboss/netty/channel/ChannelPipeline.html>`_
 for more information.
 
 ::
