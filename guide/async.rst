@@ -52,6 +52,14 @@ Notes:
 WebSocket
 ---------
 
+For a websocket request, there are 2 phases:
+
+1. The WebSocket request comes in as a normal HTTP request,
+   you have everything like session data, cookie etc.
+2. If you decide to upgrade the connection to the WebSocket connection,
+   call ``acceptWebSocket``. Otherwise you treat the request as normal
+   HTTP request, e.g. you can send normal HTTP response to the client.
+
 ::
 
   import xitrum.Controller
