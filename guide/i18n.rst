@@ -27,7 +27,7 @@ call ``t`` and ``tc`` on it:
   // In the model
   import xitrum.I18n
   object MyModel {
-    def hello(i18n) = i18n.t("Hello World")
+    def hello(i18n: I18n) = i18n.t("Hello World")
   }
 
 Extract messages to pot files
@@ -50,7 +50,7 @@ which deletes all .class files in the ``target`` directory.
 
 After the recompilation, i18n.pot will be filled with gettext messages extracted
 from the source code. To do this magic, `Scala compiler plugin technique <http://www.scala-lang.org/node/140>`_
-has been used.
+is used.
 
 One caveat of this method is that only gettext messages in Scala source code
 files are extracted. If you have Java files, you may want to extract manually
