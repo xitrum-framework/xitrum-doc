@@ -9,8 +9,7 @@ This chapter describes how to create and run a Xitrum project.
 Create a new empty Xitrum project
 ---------------------------------
 
-To create a new empty project, in Rails you have ``rails new``, in Cake you have
-``cake new``. In `Xitrum <http://ngocdaothanh.github.com/xitrum>`_ you download
+To create a new empty project, download
 `xitrum-new.zip <http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip>`_:
 
 ::
@@ -23,7 +22,7 @@ Run
 
 The de facto stardard way of building Scala projects is using
 `SBT <https://github.com/harrah/xsbt/wiki/Setup>`_. The newly created project
-has already included SBT 0.11.2 in ``sbt`` directory. If you want to install
+has already included SBT 0.11.3-2 in ``sbt`` directory. If you want to install
 SBT yourself, see its `setup guide <https://github.com/harrah/xsbt/wiki/Setup>`_.
 
 Change to the newly created project directory and run ``sbt/sbt run``:

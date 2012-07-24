@@ -38,13 +38,13 @@ the whole project.
 
 ::
 
-  $ sbt clean
+  $ sbt/sbt clean
   $ rm i18n.pot
   $ touch i18n.pot
-  $ sbt compile
+  $ sbt/sbt compile
 
-``sbt clean`` is to delete all .class files, forcing SBT to recompile the whole
-project. Because after ``sbt clean``, SBT will try to redownload all dependencies,
+``sbt/sbt clean`` is to delete all .class files, forcing SBT to recompile the whole
+project. Because after ``sbt/sbt clean``, SBT will try to redownload all dependencies,
 you can do a little faster with the command ``find target -name *.class -delete``,
 which deletes all .class files in the ``target`` directory.
 

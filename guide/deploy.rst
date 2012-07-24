@@ -18,7 +18,7 @@ Or behind a proxy server like Apache or Nginx:
 Package directory
 -----------------
 
-Run ``sbt xitrum-package`` to prepare ``target/xitrum`` directory, ready to
+Run ``sbt/sbt xitrum-package`` to prepare ``target/xitrum`` directory, ready to
 deploy to production server:
 
 ::
@@ -36,7 +36,7 @@ deploy to production server:
 Customize xitrum-package
 ------------------------
 
-By default ``sbt xitrum-package`` command simply copies ``config`` and ``public``
+By default ``sbt/sbt xitrum-package`` command simply copies ``config`` and ``public``
 directories to ``target/xitrum``. If you want it to copy additional files
 and directories (README, INSTALL, doc etc.), config ``build.sbt`` like this:
 
