@@ -28,7 +28,7 @@ myAction:
 
   val myFile = param[FileUpload]("my_file")
 
-myFile is an instance of `FileUpload <https://github.com/netty/netty/blob/master/src/main/java/org/jboss/netty/handler/codec/http/FileUpload.java>`_.
+myFile is an instance of `FileUpload <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/multipart/FileUpload.html>`_.
 Use its methods to get file name, move file to a directory etc.
 
 Ajax upload

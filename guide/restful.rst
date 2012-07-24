@@ -152,8 +152,8 @@ automatic CSRF check. Add the trait xitrum.SkipCSRFCheck to you controller:
 Read entire request body
 ------------------------
 
-To get the entire request body, use `request.getContent <http://netty.io/docs/stable/api/org/jboss/netty/handler/codec/http/HttpRequest.html>`_.
-It returns `ChannelBuffer <http://netty.io/docs/stable/api/org/jboss/netty/buffer/ChannelBuffer.html>`_,
+To get the entire request body, use `request.getContent <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/HttpRequest.html>`_.
+It returns `ChannelBuffer <http://static.netty.io/3.5/api/org/jboss/netty/buffer/ChannelBuffer.html>`_,
 which has ``toString(Charset)`` method.
 
 ::

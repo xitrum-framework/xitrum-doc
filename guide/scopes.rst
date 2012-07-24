@@ -20,7 +20,7 @@ There are 3 kinds of textual params, of type ``scala.collection.mutable.Map[Stri
 These params are merged in the above order as ``textParams``
 (from 1 to 3, the latter will override the former).
 
-``fileUploadParams`` is of type scala.collection.mutable.Map[String, List[`FileUpload <https://github.com/netty/netty/blob/master/src/main/java/org/jboss/netty/handler/codec/http/FileUpload.java>`_]].
+``fileUploadParams`` is of type scala.collection.mutable.Map[String, List[`FileUpload <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/multipart/FileUpload.html>`_]].
 
 Accesing params
 ~~~~~~~~~~~~~~~
@@ -98,7 +98,7 @@ Cookie
 ------
 
 Inside an action, you can use ``cookies``. It is a subclass of Java's `TreeSet <http://download.oracle.com/javase/6/docs/api/java/util/TreeSet.html>`_
-that contains `Cookie <http://netty.io/docs/stable/api/org/jboss/netty/handler/codec/http/Cookie.html>`_.
+that contains `Cookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/Cookie.html>`_.
 It is basically a normal TreeSet with an additional ``get`` method to lookup a cookie:
 
 ::
@@ -108,7 +108,7 @@ It is basically a normal TreeSet with an additional ``get`` method to lookup a c
     case Some(string) => ...
   }
 
-To add a cookie, create an instance of `DefaultCookie <http://netty.io/docs/stable/api/org/jboss/netty/handler/codec/http/DefaultCookie.html>`_
+To add a cookie, create an instance of `DefaultCookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/DefaultCookie.html>`_
 and add it to ``cookies``:
 
 ::
