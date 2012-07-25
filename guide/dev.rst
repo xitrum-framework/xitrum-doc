@@ -9,17 +9,40 @@ This chapter assumes that you have installed Eclipse and
 Create a new Xitrum project
 ---------------------------
 
-Copy the project as described in the :doc:`tutorial </tutorial>`
-as your new project. If you're using git, you should remove its hidden ``.git``
-directory and recreate it yourself, but you should keep the ``.gitignore`` file.
+Create a new project as described at the :doc:`tutorial </tutorial>`.
+These should be `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master/.gitignore>`_:
 
 ::
 
-  $ git clone –depth 1 https://github.com/ngocdaothanh/xitrum-new.git my_project
-  $ cd my_project
-  $ rm -rf .git
-  $ git init
-  $ git add -f .gitignore
+  .*
+  log
+  project
+  routes.sclasner
+  target
+
+If you're using git you can clone the
+`xitrum-new <https://github.com/ngocdaothanh/xitrum-new>`_
+project from GitHub:
+
+::
+
+  git clone –depth 1 https://github.com/ngocdaothanh/xitrum-new.git my_project
+  cd my_project
+  rm -rf .git
+  git init
+  git add -f .gitignore
+
+Alternatively:
+
+::
+
+  wget -O xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/zipball/master
+
+Or:
+
+::
+
+  curl -L -o xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/zipball/master
 
 Install Eclipse plugin for SBT
 ------------------------------
@@ -32,7 +55,7 @@ project directory, run:
 
 ::
 
-  $ sbt/sbt eclipse
+  sbt/sbt eclipse
 
 Now open Eclipse, and import the project.
 

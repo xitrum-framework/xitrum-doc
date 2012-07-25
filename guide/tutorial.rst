@@ -14,8 +14,15 @@ To create a new empty project, download
 
 ::
 
-  $ wget http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip
-  $ unzip xitrum-new.zip
+  wget http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip
+  unzip xitrum-new.zip
+
+Alternatively:
+
+::
+
+  curl -O http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip
+  unzip xitrum-new.zip
 
 Run
 ---
@@ -29,8 +36,8 @@ Change to the newly created project directory and run ``sbt/sbt run``:
 
 ::
 
-  $ cd xitrum-new
-  $ sbt/sbt run
+  cd xitrum-new
+  sbt/sbt run
 
 This command will download all dependencies, compile the project, and run the
 class ``quickstart.Boot``, which starts the web server. In the console, you will

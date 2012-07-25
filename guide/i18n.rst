@@ -38,10 +38,10 @@ the whole project.
 
 ::
 
-  $ sbt/sbt clean
-  $ rm i18n.pot
-  $ touch i18n.pot
-  $ sbt/sbt compile
+  sbt/sbt clean
+  rm i18n.pot
+  touch i18n.pot
+  sbt/sbt compile
 
 ``sbt/sbt clean`` is to delete all .class files, forcing SBT to recompile the whole
 project. Because after ``sbt/sbt clean``, SBT will try to redownload all dependencies,
@@ -58,7 +58,7 @@ using ``xgettext`` command line:
 
 ::
 
-  $ xgettext -kt -ktc:1c,2 -ktn:1,2 -ktcn:1c,2,3 -o i18n_java.pot --from-code=UTF-8 $(find src/main/java -name "*.java")
+  xgettext -kt -ktc:1c,2 -ktn:1,2 -ktcn:1c,2,3 -o i18n_java.pot --from-code=UTF-8 $(find src/main/java -name "*.java")
 
 Then you manually merge i18n_java.pot to i18n.pot.
 
