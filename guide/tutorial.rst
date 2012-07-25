@@ -15,14 +15,12 @@ To create a new empty project, download
 ::
 
   wget http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip
-  unzip xitrum-new.zip
 
-Alternatively:
+Or:
 
 ::
 
   curl -O http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip
-  unzip xitrum-new.zip
 
 Run
 ---
@@ -36,6 +34,7 @@ Change to the newly created project directory and run ``sbt/sbt run``:
 
 ::
 
+  unzip xitrum-new.zip
   cd xitrum-new
   sbt/sbt run
 
