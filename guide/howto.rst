@@ -23,6 +23,22 @@ Use ``isAjax``.
 Basic authentication
 --------------------
 
+Config basic authentication for the whole site
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In config/xitrum.json:
+
+::
+
+  "globalBasicAuthentication": {
+    "realm":    "xitrum",
+    "username": "xitrum",
+    "password": "xitrum"
+  }
+
+Add basic authentication to a controller
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ::
 
   import xitrum.Controller
@@ -30,7 +46,7 @@ Basic authentication
   class MyController extends Controller {
     beforeFilter {
       basicAuthenticate("Realm") { (username, password) =>
-        username == "myusername" && password == "mypassword"
+        username == "username" && password == "password"
       }
     }
   }
