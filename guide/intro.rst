@@ -3,6 +3,22 @@ Introduction
 
 .. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s3.jpg
 
+::
+
+  +------------------+
+  |     Your app     |
+  +------------------+
+  |      Xitrum      |  <-- Hazelcast --> Other instances
+  | +--------------+ |
+  | | Action/View  | |
+  | +--------------+ |
+  +------------------+
+  |       Netty      |
+  | +--------------+ |
+  | |HTTP(S) Server| |
+  | +--------------+ |
+  +------------------+
+
 `Xitrum <http://ngocdaothanh.github.com/xitrum>`_
 is an async and clustered Scala web framework
 and HTTP(S) server on top of `Netty <http://netty.io/>`_
@@ -64,22 +80,6 @@ Features:
 * In-process and distribued cache, you don't need separate cache servers.
 * In-process and distribued `Comet (with WebSocket) <http://en.wikipedia.org/wiki/Comet_(programming)>`_,
   you can scale Comet to multiple web servers.
-
-::
-
-  +------------------+
-  |     Your app     |
-  +------------------+
-  |      Xitrum      |  <-- Hazelcast --> Other instances
-  | +--------------+ |
-  | | Action/View  | |
-  | +--------------+ |
-  +------------------+
-  |       Netty      |
-  | +--------------+ |
-  | |HTTP(S) Server| |
-  | +--------------+ |
-  +------------------+
 
 `Xitrum <http://ngocdaothanh.github.com/xitrum>`_ is `open source <https://github.com/ngocdaothanh/xitrum>`_, please join
 its `Google group <http://groups.google.com/group/xitrum-framework>`_.
