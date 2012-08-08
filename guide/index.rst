@@ -6,8 +6,6 @@
 Xitrum's documentation
 ======================
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s14.jpg
-
 .. toctree::
    :maxdepth: 2
 
@@ -31,5 +29,3 @@ Xitrum's documentation
    cluster
    howto
    handler
-
-[Images are from http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/combien.htm]

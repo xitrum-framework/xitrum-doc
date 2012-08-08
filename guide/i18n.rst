@@ -1,8 +1,6 @@
 I18n
 ====
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s16.jpg
-
 GNU gettext is used. Unlike many other methods, gettext supports plural forms.
 
 Write internationalized messages in source code

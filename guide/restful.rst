@@ -1,8 +1,6 @@
 RESTful APIs
 ============
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s4.jpg
-
 You can write RESTful APIs for iPhone, Android applications etc. very easily.
 
 ::

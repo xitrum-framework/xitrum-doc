@@ -1,8 +1,6 @@
 Static files
 ============
 
-.. image:: img/xitrum/be_ti_xitrum_baby_smurf.jpg
-
 Serve static files on disk
 --------------------------
 

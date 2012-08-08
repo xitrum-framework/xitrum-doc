@@ -1,8 +1,6 @@
 Postbacks
 =========
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s2.jpg
-
 Please see the following links for the idea about postback:
 
 * http://en.wikipedia.org/wiki/Postback

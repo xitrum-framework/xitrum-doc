@@ -1,8 +1,6 @@
 Async response
 ==============
 
-.. image:: img/xitrum/lao_gamen_gargamel.jpg
-
 respondXXX:
 
 * ``respondInlineView``: responds HTML with or without layout

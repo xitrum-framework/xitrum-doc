@@ -1,8 +1,6 @@
 Controller, action, and view
 ============================
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s7.jpg
-
 What do you create web applications for? There are 2 main use cases:
 
 * To serve machines: you need to create RESTful APIs for smartphones, web services

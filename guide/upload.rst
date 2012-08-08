@@ -1,8 +1,6 @@
 Upload
 ======
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s6b.jpg
-
 See also :doc:`Scopes chapter </scopes>`.
 
 Normal upload

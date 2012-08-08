@@ -1,8 +1,6 @@
 Validation
 ==========
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s5.jpg
-
 Xitrum includes `jQuery Validation plugin <http://bassistance.de/jquery-plugins/jquery-plugin-validation/>`_
 and provides validation helpers for server side.
 

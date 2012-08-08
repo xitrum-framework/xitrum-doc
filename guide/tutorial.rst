@@ -1,8 +1,6 @@
 Tutorial
 ========
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s13.jpg
-
 This chapter describes how to create and run a Xitrum project.
 **It assumes that you are using Linux and you have installed Java.**
 

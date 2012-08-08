@@ -1,8 +1,6 @@
 XML
 ===
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s9.jpg
-
 Scala allow wrting literal XML. Xitrum uses this feature as its "template engine":
 
 * Scala checks XML syntax at compile time: Views are typesafe.

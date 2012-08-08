@@ -1,8 +1,6 @@
 Scopes
 ======
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s11.jpg
-
 Request
 -------
 

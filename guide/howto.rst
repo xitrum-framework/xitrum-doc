@@ -1,8 +1,6 @@
 HOWTO
 =====
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s10.jpg
-
 This chapter contains various small tips. Each tip is too small to have its own
 chapter.
 

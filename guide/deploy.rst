@@ -1,8 +1,6 @@
 Deploy to production server
 ===========================
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s8.jpg
-
 You may run Xitrum directly:
 
 ::

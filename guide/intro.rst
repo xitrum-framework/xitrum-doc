@@ -1,8 +1,6 @@
 Introduction
 ============
 
-.. image:: http://www.bdoubliees.com/journalspirou/sfigures6/schtroumpfs/s3.jpg
-
 ::
 
   +------------------+
