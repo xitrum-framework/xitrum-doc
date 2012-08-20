@@ -25,7 +25,7 @@ file that does may not fit memory.
 
 ::
 
-  // "Cache-Control" and "Pragma" headers will be automatically set to "no-cache"
+  // "Cache-Control" header will be automatically set to "no-cache"
   response.setChunked(true)
 
   val generator = new MyCsvGenerator
