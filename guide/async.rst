@@ -26,6 +26,8 @@ file that does may not fit memory.
 ::
 
   // "Cache-Control" header will be automatically set to "no-cache"
+  // Notice that "Pragma: no-cache" is linked to requests, not responses:
+  // http://palizine.plynt.com/issues/2008Jul/cache-control-attributes/
   response.setChunked(true)
 
   val generator = new MyCsvGenerator
