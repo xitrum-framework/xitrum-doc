@@ -19,6 +19,7 @@ Xitrum's documentation
    js
    async
    static
+   flash
    scopes
    validation
    upload

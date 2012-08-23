@@ -148,14 +148,14 @@ scr/main/scalate/quickstart/controller/AppController.jade:
   !!! 5
   html
     head
-      = antiCSRFMeta
-      = xitrumCSS
-      = jsDefaults
+      != antiCSRFMeta
+      != xitrumCSS
+      != jsDefaults
       title Welcome to Xitrum
 
     body
       != respondedView
-      = jsForView
+      != jsForView
 
 scr/main/scalate/quickstart/controller/MyController/index.jade:
 
