@@ -75,3 +75,6 @@ To respond JSON:
 
   val scalaData = List(1, 2, 3)  // An example
   respondJson(scalaData)
+
+JSON is also very neat for config files that need nested structures.
+See :doc:`Load config files </howto>`.

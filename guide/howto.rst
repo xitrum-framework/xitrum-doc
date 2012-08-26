@@ -102,7 +102,7 @@ myconfig.json
     // You can write comment in JSON file like this
     "username": "God",
     // Keys must be quoted with double quotes
-    "password": "Does God needs a password?",
+    "password": "Does God need a password?",
     "children": ["Adam", "Eva"]
   }
 
@@ -122,7 +122,7 @@ myconfig.properties
 ::
 
   username = God
-  password = Does God needs a password?
+  password = Does God need a password?
   children = Adam, Eva
 
 ::
