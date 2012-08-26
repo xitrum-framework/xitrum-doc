@@ -9,5 +9,5 @@ Read about flash socket policy:
 The protocol to serve flash socket policy file is different from HTTP.
 To serve:
 
-1. Modify config/flash_socket_policy.xml appropriately
-2. Modyfy config/xitrum.json to enable serving the above file
+1. Modify `config/flash_socket_policy.xml <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/flash_socket_policy.xml>`_ appropriately
+2. Modify `config/xitrum.json <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/xitrum.json>`_ to enable serving the above file
