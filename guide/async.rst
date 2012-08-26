@@ -1,54 +1,22 @@
 Async response
 ==============
 
-respondXXX:
+List of responding methods:
 
 * ``respondInlineView``: responds HTML with or without layout
 * ``respondView``: responds HTML with or without layout
 * ``respondText``: responds a string without layout
-* ``respondJson``: respondss JSON
+* ``respondJson``: responds JSON
 * ``respondBinary``: responds an array of bytes
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
   (aka send-file) is used
+* ``respondWebSocket``: responds a text WebSocket frame
 
 There is no default response. You must call respondXXX explicitly to send response
 to the client. If you don't call respondXXX, the HTTP connection is kept for you,
-and you can call respondXXX later.
-
-Chunked response
-----------------
-
-`Chunked response <http://en.wikipedia.org/wiki/Chunked_transfer_encoding>`_
-has many use cases. For example, when you need to generate a very large CSV
-file that does may not fit memory.
-
-::
-
-  // "Cache-Control" header will be automatically set to "no-cache"
-  // Notice that "Pragma: no-cache" is linked to requests, not responses:
-  // http://palizine.plynt.com/issues/2008Jul/cache-control-attributes/
-  response.setChunked(true)
-
-  val generator = new MyCsvGenerator
-  val header = generator.getHeader
-  respondText(header, "text/csv")
-
-  while (generator.hasNextLine) {
-    val line = generator.nextLine
-    respondText(line)
-  }
-
-  respondLastChunk()
-
-1. Call ``response.setChunked(true)``
-2. Call respondXXX as many times as you want
-3. Lastly, call ``respondLastChunk``
-
-Notes:
-
-* Headers are only sent on the first respondXXX call.
-* Chunks cannot be used with :doc:`page or action cache </cache>`.
+and you can call respondXXX later. To check if the connection is still open, call
+``channel.isOpen``.
 
 WebSocket
 ---------
@@ -92,15 +60,8 @@ To get URL to the above WebSocket action:
   // Probably you want to use this in Scalate view etc.
   val url = HelloWebSocket.index.webSocketAbsoluteUrl
 
-Comet
------
-
-Comet messages may be clustered. Please see the chaper about :doc:`clustering </cluster>`.
-
-Chunked response is `not very good <http://www.shanison.com/2010/05/10/stop-the-browser-%E2%80%9Cthrobber-of-doom%E2%80%9D-while-loading-comet-forever-iframe/>`_
-for `Comet <http://en.wikipedia.org/wiki/Comet_(programming)/>`_.
-Xitrum uses Ajax long polling. `WebSocket <http://en.wikipedia.org/wiki/WebSocket>`_
-will be supported in the future when all major browsers support it.
+Ajax long polling
+-----------------
 
 Chat example
 ~~~~~~~~~~~~
@@ -162,3 +123,74 @@ the message for you. If you want to publish the message yourself, call ``Comet.p
       respondText("")
     }
   }
+
+Chunked response
+----------------
+
+1. Call ``response.setChunked(true)``
+2. Call respondXXX as many times as you want
+3. Lastly, call ``respondLastChunk``
+
+`Chunked response <http://en.wikipedia.org/wiki/Chunked_transfer_encoding>`_
+has many use cases. For example, when you need to generate a very large CSV
+file that does may not fit memory.
+
+::
+
+  // "Cache-Control" header will be automatically set to "no-cache"
+  // Notice that "Pragma: no-cache" is linked to requests, not responses:
+  // http://palizine.plynt.com/issues/2008Jul/cache-control-attributes/
+  response.setChunked(true)
+
+  val generator = new MyCsvGenerator
+  val header = generator.getHeader
+  respondText(header, "text/csv")
+
+  while (generator.hasNextLine) {
+    val line = generator.nextLine
+    respondText(line)
+  }
+
+  respondLastChunk()
+
+Notes:
+
+* Headers are only sent on the first respondXXX call.
+* :doc:`Page and action cache </cache>` cannot be used with chunked response.
+
+Forever iframe
+~~~~~~~~~~~~~~
+
+Chunked response `can be used <http://www.shanison.com/2010/05/10/stop-the-browser-%E2%80%9Cthrobber-of-doom%E2%80%9D-while-loading-comet-forever-iframe/>`_
+for `Comet <http://en.wikipedia.org/wiki/Comet_(programming)/>`_.
+
+The page that embeds the iframe:
+
+::
+
+  ...
+  <script>
+    var functionForForeverIframeSnippetsToCall = function() {...}
+  </script>
+  ...
+  <iframe width="1" height="1" src="path/to/forever/iframe"></iframe>
+  ...
+
+The action that responds <script> snippets forever:
+
+::
+
+  response.setChunked(true)
+
+  // Need something like "123" for Firefox to work
+  respondText("<html><body>123", "text/html")
+
+  // Most browser does not execute <script> snippets right away,
+  // we need to send about 2KB dummy data to bypass this problem
+  for (i <- 1 to 100) respondText("<script></script>\n")
+
+  // Later, whenever you want to pass data to the browser, just send a snippet
+  if (channel.isOpen)
+    respondText("<script>parent.functionForForeverIframeSnippetsToCall()</script>\n")
+  else
+    // The connection has been closed, unsubscribe from events etc.
