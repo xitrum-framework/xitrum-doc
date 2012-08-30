@@ -185,7 +185,7 @@ The action that responds <script> snippets forever:
   // Need something like "123" for Firefox to work
   respondText("<html><body>123", "text/html")
 
-  // Most browser does not execute <script> snippets right away,
+  // Most clients (even curl!) do not execute <script> snippets right away,
   // we need to send about 2KB dummy data to bypass this problem
   for (i <- 1 to 100) respondText("<script></script>\n")
 
