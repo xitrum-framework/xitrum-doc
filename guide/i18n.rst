@@ -1,7 +1,9 @@
 I18n
 ====
 
-GNU gettext is used. Unlike many other methods, gettext supports plural forms.
+GNU gettext is used. Unlike many other i18n methods, gettext supports plural forms.
+
+.. image:: http://www.poedit.net/screenshots/osx.png
 
 Write internationalized messages in source code
 -----------------------------------------------
@@ -79,7 +81,7 @@ translate.
           vi.po
           ...
 
-Use a tool like `gedit <http://projects.gnome.org/gedit/>`_ to edit po files.
+Use a tool like `Poedit <http://www.poedit.net/>`_ to edit po files.
 You can use it to merge newly created pot file to existing po files.
 
 You can package po files in multiple JAR files. Xitrum will automatically merge
