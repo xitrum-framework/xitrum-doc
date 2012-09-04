@@ -13,10 +13,19 @@ List of responding methods:
   (aka send-file) is used
 * ``respondWebSocket``: responds a text WebSocket frame
 
-There is no default response. You must call respondXXX explicitly to send response
-to the client. If you don't call respondXXX, the HTTP connection is kept for you,
-and you can call respondXXX later. To check if the connection is still open, call
-``channel.isOpen``.
+Xitrum does not automatically send any default response.
+You must explicitly call respondXXX to send response.
+If you don't call respondXXX, Xitrum will keep the HTTP connection for you,
+and you can call respondXXX later.
+
+To check if the connection is still open, call ``channel.isOpen``.
+You can also use ``addConnectionClosedListener``:
+
+::
+
+  addConnectionClosedListener {
+    // The connection has been closed, unsubscribe from events etc.
+  }
 
 WebSocket
 ---------
@@ -189,8 +198,12 @@ The action that responds <script> snippets forever:
   // we need to send about 2KB dummy data to bypass this problem
   for (i <- 1 to 100) respondText("<script></script>\n")
 
-  // Later, whenever you want to pass data to the browser, just send a snippet
+Later, whenever you want to pass data to the browser, just send a snippet:
+
+::
+
   if (channel.isOpen)
     respondText("<script>parent.functionForForeverIframeSnippetsToCall()</script>\n")
   else
     // The connection has been closed, unsubscribe from events etc.
+    // You can also use ``addConnectionClosedListener``.
