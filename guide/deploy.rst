@@ -129,7 +129,8 @@ connections in a heavily loaded web server environment. For such environments,
 it is recommended to increase this value to 1024 or higher.
 Large listen queues also do a better job of avoiding Denial of Service (DoS) attacks.
 
-The backlog size of Xitrum is set to 1024, but you also need to tune the kernel as above.
+The backlog size of Xitrum is set to 1024 (memcached also uses this value),
+but you also need to tune the kernel as above.
 
 To check the backlog config:
 
