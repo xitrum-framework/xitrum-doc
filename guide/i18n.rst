@@ -76,7 +76,6 @@ translate.
       view
       resources
         i18n
-          en.po
           ja.po
           vi.po
           ...
@@ -91,13 +90,31 @@ them when running.
 
   mylib.jar
     i18n
-      en.po
       ja.po
+      vi.po
+	  ...
 
   another.jar
     i18n
-      en.po
       ja.po
+      vi.po
+	  ...
+
+Set language
+------------
+
+The default language is "en".
+In controller, typically in a before filter, to set language:
+
+::
+
+  setLanguage("ja")
+
+* To get the language set above, call ``getLanguage``.
+* To get all available languages in ``resources/i18n`` and JAR files, call ``availableLanguages``.
+* To get a languages set in the ``Accept-Language`` header by the browser, call ``browserLanguages``.
+  The result is sorted by priority set by the brower, from high to low.
+* To autoset the most suitable language, call ``autosetLanguage()``.
 
 Validation messages
 -------------------
