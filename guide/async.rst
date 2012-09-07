@@ -30,34 +30,28 @@ You can also use ``addConnectionClosedListener``:
 WebSocket
 ---------
 
-For a websocket request, there are 2 phases:
-
-1. The WebSocket request comes in as a normal HTTP request,
-   you have everything like session data, cookie etc.
-2. If you decide to upgrade the connection to the WebSocket connection,
-   call ``acceptWebSocket``. Otherwise you treat the request as normal
-   HTTP request, e.g. you can send normal HTTP response to the client.
-
 ::
 
   import xitrum.Controller
 
-  class HelloWebSocket extends Controller {
-    val index = WEBSOCKET("hello_websocket") {  // Entry point
-      acceptWebSocket(new WebSocketHandler() {
-        def onOpen() {
-          log.debug("onOpen")
-        }
+  class HelloSockJS extends Controller {
+    // /echo is the entry point
+    def echo = WEBSOCKET("echo", new WebSocketHandler {
+      def onOpen() {
+        // If you don't want to accept the connection,
+        // call channel.close()
+        log.debug("onOpen")
+      }
 
-        def onMessage(text: String) {
-          respondWebSocket(text.toUpperCase)  // Send back data to the WebSocket client
-        }
+      def onMessage(text: String) {
+        // Send back data to the SockJS client
+        respondWebSocket(text.toUpperCase)
+      }
 
-        def onClose() {
-          log.debug("onClose")
-        }
-      })
-    }
+      def onClose() {
+        log.debug("onClose")
+      }
+    })
   }
 
 To get URL to the above WebSocket action:
@@ -67,7 +61,47 @@ To get URL to the above WebSocket action:
   object HelloWebSocket extends HelloWebSocket
 
   // Probably you want to use this in Scalate view etc.
-  val url = HelloWebSocket.index.webSocketAbsoluteUrl
+  val url = HelloWebSocket.echo.webSocketAbsoluteUrl
+
+SockJS
+------
+
+`SockJS <https://github.com/sockjs/sockjs-client>`_ is a browser JavaScript
+library that provides a WebSocket-like object.
+SockJS tries to use WebSocket first. If that fails it can use a variety
+of ways but still presents them through the WebSocket-like object.
+
+SockJS-client does require a `server counterpart <https://github.com/sockjs/sockjs-protocol>`_
+and Xitrum automatically does it for you.
+
+To use SocketJS, in the code above just replace ``WEBSOCKET`` with ``SOCKJS``.
+It's that simple because you can think SockJS as a twin sister of WebSocket.
+
+Normally, you should use ``SOCKJS`` instead of ``WEBSOCKET``.
+
+::
+
+  import xitrum.Controller
+
+  class HelloSockJS extends Controller {
+    // /echo is the entry point
+    def echo = SOCKJS("echo", new WebSocketHandler {
+      def onOpen() {
+        // If you don't want to accept the connection,
+        // call channel.close()
+        log.debug("onOpen")
+      }
+
+      def onMessage(text: String) {
+        // Send back data to the SockJS client
+        respondWebSocket(text.toUpperCase)
+      }
+
+      def onClose() {
+        log.debug("onClose")
+      }
+    })
+  }
 
 Ajax long polling
 -----------------
