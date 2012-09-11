@@ -103,18 +103,30 @@ them when running.
 Set language
 ------------
 
-The default language is "en".
-In controller, typically in a before filter, to set language:
+* To get languages set in the ``Accept-Language`` request header by the browser,
+  call ``browserLanguages``. The result is sorted by priority set by the brower,
+  from high to low.
+* The default current language is "en". To set the current language, call
+  ``setLanguage("ja, vi etc.")``.
+* To autoset the most suitable language in resources, call
+  ``autosetLanguage(resourceLanguages)``, where
+  ``resourceLanguages`` is a list of available languages in
+  ``resources/i18n`` directory and JAR files.
+  If there's no suitable language, the language is still the default "en".
+* To get the current language set above, call ``getLanguage``.
+
+In your controller, typically in a before filter, to set language:
 
 ::
 
-  setLanguage("ja")
-
-* To get the language set above, call ``getLanguage``.
-* To get all available languages in ``resources/i18n`` and JAR files, call ``availableLanguages``.
-* To get a languages set in the ``Accept-Language`` header by the browser, call ``browserLanguages``.
-  The result is sorted by priority set by the brower, from high to low.
-* To autoset the most suitable language, call ``autosetLanguage()``.
+  beforeFilter {
+    val lango: Option[String] = yourMethodToGetUserPreferenceLanguageInSession()
+    lango match {
+      case None       => autosetLanguage("ja", "vi")
+      case Some(lang) => setLanguage(lang)
+    }
+    true
+  }
 
 Validation messages
 -------------------
