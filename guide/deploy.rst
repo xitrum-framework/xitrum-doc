@@ -61,6 +61,11 @@ is a very good tool. To install it on CentOS, see
 Tune Linux for many connections
 -------------------------------
 
+Good read:
+
+* `Ipsysctl tutorial <http://www.frozentux.net/ipsysctl-tutorial/chunkyhtml/>`_
+* `Iptables tutorial <http://www.frozentux.net/iptables-tutorial/chunkyhtml/>`_
+
 Increase open file limit
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
