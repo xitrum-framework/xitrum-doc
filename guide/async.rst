@@ -24,7 +24,8 @@ You can also use ``addConnectionClosedListener``:
 ::
 
   addConnectionClosedListener {
-    // The connection has been closed, unsubscribe from events etc.
+    // The connection has been closed
+    // Unsubscribe from events, release resources etc.
   }
 
 WebSocket
