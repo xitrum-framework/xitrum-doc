@@ -1,5 +1,19 @@
-Cache
-=====
+Server-side cache
+=================
+
+Xitrum provides extensive client-side and server-side caching for faster responding.
+At the web server layer, small files are cached in memory, big files are sent
+using NIO's zero copy. Xitrum's static file serving speed is
+`similar to that of Nginx <https://gist.github.com/3293596>`_.
+At the web framework layer you have can declare page, action, and object cache
+in the Rails style.
+`All Google's best practices <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_
+like conditional GET are applied for client-side caching.
+
+Sometimes you may want to prevent client-side caching.
+In that case, just call ``setNoCacheHeader()`` in your controller.
+
+Cache in the following section refers to server-side cache.
 
 `Hazelcast <http://www.hazelcast.com/>`_
 is integrated for page, action, and object cache. Of course you can

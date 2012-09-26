@@ -181,8 +181,9 @@ file that does may not fit memory.
 
 ::
 
-  // "Cache-Control" header will be automatically set to "no-cache"
-  // Notice that "Pragma: no-cache" is linked to requests, not responses:
+  // "Cache-Control" header will be automatically set to:
+  // "no-store, no-cache, must-revalidate, max-age=0"
+  // Note that "Pragma: no-cache" is linked to requests, not responses:
   // http://palizine.plynt.com/issues/2008Jul/cache-control-attributes/
   response.setChunked(true)
 
