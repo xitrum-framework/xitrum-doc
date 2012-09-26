@@ -7,11 +7,15 @@ You may run Xitrum directly:
 
   Browser ------ Xitrum instance
 
-Or behind a proxy server like Apache or Nginx:
+Or behind a load balancer like HAProxy, or reverse proxy like Apache or Nginx:
 
 ::
 
-  Browser ------ Proxy ------ Xitrum instance
+  Browser ------ Load balancer/Reverse proxy ------ Xitrum instances
+
+As mentioned in :doc:`the section about caching </cache>`, Xitrum serves static
+files very fast. You don't need to config load balancer/reverse proxy to serve
+static files.
 
 Package directory
 -----------------
