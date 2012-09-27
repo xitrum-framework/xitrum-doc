@@ -6,12 +6,15 @@ List of responding methods:
 * ``respondInlineView``: responds HTML with or without layout
 * ``respondView``: responds HTML with or without layout
 * ``respondText``: responds a string without layout
-* ``respondJson``: responds JSON
+* ``respondHtml``: same as above, with content type set to "text/html"
+* ``respondJson``: converts Scala object to JSON object then responds
+* ``respondJs``
+* ``respondJsonP``: combination of the above two
 * ``respondBinary``: responds an array of bytes
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
   (aka send-file) is used
-* ``respondWebSocket``: responds a text WebSocket frame
+* ``respondWebSocket``: responds a WebSocket text frame
 
 Xitrum does not automatically send any default response.
 You must explicitly call respondXXX to send response.
