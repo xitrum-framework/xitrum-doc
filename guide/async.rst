@@ -10,6 +10,8 @@ List of responding methods:
 * ``respondJson``: converts Scala object to JSON object then responds
 * ``respondJs``
 * ``respondJsonP``: combination of the above two
+* ``respondJsonText``
+* ``respondJsonPText``
 * ``respondBinary``: responds an array of bytes
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
