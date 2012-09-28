@@ -10,8 +10,12 @@ in the Rails style.
 `All Google's best practices <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_
 like conditional GET are applied for client-side caching.
 
+For dynamic content, if the content does not change after created (as if it is
+a static file), you may set headers for clients to cache aggressively.
+In that case, call ``setClientCacheAggressively()`` in your controller.
+
 Sometimes you may want to prevent client-side caching.
-In that case, just call ``setNoCacheHeader()`` in your controller.
+In that case, call ``setNoClientCache()`` in your controller.
 
 Cache in the following section refers to server-side cache.
 
