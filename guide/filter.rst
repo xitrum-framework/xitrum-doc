@@ -164,12 +164,10 @@ Priority
 
 ::
 
-  before1 -true-> before2 -true-> +----------------------+ --> after1 --> after2
-                                  | around1 (1 of 2)     |
-                                  | +------------------+ |
-                                  | | around2 (1 of 2) | |
-                                  | | action           | |
-                                  | | around2 (2 of 2) | |
-                                  | +------------------+ |
-                                  | around2 (2 of 2)     |
-                                  +----------------------+
+  before1 -true-> before2 -true-> +--------------------+ --> after1 --> after2
+                                  | around1 (1 of 2)   |
+                                  |   around2 (1 of 2) |
+                                  |     action         |
+                                  |   around2 (2 of 2) |
+                                  | around1 (2 of 2)   |
+                                  +--------------------+
