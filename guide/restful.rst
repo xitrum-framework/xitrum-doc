@@ -14,7 +14,7 @@ You can write RESTful APIs for iPhone, Android applications etc. very easily.
     def show  = GET(":id) {...}
   }
 
-The same for POST, PUT, DELETE, and OPTIONS.
+The same for POST, PUT, PATCH, DELETE, and OPTIONS.
 
 For HTTP clients that do not support PUT and DELETE (like normal browsers), to
 simulate PUT and DELETE, send a POST with _method=put or _method=delete in the
