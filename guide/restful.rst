@@ -15,6 +15,7 @@ You can write RESTful APIs for iPhone, Android applications etc. very easily.
   }
 
 The same for POST, PUT, PATCH, DELETE, and OPTIONS.
+HEAD is automatically handled by Xitrum as GET.
 
 For HTTP clients that do not support PUT and DELETE (like normal browsers), to
 simulate PUT and DELETE, send a POST with _method=put or _method=delete in the
