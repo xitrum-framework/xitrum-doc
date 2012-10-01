@@ -19,7 +19,7 @@ List of responding methods:
 * ``respondWebSocket``: responds a WebSocket text frame
 
 Xitrum does not automatically send any default response.
-You must explicitly call respondXXX to send response.
+You must explicitly call respondXXX methods above to send response.
 If you don't call respondXXX, Xitrum will keep the HTTP connection for you,
 and you can call respondXXX later.
 
@@ -32,6 +32,11 @@ You can also use ``addConnectionClosedListener``:
     // The connection has been closed
     // Unsubscribe from events, release resources etc.
   }
+
+Because of the async nature, the response is not sent right away.
+respondXXX returns
+`ChannelFuture <http://static.netty.io/3.5/api/org/jboss/netty/channel/ChannelFuture.html>`_.
+You can use it to perform actions when the response has actually been sent.
 
 WebSocket
 ---------
