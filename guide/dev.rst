@@ -42,19 +42,18 @@ Or:
 
   curl -L -o xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/zipball/master
 
-Install Eclipse plugin for SBT
-------------------------------
+Import the project to Eclipse
+-----------------------------
 
-Install Eclipse plugin for SBT by adding to file ``~/.sbt/plugins/build.sbt``
-the content as described at https://github.com/typesafehub/sbteclipse.
+Many people `use Eclipse to write Scala code <http://scala-ide.org/>`_.
 
-To create the ``.project`` file for Eclipse from ``build.sbt``, from the
-project directory, run:
+From the project directory, run:
 
 ::
 
   sbt/sbt eclipse
 
+``.project`` file for Eclipse will be created from definitions in ``build.sbt``.
 Now open Eclipse, and import the project.
 
 Install JRebel
