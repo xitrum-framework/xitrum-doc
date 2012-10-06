@@ -74,7 +74,7 @@ AppController.scala
           <title>Welcome to Xitrum</title>
         </head>
         <body>
-          {respondedView}
+          {renderedView}
           {jsForView}
         </body>
       </html>
