@@ -35,13 +35,13 @@ Of course you can refactor the view into a separate Scala file.
 
 There are methods for responding things other than views:
 
-* ``respondText``: responds a string without layout
-* ``respondHtml``: same as above, with content type set to "text/html"
-* ``respondJson``: converts Scala object to JSON object then responds
-* ``respondJs``
-* ``respondJsonP``: combination of the above two
-* ``respondJsonText``
-* ``respondJsonPText``
+* ``respondText("hello")``: responds a string without layout
+* ``respondHtml("<html>...</html>")``: same as above, with content type set to "text/html"
+* ``respondJson(List(1, 2, 3))``: converts Scala object to JSON object then responds
+* ``respondJs("myFunction([1, 2, 3])")``
+* ``respondJsonP(List(1, 2, 3), "myFunction")``: combination of the above two
+* ``respondJsonText("[1, 2, 3]")``
+* ``respondJsonPText("[1, 2, 3]", "myFunction")``
 * ``respondBinary``: responds an array of bytes
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
