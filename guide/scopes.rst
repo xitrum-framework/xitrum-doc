@@ -128,6 +128,9 @@ but Netty detects and outputs either "max-age" or "expires" properly. Don't worr
 Session
 -------
 
+Session storing, restoring, encrypting etc. is done automatically by Xitrum.
+You don't have to mess with them.
+
 In your actions, you can use ``session``. It is an instance of
 ``scala.collection.mutable.Map[String, Any]``. Things in ``session`` must be
 serializable.
@@ -137,19 +140,18 @@ session:
 
 ::
 
-  session("username") = username
+  session("userId") = userId
 
 Later, if you want to check if a user has logged in or not, just check if
 there's a username in his session:
 
 ::
 
-  if (session.isDefinedAt("username")) println("This user has logged in")
+  if (session.isDefinedAt("userId")) println("This user has logged in")
 
-Session storing, restoring, encrypting etc. is done automatically by Xitrum.
-You don't have to mess with them.
-
-http://www.technicalinfo.net/papers/WebBasedSessionManagement.html
+Storing user ID and pull the user from database on each access is usually a good
+practice. That way changes to the user are updated on each access (including
+changes to user roles/authorizations).
 
 resetSession
 ~~~~~~~~~~~~
@@ -165,7 +167,7 @@ attack, in the action that lets users login, call ``resetSession``.
     def login = GET("login") {
       ...
       resetSession()  // Reset first before doing anything else with the session
-      session("username") = username
+      session("userId") = userId
     }
   }
 
