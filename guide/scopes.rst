@@ -243,6 +243,9 @@ and implement the two methods.
 
 Then to tell Xitrum to use your session store, set its class name to xitrum.json.
 
+Good read:
+`Web Based Session Management - Best practices in managing HTTP-based client sessions <http://www.technicalinfo.net/papers/WebBasedSessionManagement.html>`_.
+
 object vs. val
 --------------
 
