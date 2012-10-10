@@ -132,6 +132,25 @@ In your actions, you can use ``session``. It is an instance of
 ``scala.collection.mutable.Map[String, Any]``. Things in ``session`` must be
 serializable.
 
+For example, to mark that a user has logged in, you can set his username into the
+session:
+
+::
+
+  session("username") = username
+
+Later, if you want to check if a user has logged in or not, just check if
+there's a username in his session:
+
+::
+
+  if (session.isDefinedAt("username")) println("This user has logged in")
+
+Session storing, restoring, encrypting etc. is done automatically by Xitrum.
+You don't have to mess with them.
+
+http://www.technicalinfo.net/papers/WebBasedSessionManagement.html
+
 resetSession
 ~~~~~~~~~~~~
 
@@ -190,23 +209,39 @@ Display the username:
 Session store
 ~~~~~~~~~~~~~
 
-In config/xitrum.properties (`example <https://github.com/ngocdaothanh/xitrum/blob/master/plugin/src/main/resources/xitrum_resources/config/xitrum.properties>`_),
+In config/xitrum.json (`example <https://github.com/ngocdaothanh/xitrum/blob/master/plugin/src/main/resources/xitrum_resources/config/xitrum.json>`_),
 you can config the session store:
 
 ::
 
-  session_store = xitrum.scope.session.CookieSessionStore
+  ...
+  "session": {
+    // To store sessions on client side: xitrum.scope.session.CookieSessionStore
+    // To store sessions on server side: xitrum.scope.session.HazelcastSessionStore
+    // "store": "xitrum.scope.session.CookieSessionStore",
+    "store": "xitrum.scope.session.HazelcastSessionStore",
 
-If you want to store session on server side using Hazelcast:
+    // If you run multiple sites on the same domain, make sure that there's no
+    // cookie name conflict between sites
+    "cookieName": "_session",
 
-::
+    // Key to encrypt session cookie etc.
+    // Do not use the example below! Use your own!
+    // If you deploy your application to several instances be sure to use the same key!
+    "secureKey": "ajconghoaofuxahoi92chunghiaujivietnamlasdoclapjfltudoil98hanhphucup8"
+  }
+  ...
 
-  session_store = xitrum.scope.session.HazelcastSessionStore
+If you run a cluster of Xitrum web servers and store sessions on server side,
+setup session replication by :doc:`configuring Hazelcast </cluster>`.
 
-You may need to setup session replication by :doc:`configuring Hazelcast </cluster>`.
+The two default session stores are enough for normal cases.
+But if you have a special case and want to implement your own session store,
+extend
+`SessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
+and implement the two methods.
 
-If you want to create your own session store, implement
-`SessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_.
+Then to tell Xitrum to use your session store, set its class name to xitrum.json.
 
 object vs. val
 --------------
