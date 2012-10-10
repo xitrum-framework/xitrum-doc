@@ -11,7 +11,7 @@ behind a proxy server or load balancer:
                                 \ Xitrum instance 3
 
 Cache and Comet are clustered out of the box thanks to `Hazelcast <http://www.hazelcast.com/>`_.
-Please see ``hazelcast_mode`` in ``config/xitrum.properties``, ``config/hazelcast_cluster_member_or_super_client.xml``,
+Please see ``hazelcast_mode`` in ``config/xitrum.json``, ``config/hazelcast_cluster_member_or_super_client.xml``,
 ``config/hazelcast_java_client.properties``, and read `Hazelcast's documentation <http://www.hazelcast.com/documentation.jsp#Config>`_
 to know how to config.
 
@@ -28,7 +28,7 @@ in your Xitrum project yourself.
 
 Hazelcast has `3 modes <http://www.hazelcast.com/documentation.jsp#Clients>`_:
 cluster member, super client, and Java client. Please see ``hazelcast_mode``
-in ``config/xitrum.properties``.
+in ``config/xitrum.json``.
 
 Xitrum handles these modes automatically. When you need to get a Hazelcast map,
 do not do like this:
