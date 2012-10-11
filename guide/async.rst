@@ -16,7 +16,8 @@ List of responding methods:
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
   (aka send-file) is used
-* ``respondWebSocket``: responds a WebSocket text frame
+* ``respondWebSocket("text")``: responds a WebSocket text frame
+* ``respondEventSource("data", "event")``
 
 Xitrum does not automatically send any default response.
 You must explicitly call respondXXX methods above to send response.
@@ -73,6 +74,67 @@ To get URL to the above WebSocket action:
 
   // Probably you want to use this in Scalate view etc.
   val url = HelloWebSocket.echo.webSocketAbsoluteUrl
+
+SockJS
+------
+
+`SockJS <https://github.com/sockjs/sockjs-client>`_ is a browser JavaScript
+library that provides a WebSocket-like object.
+SockJS tries to use WebSocket first. If that fails it can use a variety
+of ways but still presents them through the WebSocket-like object.
+
+If you want to work with WebSocket API on all kind of browsers, you should use
+SockJS and avoid using WebSocket directly.
+
+::
+
+  <script>
+    var sock = new SockJS('http://mydomain.com/path_prefix');
+    sock.onopen = function() {
+      console.log('open');
+    };
+    sock.onmessage = function(e) {
+      console.log('message', e.data);
+    };
+    sock.onclose = function() {
+      console.log('close');
+    };
+  </script>
+
+SockJS-client does require a `server counterpart <https://github.com/sockjs/sockjs-protocol>`_
+and Xitrum automatically does it for you.
+
+::
+
+  import xitrum.handler.Server
+  import xitrum.routing.Routes
+  import xitrum.sockjs.SockJsHandler
+
+  class EchoSockJsHandler extends SockJsHandler {
+    def onOpen() {}
+
+    def onMessage(message: String) {
+      sendMessage(message)
+    }
+
+    def onClose() {}
+  }
+
+  object Boot {
+    def main(args: Array[String]) {
+      Routes.sockJs(classOf[EchoSockJsHandler], "echo")
+      Server.start()
+    }
+  }
+
+See `Various issues and design considerations <https://github.com/sockjs/sockjs-node#various-issues-and-design-considerations>`_:
+
+::
+
+  Basically cookies are not suited for SockJS model. If you want to authorize a
+  session, provide a unique token on a page, send it as a first thing over SockJS
+  connection and validate it on the server side. In essence, this is how cookies
+  work.
 
 Ajax long polling
 -----------------
@@ -213,3 +275,18 @@ Later, whenever you want to pass data to the browser, just send a snippet:
   else
     // The connection has been closed, unsubscribe from events etc.
     // You can also use ``addConnectionClosedListener``.
+
+Event Source
+~~~~~~~~~~~~
+
+See http://dev.w3.org/html5/eventsource/
+
+Event Source response is a special kind of chunked response.
+Data must be Must be  UTF-8.
+
+To respond event source, call ``respondEventSource`` as many time as you want.
+
+::
+
+  respondEventSource("data1", "event1")
+  respondEventSource("data2")  // Event name defaults to "message"

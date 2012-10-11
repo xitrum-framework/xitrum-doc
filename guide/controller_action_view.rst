@@ -47,6 +47,7 @@ There are methods for responding things other than views:
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
   (aka send-file) is used
 * ``respondWebSocket``: responds a WebSocket text frame
+* ``respondEventSource("data", "event")``
 
 Layout
 ------
