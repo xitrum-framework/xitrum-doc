@@ -101,8 +101,19 @@ SockJS and avoid using WebSocket directly.
     };
   </script>
 
-SockJS-client does require a `server counterpart <https://github.com/sockjs/sockjs-protocol>`_
-and Xitrum automatically does it for you.
+Xitrum includes the JavaScript file of SockJS.
+In your view template, just write like this:
+
+::
+
+  ...
+  html
+    head
+      != jsDefaults
+  ...
+
+SockJS does require a `server counterpart <https://github.com/sockjs/sockjs-protocol>`_.
+Xitrum automatically does it for you.
 
 ::
 
