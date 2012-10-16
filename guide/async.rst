@@ -47,23 +47,23 @@ WebSocket
   import xitrum.Controller
 
   class HelloSockJS extends Controller {
-    // /echo is the entry point
-    def echo = WEBSOCKET("echo", new WebSocketHandler {
-      def onOpen() {
-        // If you don't want to accept the connection,
-        // call channel.close()
-        log.debug("onOpen")
-      }
+    def echo = WEBSOCKET("echo") {
+      // If you don't want to accept the connection, call channel.close()
+      acceptWebSocket(new WebSocketHandler {
+        def onOpen() {
+          log.debug("onOpen")
+        }
 
-      def onMessage(text: String) {
-        // Send back data to the SockJS client
-        respondWebSocket(text.toUpperCase)
-      }
+        def onMessage(message: String) {
+          // Send back data to the SockJS client
+          respondWebSocket(message.toUpperCase)
+        }
 
-      def onClose() {
-        log.debug("onClose")
-      }
-    })
+        def onClose() {
+          log.debug("onClose")
+        }
+      })
+    }
   }
 
 To get URL to the above WebSocket action:
@@ -117,12 +117,15 @@ Xitrum automatically does it for you.
 
 ::
 
+  import xitrum.{Controller, SockJsHandler}
   import xitrum.handler.Server
   import xitrum.routing.Routes
-  import xitrum.sockjs.SockJsHandler
 
   class EchoSockJsHandler extends SockJsHandler {
-    def onOpen() {}
+    def onOpen(controller: Controller) {
+      // controller here is typically only for getting things in session
+      val myThing = controller.session("myThing")
+    }
 
     def onMessage(message: String) {
       sendMessage(message)
