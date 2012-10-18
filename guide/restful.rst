@@ -41,10 +41,10 @@ Routing is also two-way: you can recreate URLs (reverse routing) in a typesafe w
 Route cache
 -----------
 
-For better startup speed, routes are cached to file ``routes.sclasner``.
+For better startup speed, routes are cached to file ``routes.cache``.
 While developing, routes in .class files in the ``target`` directory are not
 cached. If you change library dependencies that contain routes, you may need to
-delete ``routes.sclasner``. This file should not be committed to your project
+delete ``routes.cache``. This file should not be committed to your project
 source code repository.
 
 Route order with first and last

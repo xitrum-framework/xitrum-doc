@@ -15,7 +15,7 @@ These should be `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master
   .*
   log
   project
-  routes.sclasner
+  routes.cache
   target
 
 If you're using git you can clone the
