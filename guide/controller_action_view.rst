@@ -190,3 +190,57 @@ or "ssp" as the last parameter to `renderScalate` or `respondView`.
 
   renderScalate(classOf[AppAction], "mustache")
   respondView("scaml")
+
+Controller object
+-----------------
+
+From a controller, to refer to an action of another controller, use controller
+object like this:
+
+::
+
+  import xitrum.Controller
+
+  object LoginController extends LoginController
+  class LoginController extends Controller {
+    def login = GET("login") {...}
+
+    def doLogin = POST("login") {
+      ...
+      // After login success
+      redirectTo(AdminController.index)  // <-- HERE
+    }
+  }
+
+  object AdminController extends AdminController
+  class AdminController extends Controller {
+    def index = GET("admin") {
+      ...
+      // Check if the user has not logged in, redirect him to the login page
+      redirectTo(LoginController.login)  // <-- HERE
+    }
+  }
+
+In short, you create controller object and call action methods on it.
+
+Caveat
+~~~~~~
+
+From controller class, do not import everything in controller object like this:
+
+::
+
+  object LoginController extends LoginController
+  class LoginController extends Controller {
+    import LoginController._
+    ...
+  }
+
+Doing that will cause many strange runtime error in the Xitrum framework, like this:
+
+::
+
+  java.lang.NullPointerException: null
+    at xitrum.scope.request.RequestEnv.request(RequestEnv.scala:58) ~[xitrum_2.9.2.jar:1.9.8]
+    at xitrum.scope.request.ExtEnv$class.cookies(ExtEnv.scala:26) ~[xitrum_2.9.2.jar:1.9.8]
+    ...
