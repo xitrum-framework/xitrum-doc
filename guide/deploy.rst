@@ -7,15 +7,43 @@ You may run Xitrum directly:
 
   Browser ------ Xitrum instance
 
-Or behind a load balancer like HAProxy, or reverse proxy like Apache or Nginx:
+Or behind a load balancer like HAProxy, or reverse proxy like Nginx:
 
 ::
 
   Browser ------ Load balancer/Reverse proxy ------ Xitrum instances
 
-As mentioned in :doc:`the section about caching </cache>`, Xitrum serves static
-files very fast. You don't need to config load balancer/reverse proxy to serve
-static files.
+If you use WebSocket or SockJS feature in Xitrum and want to run Xitrum behind
+Nginx 1.2, you must install additional module like
+`nginx_tcp_proxy_module <https://github.com/yaoweibin/nginx_tcp_proxy_module>`_.
+
+HAProxy is much easier to use. It suits Xitrum because as mentioned in
+:doc:`the section about caching </cache>`, Xitrum serves static files
+`very fast <https://gist.github.com/3293596>`_. You don't need to use static file
+serving feature in Nginx.
+
+A HAProxy typically config file looks like this:
+
+::
+
+  defaults
+    timeout connect 5s
+    timeout client 50s
+    timeout server 50s
+
+  listen letsnote 0.0.0.0:80
+    mode http
+    # For SockJS long polling, can't use option httpclose
+    # http://code.google.com/p/haproxy-docs/wiki/forwardfor
+    # http://code.google.com/p/haproxy-docs/wiki/http_server_close
+    # http://serverfault.com/questions/30311/remote-ips-with-haproxy
+    option forwardfor
+    option http-server-close
+    server xitrum1 127.0.0.1:8001
+    server xitrum2 127.0.0.1:8002
+
+See also:
+http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy
 
 Package directory
 -----------------
