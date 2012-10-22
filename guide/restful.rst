@@ -55,7 +55,7 @@ When you want to route like this:
 ::
 
   /articles/:id --> Articles#show
-  /articles/new --> Articles#niw
+  /articles/new --> Articles#nevv
 
 You must make sure the second route be checked first. ``first`` is for this purpose:
 
@@ -65,7 +65,7 @@ You must make sure the second route be checked first. ``first`` is for this purp
     pathPrefix = "articles"
 
     def show = GET(":id") {...}
-    def niw  = first.GET("new") {...}
+    def nevv = first.GET("new") {...}
   }
 
 ``last`` is similar.

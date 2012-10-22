@@ -56,7 +56,7 @@ Articles.scala
       )
     }
 
-    def niw = first.GET("niw") {  // first: force this route to be matched before "show"
+    def nevv = first.GET("new") {  // first: force this route to be matched before "show"
       respondInlineView(
         <form data-postback="submit" action={create.url}>
           <label>Title</label>
