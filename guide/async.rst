@@ -122,13 +122,10 @@ Xitrum automatically does it for you.
   import xitrum.routing.Routes
 
   class EchoSockJsHandler extends SockJsHandler {
-    def onOpen(controller: Controller) {
-      // controller here is typically only for getting things in session
-      val myThing = controller.session("myThing")
-    }
+    def onOpen() {}
 
     def onMessage(message: String) {
-      sendMessage(message)
+      send(message)
     }
 
     def onClose() {}
