@@ -36,9 +36,9 @@ Change to the newly created project directory and run ``sbt/sbt run``:
   cd xitrum-new
   sbt/sbt run
 
-This command will download all dependencies, compile the project, and run the
-class ``quickstart.Boot``, which starts the web server. In the console, you will
-see all the routes:
+This command will download all :doc:`dependencies </deps>`, compile the project,
+and run the class ``quickstart.Boot``, which starts the web server. In the console,
+you will see all the routes:
 
 ::
 

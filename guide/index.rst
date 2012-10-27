@@ -30,3 +30,4 @@ Xitrum's documentation
    cluster
    howto
    handler
+   deps

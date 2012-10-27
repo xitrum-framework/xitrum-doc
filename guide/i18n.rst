@@ -44,7 +44,7 @@ the whole project.
   sbt/sbt compile
 
 ``sbt/sbt clean`` is to delete all .class files, forcing SBT to recompile the whole
-project. Because after ``sbt/sbt clean``, SBT will try to redownload all dependencies,
+project. Because after ``sbt/sbt clean``, SBT will try to redownload all :doc:`dependencies </deps>`,
 you can do a little faster with the command ``find target -name *.class -delete``,
 which deletes all .class files in the ``target`` directory.
 
