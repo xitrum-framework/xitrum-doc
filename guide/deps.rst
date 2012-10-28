@@ -9,7 +9,7 @@ your Xitrum project, you can use them directly if you want.
 * `Netty <https://netty.io/>`_:
    For async HTTP(S) server
 * `Hazelcast <http://hazelcast.com/>`_:
-   For distributing cache, server side session, and message queue
+   For distributing caches, server side sessions, and message queues
 * `Akka <http://akka.io/>`_:
    For SockJS
 * `Scalate <http://scalate.fusesource.org/>`_:
@@ -24,7 +24,7 @@ your Xitrum project, you can use them directly if you want.
    For i18n
 * `Commons Lang <http://commons.apache.org/lang/>`_:
    For escaping JSON data
-* `Jboss Marshalling <http://www.jboss.org/jbossmarshalling>`_:
+* `JBoss Marshalling <http://www.jboss.org/jbossmarshalling>`_:
    For serializing and deserializing cookie and session
 * `SLF4J <http://www.slf4j.org/>`_, `Logback <http://logback.qos.ch/>`_:
    For logging
