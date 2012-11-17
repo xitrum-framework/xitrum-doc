@@ -39,6 +39,23 @@ respondXXX returns
 `ChannelFuture <http://static.netty.io/3.5/api/org/jboss/netty/channel/ChannelFuture.html>`_.
 You can use it to perform actions when the response has actually been sent.
 
+For example, if you want to close the connection after the response has been sent:
+
+::
+
+  val future = respondText("Hello")
+  future.addListener(new ChannelFutureListener {
+    def operationComplete(future: ChannelFuture) {
+      future.getChannel.close()
+    }
+  })
+
+Or shorter:
+
+::
+
+  respondText("Hello").addListener(ChannelFutureListener.CLOSE)
+
 WebSocket
 ---------
 
