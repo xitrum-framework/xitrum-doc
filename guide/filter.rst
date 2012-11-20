@@ -90,14 +90,14 @@ You can use ``only`` or ``except`` with ``beforeFilter``.
     def doLogin = POST("login") {
       ...
       // After success login
-      resetSession()
+      session.clear()
       SVar.username.set(myusername)
       flash("You have successfully logged in.")
       redirectTo(index)
     }
 
     def logout = GET("logout") {
-      resetSession()
+      session.clear()
       flash("You have logged out.")
       jsRedirectTo(Site.index)
     }

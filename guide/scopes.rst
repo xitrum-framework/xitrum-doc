@@ -157,25 +157,25 @@ Storing user ID and pull the user from database on each access is usually a good
 practice. That way changes to the user are updated on each access (including
 changes to user roles/authorizations).
 
-resetSession
-~~~~~~~~~~~~
+session.clear()
+~~~~~~~~~~~~~~~
 
 `One line of code will protect you from session fixation <http://guides.rubyonrails.org/security.html#session-fixation>`_.
 
 Read the link above to know about session fixation. To prevent session fixation
-attack, in the action that lets users login, call ``resetSession``.
+attack, in the action that lets users login, call ``session.clear()``.
 
 ::
 
   class LoginController extends Controller {
     def login = GET("login") {
       ...
-      resetSession()  // Reset first before doing anything else with the session
+      session.clear()  // Reset first before doing anything else with the session
       session("userId") = userId
     }
   }
 
-To log users out, also call ``resetSession``.
+To log users out, also call ``session.clear()``.
 
 SessionVar
 ~~~~~~~~~~
@@ -209,8 +209,8 @@ Display the username:
   else
     <a href={urlFor[LoginAction]}>Login</a>
 
-* To delete the session var: ``SVar.username.delete``
-* To reset the whole session: ``resetSession``
+* To delete the session var: ``SVar.username.delete()``
+* To reset the whole session: ``session.clear()``
 
 Session store
 ~~~~~~~~~~~~~
