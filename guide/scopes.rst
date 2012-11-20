@@ -115,8 +115,12 @@ and add it to ``cookies``:
   cookies.add(cookie)
 
 Remember that there's no way for the server to directly delete a cookie on browsers.
-Instead, to delete immediately set max age to 0. To delete when the browser closes windows,
-set max age to Integer.MIN_VALUE.
+To delete a cookie sent by browser, you can't simply remove it from ``cookies``.
+Instead, set its max age to 0 so that when receiving response, the browser will
+expire it immediately. Also, to remove all cookies, you can't simply call
+``cookies.clear()``, you must loop through all cookies and set max age to 0.
+
+To delete when the browser closes windows, set max age to ``Integer.MIN_VALUE``:
 
 ::
 
