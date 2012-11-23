@@ -40,11 +40,58 @@ override `convertText <https://github.com/ngocdaothanh/xitrum/blob/master/src/ma
 For file upload: ``param[FileUpload]("x")``, ``params[FileUpload]("x")`` etc.
 For more details, see :doc:`Upload chapter </upload>`.
 
+"at"
+~~~~
+
+To pass things around when processing a request (e.g. from action to view or layout)
+you can use ``at``. ``at`` type is ``scala.collection.mutable.HashMap[String, Any]``.
+If you know Rails, you'll see ``at`` is a clone of ``@`` of Rails.
+
+Note that due to Scalate and Xitrum implementation limitation, you can't use
+these keys for ``at``: context, helper.
+
+Articles.scala
+
+::
+
+  class Articles extends AppController {
+    def show = GET(":id") {
+      val (title, body) = ...  // Get from DB
+      at("title") = title
+      respondInlineView(body)
+    }
+  }
+
+AppController.scala
+
+::
+
+  import xitrum.Controller
+  import xitrum.view.DocType
+
+  trait AppController extends Controller {
+    override def layout = DocType.html5(
+      <html>
+        <head>
+          {antiCSRFMeta}
+          {xitrumCSS}
+          {jsDefaults}
+          <title>{if (at.isDefinedAt("title")) "My Site - " + at("title") else "My Site"}</title>
+        </head>
+        <body>
+          {renderedView}
+          {jsForView}
+        </body>
+      </html>
+    )
+  }
+
 RequestVar
 ~~~~~~~~~~
 
-To pass things around when processing a request (e.g. from action to view or layout)
-in the typesafe way, you should use RequestVar.
+``at`` in the above section is not typesafe because you can set anything to the
+map. To be more typesafe, you should use RequestVar, which is a wrapper arround
+``at``.
 
 RVar.scala
 
@@ -54,6 +101,18 @@ RVar.scala
 
   object RVar {
     object title extends RequestVar[String]
+  }
+
+Articles.scala
+
+::
+
+  class Articles extends AppController {
+    def show = GET(":id") {
+      val (title, body) = ...  // Get from DB
+      RVar.title.set(title)
+      respondInlineView(body)
+    }
   }
 
 AppController.scala
@@ -78,18 +137,6 @@ AppController.scala
         </body>
       </html>
     )
-  }
-
-Articles.scala
-
-::
-
-  class Articles extends AppController {
-    def show = GET(":id") {
-      val (title, body) = ...  // Get from DB
-      RVar.title.set(title)
-      respondInlineView(body)
-    }
   }
 
 Cookie

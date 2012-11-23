@@ -181,15 +181,38 @@ The default Scalate template type is `Jade <http://scalate.fusesource.org/docume
 You can also use `Mustache <http://scalate.fusesource.org/documentation/mustache.html>`_,
 `Scaml <http://scalate.fusesource.org/documentation/scaml-reference.html>`_, or
 `Ssp <http://scalate.fusesource.org/documentation/ssp-reference.html>`_.
-To config the default template type, see `scalate` in xitrum.json.
+To config the default template type, see xitrum.json file in the config directory
+of your Xitrum application.
 
 You can override the default template type by passing "jade", "mustache", "scamal",
-or "ssp" as the last parameter to `renderScalate` or `respondView`.
+or "ssp" to `respondView`.
 
 ::
 
-  renderScalate(classOf[AppAction], "mustache")
-  respondView("scaml")
+  respondView("mustache")
+
+Mustache
+~~~~~~~~
+
+You can't do some things with Mustache like with Jade, because Mustache syntax
+is stricter.
+
+To pass things from action to Mustache template, you must use ``at``:
+
+Action:
+
+::
+
+  at("name") = "Jack"
+
+Mustache template:
+
+::
+
+  My name is {{name}}
+
+Note that due to Scalate and Xitrum implementation limitation, you can't use
+these keys for ``at``: context, helper.
 
 Controller object
 -----------------
