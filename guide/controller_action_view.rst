@@ -204,15 +204,20 @@ Action:
 ::
 
   at("name") = "Jack"
+  at("xitrumCSS") = xitrumCSS
 
 Mustache template:
 
 ::
 
   My name is {{name}}
+  {{xitrumCSS}}
 
-Note that due to Scalate and Xitrum implementation limitation, you can't use
-these keys for ``at``: context, helper.
+Note that you can't use the below keys for ``at`` map to pass things to Scalate
+template, because they're already used:
+
+* "context": for Sclate utility object, which contains methods like ``unescape``
+* "helper": for the current controller object
 
 Controller object
 -----------------

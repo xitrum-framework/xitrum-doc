@@ -47,9 +47,6 @@ To pass things around when processing a request (e.g. from action to view or lay
 you can use ``at``. ``at`` type is ``scala.collection.mutable.HashMap[String, Any]``.
 If you know Rails, you'll see ``at`` is a clone of ``@`` of Rails.
 
-Note that due to Scalate and Xitrum implementation limitation, you can't use
-these keys for ``at``: context, helper.
-
 Articles.scala
 
 ::
