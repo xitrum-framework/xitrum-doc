@@ -120,7 +120,7 @@ Scalate
 -------
 
 For small views you can use Scala XML for convenience, but for big views you
-should use `Scalate <http://scalate.fusesource.org/>`_.
+should use `Scalate <http://scalate.fusesource.org/>`_ templates.
 
 scr/main/scala/quickstart/controller/AppController.scala:
 
@@ -173,7 +173,12 @@ scr/main/scalate/quickstart/controller/MyController/index.jade:
   a(href={currentAction.url}) Path to current action
   p= currentController.asInstanceOf[MyController].hello("World")
 
-In views you can use all methods of the class `xitrum.Controller <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Controller.scala>`_.
+In templates you can use all methods of the class `xitrum.Controller <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Controller.scala>`_,
+like ``xitrumCSS``. Also, you can use utility methods provided by Scalate like ``unescape``.
+See the `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_.
+Note that these methods are not available for Mustache templates (see the next
+section).
+
 If you want to have exactly instance of the current controller, cast ``currentController`` to
 the controller you wish.
 
