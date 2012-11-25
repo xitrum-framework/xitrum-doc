@@ -126,6 +126,26 @@ The ``<head>`` part will include something like this:
 The token will be automatically included in all non-GET Ajax requests sent by
 jQuery.
 
+antiCSRFInput
+-------------
+
+If you manually write form in Scalate template, use ``antiCSRFInput``:
+
+::
+
+  form(method="post" action={Admin.addGroup.url})
+    != antiCSRFInput
+
+    label Group name *
+    input.required(type="text" name="name" placeholder="Required")
+    br
+
+    label Group description
+    input(type="text" name="desc")
+    br
+
+    input(type="submit" value="Add")
+
 SkipCSRFCheck
 -------------
 
