@@ -139,6 +139,8 @@ AppController.scala
 Cookie
 ------
 
+`Read Wikipedia about cookie path etc. <http://en.wikipedia.org/wiki/HTTP_cookie#Domain_and_Path>`_
+
 Inside an action, you can use ``cookies``. It is a subclass of Java's `TreeSet <http://download.oracle.com/javase/6/docs/api/java/util/TreeSet.html>`_
 that contains `Cookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/Cookie.html>`_.
 It is basically a normal TreeSet with an additional ``get`` method to lookup a cookie:
@@ -155,8 +157,26 @@ and add it to ``cookies``:
 
 ::
 
-  val cookie = new DefaultCookie("myCookie", "String value")
+  val cookie = new DefaultCookie("name", "value")
+  val cookiePath = xitrum.Config.withBaseUrl("/")
+  cookie.setPath(cookiePath)
+  cookie.setHttpOnly(true)  // true: if you don't want JavaScript to access this cookie
   cookies.add(cookie)
+
+Note that cookies sent by browser do not have paths. If you take out a cookie
+and set new value to it, remember to set the path, if that's what you need:
+
+::
+
+  cookies.get("myCookie") match {
+    case None         => ...
+    case Some(cookie) =>
+      ...
+      val cookiePath = xitrum.Config.withBaseUrl("/")
+      cookie.setPath(cookiePath)
+      cookie.setHttpOnly(true)
+      ...
+  }
 
 Remember that there's no way for the server to directly delete a cookie on browsers.
 To delete a cookie sent by browser, you can't simply remove it from ``cookies``.
