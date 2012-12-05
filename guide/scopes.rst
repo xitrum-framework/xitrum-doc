@@ -141,50 +141,31 @@ Cookie
 
 `Read Wikipedia about cookie path etc. <http://en.wikipedia.org/wiki/HTTP_cookie#Domain_and_Path>`_
 
-Inside an action, you can use ``cookies``. It is a subclass of Java's `TreeSet <http://download.oracle.com/javase/6/docs/api/java/util/TreeSet.html>`_
-that contains `Cookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/Cookie.html>`_.
-It is basically a normal TreeSet with an additional ``get`` method to lookup a cookie:
+Inside an action, use ``requestCookies``, a ``Map[String, String]``, to read cookies sent by browser.
 
 ::
 
-  cookies.get("myCookie") match {
+  requestCookies.get("myCookie") match {
     case None         => ...
-    case Some(cookie) => ...
+    case Some(string) => ...
   }
 
-To add a cookie, create an instance of `DefaultCookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/DefaultCookie.html>`_
-and add it to ``cookies``:
+To send cookie to browser, create an instance of `DefaultCookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/DefaultCookie.html>`_
+and append it to ``responseCookies``, an ``ArrayBuffer`` that contains `Cookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/Cookie.html>`_.
 
 ::
 
   val cookie = new DefaultCookie("name", "value")
-  val cookiePath = xitrum.Config.withBaseUrl("/")
-  cookie.setPath(cookiePath)
-  cookie.setHttpOnly(true)  // true: if you don't want JavaScript to access this cookie
-  cookies.add(cookie)
+  cookie.setHttpOnly(true)  // true: JavaScript cannot access this cookie
+  responseCookies.append(cookie)
 
-Note that cookies sent by browser do not have paths. If you take out a cookie
-and set new value to it, remember to set the path, if that's what you need:
+If you don't set cookie's path by calling ``cookie.setPath(cookiePath)``, its
+path will be set to the site's root path (``xitrum.Config.withBaseUrl("/")``).
+This avoids accidental duplicate cookies.
 
-::
-
-  cookies.get("myCookie") match {
-    case None         => ...
-    case Some(cookie) =>
-      ...
-      val cookiePath = xitrum.Config.withBaseUrl("/")
-      cookie.setPath(cookiePath)
-      cookie.setHttpOnly(true)
-      ...
-  }
-
-Remember that there's no way for the server to directly delete a cookie on browsers.
-To delete a cookie sent by browser, you can't simply remove it from ``cookies``.
-Instead, set its max age to 0 so that when receiving response, the browser will
-expire it immediately. Also, to remove all cookies, you can't simply call
-``cookies.clear()``, you must loop through all cookies and set max age to 0.
-
-To delete when the browser closes windows, set max age to ``Integer.MIN_VALUE``:
+To delete a cookie sent by browser, send a cookie with the same name and set
+its max age to 0. The browser will expire it immediately. To tell browser to
+delete cookie when the browser closes windows, set max age to ``Integer.MIN_VALUE``:
 
 ::
 
