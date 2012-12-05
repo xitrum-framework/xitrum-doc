@@ -199,6 +199,11 @@ or "ssp" to `respondView`.
 Mustache
 ~~~~~~~~
 
+Must read:
+
+* `Mustache syntax <http://mustache.github.com/mustache.5.html>`_
+* `Scalate implementation <http://scalate.fusesource.org/documentation/mustache.html>`_
+
 You can't do some things with Mustache like with Jade, because Mustache syntax
 is stricter.
 
