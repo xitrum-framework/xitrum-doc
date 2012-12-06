@@ -56,8 +56,10 @@ Features:
 * Views can be written in a separate `Scalate <http://scalate.fusesource.org/>`_
   template file or Scala inline XML. Both are typesafe.
 * Sessions can be stored in cookies (more scalable) or clustered `Hazelcast <http://www.hazelcast.com/>`_ (more secure).
-  `Hazelcast <http://www.hazelcast.com/>`_ is recommended when using continuations-based Actions, since serialized
-  continuations are usually too big to store in cookies.
+  Hazelcast is recommended when using continuations-based actions, since serialized
+  continuations are usually too big to store in cookies. Hazelcast also gives
+  in-process (thus faster and simpler to use), distribued cache and pubsub, you
+  don't need separate cache and pubsub servers.
 * `jQuery Validation <http://docs.jquery.com/Plugins/validation>`_ is integrated
   for browser side and server side validation.
 * i18n using `GNU gettext <http://en.wikipedia.org/wiki/GNU_gettext>`_.
@@ -72,12 +74,6 @@ Features:
   is controller-first like Scalatra, not
   `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ like Lift.
   Most people are familliar with controller-first style.
-
-`Hazelcast <http://www.hazelcast.com/>`_ also gives:
-
-* In-process and distribued cache, you don't need separate cache servers.
-* In-process and distribued `Comet (with WebSocket) <http://en.wikipedia.org/wiki/Comet_(programming)>`_,
-  you can scale Comet to multiple web servers.
 
 `Xitrum <http://ngocdaothanh.github.com/xitrum>`_ is `open source <https://github.com/ngocdaothanh/xitrum>`_, please join
 its `Google group <http://groups.google.com/group/xitrum-framework>`_.
@@ -102,4 +98,5 @@ Samples
 -------
 
 * `Xitrum Demos <https://github.com/ngocdaothanh/xitrum-demos>`_
+* `Xitrum Modularized Demo <https://github.com/ngocdaothanh/xitrum-modularized-demo>`_
 * `Comy <https://github.com/ngocdaothanh/comy>`_
