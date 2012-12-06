@@ -13,11 +13,12 @@ Introduction
   | | HTTP(S) Server | |
   | +----------------+ |
   +--------------------+
+  |       Netty        |
+  +--------------------+
 
-`Xitrum <http://ngocdaothanh.github.com/xitrum>`_
-is an async and clustered Scala web framework
-and HTTP(S) server on top of `Netty <http://netty.io/>`_
-and `Hazelcast <http://www.hazelcast.com/>`_.
+Xitrum is an async and clustered Scala web framework and HTTP(S) server on top of
+`Netty <http://netty.io/>`_ and `Hazelcast <http://www.hazelcast.com/>`_.
+
 From `a user <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576d39>`_:
 
   Wow, this is a really impressive body of work, arguably the most
@@ -31,7 +32,8 @@ From `a user <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576
   layer (`Hazelcast <http://www.hazelcast.com/>`_), i18n a la GNU gettext, Netty (with Nginx, hello
   blazing fast), etc. and you have, wow.
 
-Features:
+Features
+--------
 
 * Typesafe, in the spirit of Scala. All the APIs try to be as typesafe as possible.
 * Async, in the spirit of Netty. Your request proccessing action does not have
@@ -58,7 +60,7 @@ Features:
 * Sessions can be stored in cookies (more scalable) or clustered `Hazelcast <http://www.hazelcast.com/>`_ (more secure).
   Hazelcast is recommended when using continuations-based actions, since serialized
   continuations are usually too big to store in cookies. Hazelcast also gives
-  in-process (thus faster and simpler to use), distribued cache and pubsub, you
+  in-process (thus faster and simpler to use) distribued cache and pubsub, you
   don't need separate cache and pubsub servers.
 * `jQuery Validation <http://docs.jquery.com/Plugins/validation>`_ is integrated
   for browser side and server side validation.
