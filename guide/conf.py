@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Xitrum documentation build configuration file, created by
+# Xitrum Guide build configuration file, created by
 # sphinx-quickstart on Sat May 28 22:50:50 2011.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -178,7 +178,7 @@ htmlhelp_basename = 'xitrumdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'xitrum.tex', u'Xitrum Documentation',
+  ('index', 'xitrum.tex', u'Xitrum Guide',
    u'Ngoc Dao', 'manual'),
 ]
 
@@ -211,6 +211,6 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'xitrum', u'Xitrum Documentation',
+    ('index', 'xitrum', u'Xitrum Guide',
      [u'Ngoc Dao'], 1)
 ]
