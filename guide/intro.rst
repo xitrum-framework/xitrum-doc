@@ -6,7 +6,7 @@ Introduction
   +--------------------+
   |      Your app      |
   +--------------------+
-  |       Xitrum       |
+  |    Xitrum fusion   |
   | +----------------+ |
   | | Web framework  | |  <-- Hazelcast --> Other instances
   | |----------------| |
@@ -16,8 +16,8 @@ Introduction
   |       Netty        |
   +--------------------+
 
-Xitrum is an async and clustered Scala web framework and HTTP(S) server on top of
-`Netty <http://netty.io/>`_ and `Hazelcast <http://www.hazelcast.com/>`_.
+Xitrum is an async and clustered Scala web framework and HTTP(S) server fusion
+on top of `Netty <http://netty.io/>`_ and `Hazelcast <http://www.hazelcast.com/>`_.
 
 From `a user <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576d39>`_:
 

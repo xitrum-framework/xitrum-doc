@@ -22,7 +22,7 @@ HAProxy is much easier to use. It suits Xitrum because as mentioned in
 `very fast <https://gist.github.com/3293596>`_. You don't need to use static file
 serving feature in Nginx.
 
-A HAProxy typically config file looks like this:
+A HAProxy typical config file looks like this:
 
 ::
 
