@@ -11,7 +11,7 @@ You can write RESTful APIs for iPhone, Android applications etc. very easily.
     pathPrefix = "articles"
 
     def index = GET {...}
-    def show  = GET(":id) {...}
+    def show  = GET(":id") {...}
   }
 
 The same for POST, PUT, PATCH, DELETE, and OPTIONS.
