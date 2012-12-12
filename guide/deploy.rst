@@ -132,9 +132,6 @@ modify /etc/sysctl.conf:
   # which you need with many (100k+) open socket connections
   net.ipv4.tcp_mem = 50576 64768 98152
 
-  # I was also masquerading the port Comet was on, you might not need this
-  net.ipv4.netfilter.ip_conntrack_max = 1048576
-
   # Backlog
   net.core.netdev_max_backlog = 2048
   net.core.somaxconn = 1024
