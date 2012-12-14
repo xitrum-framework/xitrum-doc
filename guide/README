@@ -1,10 +1,15 @@
 This Xitrum Guide is written using Sphinx:
 http://en.wikipedia.org/wiki/Sphinx_%28documentation_generator%29
 
-To generate the HTML version, install Sphinx, then run:
+Install Sphinx:
+easy_install -U Sphinx
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+To generate the HTML version:
 make html
 
 The generated HTML files will be put in _build directory.
 
-To generate the HTML version, run:
+To generate the HTML version:
 make latexpdf
