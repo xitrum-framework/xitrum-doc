@@ -8,17 +8,17 @@ Create a new empty Xitrum project
 ---------------------------------
 
 To create a new empty project, download
-`xitrum-new.zip <http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip>`_:
+`xitrum-new.zip <https://github.com/ngocdaothanh/xitrum-new/archive/master.zip>`_:
 
 ::
 
-  wget http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip
+  wget -O xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
 
 Or:
 
 ::
 
-  curl -O http://cloud.github.com/downloads/ngocdaothanh/xitrum-new/xitrum-new.zip
+  curl -L -o xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
 
 Run
 ---

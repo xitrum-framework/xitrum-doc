@@ -34,13 +34,13 @@ Alternatively:
 
 ::
 
-  wget -O xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/zipball/master
+  wget -O xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
 
 Or:
 
 ::
 
-  curl -L -o xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/zipball/master
+  curl -L -o xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
 
 Import the project to Eclipse
 -----------------------------
