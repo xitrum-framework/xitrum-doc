@@ -138,7 +138,7 @@ modify /etc/sysctl.conf:
   net.ipv4.tcp_max_syn_backlog = 2048
   net.ipv4.tcp_syncookies = 1
 
-Run ``sysctl -p`` to apply.
+Run ``sudo sysctl -p`` to apply.
 No need to reboot, now your kernel should be able to handle a lot more open connections.
 
 Note about backlog
@@ -182,4 +182,4 @@ To tune temporarily, you can do like this:
 
 ::
 
-  sysctl -w net.core.somaxconn=1024
+  sudo sysctl -w net.core.somaxconn=1024
