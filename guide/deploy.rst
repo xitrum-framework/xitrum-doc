@@ -11,7 +11,8 @@ Or behind a load balancer like HAProxy, or reverse proxy like Nginx:
 
 ::
 
-  Browser ------ Load balancer/Reverse proxy ------ Xitrum instances
+  Browser ------ Load balancer/Reverse proxy -+---- Xitrum instance1
+                                              +---- Xitrum instance2
 
 If you use WebSocket or SockJS feature in Xitrum and want to run Xitrum behind
 Nginx 1.2, you must install additional module like
@@ -22,6 +23,9 @@ HAProxy is much easier to use. It suits Xitrum because as mentioned in
 `very fast <https://gist.github.com/3293596>`_. You don't need to use static file
 serving feature in Nginx.
 
+HAProxy
+-------
+
 A HAProxy typical config file looks like this:
 
 ::
@@ -31,7 +35,7 @@ A HAProxy typical config file looks like this:
     timeout client 50s
     timeout server 50s
 
-  listen letsnote 0.0.0.0:80
+  listen myproxy 0.0.0.0:80
     mode http
     # For SockJS long polling, can't use option httpclose
     # http://code.google.com/p/haproxy-docs/wiki/forwardfor
