@@ -26,28 +26,9 @@ serving feature in Nginx.
 HAProxy
 -------
 
-A HAProxy typical config file looks like this:
+To config HAProxy for SockJS, see `this example <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_.
 
-::
-
-  defaults
-    timeout connect 5s
-    timeout client 50s
-    timeout server 50s
-
-  listen myproxy 0.0.0.0:80
-    mode http
-    # For SockJS long polling, can't use option httpclose
-    # http://code.google.com/p/haproxy-docs/wiki/forwardfor
-    # http://code.google.com/p/haproxy-docs/wiki/http_server_close
-    # http://serverfault.com/questions/30311/remote-ips-with-haproxy
-    option forwardfor
-    option http-server-close
-    server xitrum1 127.0.0.1:8001
-    server xitrum2 127.0.0.1:8002
-
-See also:
-http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy
+To have HAProxy reload config file without restarting, see `this discussion <http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy>`_.
 
 Package directory
 -----------------
