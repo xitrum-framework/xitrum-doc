@@ -161,4 +161,4 @@ Server side cache
 To avoid loading files from disk, Xitrum caches small static files
 (not only textual) in memory with LRU (Least Recently Used) expiration.
 See ``small_static_file_size_in_kb`` and ``max_cached_small_static_files``
-in ``config/xitrum.json``.
+in ``config/xitrum.conf``.

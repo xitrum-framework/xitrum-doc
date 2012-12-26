@@ -186,7 +186,7 @@ The default Scalate template type is `Jade <http://scalate.fusesource.org/docume
 You can also use `Mustache <http://scalate.fusesource.org/documentation/mustache.html>`_,
 `Scaml <http://scalate.fusesource.org/documentation/scaml-reference.html>`_, or
 `Ssp <http://scalate.fusesource.org/documentation/ssp-reference.html>`_.
-To config the default template type, see xitrum.json file in the config directory
+To config the default template type, see xitrum.conf file in the config directory
 of your Xitrum application.
 
 You can override the default template type by passing "jade", "mustache", "scamal",

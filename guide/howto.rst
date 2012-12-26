@@ -24,11 +24,11 @@ Basic authentication
 Config basic authentication for the whole site
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In config/xitrum.json:
+In config/xitrum.conf:
 
 ::
 
-  "globalBasicAuthentication": {
+  "basicAuth": {
     "realm":    "xitrum",
     "username": "xitrum",
     "password": "xitrum"
@@ -180,5 +180,5 @@ You can specify a key for encryption and decryption, like:
   SecureBase64.encrypt("my object", "my key")
   SecureBase64.decrypt(encrypted, "my key")
 
-If no key is specified, ``secureKey`` in xitrum.json file in config directory
+If no key is specified, ``secureKey`` in xitrum.conf file in config directory
 is used.

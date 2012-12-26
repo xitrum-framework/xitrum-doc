@@ -264,7 +264,7 @@ Display the username:
 Session store
 ~~~~~~~~~~~~~
 
-In config/xitrum.json (`example <https://github.com/ngocdaothanh/xitrum/blob/master/plugin/src/main/resources/xitrum_resources/config/xitrum.json>`_),
+In config/xitrum.conf (`example <https://github.com/ngocdaothanh/xitrum/blob/master/plugin/src/main/resources/xitrum_resources/config/xitrum.conf>`_),
 you can config the session store:
 
 ::
@@ -296,7 +296,7 @@ extend
 `SessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
 and implement the two methods.
 
-Then to tell Xitrum to use your session store, set its class name to xitrum.json.
+Then to tell Xitrum to use your session store, set its class name to xitrum.conf.
 
 Good read:
 `Web Based Session Management - Best practices in managing HTTP-based client sessions <http://www.technicalinfo.net/papers/WebBasedSessionManagement.html>`_.

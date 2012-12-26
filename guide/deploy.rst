@@ -69,7 +69,7 @@ start the web server in production environment.
 
   bin/runner.sh quickstart.Boot
 
-You may want to modify runner.sh to tune JVM settings. Also see ``config/xitrum.json``.
+You may want to modify runner.sh to tune JVM settings. Also see ``config/xitrum.conf``.
 
 To start Xitrum in background when the system starts, `daemontools <http://cr.yp.to/daemontools.html>`_
 is a very good tool. To install it on CentOS, see
