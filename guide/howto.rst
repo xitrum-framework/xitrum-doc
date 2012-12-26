@@ -82,7 +82,7 @@ In build.sbt, notice this line:
 
 ::
 
-  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.0"
+  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.9"
 
 This means that `Logback <http://logback.qos.ch/>`_ is used by default.
 Logback config file is at ``config/logback.xml``.
@@ -90,6 +90,9 @@ You may replace Logback with any implementation of SLF4J.
 
 Load config files
 -----------------
+
+JSON file
+~~~~~~~~~
 
 JSON is neat for config files that need nested structures.
 
@@ -101,9 +104,7 @@ myconfig.json:
 ::
 
   {
-    // You can write comment in JSON file like this
     "username": "God",
-    // Keys must be quoted with double quotes
     "password": "Does God need a password?",
     "children": ["Adam", "Eva"]
   }
@@ -117,17 +118,27 @@ Load it:
   case class MyConfig(username: String, password: String, children: List[String])
   val myConfig = Loader.jsonFromClasspath[MyConfig]("myconfig.json")
 
+Notes:
+
+* Keys and strings must be quoted with double quotes
+* Currently, you cannot write comment in JSON file
+
+Properties file
+~~~~~~~~~~~~~~~
+
 You can also use properties files, but you should use JSON whenever possible
 because it's much better. Properties files are not typesafe, do not support UTF-8
 and nested structures etc.
 
-myconfig.properties
+myconfig.properties:
 
 ::
 
   username = God
   password = Does God need a password?
   children = Adam, Eva
+
+Load it:
 
 ::
 
@@ -136,9 +147,32 @@ myconfig.properties
   // Here you get an instance of java.util.Properties
   val properties = Loader.propertiesFromClasspath("myconfig.properties")
 
-Xitrum also includes Akka, which includes
-`Typesafe Config <https://github.com/typesafehub/config>`_.
+Typesafe config file
+~~~~~~~~~~~~~~~~~~~~
+
+Xitrum also includes Akka, which includes the
+`config library <https://github.com/typesafehub/config>`_ created by the
+`company called Typesafe <http://typesafe.com/company>`_.
 It may be a better way to load config files.
+
+myconfig.conf:
+
+::
+
+  username = God
+  password = Does God need a password?
+  children = ["Adam", "Eva"]
+
+Load it:
+
+::
+
+  import com.typesafe.config.{Config, ConfigFactory}
+
+  val config   = ConfigFactory.load("myconfig.conf")
+  val username = config.getString("username")
+  val password = config.getString("password")
+  val children = config.getStringList("children")
 
 Encrypt data
 ------------
