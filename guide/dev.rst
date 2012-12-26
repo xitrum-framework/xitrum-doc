@@ -4,8 +4,8 @@ Development flow with SBT, Eclipse, and JRebel
 This chapter assumes that you have installed Eclipse and
 `Scala plugin for Eclipse <http://www.scala-ide.org/>`_.
 
-Create a new Xitrum project
----------------------------
+Ignore files
+------------
 
 Create a new project as described at the :doc:`tutorial </tutorial>`.
 These should be `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master/.gitignore>`_:
@@ -14,33 +14,10 @@ These should be `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master
 
   .*
   log
-  project
+  project/project
+  project/target
   routes.cache
   target
-
-If you're using git you can clone the
-`xitrum-new <https://github.com/ngocdaothanh/xitrum-new>`_
-project from GitHub:
-
-::
-
-  git clone –depth 1 https://github.com/ngocdaothanh/xitrum-new.git my_project
-  cd my_project
-  rm -rf .git
-  git init
-  git add -f .gitignore
-
-Alternatively:
-
-::
-
-  wget -O xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
-
-Or:
-
-::
-
-  curl -L -o xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
 
 Import the project to Eclipse
 -----------------------------

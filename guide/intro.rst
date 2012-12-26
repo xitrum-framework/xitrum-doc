@@ -80,22 +80,6 @@ Features
 `Xitrum <http://ngocdaothanh.github.com/xitrum>`_ is `open source <https://github.com/ngocdaothanh/xitrum>`_, please join
 its `Google group <http://groups.google.com/group/xitrum-framework>`_.
 
-Create new empty Xitrum project
--------------------------------
-
-To create a new empty project, download
-`xitrum-new.zip <https://github.com/ngocdaothanh/xitrum-new/archive/master.zip>`_:
-
-::
-
-  wget -O xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
-  unzip xitrum-new.zip
-  cd xitrum-new
-  sbt/sbt run
-
-Now you have a new empty project running at http://localhost:8000/
-and https://localhost:4430/
-
 Samples
 -------
 
