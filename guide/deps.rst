@@ -1,7 +1,7 @@
 Dependencies
 ============
 
-This chapter lists all Java dependency libraries that Xitrum uses so that in
+This chapter lists all dependency libraries that Xitrum uses so that in
 your Xitrum project, you can use them directly if you want.
 
 * `Scala <http://www.scala-lang.org/>`_:
