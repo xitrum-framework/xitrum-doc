@@ -16,7 +16,7 @@ your Xitrum project, you can use them directly if you want.
    For view template
 * `Rhino <https://developer.mozilla.org/en-US/docs/Rhino>`_:
    For Scalate to compile CoffeeScript to JavaScript
-* `Jerkson <https://github.com/codahale/jerkson>`_, `Jackson <http://wiki.fasterxml.com/JacksonHome>`_:
+* `JSON4S <https://github.com/json4s/json4s>`_:
    For parsing and generating JSON data
 * `Javassist <http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/>`_, `Sclasner <https://github.com/ngocdaothanh/sclasner>`_:
    For scanning HTTP routes in controllers

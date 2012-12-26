@@ -66,8 +66,19 @@ To redirect:
 JSON
 ----
 
-Xitrum includes `Jerkson <https://github.com/codahale/jerkson>`_.
+Xitrum includes `JSON4S <https://github.com/json4s/json4s>`_.
 Please read about it to know how to parse and generate JSON.
+
+To convert between Scala case object and JSON string:
+
+::
+
+  import xitrum.util.Json
+
+  case class Person(name: String, age: Int, phone: Option[String])
+  val person1 = Person("Jack", 20, None)
+  val json    = Json.generate(person)
+  val person2 = Json.parse(json)
 
 To respond JSON:
 
@@ -76,5 +87,5 @@ To respond JSON:
   val scalaData = List(1, 2, 3)  // An example
   respondJson(scalaData)
 
-JSON is also very neat for config files that need nested structures.
+JSON is also neat for config files that need nested structures.
 See :doc:`Load config files </howto>`.

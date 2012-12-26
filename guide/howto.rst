@@ -91,10 +91,12 @@ You may replace Logback with any implementation of SLF4J.
 Load config files
 -----------------
 
+JSON is neat for config files that need nested structures.
+
 Save your own config files in "config" directory. This directory is put into
 classpath in development mode by build.sbt and in production mode by bin/runner.sh.
 
-myconfig.json
+myconfig.json:
 
 ::
 
@@ -110,8 +112,10 @@ Load it:
 
 ::
 
+  import xitrum.util.Loader
+
   case class MyConfig(username: String, password: String, children: List[String])
-  val myConfig = xitrum.util.Loader.jsonFromClasspath[MyConfig]("myconfig.json")
+  val myConfig = Loader.jsonFromClasspath[MyConfig]("myconfig.json")
 
 You can also use properties files, but you should use JSON whenever possible
 because it's much better. Properties files are not typesafe, do not support UTF-8
@@ -127,8 +131,14 @@ myconfig.properties
 
 ::
 
+  import xitrum.util.Loader
+
   // Here you get an instance of java.util.Properties
-  val properties = xitrum.util.Loader.propertiesFromClasspath("myconfig.properties")
+  val properties = Loader.propertiesFromClasspath("myconfig.properties")
+
+Xitrum also includes Akka, which includes
+`Typesafe Config <https://github.com/typesafehub/config>`_.
+It may be a better way to load config files.
 
 Encrypt data
 ------------
@@ -141,6 +151,7 @@ If you want to decrypt later, you can use the utility Xitrum provides:
 ::
 
   import xitrum.util.Secure
+
   val encrypted: Array[Byte]         = Secure.encrypt("my data".getBytes)
   val decrypted: Option[Array[Byte]] = Secure.decrypt(encrypted)
 
@@ -152,6 +163,7 @@ If you can combine the above operations in one step:
 ::
 
   import xitrum.util.SecureBase64
+
   val encrypted: String         = SecureBase64.encrypt("my object")
   val decrypted: Option[String] = SecureBase64.decrypt(encrypted).asInstanceOf[Option[String]]
 
