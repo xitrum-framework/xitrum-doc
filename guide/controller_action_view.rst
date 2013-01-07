@@ -52,11 +52,21 @@ There are methods for responding things other than views:
 Layout
 ------
 
-With ``respondInlineView``, layout is rendered. By default the layout is what passed to
-``respondInlineView``. You can customize the layout by overriding the ``layout`` method.
+When you respond a view with ``respondView`` or ``respondInlineView``, Xitrum
+renders it to a String, and sets the String to ``renderedView`` variable. Xitrum
+then calls ``layout`` method of the current controller, finally Xitrum responds
+the result of this method to the browser.
 
-Typically, you create a parent class which has a common layout for many views,
-like this:
+By default ``layout`` method just returns ``renderedView`` itself. If you want
+to decorate your view with something, override this method. If you include
+``renderedView`` in the method, the view will be included as part of your layout.
+
+The point is ``layout`` is called after your action's view, and whatever returned
+is what responded to the browser. This mechanism is simple and straight forward.
+No magic. For convenience, you may think that there's no layout in Xitrum at all.
+There's just the ``layout`` method and you do whatever you want with it.
+
+Typically, you create a parent class which has a common layout for many views:
 
 AppController.scala
 
