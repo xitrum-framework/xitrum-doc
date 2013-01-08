@@ -141,7 +141,7 @@ scr/main/scala/quickstart/controller/AppController.scala:
   import xitrum.Controller
 
   trait AppController extends Controller {
-    override def layout = renderScalate(classOf[AppAction])
+    override def layout = renderViewNoLayout(classOf[AppAction])
   }
 
 scr/main/scala/quickstart/action/MyController.scala:
@@ -204,7 +204,7 @@ or "ssp" to `respondView`.
 
 ::
 
-  respondView("mustache")
+  respondView(Map("type" ->"mustache"))
 
 Mustache
 ~~~~~~~~
