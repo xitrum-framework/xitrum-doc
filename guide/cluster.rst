@@ -26,21 +26,21 @@ xitrum.Config.hazelcastInstance
 Xitrum includes Hazelcast for cache and Comet. Thus, you can also use Hazelcast
 in your Xitrum project yourself.
 
-Hazelcast has `3 modes <http://www.hazelcast.com/documentation.jsp#Clients>`_:
+Hazelcast has `3 modes <http://www.hazelcast.com/docs/2.4/manual/multi_html/ch07s03.html>`_:
 cluster member, lite member, and Java client. Please see ``hazelcastMode``
-in ``config/xitrum.conf``.
+in ``config/xitrum.conf``. Xitrum handles these modes automatically.
 
-Xitrum handles these modes automatically. When you need to get a Hazelcast map,
-do not do like this:
-
-::
-
-  import com.hazelcast.core.Hazelcast
-  val myMap = Hazelcast.getMap("myMap")
-
-You should do like this:
+To craete a `Hazelcast map <http://www.hazelcast.com/docs/2.4/manual/multi_html/ch02s03.html>`_:
 
 ::
 
-  import xitrum.Config.hazelcastInstance
-  val myMap = Config.hazelcastInstance.getMap("myMap")
+  import com.hazelcast.core.IMap
+  import xitrum.Config
+  val myMap = Config.hazelcastInstance.getMap("myMap").asInstanceOf[IMap[MyKeyType, MyValueType]]
+
+To create a `Hazelcast topic <http://www.hazelcast.com/docs/2.4/manual/multi_html/ch02s02.html>`_:
+
+::
+
+  import xitrum.Config
+  val myTopic = Config.hazelcastInstance.getTopic[MyTopicEventType]("myTopicName")
