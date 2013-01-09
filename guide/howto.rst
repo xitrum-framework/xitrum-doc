@@ -216,3 +216,20 @@ You can specify a key for encryption and decryption, like:
 
 If no key is specified, ``secureKey`` in xitrum.conf file in config directory
 is used.
+
+Create your own template engine
+-------------------------------
+
+If you want to create your own template engine:
+
+1. Create a class that implements `xitrum.view.TemplateEngine <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/view/TemplateEngine.scala>`_
+2. Set that class in `xitrum.conf <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/xitrum.conf#L47>`_
+3. If your template engine needs config items, add them to xitrum.conf,
+   then load them like this:
+
+::
+
+   val defaultType = xitrum.Config.config.config.getString("scalateDefaultType")
+
+See project `Typesafe Config <https://github.com/typesafehub/config>`_ and
+`its API <http://typesafehub.github.com/config/latest/api/com/typesafe/config/Config.html>`_.
