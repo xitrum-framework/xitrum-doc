@@ -11,29 +11,7 @@ As a web framework, Xitrum aims to support you to solve these use cases easily.
 In Xitrum, there are 2 kinds of actions: :doc:`RESTful actions </restful>` and
 :doc:`postback actions </postback>`.
 
-Normally, you write view directly in its action.
-
-::
-
-  import xitrum.Controller
-
-  class MyController extends Controller {
-    def index = GET {
-      val s = "World"  // Will be automatically escaped
-
-      respondInlineView(
-        <html>
-          <body>
-            <p>Hello <em>{s}</em>!</p>
-          </body>
-        </html>
-      )
-    }
-  }
-
-Of course you can refactor the view into a separate Scala file.
-
-There are methods for responding things other than views:
+From an action, to respond something to client, use:
 
 * ``respondText("hello")``: responds a string without layout
 * ``respondHtml("<html>...</html>")``: same as above, with content type set to "text/html"
@@ -49,108 +27,21 @@ There are methods for responding things other than views:
 * ``respondWebSocket``: responds a WebSocket text frame
 * ``respondEventSource("data", "event")``
 
-Layout
-------
+Template view file
+------------------
 
-When you respond a view with ``respondView`` or ``respondInlineView``, Xitrum
-renders it to a String, and sets the String to ``renderedView`` variable. Xitrum
-then calls ``layout`` method of the current controller, finally Xitrum responds
-the result of this method to the browser.
+Each action may have an associated `Scalate <http://scalate.fusesource.org/>`_
+template view file. Instead of responding directly in the action with the above
+methods, you can use a separate view file.
 
-By default ``layout`` method just returns ``renderedView`` itself. If you want
-to decorate your view with something, override this method. If you include
-``renderedView`` in the method, the view will be included as part of your layout.
-
-The point is ``layout`` is called after your action's view, and whatever returned
-is what responded to the browser. This mechanism is simple and straight forward.
-No magic. For convenience, you may think that there's no layout in Xitrum at all.
-There's just the ``layout`` method and you do whatever you want with it.
-
-Typically, you create a parent class which has a common layout for many views:
-
-AppController.scala
+scr/main/scala/mypackage/MyController.scala:
 
 ::
 
-  import xitrum.Controller
-  import xitrum.view.DocType
-
-  trait AppController extends Controller {
-    override def layout = DocType.html5(
-      <html>
-        <head>
-          {antiCSRFMeta}
-          {xitrumCSS}
-          {jsDefaults}
-          <title>Welcome to Xitrum</title>
-        </head>
-        <body>
-          {renderedView}
-          {jsForView}
-        </body>
-      </html>
-    )
-  }
-
-``xitrumCSS`` includes the default CSS for Xitrum. You may remove it if you
-don't like.
-``jsDefaults`` includes jQuery, jQuery Validate plugin etc.
-should be put at layout's <head>.
-``jsForView`` contains JS fragments added by ``jsAddToView``,
-should be put at layout's bottom.
-
-MyController.scala
-
-::
-
+  package mypackage
   import xitrum.Controller
 
-  class MyController extends AppController {
-    def index = GET {
-      val s = "World"
-      respondInlineView(<p>Hello <em>{s}</em>!</p>)
-    }
-  }
-
-You can pass the layout directly to ``respondInlineView``:
-
-::
-
-  val specialLayout = () =>
-    <html>
-      <body>
-        {respondedView}
-      </body>
-    </html>
-
-  val s = "World"
-  respondInlineView(<p>Hello <em>{s}</em>!</p>, specialLayout _)
-
-Scalate
--------
-
-For small views you can use Scala XML for convenience, but for big views you
-should use `Scalate <http://scalate.fusesource.org/>`_ templates.
-
-scr/main/scala/quickstart/controller/AppController.scala:
-
-::
-
-  package quickstart.controller
-
-  import xitrum.Controller
-
-  trait AppController extends Controller {
-    override def layout = renderViewNoLayout(classOf[AppAction])
-  }
-
-scr/main/scala/quickstart/action/MyController.scala:
-
-::
-
-  package quickstart.controller
-
-  class MyController extends AppController {
+  class MyController extends Controller {
     def index = GET {
       respondView()
     }
@@ -158,9 +49,11 @@ scr/main/scala/quickstart/action/MyController.scala:
     def hello(what: String) = "Hello %s".format(what)
   }
 
-scr/main/scalate/quickstart/controller/AppController.jade:
+scr/main/scalate/mypackage/MyController/index.jade:
 
 ::
+
+  - import mypackage.MyController
 
   !!! 5
   html
@@ -171,23 +64,21 @@ scr/main/scalate/quickstart/controller/AppController.jade:
       title Welcome to Xitrum
 
     body
-      != respondedView
+      a(href={currentAction.url}) Path to the current action
+      p= currentController.asInstanceOf[MyController].hello("World")
+
       != jsForView
 
-scr/main/scalate/quickstart/controller/MyController/index.jade:
+* ``xitrumCSS`` includes the default CSS for Xitrum. You may remove it if you
+  don't like.
+* ``jsDefaults`` includes jQuery, jQuery Validate plugin etc.
+  should be put at layout's <head>.
+* ``jsForView`` contains JS fragments added by ``jsAddToView``,
+  should be put at layout's bottom.
 
-::
-
-  - import quickstart.controller.MyController
-
-  a(href={currentAction.url}) Path to current action
-  p= currentController.asInstanceOf[MyController].hello("World")
-
-In templates you can use all methods of the class `xitrum.Controller <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Controller.scala>`_,
-like ``xitrumCSS``. Also, you can use utility methods provided by Scalate like ``unescape``.
+In templates you can use all methods of the class `xitrum.Controller <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Controller.scala>`_.
+Also, you can use utility methods provided by Scalate like ``unescape``.
 See the `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_.
-Note that these methods are not available for Mustache templates (see the next
-section).
 
 If you want to have exactly instance of the current controller, cast ``currentController`` to
 the controller you wish.
@@ -238,6 +129,160 @@ template, because they're already used:
 
 * "context": for Sclate utility object, which contains methods like ``unescape``
 * "helper": for the current controller object
+
+Layout
+------
+
+When you respond a view with ``respondView`` or ``respondInlineView``, Xitrum
+renders it to a String, and sets the String to ``renderedView`` variable. Xitrum
+then calls ``layout`` method of the current controller, finally Xitrum responds
+the result of this method to the browser.
+
+By default ``layout`` method just returns ``renderedView`` itself. If you want
+to decorate your view with something, override this method. If you include
+``renderedView`` in the method, the view will be included as part of your layout.
+
+The point is ``layout`` is called after your action's view, and whatever returned
+is what responded to the browser. This mechanism is simple and straight forward.
+No magic. For convenience, you may think that there's no layout in Xitrum at all.
+There's just the ``layout`` method and you do whatever you want with it.
+
+Typically, you create a parent class which has a common layout for many views:
+
+src/main/scala/mypackage/AppController.scala
+
+::
+
+  package mypackage
+  import xitrum.Controller
+
+  trait AppController extends Controller {
+    override def layout = renderViewNoLayout(classOf[AppController])
+  }
+
+src/main/scalate/mypackage/AppController.jade
+
+::
+
+  !!! 5
+  html
+    head
+      != antiCSRFMeta
+      != xitrumCSS
+      != jsDefaults
+      title Welcome to Xitrum
+
+    body
+      != renderedView
+      != jsForView
+
+src/main/scala/mypackage/MyController.scala
+
+::
+
+  package mypackage
+  import AppController
+
+  class MyController extends AppController {
+    def index = GET {
+      respondView()
+    }
+
+    def hello(what: String) = "Hello %s".format(what)
+  }
+
+scr/main/scalate/mypackage/MyController/index.jade:
+
+::
+
+  - import mypackage.MyController
+
+  a(href={currentAction.url}) Path to the current action
+  p= currentController.asInstanceOf[MyController].hello("World")
+
+Without separate layout file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+AppController.scala
+
+::
+
+  import xitrum.Controller
+  import xitrum.view.DocType
+
+  trait AppController extends Controller {
+    override def layout = DocType.html5(
+      <html>
+        <head>
+          {antiCSRFMeta}
+          {xitrumCSS}
+          {jsDefaults}
+          <title>Welcome to Xitrum</title>
+        </head>
+        <body>
+          {renderedView}
+          {jsForView}
+        </body>
+      </html>
+    )
+  }
+
+Pass layout directly in respondView
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  val specialLayout = () =>
+    DocType.html5(
+      <html>
+        <head>
+          {antiCSRFMeta}
+          {xitrumCSS}
+          {jsDefaults}
+          <title>Welcome to Xitrum</title>
+        </head>
+        <body>
+          {renderedView}
+          {jsForView}
+        </body>
+      </html>
+    )
+
+  respondView(specialLayout _)
+
+Inline view
+-----------
+
+Normally, you write view in a Scalate file. You can also write it directly:
+
+::
+
+  import xitrum.Controller
+
+  class MyController extends Controller {
+    def index = GET {
+      val s = "World"  // Will be automatically escaped
+      respondInlineView(
+        <p>Hello <em>{s}</em>!</p>
+      )
+    }
+  }
+
+Render fragment
+---------------
+
+If you want to render the frament file
+scr/main/scalate/mypackage/MyController/_myfragment.jade:
+
+::
+
+  renderFragment(classOf[MyController], "myfragment")
+
+If MyController is the current controller, you can skip it:
+
+::
+
+  renderFragment("myfragment")
 
 Controller object
 -----------------
