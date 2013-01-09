@@ -220,7 +220,8 @@ is used.
 Create your own template engine
 -------------------------------
 
-If you want to create your own template engine:
+The default template engine is Scalate.
+If you want to create and use your own template engine:
 
 1. Create a class that implements `xitrum.view.TemplateEngine <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/view/TemplateEngine.scala>`_
 2. Set that class in `xitrum.conf <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/xitrum.conf#L47>`_
