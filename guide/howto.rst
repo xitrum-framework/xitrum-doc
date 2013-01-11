@@ -230,7 +230,8 @@ If you want to create and use your own template engine:
 
 ::
 
-   val defaultType = xitrum.Config.config.config.getString("scalateDefaultType")
+  import xitrum.Config
+  val defaultType = Config.xitrum.config.getString("scalateDefaultType")
 
 See project `Typesafe Config <https://github.com/typesafehub/config>`_ and
 `its API <http://typesafehub.github.com/config/latest/api/com/typesafe/config/Config.html>`_.
