@@ -11,6 +11,9 @@ As a web framework, Xitrum aims to support you to solve these use cases easily.
 In Xitrum, there are 2 kinds of actions: :doc:`RESTful actions </restful>` and
 :doc:`postback actions </postback>`.
 
+Respond to client
+-----------------
+
 From an action, to respond something to client, use:
 
 * ``respondText("hello")``: responds a string without layout
@@ -27,8 +30,8 @@ From an action, to respond something to client, use:
 * ``respondWebSocket``: responds a WebSocket text frame
 * ``respondEventSource("data", "event")``
 
-Template view file
-------------------
+Respond template view file
+--------------------------
 
 Each action may have an associated `Scalate <http://scalate.fusesource.org/>`_
 template view file. Instead of responding directly in the action with the above
