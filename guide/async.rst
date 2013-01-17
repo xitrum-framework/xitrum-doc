@@ -68,16 +68,16 @@ WebSocket
       // If you don't want to accept the connection, call channel.close()
       acceptWebSocket(new WebSocketHandler {
         def onOpen() {
-          log.debug("onOpen")
+          logger.debug("onOpen")
         }
 
         def onMessage(message: String) {
-          // Send back data to the SockJS client
+          // Send back data to the WebSocket client
           respondWebSocket(message.toUpperCase)
         }
 
         def onClose() {
-          log.debug("onClose")
+          logger.debug("onClose")
         }
       })
     }
@@ -142,6 +142,7 @@ Xitrum automatically does it for you.
     def onOpen() {}
 
     def onMessage(message: String) {
+      // Send back data to the SockJS client
       send(message)
     }
 
