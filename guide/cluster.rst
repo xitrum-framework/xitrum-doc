@@ -1,5 +1,5 @@
-Clustering with Hazelcast
-=========================
+Clustering with Akka and Hazelcast
+==================================
 
 Xitrum is designed in mind to run in production environment as multiple instances
 behind a proxy server or load balancer:
@@ -10,9 +10,12 @@ behind a proxy server or load balancer:
   Load balancer/proxy server ---- Xitrum instance 2
                                 \ Xitrum instance 3
 
-Cache and Comet are clustered out of the box thanks to `Hazelcast <http://www.hazelcast.com/>`_.
-Please see ``hazelcastMode`` in ``config/xitrum.conf``, ``config/hazelcast_cluster_or_lite_member.xml``,
-``config/hazelcast_java_client.properties``, and read `Hazelcast's documentation <http://www.hazelcast.com/docs/2.4/manual/single_html/#Config>`_
+SockJS sessions and `many data structures <http://www.hazelcast.com/docs/2.5/manual/multi_html/ch02.html>`_
+are clustered out of the box thanks to `Akka <http://akka.io/>`_ and `Hazelcast <http://www.hazelcast.com/>`_.
+
+Please see ``remote`` in ``config/akka.conf`` and ``hazelcastMode`` in ``config/xitrum.conf``,
+and read `Akka doc <http://doc.akka.io/docs/akka/2.1.0/scala/remoting.html>`_ and
+`Hazelcast's doc <http://www.hazelcast.com/docs/2.5/manual/single_html/#Config>`_
 to know how to config.
 
 Session are stored in cookie by default. You don't need to worry how to share
@@ -23,14 +26,9 @@ you may need to setup session replication by setting ``backup-count`` at the map
 xitrum.Config.hazelcastInstance
 -------------------------------
 
-Xitrum includes Hazelcast for cache and Comet. Thus, you can also use Hazelcast
-in your Xitrum project yourself.
+Xitrum includes Hazelcast. You can also use Hazelcast in your Xitrum project.
 
-Hazelcast has `3 modes <http://www.hazelcast.com/docs/2.4/manual/multi_html/ch07s03.html>`_:
-cluster member, lite member, and Java client. Please see ``hazelcastMode``
-in ``config/xitrum.conf``. Xitrum handles these modes automatically.
-
-To craete a `Hazelcast map <http://www.hazelcast.com/docs/2.4/manual/multi_html/ch02s03.html>`_:
+To create a `distributed map <http://www.hazelcast.com/docs/2.5/manual/multi_html/ch02s03.html>`_:
 
 ::
 
@@ -38,7 +36,7 @@ To craete a `Hazelcast map <http://www.hazelcast.com/docs/2.4/manual/multi_html/
   import xitrum.Config
   val myMap = Config.hazelcastInstance.getMap("myMap").asInstanceOf[IMap[MyKeyType, MyValueType]]
 
-To create a `Hazelcast topic <http://www.hazelcast.com/docs/2.4/manual/multi_html/ch02s02.html>`_:
+To create a `distributed topic <http://www.hazelcast.com/docs/2.5/manual/multi_html/ch02s02.html>`_:
 
 ::
 

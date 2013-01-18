@@ -43,9 +43,8 @@ you will see all the routes:
 ::
 
   [INFO] Routes:
-  GET   /                       quickstart.controller.Site#index
-  POST  /xiturm/comet/:channel  xitrum.comet.CometController#publish
-
+  GET  /                  quickstart.controller.Site#index
+  GET  /xitrum/routes.js  xitrum.routing.JSRoutesController#routes
   [INFO] HTTP server started on port 8000
   [INFO] HTTPS server started on port 4430
   [INFO] Xitrum started in development mode

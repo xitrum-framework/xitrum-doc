@@ -158,7 +158,7 @@ is the password for the tool to connect to the group.
 
 .. image:: http://www.hazelcast.com/resources/monitor-screen.png
 
-Please see `Hazelcast's documentation <http://www.hazelcast.com/docs/2.4/manual/multi_html/ch12.html>`_
+Please see `Hazelcast's documentation <http://www.hazelcast.com/docs/2.5/manual/multi_html/ch12.html>`_
 for more information how to config ``config/hazelcast.xml``.
 
 How cache works
