@@ -175,7 +175,7 @@ Note that `Internet Explorer does not support "max-age" <http://mrcoles.com/blog
 but Netty detects and outputs either "max-age" or "expires" properly. Don't worry!
 
 If you want to sign your cookie value to prevent user from tampering, use
-``xitrum.util.SecureBase64.encrypt`` and ``xitrum.util.SecureBase64.encrypt``.
+``xitrum.util.SecureUrlSafeBase64.encrypt`` and ``xitrum.util.SecureUrlSafeBase64.encrypt``.
 For more information, see :doc:`How to encrypt data </howto>`.
 
 Session

@@ -189,30 +189,30 @@ If you want to decrypt later, you can use the utility Xitrum provides:
   val encrypted: Array[Byte]         = Secure.encrypt("my data".getBytes)
   val decrypted: Option[Array[Byte]] = Secure.decrypt(encrypted)
 
-You can use ``xitrum.util.Base64`` to encode and decode the binary data to
+You can use ``xitrum.util.UrlSafeBase64`` to encode and decode the binary data to
 normal string (to embed to HTML for response etc.).
 
 If you can combine the above operations in one step:
 
 ::
 
-  import xitrum.util.SecureBase64
+  import xitrum.util.SecureUrlSafeBase64
 
-  val encrypted: String         = SecureBase64.encrypt("my object")
-  val decrypted: Option[String] = SecureBase64.decrypt(encrypted).asInstanceOf[Option[String]]
+  val encrypted = SecureUrlSafeBase64.encrypt(mySerializableObject)  // A String
+  val decrypted = SecureUrlSafeBase64.decrypt(encrypted).asInstanceOf[Option[mySerializableClass]]
 
-``SecureBase64`` uses ``xitrum.util.SeriDeseri`` to serialize and deserialize.
-As a result, your data must be serializable.
+``SecureUrlSafeBase64`` uses ``xitrum.util.SeriDeseri`` to serialize and deserialize.
+Your data must be serializable.
 
-You can specify a key for encryption and decryption, like:
+You can specify a key for encryption:
 
 ::
 
-  Secure.encrypt("my data".getBytes, "my key")
-  Secure.decrypt(encrypted, "my key")
+  val encrypted = Secure.encrypt("my data".getBytes, "my key")
+  val decrypted = Secure.decrypt(encrypted, "my key")
 
-  SecureBase64.encrypt("my object", "my key")
-  SecureBase64.decrypt(encrypted, "my key")
+  val encrypted = SecureUrlSafeBase64.encrypt(mySerializableObject, "my key")
+  val decrypted = SecureUrlSafeBase64.decrypt(encrypted, "my key").asInstanceOf[Option[mySerializableClass]]
 
 If no key is specified, ``secureKey`` in xitrum.conf file in config directory
 is used.
