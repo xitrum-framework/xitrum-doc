@@ -24,7 +24,7 @@ your Xitrum project, you can use them directly if you want.
    For i18n
 * `Commons Lang <http://commons.apache.org/lang/>`_:
    For escaping JSON data
-* `JBoss Marshalling <http://www.jboss.org/jbossmarshalling>`_:
+* `Twitter Chill <https://github.com/twitter/chill>`_:
    For serializing and deserializing cookie and session
 * `SLF4J <http://www.slf4j.org/>`_, `Logback <http://logback.qos.ch/>`_:
    For logging
