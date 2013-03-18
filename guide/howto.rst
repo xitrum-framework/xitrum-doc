@@ -201,8 +201,8 @@ If you can combine the above operations in one step:
   val encrypted = SecureUrlSafeBase64.encrypt(mySerializableObject)  // A String
   val decrypted = SecureUrlSafeBase64.decrypt(encrypted).asInstanceOf[Option[mySerializableClass]]
 
-``SecureUrlSafeBase64`` uses ``xitrum.util.SeriDeseri`` to serialize and deserialize.
-Your data must be serializable.
+``SecureUrlSafeBase64`` uses `Twitter Chill <https://github.com/twitter/chill>`_
+to serialize and deserialize. Your data must be serializable.
 
 You can specify a key for encryption:
 
