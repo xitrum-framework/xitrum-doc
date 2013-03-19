@@ -33,7 +33,7 @@ Before filters can be skipped using ``skipBeforeFilter``.
 
   class AppController extends Controller {
     val authenticate = beforeFilter {
-      basicAuthenticate("Realm") { (username, password) =>
+      basicAuth("Realm") { (username, password) =>
         username == "foo" && password == "bar"
       }
     }

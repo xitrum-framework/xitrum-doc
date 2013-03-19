@@ -43,7 +43,7 @@ Add basic authentication to a controller
 
   class MyController extends Controller {
     beforeFilter {
-      basicAuthenticate("Realm") { (username, password) =>
+      basicAuth("Realm") { (username, password) =>
         username == "username" && password == "password"
       }
     }
