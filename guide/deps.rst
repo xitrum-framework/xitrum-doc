@@ -19,7 +19,8 @@ your Xitrum project, you can use them directly if you want.
 * `Rhino <https://developer.mozilla.org/en-US/docs/Rhino>`_:
    For Scalate to compile CoffeeScript to JavaScript.
 * `JSON4S <https://github.com/json4s/json4s>`_:
-   For parsing and generating JSON data.
+   For parsing and generating JSON data. JSON4S depends on
+   `Paranamer <http://paranamer.codehaus.org/>`_.
 * `Javassist <http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/>`_, `Sclasner <https://github.com/ngocdaothanh/sclasner>`_:
    For scanning HTTP routes in controller classes in .class and .jar files.
 * `Scaposer <https://github.com/ngocdaothanh/scaposer>`_:
@@ -34,7 +35,6 @@ your Xitrum project, you can use them directly if you want.
    `Bijection <https://github.com/twitter/bijection>`_,
    `ASM <http://asm.ow2.org/>`_,
    `Commons Codec <http://commons.apache.org/proper/commons-codec/>`_,
-   `Paranamer <http://paranamer.codehaus.org/>`_,
    `ReflectASM <http://code.google.com/p/reflectasm/>`_,
    `Uncommons Maths <http://maths.uncommons.org/>`_.
 * `SLF4J <http://www.slf4j.org/>`_, `Logback <http://logback.qos.ch/>`_:
