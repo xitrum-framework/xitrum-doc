@@ -221,17 +221,9 @@ Create your own template engine
 -------------------------------
 
 The default template engine is Scalate.
-If you want to create and use your own template engine:
+You can create and use your own template engine:
 
 1. Create a class that implements `xitrum.view.TemplateEngine <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/view/TemplateEngine.scala>`_
 2. Set that class in `xitrum.conf <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/xitrum.conf#L47>`_
-3. If your template engine needs config items, add them to xitrum.conf,
-   then load them like this:
 
-::
-
-  import xitrum.Config
-  val defaultType = Config.xitrum.config.getString("scalateDefaultType")
-
-See project `Typesafe Config <https://github.com/typesafehub/config>`_ and
-`its API <http://typesafehub.github.com/config/latest/api/com/typesafe/config/Config.html>`_.
+For an example, see `xitrum-scalate <https://github.com/ngocdaothanh/xitrum-scalate>`_.
