@@ -133,6 +133,43 @@ template, because they're already used:
 * "context": for Sclate utility object, which contains methods like ``unescape``
 * "helper": for the current controller object
 
+CoffeeScript
+~~~~~~~~~~~~
+
+You can embed CoffeeScript in Scalate template using
+`:coffeescript filter <http://scalate.fusesource.org/documentation/jade-syntax.html#filters>`_:
+
+::
+
+  body
+    :coffeescript
+      alert "Hello, Coffee!"
+
+Output:
+
+::
+
+  <body>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          alert("Hello, Coffee!");
+        }).call(this);
+      //]]>
+    </script>
+  </body>
+
+But note that it is `slow <http://groups.google.com/group/xitrum-framework/browse_thread/thread/6667a7608f0dc9c7>`_:
+
+::
+
+  jade+javascript+1thread: 1-2ms for page
+  jade+coffesscript+1thread: 40-70ms for page
+  jade+javascript+100threads: ~40ms for page
+  jade+coffesscript+100threads: 400-700ms for page
+
+You pre-generate CoffeeScript to JavaScript if you need speed.
+
 Layout
 ------
 
