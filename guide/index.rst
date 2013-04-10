@@ -13,6 +13,7 @@ Xitrum Guide
    tutorial
    dev
    action_view
+   action_actor
    restful
    postback
    xml
