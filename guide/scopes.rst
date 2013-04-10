@@ -18,7 +18,7 @@ There are 3 kinds of textual params, of type ``scala.collection.mutable.Map[Stri
 These params are merged in the above order as ``textParams``
 (from 1 to 3, the latter will override the former).
 
-``fileUploadParams`` is of type scala.collection.mutable.Map[String, List[`FileUpload <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/multipart/FileUpload.html>`_]].
+``fileUploadParams`` is of type scala.collection.mutable.Map[String, List[`FileUpload <http://netty.io/3.6/api/org/jboss/netty/handler/codec/http/multipart/FileUpload.html>`_]].
 
 Accesing params
 ~~~~~~~~~~~~~~~
@@ -150,8 +150,8 @@ Inside an action, use ``requestCookies``, a ``Map[String, String]``, to read coo
     case Some(string) => ...
   }
 
-To send cookie to browser, create an instance of `DefaultCookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/DefaultCookie.html>`_
-and append it to ``responseCookies``, an ``ArrayBuffer`` that contains `Cookie <http://static.netty.io/3.5/api/org/jboss/netty/handler/codec/http/Cookie.html>`_.
+To send cookie to browser, create an instance of `DefaultCookie <http://netty.io/3.6/api/org/jboss/netty/handler/codec/http/DefaultCookie.html>`_
+and append it to ``responseCookies``, an ``ArrayBuffer`` that contains `Cookie <http://netty.io/3.6/api/org/jboss/netty/handler/codec/http/Cookie.html>`_.
 
 ::
 

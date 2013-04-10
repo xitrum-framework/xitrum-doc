@@ -1,7 +1,7 @@
 Netty handlers
 ==============
 
-This chapter is a little advanced, normally you don't need to read.
+This chapter is advanced. You must have knowlege about `Netty <http://netty.io/>`_.
 
 `Rack <http://en.wikipedia.org/wiki/Rack_(Web_server_interface)>`_,
 `WSGI <http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_, and
@@ -9,6 +9,9 @@ This chapter is a little advanced, normally you don't need to read.
 You can create middleware and customize the order of middlewares.
 Xitrum is based on `Netty <http://netty.io/>`_. Netty has the same
 thing called handlers.
+
+Xitrum lets you customize the channel pipeline of handlers. Doing this, you can
+maximize server performance for your specific use case.
 
 This chaper describes:
 
@@ -19,11 +22,14 @@ This chaper describes:
 Netty handler architecture
 --------------------------
 
+For each connection, there is a channel pipeline to handle the IO data.
+A channel pipeline is a series of handlers.
+
 In Netty, there are 2 types of handlers:
 * upstream: the request direction client -> server
 * downstream: the response direction server -> client
 
-Please see the doc of `ChannelPipeline <http://static.netty.io/3.5/api/org/jboss/netty/channel/ChannelPipeline.html>`_
+Please see the doc of `ChannelPipeline <http://netty.io/3.6/api/org/jboss/netty/channel/ChannelPipeline.html>`_
 for more information.
 
 ::
@@ -67,23 +73,49 @@ for more information.
   |  Netty Internal I/O Threads (Transport Implementation) |
   +--------------------------------------------------------+
 
-Xitrum handlers
+Xitrum default handlers
+-----------------------
+
+See `xitrum.handler.DefaultHttpChannelPipelineFactory <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelPipelineFactory.scala>`_.
+
+Custom handlers
 ---------------
 
-See `xitrum.handler.ChannelPipelineFactory <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelPipelineFactory.scala>`_.
+When starting Xitrum server, you can pass in your own ChannelPipelineFactory:
+
+::
+
+  import xitrum.handler.Server
+
+  object Boot {
+    def main(args: Array[String]) {
+      Server.start(myChannelPipelineFactory)
+    }
+  }
+
+For HTTPS server, Xitrum will automatically prepend SSL handler to the result of
+``myChannelPipelineFactory.getPipeline``.
+
+You can reuse Xitrum handlers in your pipeline.
+
+Tips
+----
 
 Channel attachement
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 HttpRequest is attached to the channel using Channel#setAttachment.
 Use Channel#getAttachment to get it back.
 
 Channel close event
--------------------
+~~~~~~~~~~~~~~~~~~~
 
-To act when the connection is closed, listen to the channel's close event: TODO
+To act when the connection is closed, listen to the channel's close event:
 
-Custom handler
---------------
+::
 
-TODO: improve Xitrum to let user customize the order of handlers
+  channel.getCloseFuture.addListener(new ChannelFutureListener {
+    def operationComplete(future: ChannelFuture) {
+      // Your code
+    }
+  })
