@@ -11,14 +11,14 @@ Xitrum's Ajax form postback is inspired by `Nitrogen <http://nitrogenproject.com
 Layout
 ------
 
-AppController.scala
+AppAction.scala
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
   import xitrum.view.DocType
 
-  trait AppController extends Controller {
+  trait AppAction extends Action {
     override def layout = DocType.html5(
       <html>
         <head>
@@ -42,12 +42,12 @@ Articles.scala
 
 ::
 
+  import xitrum.annotation.{GET, POST, First}
   import xitrum.validator._
 
-  class Articles extends AppController {
-    pathPrefix = "articles"
-
-    def show = GET(":id") {
+  @GET("articles/:id")
+  class ArticlesShow extends AppAction {
+    def execute() {
       val id = param("id")
       val article = Article.find(id)
       respondInlineView(
@@ -55,8 +55,12 @@ Articles.scala
         <div>{article.body}</div>
       )
     }
+  }
 
-    def nevv = first.GET("new") {  // first: force this route to be matched before "show"
+  @First  // Force this route to be matched before "show"
+  @GET("articles/new")
+  class ArticlesNew extends AppAction {
+    def execute() {
       respondInlineView(
         <form data-postback="submit" action={create.url}>
           <label>Title</label>
@@ -69,8 +73,11 @@ Articles.scala
         </form>
       )
     }
+  }
 
-    def create = POST {
+  @POST("articles")
+  class ArticlesCreate extends AppAction {
+    def execute() {
       val title   = param("title")
       val body    = param("body")
       val article = Article.save(title, body)

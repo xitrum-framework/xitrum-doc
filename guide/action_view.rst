@@ -1,7 +1,7 @@
-Controller, action, and view
-============================
+Action and view
+===============
 
-What do you create web applications for? There are 2 main use cases:
+There are 2 main use cases of web applications:
 
 * To serve machines: you need to create RESTful APIs for smartphones, web services
   for other web sites.
@@ -37,26 +37,29 @@ Each action may have an associated `Scalate <http://scalate.fusesource.org/>`_
 template view file. Instead of responding directly in the action with the above
 methods, you can use a separate view file.
 
-scr/main/scala/mypackage/MyController.scala:
+scr/main/scala/mypackage/MyAction.scala:
 
 ::
 
   package mypackage
-  import xitrum.Controller
 
-  class MyController extends Controller {
-    def index = GET {
+  import xitrum.Action
+  import xitrum.annotation.GET
+
+  @GET("myAction")
+  class MyAction extends Action {
+    def execute() {
       respondView()
     }
 
     def hello(what: String) = "Hello %s".format(what)
   }
 
-scr/main/scalate/mypackage/MyController/index.jade:
+scr/main/scalate/mypackage/MyAction.jade:
 
 ::
 
-  - import mypackage.MyController
+  - import mypackage.MyAction
 
   !!! 5
   html
@@ -67,8 +70,8 @@ scr/main/scalate/mypackage/MyController/index.jade:
       title Welcome to Xitrum
 
     body
-      a(href={currentAction.url}) Path to the current action
-      p= currentController.asInstanceOf[MyController].hello("World")
+      a(href={url}) Path to the current action
+      p= currentAction.asInstanceOf[MyAction].hello("World")
 
       != jsForView
 
@@ -79,12 +82,12 @@ scr/main/scalate/mypackage/MyController/index.jade:
 * ``jsForView`` contains JS fragments added by ``jsAddToView``,
   should be put at layout's bottom.
 
-In templates you can use all methods of the class `xitrum.Controller <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Controller.scala>`_.
+In templates you can use all methods of the class `xitrum.Action <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Action.scala>`_.
 Also, you can use utility methods provided by Scalate like ``unescape``.
 See the `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_.
 
-If you want to have exactly instance of the current controller, cast ``currentController`` to
-the controller you wish.
+If you want to have exactly instance of the current action, cast ``currentAction`` to
+the action you wish.
 
 The default Scalate template type is `Jade <http://scalate.fusesource.org/documentation/jade.html>`_.
 You can also use `Mustache <http://scalate.fusesource.org/documentation/mustache.html>`_,
@@ -131,7 +134,7 @@ Note that you can't use the below keys for ``at`` map to pass things to Scalate
 template, because they're already used:
 
 * "context": for Sclate utility object, which contains methods like ``unescape``
-* "helper": for the current controller object
+* "helper": for the current action object
 
 CoffeeScript
 ~~~~~~~~~~~~
@@ -175,7 +178,7 @@ Layout
 
 When you respond a view with ``respondView`` or ``respondInlineView``, Xitrum
 renders it to a String, and sets the String to ``renderedView`` variable. Xitrum
-then calls ``layout`` method of the current controller, finally Xitrum responds
+then calls ``layout`` method of the current action, finally Xitrum responds
 the result of this method to the browser.
 
 By default ``layout`` method just returns ``renderedView`` itself. If you want
@@ -189,18 +192,18 @@ There's just the ``layout`` method and you do whatever you want with it.
 
 Typically, you create a parent class which has a common layout for many views:
 
-src/main/scala/mypackage/AppController.scala
+src/main/scala/mypackage/AppAction.scala
 
 ::
 
   package mypackage
-  import xitrum.Controller
+  import xitrum.Action
 
-  trait AppController extends Controller {
-    override def layout = renderViewNoLayout(classOf[AppController])
+  trait AppAction extends Action {
+    override def layout = renderViewNoLayout(classOf[AppAction])
   }
 
-src/main/scalate/mypackage/AppController.jade
+src/main/scalate/mypackage/AppAction.jade
 
 ::
 
@@ -216,41 +219,42 @@ src/main/scalate/mypackage/AppController.jade
       != renderedView
       != jsForView
 
-src/main/scala/mypackage/MyController.scala
+src/main/scala/mypackage/MyAction.scala
 
 ::
 
   package mypackage
-  import AppController
+  import xitrum.annotation.GET
 
-  class MyController extends AppController {
-    def index = GET {
+  @GET("myAction")
+  class MyAction extends AppAction {
+    def execute() {
       respondView()
     }
 
     def hello(what: String) = "Hello %s".format(what)
   }
 
-scr/main/scalate/mypackage/MyController/index.jade:
+scr/main/scalate/mypackage/MyAction.jade:
 
 ::
 
-  - import mypackage.MyController
+  - import mypackage.MyAction
 
-  a(href={currentAction.url}) Path to the current action
-  p= currentController.asInstanceOf[MyController].hello("World")
+  a(href={url}) Path to the current action
+  p= currentAction.asInstanceOf[MyAction].hello("World")
 
 Without separate layout file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-AppController.scala
+AppAction.scala
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
   import xitrum.view.DocType
 
-  trait AppController extends Controller {
+  trait AppAction extends Action {
     override def layout = DocType.html5(
       <html>
         <head>
@@ -297,10 +301,12 @@ Normally, you write view in a Scalate file. You can also write it directly:
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
+  import xitrum.annotation.GET
 
-  class MyController extends Controller {
-    def index = GET {
+  @GET("myAction")
+  class MyAction extends Action {
+    def execute() {
       val s = "World"  // Will be automatically escaped
       respondInlineView(
         <p>Hello <em>{s}</em>!</p>
@@ -312,68 +318,14 @@ Render fragment
 ---------------
 
 If you want to render the frament file
-scr/main/scalate/mypackage/MyController/_myfragment.jade:
+scr/main/scalate/mypackage/MyAction/_myfragment.jade:
 
 ::
 
-  renderFragment(classOf[MyController], "myfragment")
+  renderFragment(classOf[MyAction], "myfragment")
 
-If MyController is the current controller, you can skip it:
+If MyAction is the current action, you can skip it:
 
 ::
 
   renderFragment("myfragment")
-
-Controller object
------------------
-
-From a controller, to refer to an action of another controller, use controller
-object like this:
-
-::
-
-  import xitrum.Controller
-
-  object LoginController extends LoginController
-  class LoginController extends Controller {
-    def login = GET("login") {...}
-
-    def doLogin = POST("login") {
-      ...
-      // After login success
-      redirectTo(AdminController.index)  // <-- HERE
-    }
-  }
-
-  object AdminController extends AdminController
-  class AdminController extends Controller {
-    def index = GET("admin") {
-      ...
-      // Check if the user has not logged in, redirect him to the login page
-      redirectTo(LoginController.login)  // <-- HERE
-    }
-  }
-
-In short, you create controller object and call action methods on it.
-
-Caveat
-~~~~~~
-
-From controller class, do not import everything in controller object like this:
-
-::
-
-  object LoginController extends LoginController
-  class LoginController extends Controller {
-    import LoginController._
-    ...
-  }
-
-Doing that will cause many strange runtime error in the Xitrum framework, like this:
-
-::
-
-  java.lang.NullPointerException: null
-    at xitrum.scope.request.RequestEnv.request(RequestEnv.scala:58) ~[xitrum_2.9.2.jar:1.9.8]
-    at xitrum.scope.request.ExtEnv$class.cookies(ExtEnv.scala:26) ~[xitrum_2.9.2.jar:1.9.8]
-    ...

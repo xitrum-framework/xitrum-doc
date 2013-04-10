@@ -53,12 +53,13 @@ your own handler, configure before starting web server:
 
 ::
 
-  import xitrum.routing.Routes
   import xitrum.handler.Server
+  import xitrum.routing.Routes
 
   object Boot {
     def main(args: Array[String]) {
-      Routes.error = classOf[My404And500ErrorHandlerController]
+      Routes.error404 = classOf[My404ErrorHandlerAction]
+      Routes.error500 = classOf[My500ErrorHandlerAction]
       Server.start()
     }
   }
@@ -68,17 +69,19 @@ don't have to set yourself.
 
 ::
 
-  import xitrum.{Controller, ErrorController}
+  import xitrum.Action
 
-  class My404And500ErrorHandlerController extends Controller with ErrorController {
-    def error404 = errorAction {
+  class My404ErrorHandlerAction extends Action {
+    def execute() {
       if (isAjax)
         jsRespond("alert(" + jsEscape("Not Found") + ")")
       else
         renderInlineView("Not Found")
     }
+  }
 
-    def error500 = errorAction {
+  class My500ErrorHandlerAction extends Action {
+    def execute() {
       if (isAjax)
         jsRespond("alert(" + jsEscape("Internal Server Error") + ")")
       else

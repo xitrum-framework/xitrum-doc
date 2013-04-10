@@ -61,10 +61,12 @@ WebSocket
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
+  import xitrum.annotation.WEBSOCKET
 
-  class HelloWebSocket extends Controller {
-    def echo = WEBSOCKET("echo") {
+  @WEBSOCKET("echo")
+  class HelloWebSocket extends Action {
+    def execute() {
       // If you don't want to accept the connection, call channel.close()
       acceptWebSocket(new WebSocketHandler {
         def onOpen() {
@@ -134,14 +136,14 @@ Xitrum automatically does it for you.
 
 ::
 
-  import xitrum.{Controller, SockJsHandler}
+  import xitrum.{Action, SockJsHandler}
   import xitrum.handler.Server
   import xitrum.routing.Routes
 
   class EchoSockJsHandler extends SockJsHandler {
-    // controller: the controller just before switching to this SockJS handler,
+    // action: the action just before switching to this SockJS handler,
     // you can use extract session data, request headers etc. from it
-    def onOpen(controller: Controller) {}
+    def onOpen(action: Action) {}
 
     def onMessage(message: String) {
       // Send back data to the SockJS client

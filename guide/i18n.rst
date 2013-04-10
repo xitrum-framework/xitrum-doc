@@ -8,15 +8,15 @@ GNU gettext is used. Unlike many other i18n methods, gettext supports plural for
 Write internationalized messages in source code
 -----------------------------------------------
 
-``xitrum.Controller`` extends ``xitrum.I18n``, which has these methods:
+``xitrum.Action`` extends ``xitrum.I18n``, which has these methods:
 
 ::
 
   t("Message")
   tc("Context", "Message")
 
-In a controller or action, just call them.
-In other places like models, you need to pass the current controller to them and
+In a action or action, just call them.
+In other places like models, you need to pass the current action to them and
 call ``t`` and ``tc`` on it:
 
 ::
@@ -115,7 +115,7 @@ Set language
   If there's no suitable language, the language is still the default "en".
 * To get the current language set above, call ``getLanguage``.
 
-In your controller, typically in a before filter, to set language:
+In your action, typically in a before filter, to set language:
 
 ::
 

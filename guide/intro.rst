@@ -50,7 +50,7 @@ Features
   `All Google's best practices <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_
   like conditional GET are applied for client-side caching.
   You can also force browsers to always send request to server to revalidate cache before using.
-* Routes are automatically collected in the spirit of JAX-RS (but without annotations!)
+* Routes are automatically collected in the spirit of JAX-RS
   and Rails Engines. You don't have to declare all routes in a single place.
   Think of this feature as distributed routes. You can plug an app into another app.
   If you have a blog engine, you can package it as a JAR file, then you can put

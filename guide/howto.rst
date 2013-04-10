@@ -4,6 +4,46 @@ HOWTO
 This chapter contains various small tips. Each tip is too small to have its own
 chapter.
 
+Link to an action
+-----------------
+
+Xitrum tries to be typesafe. Don't write URL manually, use urlFor like this:
+
+::
+
+  <a href={url[ArticlesShow]("id" -> myArticle.id)}>{myArticle.title}</a>
+
+Redirect to an action
+---------------------
+
+::
+
+  import xitrum.Action
+  import xitrum.annotation.{GET, POST}
+
+  @GET("login")
+  class LoginInput extends Action {
+    def execute() {...}
+  }
+
+  @POST("login")
+  class DoLogin extends Action {
+    def execute() {
+      ...
+      // After login success
+      redirectTo[AdminIndex]()
+    }
+  }
+
+  GET("admin")
+  class AdminIndex extends Action {
+    def execute() {
+      ...
+      // Check if the user has not logged in, redirect him to the login page
+      redirectTo[LoginInput]()
+    }
+  }
+
 Determine is the request is Ajax request
 ----------------------------------------
 
@@ -34,31 +74,20 @@ In config/xitrum.conf:
     "password": "xitrum"
   }
 
-Add basic authentication to a controller
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Add basic authentication to an action
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
 
-  class MyController extends Controller {
+  class MyAction extends Action {
     beforeFilter {
       basicAuth("Realm") { (username, password) =>
         username == "username" && password == "password"
       }
     }
   }
-
-Link to an action
------------------
-
-Xitrum tries to be typesafe.
-
-Don't write URL manually, use urlFor like this:
-
-::
-
-  <a href={Articles.show.url("id" -> myArticle.id)}>{myArticle.title}</a>
 
 Log
 ---

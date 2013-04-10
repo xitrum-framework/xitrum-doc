@@ -13,8 +13,8 @@ In your action, call ``jsAddToView`` (multiple times if you need):
 
 ::
 
-  class MyController extends AppController {
-    def index = GET {
+  class MyAction extends AppAction {
+    def execute() {
       ...
       jsAddToView("alert('Hello')")
       ...
@@ -28,10 +28,10 @@ In your layout, call ``jsForView``:
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
   import xitrum.view.DocType
 
-  trait AppController extends Controller {
+  trait AppAction extends Action {
     override def layout = DocType.html5(
       <html>
         <head>
@@ -61,7 +61,7 @@ To redirect:
 ::
 
   jsRedirectTo("http://cntt.tv/")
-  jsRedirectTo(AuthenticateController.login)
+  jsRedirectTo[LoginAction]()
 
 JSON
 ----

@@ -12,10 +12,10 @@ like conditional GET are applied for client-side caching.
 
 For dynamic content, if the content does not change after created (as if it is
 a static file), you may set headers for clients to cache aggressively.
-In that case, call ``setClientCacheAggressively()`` in your controller.
+In that case, call ``setClientCacheAggressively()`` in your action.
 
 Sometimes you may want to prevent client-side caching.
-In that case, call ``setNoClientCache()`` in your controller.
+In that case, call ``setNoClientCache()`` in your action.
 
 Cache in the following section refers to server-side cache.
 
@@ -39,14 +39,21 @@ Cache page or action
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
+  import xitrum.annotation.{GET, CacheActionMinute, CachePageMinute}
 
-  class MyController extends Controller {
-    def index = cachePageMinute(1).GET {
+  @GET("articles")
+  @CachePageMinute(1)
+  class ArticlesIndex extends Action {
+    def execute() {
       ...
     }
+  }
 
-    def show = cacheActionMinute(1).GET(":id") {
+  @GET("articles/:id")
+  @CacheActionMinute(1)
+  class ArticlesShow extends Action {
+    def execute() {
       ...
     }
   }

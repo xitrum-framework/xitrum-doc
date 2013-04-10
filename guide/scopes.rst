@@ -51,22 +51,23 @@ Articles.scala
 
 ::
 
-  class Articles extends AppController {
-    def show = GET(":id") {
+  @GET("articles/:id")
+  class ArticlesShow extends AppAction {
+    def execute() {
       val (title, body) = ...  // Get from DB
       at("title") = title
       respondInlineView(body)
     }
   }
 
-AppController.scala
+AppAction.scala
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
   import xitrum.view.DocType
 
-  trait AppController extends Controller {
+  trait AppAction extends Action {
     override def layout = DocType.html5(
       <html>
         <head>
@@ -104,22 +105,23 @@ Articles.scala
 
 ::
 
-  class Articles extends AppController {
-    def show = GET(":id") {
+  @GET("articles/:id")
+  class ArticlesShow extends AppAction {
+    def execute() {
       val (title, body) = ...  // Get from DB
       RVar.title.set(title)
       respondInlineView(body)
     }
   }
 
-AppController.scala
+AppAction.scala
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
   import xitrum.view.DocType
 
-  trait AppController extends Controller {
+  trait AppAction extends Action {
     override def layout = DocType.html5(
       <html>
         <head>
@@ -216,8 +218,9 @@ attack, in the action that lets users login, call ``session.clear()``.
 
 ::
 
-  class LoginController extends Controller {
-    def login = GET("login") {
+  @GET("login")
+  class LoginAction extends Action {
+    def execute() {
       ...
       session.clear()  // Reset first before doing anything else with the session
       session("userId") = userId

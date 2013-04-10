@@ -24,7 +24,7 @@ your Xitrum project, you can use them directly if you want.
   For parsing and generating JSON data. JSON4S depends on
   `Paranamer <http://paranamer.codehaus.org/>`_.
 * `Javassist <http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/>`_, `Sclasner <https://github.com/ngocdaothanh/sclasner>`_:
-  For scanning HTTP routes in controller classes in .class and .jar files.
+  For scanning HTTP routes in action classes in .class and .jar files.
 * `Scaposer <https://github.com/ngocdaothanh/scaposer>`_:
   For i18n.
 * `Commons Lang <http://commons.apache.org/lang/>`_:

@@ -5,13 +5,17 @@ You can write RESTful APIs for iPhone, Android applications etc. very easily.
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
+  import xitrum.annotation.GET
 
-  class Articles extends Controller {
-    pathPrefix = "articles"
-
-    def index = GET {...}
-    def show  = GET(":id") {...}
+  @GET("articles")
+  class ArticlesIndex extends Action {
+    def execute() {...}
+  }
+  
+  @GET("articles/:id")
+  class ArticlesShow extends Action {
+    def execute() {...}
   }
 
 The same for POST, PUT, PATCH, DELETE, and OPTIONS.
@@ -28,10 +32,10 @@ application has, like this:
 ::
 
   [INFO] Routes:
-  GET /articles     quickstart.controller.Articles#index
-  GET /articles/:id quickstart.controller.Articles#show
+  GET /articles     quickstart.action.ArticlesIndex
+  GET /articles/:id quickstart.action.ArticlesShow
 
-Routes are automatically collected in the spirit of JAX-RS (but without annotations!)
+Routes are automatically collected in the spirit of JAX-RS
 and Rails Engines. You don't have to declare all routes in a single place.
 Think of this feature as distributed routes. You can plug an app into another app.
 If you have a blog engine, you can package it as a JAR file, then you can put
@@ -54,21 +58,27 @@ When you want to route like this:
 
 ::
 
-  /articles/:id --> Articles#show
-  /articles/new --> Articles#nevv
+  /articles/:id --> ArticlesShow
+  /articles/new --> ArticlesNew
 
-You must make sure the second route be checked first. ``first`` is for this purpose:
+You must make sure the second route be checked first. ``First`` is for this purpose:
 
 ::
 
-  class Articles extends Controller {
-    pathPrefix = "articles"
+  import xitrum.annotation.{GET, First}
 
-    def show = GET(":id") {...}
-    def nevv = first.GET("new") {...}
+  @First
+  @GET("articles/:id")
+  class ArticlesShow extends Action {
+    def execute() {...}
+  }
+  
+  @GET("articles/new")
+  class ArticlesNew extends Action {
+    def execute() {...}
   }
 
-``last`` is similar.
+``Last`` is similar.
 
 Regex in route
 --------------
@@ -89,10 +99,10 @@ When you include ``antiCSRFMeta`` in your layout:
 
 ::
 
-  import xitrum.Controller
+  import xitrum.Action
   import xitrum.view.DocType
 
-  trait AppController extends Controller {
+  trait AppAction extends Action {
     override def layout = DocType.html5(
       <html>
         <head>
@@ -150,22 +160,23 @@ SkipCSRFCheck
 -------------
 
 When you create APIs for machines, e.g. smartphones, you may want to skip this
-automatic CSRF check. Add the trait xitrum.SkipCSRFCheck to you controller:
+automatic CSRF check. Add the trait xitrum.SkipCSRFCheck to you action:
 
 ::
 
-  import xitrum.{Controller, SkipCSRFCheck}
+  import xitrum.{Action, SkipCSRFCheck}
+  import xitrum.annotatin.POST
 
-  trait API extends Controller with SkipCSRFCheck
+  trait API extends Action with SkipCSRFCheck
 
+  @POST("api/positions")
   class LogPositionAPI extends API {
-    pathPrefix = "api/positions"
-    def log = POST {...}
+    def execute() {...}
   }
 
+  @POST("api/todos")
   class CreateTodoAPI extends API {
-    pathPrefix = "api/todos"
-    def create = POST {...}
+    def execute() {...}
   }
 
 Read entire request body

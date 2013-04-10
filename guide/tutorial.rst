@@ -43,8 +43,8 @@ you will see all the routes:
 ::
 
   [INFO] Routes:
-  GET  /                  quickstart.controller.Site#index
-  GET  /xitrum/routes.js  xitrum.routing.JSRoutesController#routes
+  GET  /                  quickstart.action.SiteIndex
+  GET  /xitrum/routes.js  xitrum.routing.JSRoutesAction
   [INFO] HTTP server started on port 8000
   [INFO] HTTPS server started on port 4430
   [INFO] Xitrum started in development mode
@@ -58,4 +58,4 @@ console you will see request information:
 
 ::
 
-  [DEBUG] GET quickstart.controller.Site#index, 1 [ms]
+  [DEBUG] GET quickstart.action.SiteIndex, 1 [ms]

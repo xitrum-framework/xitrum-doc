@@ -12,7 +12,7 @@ my_upload.scalate:
 
 ::
 
-  form(method="post" action={MyController.myAction.url} enctype="multipart/form-data")
+  form(method="post" action={url[MyAction]} enctype="multipart/form-data")
     != antiCSRFInput
 
     label Please select a file:
@@ -20,7 +20,7 @@ my_upload.scalate:
 
     button(type="submit") Upload
 
-myAction:
+MyAction:
 
 ::
 
