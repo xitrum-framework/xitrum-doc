@@ -16,7 +16,8 @@ List of responding methods:
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
   (aka send-file) is used
-* ``respondWebSocket("text")``: responds a WebSocket text frame
+* ``respondWebSocketText("text")``: responds a WebSocket text frame
+* ``respondWebSocketBinary(bytes)``: responds a WebSocket binary frame
 * ``respondEventSource("data", "event")``
 
 Xitrum does not automatically send any default response.
@@ -73,13 +74,18 @@ WebSocket
           logger.debug("onOpen")
         }
 
-        def onMessage(message: String) {
-          // Send back data to the WebSocket client
-          respondWebSocket(message.toUpperCase)
-        }
-
         def onClose() {
           logger.debug("onClose")
+        }
+
+        def onTextMessage(text: String) {
+          // Send back data to the WebSocket client
+          respondWebSocketText(text.toUpperCase)
+        }
+
+        def onBinaryMessage(bytes: Array[Byte]) {
+          // Send back data to the WebSocket client
+          respondWebSocketText(bytes)
         }
       })
     }

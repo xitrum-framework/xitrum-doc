@@ -27,7 +27,8 @@ From an action, to respond something to client, use:
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
   (aka send-file) is used
-* ``respondWebSocket``: responds a WebSocket text frame
+* ``respondWebSocketText("text")``: responds a WebSocket text frame
+* ``respondWebSocketBinary(bytes)``: responds a WebSocket binary frame
 * ``respondEventSource("data", "event")``
 
 Respond template view file
