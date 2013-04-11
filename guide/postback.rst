@@ -1,12 +1,21 @@
 Postbacks
 =========
 
+There are 2 main use cases of web applications:
+
+* To serve machines: you need to create RESTful APIs for smartphones, web services
+  for other web sites.
+* To serve human users: you need to create interactive web pages.
+
+As a web framework, Xitrum aims to support you to solve these use cases easily.
+To solve the 1st use case, you use :doc:`RESTful actions </restful>`.
+To solve the 2nd use case, you can use the Ajax form postback feature in Xitrum.
 Please see the following links for the idea about postback:
 
 * http://en.wikipedia.org/wiki/Postback
 * http://nitrogenproject.com/doc/tutorial.html
 
-Xitrum's Ajax form postback is inspired by `Nitrogen <http://nitrogenproject.com/>`_.
+Xitrum's postback feature is inspired by `Nitrogen <http://nitrogenproject.com/>`_.
 
 Layout
 ------
@@ -62,7 +71,7 @@ Articles.scala
   class ArticlesNew extends AppAction {
     def execute() {
       respondInlineView(
-        <form data-postback="submit" action={create.url}>
+        <form data-postback="submit" action={url[ArticlesCreate]}>
           <label>Title</label>
           <input type="text" name="title" class="required" /><br />
 
@@ -88,7 +97,7 @@ Articles.scala
   }
 
 When ``submit`` JavaScript event of the form is triggered, the form will be posted back
-to ``create``.
+to ``ArticlesCreate``.
 
 ``action`` attribute of ``<form>`` is encrypted. The encrypted URL acts as the anti-CSRF token.
 
@@ -101,9 +110,9 @@ An example with link:
 
 ::
 
-  <a href="#" data-postback="click" action={AuthenticateController.logout.postbackurl}>Logout</a>
+  <a href="#" data-postback="click" action={postbackUrl[LogoutAction]}>Logout</a>
 
-Clicking the link above will trigger the postback to logout action of AuthenticateController.
+Clicking the link above will trigger the postback to LogoutAction.
 
 Confirmation dialog
 -------------------
@@ -113,7 +122,7 @@ If you want to display a confirmation dialog:
 ::
 
   <a href="#" data-postback="click"
-              action={AuthenticateController.logout.postbackurl}
+              action={postbackUrl[LogoutAction]}
               data-confirm="Do you want to logout?">Logout</a>
 
 If the user clicks "Cancel", the postback will not be sent.
@@ -130,7 +139,7 @@ For other elements, you do like this:
 
   <a href="#"
      data-postback="click"
-     action={Articles.destroy.url("id" -> item.id)}
+     action={postbackUrl[ArticlesDestroy]("id" -> item.id)}
      data-extra="_method=delete"
      data-confirm={"Do you want to delete %s?".format(item.name)}>Delete</a>
 
@@ -138,7 +147,7 @@ You may also put extra params in a separate form:
 
 ::
 
-  <form id="myform" data-postback="submit" action={Site.search.url}>
+  <form id="myform" data-postback="submit" action={postbackUrl[SiteSearch]}>
     Search:
     <input type="text" name="keyword" />
 
@@ -146,7 +155,7 @@ You may also put extra params in a separate form:
        href="#"
        data-postback="click"
        data-extra="#myform"
-       action={Site.search.url("page" -> page)}>{page}</a>
+       action={postbackUrl[SiteSearch]("page" -> page)}>{page}</a>
   </form>
 
 ``#myform`` is the jQuery selector to select the form that contains extra params.

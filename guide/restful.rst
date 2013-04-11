@@ -143,7 +143,7 @@ If you manually write form in Scalate template, use ``antiCSRFInput``:
 
 ::
 
-  form(method="post" action={Admin.addGroup.url})
+  form(method="post" action={url[AdminAddGroup]})
     != antiCSRFInput
 
     label Group name *

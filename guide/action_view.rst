@@ -1,15 +1,61 @@
 Action and view
 ===============
 
-There are 2 main use cases of web applications:
+To be flexible, Xitrum provides 2 kinds of actions:
+normal action and actor action.
 
-* To serve machines: you need to create RESTful APIs for smartphones, web services
-  for other web sites.
-* To serve human users: you need to create interactive web pages.
+Normal action
+-------------
 
-As a web framework, Xitrum aims to support you to solve these use cases easily.
-In Xitrum, there are 2 kinds of actions: :doc:`RESTful actions </restful>` and
-:doc:`postback actions </postback>`.
+Use when you don't do async call to outside from your action.
+
+::
+
+  import xitrum.Action
+  import xitrum.annotation.GET
+
+  @GET("hello")
+  class HelloAction extends Action {
+    def execute() {
+      respondText("Hello")
+    }
+  }
+
+Actor action
+------------
+
+Use when you want to do async call to outside from your action.
+If you want your action to be an actor, instead of extending xitrum.Action,
+extend xitrum.Action.Actor.
+
+An actor instance will be created when there's request. It will be stopped when the
+connection is closed or when the response has been sent by respondText,
+respondView etc. methods. For chunked response, it is not stopped right away.
+It is stopped when the last chunk is sent.
+
+::
+
+  import scala.concurrent.duration._
+
+  import xitrum.ActionActor
+  import xitrum.annotation.GET
+
+  @GET("actor")
+  class ActionActorDemo extends ActionActor with AppAction {
+    // This is just a normal Akka actor
+
+    def execute() {
+      // See Akka doc about scheduler
+      import context.dispatcher
+      context.system.scheduler.scheduleOnce(3 seconds, self, System.currentTimeMillis)
+
+      // See Akka doc about "become"
+      context.become {
+        case pastTime =>
+          respondInlineView("It's " + pastTime + " Unix ms 3s ago.")
+      }
+    }
+  }
 
 Respond to client
 -----------------
