@@ -68,11 +68,11 @@ WebSocket
   @WEBSOCKET("echo")
   class EchoWebSocketActor extends WebSocketActor {
     /**
-     * @param action The action just before switching to this WebSocket actor.
+     * The current action is the one just before switching to this WebSocket actor.
      * You can extract session data, request headers etc. from it, but do not use
      * respondText, respondView etc.
      */
-    def execute(action: Action) {
+    def execute() {
       logger.debug("onOpen")
 
       context.become {
@@ -166,11 +166,11 @@ Xitrum automatically does it for you.
   @SOCKJS("echo")
   class EchoSockJsActor extends SockJsActor {
     /**
-     * @param action The action just before switching to this SockJS actor.
+     * The current action is the one just before switching to this SockJS actor.
      * You can extract session data, request headers etc. from it, but do not use
      * respondText, respondView etc.
      */
-    def execute(action: Action) {
+    def execute() {
       logger.info("onOpen")
 
       context.become {
