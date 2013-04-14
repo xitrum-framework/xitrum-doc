@@ -1,10 +1,10 @@
 Async response
 ==============
 
-List of responding methods:
+List of normal responding methods:
 
-* ``respondView``: responds HTML with or without layout
-* ``respondInlineView``
+* ``respondView``: responds view template with or without layout
+* ``respondInlineView``: responds with or without layout
 * ``respondText("hello")``: responds a string without layout
 * ``respondHtml("<html>...</html>")``: same as above, with content type set to "text/html"
 * ``respondJson(List(1, 2, 3))``: converts Scala object to JSON object then responds
@@ -16,8 +16,6 @@ List of responding methods:
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
   (aka send-file) is used
-* ``respondWebSocketText("text")``: responds a WebSocket text frame
-* ``respondWebSocketBinary(bytes)``: responds a WebSocket binary frame
 * ``respondEventSource("data", "event")``
 
 Xitrum does not automatically send any default response.
@@ -44,6 +42,8 @@ For example, if you want to close the connection after the response has been sen
 
 ::
 
+  import org.jboss.netty.channel.{ChannelFuture, ChannelFutureListener}
+
   val future = respondText("Hello")
   future.addListener(new ChannelFutureListener {
     def operationComplete(future: ChannelFuture) {
@@ -62,43 +62,61 @@ WebSocket
 
 ::
 
-  import xitrum.Action
+  import xitrum.WebSocketActor
   import xitrum.annotation.WEBSOCKET
 
   @WEBSOCKET("echo")
-  class HelloWebSocket extends Action {
-    def execute() {
-      // If you don't want to accept the connection, call channel.close()
-      acceptWebSocket(new WebSocketHandler {
-        def onOpen() {
-          logger.debug("onOpen")
-        }
+  class EchoWebSocketActor extends WebSocketActor {
+    /**
+     * @param action The action just before switching to this WebSocket actor.
+     * You can extract session data, request headers etc. from it, but do not use
+     * respondText, respondView etc.
+     */
+    def execute(action: Action) {
+      logger.debug("onOpen")
 
-        def onClose() {
-          logger.debug("onClose")
-        }
-
-        def onTextMessage(text: String) {
-          // Send back data to the WebSocket client
+      context.become {
+        case WebSocketText(text) =>
+          logger.info("onTextMessage: " + text)
           respondWebSocketText(text.toUpperCase)
-        }
 
-        def onBinaryMessage(bytes: Array[Byte]) {
-          // Send back data to the WebSocket client
-          respondWebSocketText(bytes)
-        }
-      })
+        case WebSocketBinary(bytes) {
+          logger.info("onBinaryMessage: " + bytes)
+          respondWebSocketBinary(bytes)
+
+        case WebSocketPing =>
+          logger.debug("onPing")
+
+        case WebSocketPong =>
+          logger.debug("onPong")
+      }
+    }
+
+    override def postStop() {
+      logger.debug("onClose")
     }
   }
+
+An actor will be created when there's request. It will be stopped when:
+
+* The connection is closed
+* WebSocket close frame is received or sent
+
+Use these to send WebSocket frames:
+
+* respondWebSocketText
+* respondWebSocketBinary
+* respondWebSocketPing
+* respondWebSocketClose
+
+There's no respondWebSocketPong, because pong is automatically sent by Xitrum for you.
 
 To get URL to the above WebSocket action:
 
 ::
 
-  object HelloWebSocket extends HelloWebSocket
-
   // Probably you want to use this in Scalate view etc.
-  val url = HelloWebSocket.echo.webSocketAbsoluteUrl
+  val url = webSocketAbsUrl[EchoWebSocketActor]
 
 SockJS
 ------
@@ -142,29 +160,38 @@ Xitrum automatically does it for you.
 
 ::
 
-  import xitrum.{Action, SockJsHandler}
-  import xitrum.handler.Server
-  import xitrum.routing.Routes
+  import xitrum.{Action, SockJsActor, SockJsText}
+  import xitrum.annotation.SOCKJS
 
-  class EchoSockJsHandler extends SockJsHandler {
-    // action: the action just before switching to this SockJS handler,
-    // you can use extract session data, request headers etc. from it
-    def onOpen(action: Action) {}
+  @SOCKJS("echo")
+  class EchoSockJsActor extends SockJsActor {
+    /**
+     * @param action The action just before switching to this SockJS actor.
+     * You can extract session data, request headers etc. from it, but do not use
+     * respondText, respondView etc.
+     */
+    def execute(action: Action) {
+      logger.info("onOpen")
 
-    def onMessage(message: String) {
-      // Send back data to the SockJS client
-      send(message)
+      context.become {
+        case SockJsText(text) =>
+          logger.info("onMessage: " + text)
+          respondSockJsText(text)
+      }
     }
 
-    def onClose() {}
-  }
-
-  object Boot {
-    def main(args: Array[String]) {
-      Routes.sockJs(classOf[EchoSockJsHandler], "echo")
-      Server.start()
+    override def postStop() {
+      logger.info("onClose")
     }
   }
+
+An actor will be created when there's new SockJS session. It will be stopped when
+the SockJS session is closed.
+
+Use these to send SockJS frames:
+
+* respondSockJsText
+* respondSockJsClose
 
 See `Various issues and design considerations <https://github.com/sockjs/sockjs-node#various-issues-and-design-considerations>`_:
 

@@ -85,7 +85,7 @@ When starting Xitrum server, you can pass in your own ChannelPipelineFactory:
 
 ::
 
-  import xitrum.handler.Server
+  import xitrum.Server
 
   object Boot {
     def main(args: Array[String]) {

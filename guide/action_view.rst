@@ -62,6 +62,8 @@ Respond to client
 
 From an action, to respond something to client, use:
 
+* ``respondView``: responds view template with or without layout
+* ``respondInlineView``: responds with or without layout
 * ``respondText("hello")``: responds a string without layout
 * ``respondHtml("<html>...</html>")``: same as above, with content type set to "text/html"
 * ``respondJson(List(1, 2, 3))``: converts Scala object to JSON object then responds
@@ -73,8 +75,6 @@ From an action, to respond something to client, use:
 * ``respondFile``: sends a file directly from disk, very fast
   because `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_
   (aka send-file) is used
-* ``respondWebSocketText("text")``: responds a WebSocket text frame
-* ``respondWebSocketBinary(bytes)``: responds a WebSocket binary frame
 * ``respondEventSource("data", "event")``
 
 Respond template view file
