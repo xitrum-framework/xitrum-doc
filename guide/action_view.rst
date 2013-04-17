@@ -21,12 +21,18 @@ Use when you don't do async call to outside from your action.
     }
   }
 
+With Action, the request is handled right away, but the number of concurrent
+connections can't be too high. There should not be any blocking processing
+along the way request -> response.
+
 Actor action
 ------------
 
 Use when you want to do async call to outside from your action.
 If you want your action to be an actor, instead of extending xitrum.Action,
-extend xitrum.Action.Actor.
+extend xitrum.ActionActor. With ActionActor, your system can handle massive
+number of concurrent connections, but the request is not handled right away.
+This is async oriented.
 
 An actor instance will be created when there's request. It will be stopped when the
 connection is closed or when the response has been sent by respondText,
