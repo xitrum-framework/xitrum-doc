@@ -7,7 +7,7 @@ chapter.
 Link to an action
 -----------------
 
-Xitrum tries to be typesafe. Don't write URL manually, use urlFor like this:
+Xitrum tries to be typesafe. Don't write URL manually. Do like this:
 
 ::
 

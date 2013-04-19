@@ -48,12 +48,12 @@ Group XML elements
     {if (loggedIn)
       <xml:group>
         <b>{username}</b>
-        <a href={urlFor[LogoutAction]}>Logout</a>
+        <a href={url[LogoutAction]}>Logout</a>
       </xml:group>
     else
       <xml:group>
-        <a href={urlFor[LoginAction]}>Login</a>
-        <a href={urlFor[RegisterAction]}>Register</a>
+        <a href={url[LoginAction]}>Login</a>
+        <a href={url[RegisterAction]}>Register</a>
       </xml:group>}
   </div>
 

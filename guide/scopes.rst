@@ -259,7 +259,7 @@ Display the username:
   if (SVar.username.isDefined)
     <em>{SVar.username.get}</em>
   else
-    <a href={urlFor[LoginAction]}>Login</a>
+    <a href={url[LoginAction]}>Login</a>
 
 * To delete the session var: ``SVar.username.delete()``
 * To reset the whole session: ``session.clear()``
