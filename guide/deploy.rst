@@ -17,6 +17,7 @@ Or behind a load balancer like HAProxy, or reverse proxy like Nginx:
 If you use WebSocket or SockJS feature in Xitrum and want to run Xitrum behind
 Nginx 1.2, you must install additional module like
 `nginx_tcp_proxy_module <https://github.com/yaoweibin/nginx_tcp_proxy_module>`_.
+Nginx 1.3+ supports WebSocket natively.
 
 HAProxy is much easier to use. It suits Xitrum because as mentioned in
 :doc:`the section about caching </cache>`, Xitrum serves static files
@@ -82,6 +83,7 @@ Good read:
 
 * `Ipsysctl tutorial <http://www.frozentux.net/ipsysctl-tutorial/chunkyhtml/>`_
 * `Iptables tutorial <http://www.frozentux.net/iptables-tutorial/chunkyhtml/>`_
+* `TCP variables <http://www.frozentux.net/ipsysctl-tutorial/chunkyhtml/tcpvariables.html>`_
 
 Increase open file limit
 ~~~~~~~~~~~~~~~~~~~~~~~~
