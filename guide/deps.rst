@@ -4,6 +4,8 @@ Dependencies
 This chapter lists all dependency libraries that Xitrum uses so that in
 your Xitrum project, you can use them directly if you want.
 
+.. image:: deps.png
+
 * `Scala <http://www.scala-lang.org/>`_:
   Xitrum is written in Scala language.
 * `Netty <https://netty.io/>`_:
@@ -12,12 +14,8 @@ your Xitrum project, you can use them directly if you want.
 * `Hazelcast <http://hazelcast.com/>`_:
   For distributing caches, server side sessions, and message queues.
 * `Akka <http://akka.io/>`_:
-  For SockJS. Akka itself has this interesting dependency which is also used by Xitrum:
-  `Typesafe Config <https://github.com/typesafehub/config>`_.
-* `xitrum-scalate <https://github.com/ngocdaothanh/xitrum-scalate>`_,
-  `Scalate <http://scalate.fusesource.org/>`_,
-  `Scalamd <https://github.com/chirino/scalamd>`_:
-  For view template.
+  For SockJS. Akka depends on `Typesafe Config <https://github.com/typesafehub/config>`_,
+  which is also used by Xitrum.
 * `Rhino <https://developer.mozilla.org/en-US/docs/Rhino>`_:
   For Scalate to compile CoffeeScript to JavaScript.
 * `JSON4S <https://github.com/json4s/json4s>`_:
@@ -31,13 +29,9 @@ your Xitrum project, you can use them directly if you want.
   For escaping JSON data.
 * `Twitter Chill <https://github.com/twitter/chill>`_:
   For serializing and deserializing cookies and sessions.
-  Chill is based on
-  `Kryo <http://code.google.com/p/kryo/>`_,
-  `Objenesis <http://code.google.com/p/objenesis/>`_,
-  `Bijection <https://github.com/twitter/bijection>`_,
-  `ASM <http://asm.ow2.org/>`_,
-  `Commons Codec <http://commons.apache.org/proper/commons-codec/>`_,
-  `ReflectASM <http://code.google.com/p/reflectasm/>`_,
-  `Uncommons Maths <http://maths.uncommons.org/>`_.
+  Chill is based on `Kryo <http://code.google.com/p/kryo/>`_.
 * `SLF4J <http://www.slf4j.org/>`_, `Logback <http://logback.qos.ch/>`_:
   For logging.
+
+The default template engine in Xitrum is `xitrum-scalate <https://github.com/ngocdaothanh/xitrum-scalate>`_.
+It depends on `Scalate <http://scalate.fusesource.org/>`_ and `Scalamd <https://github.com/chirino/scalamd>`_.
