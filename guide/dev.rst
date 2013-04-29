@@ -1,8 +1,31 @@
-Development flow with SBT, Eclipse, and JRebel
-==============================================
+Development flow with SBT, Eclipse/IntelliJ IDEA, and JRebel
+============================================================
 
-This chapter assumes that you have installed Eclipse and
-`Scala plugin for Eclipse <http://www.scala-ide.org/>`_.
+Import the project to Eclipse
+-----------------------------
+
+You can `use Eclipse to write Scala code <http://scala-ide.org/>`_.
+
+From the project directory, run:
+
+::
+
+  sbt/sbt eclipse
+
+``.project`` file for Eclipse will be created from definitions in ``build.sbt``.
+Now open Eclipse, and import the project.
+
+Import the project to IntelliJ IDEA
+-----------------------------------
+
+You can also use `IntelliJ IDEA <http://www.jetbrains.com/idea/>`_, which also
+has very good support for Scala.
+
+To generate project files for IDEA, run:
+
+::
+
+  sbt/sbt gen-idea
 
 Ignore files
 ------------
@@ -18,20 +41,6 @@ These should be `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master
   project/target
   routes.cache
   target
-
-Import the project to Eclipse
------------------------------
-
-Many people `use Eclipse to write Scala code <http://scala-ide.org/>`_.
-
-From the project directory, run:
-
-::
-
-  sbt/sbt eclipse
-
-``.project`` file for Eclipse will be created from definitions in ``build.sbt``.
-Now open Eclipse, and import the project.
 
 Install JRebel
 --------------
