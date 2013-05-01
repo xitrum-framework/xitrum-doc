@@ -8,7 +8,7 @@ Introduction
   +--------------------+
   |    Xitrum fusion   |
   | +----------------+ |
-  | | Web framework  | |  <-- Akka, Hazelcast --> Other instances
+  | | Web framework  | |  <-- Akka cluster --> Other instances
   | |----------------| |
   | | HTTP(S) Server | |
   | +----------------+ |
@@ -17,8 +17,7 @@ Introduction
   +--------------------+
 
 Xitrum is an async and clustered Scala web framework and HTTP(S) server fusion
-on top of `Netty <http://netty.io/>`_, `Akka <http://akka.io/>`_, and
-`Hazelcast <http://www.hazelcast.com/>`_.
+on top of `Netty <http://netty.io/>`_ and `Akka <http://akka.io/>`_.
 
 From `a user <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576d39>`_:
 
@@ -30,7 +29,7 @@ From `a user <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576
   identifiers & auto-gzip compression. Tack on built-in JSON converter,
   before/around/after interceptors, request/session/cookie/flash scopes,
   integrated validation (server & client-side, nice), built-in cache
-  layer (`Hazelcast <http://www.hazelcast.com/>`_), i18n a la GNU gettext, Netty (with Nginx, hello
+  layer (`Cleakka <https://github.com/ngocdaothanh/cleakka>`_), i18n a la GNU gettext, Netty (with Nginx, hello
   blazing fast), etc. and you have, wow.
 
 Features
@@ -58,11 +57,9 @@ Features
   Routing is also two-way: you can recreate URLs (reverse routing) in a typesafe way.
 * Views can be written in a separate `Scalate <http://scalate.fusesource.org/>`_
   template file or Scala inline XML. Both are typesafe.
-* Sessions can be stored in cookies (more scalable) or clustered `Hazelcast <http://www.hazelcast.com/>`_ (more secure).
-  Hazelcast is recommended when using continuations-based actions, since serialized
-  continuations are usually too big to store in cookies. Hazelcast also gives
-  in-process (thus faster and simpler to use) distribued cache and pubsub, you
-  don't need separate cache and pubsub servers.
+* Sessions can be stored in cookies (more scalable) or clustered `Cleakka <https://github.com/ngocdaothanh/cleakka>`_ (more secure).
+  Cleakka also gives in-process (thus faster and simpler to use) distribued cache,
+  you don't need separate cache servers. The same is for pubsub feature in Akka.
 * `jQuery Validation <http://docs.jquery.com/Plugins/validation>`_ is integrated
   for browser side and server side validation.
 * i18n using `GNU gettext <http://en.wikipedia.org/wiki/GNU_gettext>`_.

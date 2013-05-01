@@ -273,31 +273,40 @@ you can config the session store:
 ::
 
   ...
-  "session": {
-    // To store sessions on client side: xitrum.scope.session.CookieSessionStore
-    // To store sessions on server side: xitrum.scope.session.HazelcastSessionStore
-    // "store": "xitrum.scope.session.CookieSessionStore",
-    "store": "xitrum.scope.session.HazelcastSessionStore",
+  session {
+    # Store sessions on client side
+    store = xitrum.session.CookieSessionStore
 
-    // If you run multiple sites on the same domain, make sure that there's no
-    // cookie name conflict between sites
-    "cookieName": "_session",
+    # Store sessions on server side
+    #store = xitrum.session.CleakkaSessionStore
+    #store = xitrum.session.UnserializableSessionStore
 
-    // Key to encrypt session cookie etc.
-    // Do not use the example below! Use your own!
-    // If you deploy your application to several instances be sure to use the same key!
-    "secureKey": "ajconghoaofuxahoi92chunghiaujivietnamlasdoclapjfltudoil98hanhphucup8"
+    # If you run multiple sites on the same domain, make sure that there's no
+    # cookie name conflict between sites
+    cookieName = _session
+
+    # Key to encrypt session cookie etc.
+    # Do not use the example below! Use your own!
+    # If you deploy your application to several instances be sure to use the same key!
+    secureKey = ajconghoaofuxahoi92chunghiaujivietnamlasdoclapjfltudoil98hanhphucup8
   }
   ...
 
-If you run a cluster of Xitrum web servers and store sessions on server side,
-setup session replication by :doc:`configuring Hazelcast </cluster>`.
+CleakkaSessionStore is cluster-aware, but things you store in it must be serializable.
+CleakkaSessionStore is recommended when using continuations-based actions, since serialized
+continuations are usually too big to store in cookies. 
 
-The two default session stores are enough for normal cases.
+If you must store unserializable things, use UnserializableSessionStore.
+If you use UnserializableSessionStore and still want to run a Xitrum cluster,
+you must use a load balancer with sticky sessions configured.
+
+The three default session stores above are enough for normal cases.
 But if you have a special case and want to implement your own session store,
 extend
-`SessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
-and implement the two methods.
+`SessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/session/SessionStore.scala>`_
+or
+`ServerSessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/session/ServerSessionStore.scala>`_
+and implement the abstract methods.
 
 Then to tell Xitrum to use your session store, set its class name to xitrum.conf.
 

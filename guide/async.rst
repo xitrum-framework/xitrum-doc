@@ -202,7 +202,7 @@ See `Various issues and design considerations <https://github.com/sockjs/sockjs-
   connection and validate it on the server side. In essence, this is how cookies
   work.
 
-To config SockJS clustering, see :doc:`Clustering with Akka and Hazelcast </cluster>`.
+To config SockJS clustering, see :doc:`Clustering with Akka </cluster>`.
 
 Chunked response
 ----------------

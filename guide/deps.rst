@@ -11,11 +11,11 @@ your Xitrum project, you can use them directly if you want.
 * `Netty <https://netty.io/>`_:
   For async HTTP(S) server. Many features in Xitrum are based on those in Netty,
   like WebSocket and zero copy file serving.
-* `Hazelcast <http://hazelcast.com/>`_:
-  For distributing caches, server side sessions, and message queues.
 * `Akka <http://akka.io/>`_:
   For SockJS. Akka depends on `Typesafe Config <https://github.com/typesafehub/config>`_,
   which is also used by Xitrum.
+* `Cleakka <https://github.com/ngocdaothanh/cleakka>`_:
+  For distributing caches and server side sessions.
 * `Rhino <https://developer.mozilla.org/en-US/docs/Rhino>`_:
   For Scalate to compile CoffeeScript to JavaScript.
 * `JSON4S <https://github.com/json4s/json4s>`_:
