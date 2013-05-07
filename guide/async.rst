@@ -239,6 +239,9 @@ Notes:
 * Headers are only sent on the first respondXXX call.
 * :doc:`Page and action cache </cache>` cannot be used with chunked response.
 
+Using chunked response together with ActionActor, you can easily implement
+`Facebook BigPipe <http://www.cubrid.org/blog/dev-platform/faster-web-page-loading-with-facebook-bigpipe/>`_.
+
 Forever iframe
 ~~~~~~~~~~~~~~
 
