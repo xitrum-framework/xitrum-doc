@@ -275,11 +275,11 @@ you can config the session store:
   ...
   session {
     # Store sessions on client side
-    store = xitrum.session.CookieSessionStore
+    store = xitrum.scope.session.CookieSessionStore
 
     # Store sessions on server side
-    #store = xitrum.session.CleakkaSessionStore
-    #store = xitrum.session.UnserializableSessionStore
+    #store = xitrum.scope.session.HazelcastSessionStore
+    #store = xitrum.scope.session.UnserializableSessionStore
 
     # If you run multiple sites on the same domain, make sure that there's no
     # cookie name conflict between sites
@@ -292,9 +292,10 @@ you can config the session store:
   }
   ...
 
-CleakkaSessionStore is cluster-aware, but things you store in it must be serializable.
-CleakkaSessionStore is recommended when using continuations-based actions, since serialized
-continuations are usually too big to store in cookies. 
+Server side session store is recommended when using continuations-based actions,
+since serialized continuations are usually too big to store in cookies. 
+
+HazelcastSessionStore is cluster-aware, but things you store in it must be serializable.
 
 If you must store unserializable things, use UnserializableSessionStore.
 If you use UnserializableSessionStore and still want to run a Xitrum cluster,

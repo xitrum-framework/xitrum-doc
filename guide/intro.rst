@@ -29,7 +29,7 @@ From `a user <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576
   identifiers & auto-gzip compression. Tack on built-in JSON converter,
   before/around/after interceptors, request/session/cookie/flash scopes,
   integrated validation (server & client-side, nice), built-in cache
-  layer (`Cleakka <https://github.com/ngocdaothanh/cleakka>`_), i18n a la GNU gettext, Netty (with Nginx, hello
+  layer (`Hazelcast <http://www.hazelcast.com/>`_), i18n a la GNU gettext, Netty (with Nginx, hello
   blazing fast), etc. and you have, wow.
 
 Features
@@ -57,8 +57,8 @@ Features
   Routing is also two-way: you can recreate URLs (reverse routing) in a typesafe way.
 * Views can be written in a separate `Scalate <http://scalate.fusesource.org/>`_
   template file or Scala inline XML. Both are typesafe.
-* Sessions can be stored in cookies (more scalable) or clustered `Cleakka <https://github.com/ngocdaothanh/cleakka>`_ (more secure).
-  Cleakka also gives in-process (thus faster and simpler to use) distribued cache,
+* Sessions can be stored in cookies (more scalable) or clustered `Hazelcast <http://www.hazelcast.com/>`_ (more secure).
+  Hazelcast also gives in-process (thus faster and simpler to use) distribued cache,
   you don't need separate cache servers. The same is for pubsub feature in Akka.
 * `jQuery Validation <http://docs.jquery.com/Plugins/validation>`_ is integrated
   for browser side and server side validation.
