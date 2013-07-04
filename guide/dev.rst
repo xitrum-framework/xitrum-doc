@@ -88,3 +88,5 @@ automatically reload the generated .class files.
 ``sbt/sbt "~compile"``, or it will complain "no such user or named directory: compile".
 
 Currently routes are not reloaded, even in development mode with JRebel.
+
+To use JRebel in Eclipse, see `this tutorial <http://zeroturnaround.com/software/jrebel/eclipse-jrebel-tutorial/>`_.
