@@ -208,7 +208,7 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
   import xitrum.{Action, SkipCSRFCheck}
 
   import xitrum.annotation.GET
-  import xitrum.annotation.swagger.{Swagger, SwaggerParam, SwaggerError}
+  import xitrum.annotation.swagger.{Swagger, SwaggerParam, SwaggerResponse}
 
   trait API extends Action with SkipCSRFCheck
 
@@ -224,7 +224,7 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
         required    = true,
         description = "Square width")),
     responses = Array(
-      new SwaggerResponse(code = "400", message = "Width is invalid or too big"))
+      new SwaggerResponse(code = 400, message = "Width is invalid or too big"))
   )
   class ImageAPI extends API {
     def execute { /*...*/ }
@@ -249,7 +249,7 @@ and `valueType <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_.
         "notes":"Use this route in Swagger UI to see the doc",
         "nickname":"SwaggerAction",
         "parameters":[],
-        "errorResponses":[]
+        "responseMessages":[]
       }]
     },{
       "path":"/image/{width}",
