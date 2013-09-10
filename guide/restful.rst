@@ -179,8 +179,8 @@ automatic CSRF check. Add the trait xitrum.SkipCSRFCheck to you action:
     def execute() {...}
   }
 
-Read entire request body
-------------------------
+Getting entire request body
+---------------------------
 
 To get the entire request body, use `request.getContent <http://netty.io/3.6/api/org/jboss/netty/handler/codec/http/HttpRequest.html>`_.
 It returns `ChannelBuffer <http://netty.io/3.6/api/org/jboss/netty/buffer/ChannelBuffer.html>`_,
@@ -190,109 +190,106 @@ which has ``toString(Charset)`` method.
 
   val body = request.getContent.toString(io.netty.util.CharsetUtil.UTF_8)
 
-Documenting api
+Documenting API
 ---------------
 
-You can document your api with `Swagger <https://developers.helloreverb.com/swagger/>`_ out of the box. First of all you should add @SwaggerDoc annotation on xitrum.Actions that need to be documented. Xitrum will generate `/api-docs.json <https://github.com/wordnik/swagger-core/wiki/API-Declaration>`_ file when app starts. This file can be used with `swagger-ui <https://github.com/wordnik/swagger-ui>`_ to dynamically generate documentation.
+You can document your API with `Swagger <https://developers.helloreverb.com/swagger/>`_
+out of the box. Add ``@Swagger`` annotation on actions that need to be documented.
+Xitrum will generate `/xitrum/swagger.json <https://github.com/wordnik/swagger-core/wiki/API-Declaration>`_
+when your app starts. This file can be used with `Swagger UI <https://github.com/wordnik/swagger-ui>`_
+to generate interactive API documentation.
 
-Let's see example:
+.. image:: swagger.png
+
+Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
 
 ::
 
-  import xitrum.Action
-  import xitrum.SkipCSRFCheck
+  import xitrum.{Action, SkipCSRFCheck}
+
   import xitrum.annotation.GET
-  import xitrum.swagger.SwaggerDoc
-  import xitrum.swagger.SwaggerParameter
-  import xitrum.swagger.SwaggerErrorResponse
+  import xitrum.annotation.swagger.{Swagger, SwaggerParam, SwaggerError}
 
   trait API extends Action with SkipCSRFCheck
 
-  @GET("user")
-  @SwaggerDoc(
-    summary = "Get user by id",
-    notes = "Find user in database",
-    parameters = Array(
-      new SwaggerParameter(name = "id", typename = "int", 
-        description = "User id", required = true, allowMultiple = true),
-      new SwaggerParameter(name = "respondType", typename = "string", 
-        description = "Type of the document, can be {xml, json, jsonp}")),
-    errorResponses = Array(
-      new SwaggerErrorResponse(code = "404", reason = "User not found"))
+  @GET("image/:width")
+  @Swagger(
+    summary = "Generate Square image",
+    notes   = "Format is PNG",
+    params  = Array(
+      new SwaggerParam(
+        name        = "width",
+        paramType   = "path",
+        valueType   = "integer",
+        required    = true,
+        description = "Square width")),
+    responses = Array(
+      new SwaggerResponse(code = "400", message = "Width is invalid or too big"))
   )
-
-  class UserAPI extends API {
-
+  class ImageAPI extends API {
     def execute { /*...*/ }
-
   }
 
-For this API /api-docs.json will look like:
+Read more about `paramType <https://github.com/wordnik/swagger-core/wiki/Parameters>`_
+and `valueType <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_.
+
+/xitrum/swagger.json will look like this:
 
 ::
 
   {
-    "apiVersion":"1.0",
-    "basePath":"/",
+    "basePath":"http://localhost:8000",
     "swaggerVersion":"1.2",
-    "resourcePath":"api",
+    "resourcePath":"/xitrum/swagger.json",
     "apis":[{
-      "path":"/api-docs.json",
+      "path":"/xitrum/swagger.json",
       "operations":[{
         "httpMethod":"GET",
-        "summary":"Swagger api integration",
-        "notes":" Use this route in swagger-ui to see the doc ",
-        "nickname":"SwaggerDocAction",
+        "summary":"API doc",
+        "notes":"Use this route in Swagger UI to see the doc",
+        "nickname":"SwaggerAction",
         "parameters":[],
         "errorResponses":[]
       }]
     },{
-      "path":"/user",
+      "path":"/image/{width}",
       "operations":[{
         "httpMethod":"GET",
-        "summary":"Get user by id",
-        "notes":" Find user in database ",
-        "nickname":"UserAPI",
+        "summary":"Generate rectangle image",
+        "notes":"Format is PNG",
+        "nickname":"ImageAPI",
         "parameters":[{
-          "name":"id",
-          "type":"int",
-          "dataType":"int",
-          "description":"User id",
-          "required":true,
-          "allowMultiple":true
-        },{
-          "name":"respondType",
-          "type":"string",
-          "dataType":"string",
-          "description":"Type of the document, can be {xml, json, jsonp}",
-          "required":false,
-          "allowMultiple":false
+          "name":"width",
+          "paramType":"path",
+          "type":"integer",
+          "description":"Square width",
+          "required":true
         }],
-        "errorResponses":[{
-          "code":"404",
-          "reason":"User not found"
+        "responseMessages":[{
+          "code":"400",
+          "message":"Width is invalid or too big"
         }]
       }]
     }]
   }
 
-If you want you can open this file with swagger-ui:
+Swagger UI use the above information to generate interactive API doc.
 
-.. image:: swagger.png
-
-SwaggerDoc annotation specification:
+Swagger annotation specification:
 
 ::
 
-  SwaggerDoc
-    |-summary - brief description of the operation
-    |-notes - long description of the operation
-    |-parameters - parameters of the operation
-    |  |-name - parameter name
-    |  |-typename - type of the parameter
-    |  |-description - description of the parameter
-    |  |-required - is parameter required
-    |  |-allowMultiple - can pass more then one parameter
-    |-errorResponses - errors of the operation
-       |-code - error code
-       |-reason - description of the error
+  Swagger
+    |-summary
+    |-notes
+    |-params
+    |   |-SwaggerParam
+    |       |-name
+    |       |-paramType: default = "path" (can be omitted)
+    |       |-valueType
+    |       |-required: default = true (can be omitted)
+    |       |-description: default = "" (can be omitted)
+    |-responses
+        |-SwaggerResponse
+            |-code
+            |-message
