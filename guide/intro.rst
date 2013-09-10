@@ -55,6 +55,7 @@ Features
   If you have a blog engine, you can package it as a JAR file, then you can put
   that JAR file into another app and that app automatically has blog feature!
   Routing is also two-way: you can recreate URLs (reverse routing) in a typesafe way.
+  You can document routes using `Swagger Doc <http://swagger.wordnik.com/>`_.
 * Views can be written in a separate `Scalate <http://scalate.fusesource.org/>`_
   template file or Scala inline XML. Both are typesafe.
 * Sessions can be stored in cookies (more scalable) or clustered `Hazelcast <http://www.hazelcast.com/>`_ (more secure).
@@ -68,12 +69,13 @@ Features
   You can use powerful tools like `Poedit <http://www.poedit.net/screenshots.php>`_
   for translating and merging translations.
   gettext is unlike most other solutions, both singular and plural forms are supported.
-* Xitrum tries to fill the spectrum between `Scalatra <https://github.com/scalatra/scalatra>`_
-  and `Lift <http://liftweb.net/>`_: more powerful than Scalatra and easier to
-  use than Lift. You can easily create both RESTful APIs and postbacks. `Xitrum <http://ngocdaothanh.github.com/xitrum>`_
-  is controller-first like Scalatra, not
-  `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ like Lift.
-  Most people are familliar with controller-first style.
+
+Xitrum tries to fill the spectrum between `Scalatra <https://github.com/scalatra/scalatra>`_
+and `Lift <http://liftweb.net/>`_: more powerful than Scalatra and easier to
+use than Lift. You can easily create both RESTful APIs and postbacks. `Xitrum <http://ngocdaothanh.github.com/xitrum>`_
+is controller-first like Scalatra, not
+`view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ like Lift.
+Most people are familliar with controller-first style.
 
 `Xitrum <http://ngocdaothanh.github.com/xitrum>`_ is `open source <https://github.com/ngocdaothanh/xitrum>`_, please join
 its `Google group <http://groups.google.com/group/xitrum-framework>`_.
@@ -83,4 +85,5 @@ Samples
 
 * `Xitrum Demos <https://github.com/ngocdaothanh/xitrum-demos>`_
 * `Xitrum Modularized Demo <https://github.com/ngocdaothanh/xitrum-modularized-demo>`_
+* `Placeholder <https://github.com/georgeOsdDev/xitrum-placeholder>`_
 * `Comy <https://github.com/ngocdaothanh/comy>`_
