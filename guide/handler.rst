@@ -123,11 +123,11 @@ Downstream:
 Tips
 ----
 
-Channel attachement
-~~~~~~~~~~~~~~~~~~~
+Channel attachment
+~~~~~~~~~~~~~~~~~~
 
-HttpRequest is attached to the channel using Channel#setAttachment.
-Use Channel#getAttachment to get it back.
+If you use Xitrum default handlers, HttpRequest is attached to the channel by
+requestAttacher. Use Channel#getAttachment to get it back.
 
 Channel close event
 ~~~~~~~~~~~~~~~~~~~
