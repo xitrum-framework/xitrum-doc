@@ -189,3 +189,110 @@ which has ``toString(Charset)`` method.
 ::
 
   val body = request.getContent.toString(io.netty.util.CharsetUtil.UTF_8)
+
+Documenting api
+---------------
+
+You can document your api with `Swagger <https://developers.helloreverb.com/swagger/>`_ out of the box. First of all you should add @SwaggerDoc annotation on xitrum.Actions that need to be documented. Xitrum will generate `/api-docs.json <https://github.com/wordnik/swagger-core/wiki/API-Declaration>`_ file when app starts. This file can be used with `swagger-ui <https://github.com/wordnik/swagger-ui>`_ to dynamically generate documentation.
+
+Let's see example:
+
+::
+
+  import xitrum.Action
+  import xitrum.SkipCSRFCheck
+  import xitrum.annotation.GET
+  import xitrum.swagger.SwaggerDoc
+  import xitrum.swagger.SwaggerParameter
+  import xitrum.swagger.SwaggerErrorResponse
+
+  trait API extends Action with SkipCSRFCheck
+
+  @GET("user")
+  @SwaggerDoc(
+    summary = "Get user by id",
+    notes = "Find user in database",
+    parameters = Array(
+      new SwaggerParameter(name = "id", typename = "int", 
+        description = "User id", required = true, allowMultiple = true),
+      new SwaggerParameter(name = "respondType", typename = "string", 
+        description = "Type of the document, can be {xml, json, jsonp}")),
+    errorResponses = Array(
+      new SwaggerErrorResponse(code = "404", reason = "User not found"))
+  )
+
+  class UserAPI extends API {
+
+    def execute { /*...*/ }
+
+  }
+
+For this API /api-docs.json will look like:
+
+::
+
+  {
+    "apiVersion":"1.0",
+    "basePath":"/",
+    "swaggerVersion":"1.2",
+    "resourcePath":"api",
+    "apis":[{
+      "path":"/api-docs.json",
+      "operations":[{
+        "httpMethod":"GET",
+        "summary":"Swagger api integration",
+        "notes":" Use this route in swagger-ui to see the doc ",
+        "nickname":"SwaggerDocAction",
+        "parameters":[],
+        "errorResponses":[]
+      }]
+    },{
+      "path":"/user",
+      "operations":[{
+        "httpMethod":"GET",
+        "summary":"Get user by id",
+        "notes":" Find user in database ",
+        "nickname":"UserAPI",
+        "parameters":[{
+          "name":"id",
+          "type":"int",
+          "dataType":"int",
+          "description":"User id",
+          "required":true,
+          "allowMultiple":true
+        },{
+          "name":"respondType",
+          "type":"string",
+          "dataType":"string",
+          "description":"Type of the document, can be {xml, json, jsonp}",
+          "required":false,
+          "allowMultiple":false
+        }],
+        "errorResponses":[{
+          "code":"404",
+          "reason":"User not found"
+        }]
+      }]
+    }]
+  }
+
+If you want you can open this file with swagger-ui:
+
+.. image:: swagger.png
+
+SwaggerDoc annotation specification:
+
+::
+
+  SwaggerDoc
+    |-summary - brief description of the operation
+    |-notes - long description of the operation
+    |-parameters - parameters of the operation
+    |  |-name - parameter name
+    |  |-typename - type of the parameter
+    |  |-description - description of the parameter
+    |  |-required - is parameter required
+    |  |-allowMultiple - can pass more then one parameter
+    |-errorResponses - errors of the operation
+       |-code - error code
+       |-reason - description of the error
