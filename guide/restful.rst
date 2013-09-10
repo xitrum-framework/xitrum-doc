@@ -219,10 +219,10 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
     params  = Array(
       new SwaggerParam(
         name        = "width",
-        paramType   = "path",
+        paramType   = "path",            // default = "path" (can be omitted)
         valueType   = "integer",
-        required    = true,
-        description = "Square width")),
+        required    = true,              // default = true   (can be omitted)
+        description = "Square width")),  // default = ""     (can be omitted)
     responses = Array(
       new SwaggerResponse(code = 400, message = "Width is invalid or too big"))
   )
@@ -285,10 +285,10 @@ Swagger annotation specification:
     |-params
     |   |-SwaggerParam
     |       |-name
-    |       |-paramType: default = "path" (can be omitted)
+    |       |-paramType:   default = "path" (can be omitted)
     |       |-valueType
-    |       |-required: default = true (can be omitted)
-    |       |-description: default = "" (can be omitted)
+    |       |-required:    default = true   (can be omitted)
+    |       |-description: default = ""     (can be omitted)
     |-responses
         |-SwaggerResponse
             |-code
