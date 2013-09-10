@@ -73,11 +73,6 @@ for more information.
   |  Netty Internal I/O Threads (Transport Implementation) |
   +--------------------------------------------------------+
 
-Xitrum default handlers
------------------------
-
-See `xitrum.handler.DefaultHttpChannelPipelineFactory <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelPipelineFactory.scala>`_.
-
 Custom handlers
 ---------------
 
@@ -97,6 +92,33 @@ For HTTPS server, Xitrum will automatically prepend SSL handler to the result of
 ``myChannelPipelineFactory.getPipeline``.
 
 You can reuse Xitrum handlers in your pipeline.
+
+Xitrum default handlers
+-----------------------
+
+See `xitrum.handler.DefaultHttpChannelPipelineFactory <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelPipelineFactory.scala>`_.
+
+Sharable handlers (same instances are shared among many connections) are put in
+``DefaultHttpChannelPipelineFactory`` object so that they can be easily picked
+up by apps that want to use custom pipeline. Those apps may only want a subset
+of default handlers.
+
+When an app uses its own dispatcher (not Xitrum's routing/dispatcher) and
+only needs Xitrum's fast static file serving, it may use only these handlers:
+
+Upstream:
+
+* HttpRequestDecoder
+* noPipelining
+* requestAttacher
+* publicFileServer
+* its own dispatcher
+
+Downstream:
+
+* HttpResponseEncoder
+* ChunkedWriteHandler
+* xSendFile
 
 Tips
 ----
