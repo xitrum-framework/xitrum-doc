@@ -170,3 +170,97 @@ To tune temporarily, you can do like this:
 ::
 
   sudo sysctl -w net.core.somaxconn=1024
+
+
+
+Use Heroku
+----------
+
+You may run xitrum at `Heroku <https://www.heroku.com/‎>`_ which support Scala:
+
+Sign up and create repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Following the `Official Document <https://devcenter.heroku.com/articles/quickstart>`_,
+sign up and create git repository.
+
+Create ``Procfile``
+~~~~~~~~~~~~~~~~~~~
+
+Create ``Procfile`` and save it at project root. Heroku read this file and execute on start.
+Port number is ginven by Heroku automatically as ``$PORT``.
+
+::
+
+  web: target/xitrum/bin/runner.sh <YOUR_PACKAGE.YOUR_MAIN_CLASS> $PORT
+
+Change port setting
+~~~~~~~~~~~~~~~~~~~~
+
+Because Heroku assign port automatically, You need change program to use it.
+
+``def main``
+
+::
+
+  import util.Properties
+
+  def main(args: Array[String]) {
+    val port = Properties.envOrElse("PORT", "8000")
+    System.setProperty("xitrum.port.http", port)
+    Server.start()
+  }
+
+``config/xitrum.conf``
+
+::
+
+  port {
+    http              = 8000
+    # https             = 4430
+    # flashSocketPolicy = 8430  # flash_socket_policy.xml will be returned
+  }
+
+If you want to use SSL, you need `Add on <https://addons.heroku.com/ssl>`_,
+
+Change log level
+~~~~~~~~~~~~~~~~
+
+``config/logback.xml``
+
+::
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+  </root>
+
+You can tail log from Heroku Toolbelt command
+
+::
+
+  heroku logs -tail
+
+Create alias for ``xitrum-package``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+At deploy time, Heroku runs ``sbt clean compile stage``. So you should add alias for ``xitrum-package``
+
+``build.sbt``
+
+::
+
+  addCommandAlias("stage", ";xitrum-package")
+
+
+Push Heroku
+~~~~~~~~~~~
+
+Deploy process will hooked by git push
+
+::
+
+  git push heroku master
+
+
+See also `Official document for Scala <https://devcenter.heroku.com/articles/getting-started-with-scala>`_,
+
