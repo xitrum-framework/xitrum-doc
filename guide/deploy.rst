@@ -176,7 +176,7 @@ To tune temporarily, you can do like this:
 Use Heroku
 ----------
 
-You may run xitrum at `Heroku <https://www.heroku.com/‎>`_ which support Scala:
+You may run xitrum at `Heroku <https://www.heroku.com/‎>`_.
 
 Sign up and create repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -221,7 +221,7 @@ Because Heroku assign port automatically, You need change program to use it.
     # flashSocketPolicy = 8430  # flash_socket_policy.xml will be returned
   }
 
-If you want to use SSL, you need `Add on <https://addons.heroku.com/ssl>`_,
+If you want to use SSL, you need `Add on <https://addons.heroku.com/ssl>`_,.
 
 Change log level
 ~~~~~~~~~~~~~~~~
@@ -234,7 +234,7 @@ Change log level
     <appender-ref ref="CONSOLE"/>
   </root>
 
-You can tail log from Heroku Toolbelt command
+You can tail log from Heroku Toolbelt command.
 
 ::
 
@@ -243,7 +243,7 @@ You can tail log from Heroku Toolbelt command
 Create alias for ``xitrum-package``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-At deploy time, Heroku runs ``sbt clean compile stage``. So you should add alias for ``xitrum-package``
+At deploy time, Heroku runs ``sbt clean compile stage``. So you should add alias for ``xitrum-package``.
 
 ``build.sbt``
 
@@ -255,7 +255,7 @@ At deploy time, Heroku runs ``sbt clean compile stage``. So you should add alias
 Push Heroku
 ~~~~~~~~~~~
 
-Deploy process will hooked by git push
+Deploy process will hooked by git push.
 
 ::
 
