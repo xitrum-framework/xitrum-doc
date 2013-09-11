@@ -172,11 +172,10 @@ To tune temporarily, you can do like this:
   sudo sysctl -w net.core.somaxconn=1024
 
 
-
 Use Heroku
 ----------
 
-You may run xitrum at `Heroku <https://www.heroku.com/‎>`_.
+You may run Xitrum at `Heroku <https://www.heroku.com/‎>`_.
 
 Sign up and create repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -184,11 +183,11 @@ Sign up and create repository
 Following the `Official Document <https://devcenter.heroku.com/articles/quickstart>`_,
 sign up and create git repository.
 
-Create ``Procfile``
-~~~~~~~~~~~~~~~~~~~
+Create Procfile
+~~~~~~~~~~~~~~~
 
-Create ``Procfile`` and save it at project root. Heroku read this file and execute on start.
-Port number is ginven by Heroku automatically as ``$PORT``.
+Create Procfile and save it at project root directory. Heroku reads this file and
+executes on start. Port number is ginven by Heroku automatically as ``$PORT``.
 
 ::
 
@@ -197,21 +196,23 @@ Port number is ginven by Heroku automatically as ``$PORT``.
 Change port setting
 ~~~~~~~~~~~~~~~~~~~~
 
-Because Heroku assign port automatically, You need change program to use it.
+Because Heroku assigns port automatically, you need to do like this:
 
-``def main``
+Main (boot) class:
 
 ::
 
   import util.Properties
 
-  def main(args: Array[String]) {
-    val port = Properties.envOrElse("PORT", "8000")
-    System.setProperty("xitrum.port.http", port)
-    Server.start()
+  object Boot {
+    def main(args: Array[String]) {
+      val port = Properties.envOrElse("PORT", "8000")
+      System.setProperty("xitrum.port.http", port)
+      Server.start()
+    }
   }
 
-``config/xitrum.conf``
+config/xitrum.conf:
 
 ::
 
@@ -221,12 +222,12 @@ Because Heroku assign port automatically, You need change program to use it.
     # flashSocketPolicy = 8430  # flash_socket_policy.xml will be returned
   }
 
-If you want to use SSL, you need `Add on <https://addons.heroku.com/ssl>`_,.
+If you want to use SSL, you need `add on <https://addons.heroku.com/ssl>`_.
 
-Change log level
-~~~~~~~~~~~~~~~~
+See log level
+~~~~~~~~~~~~~
 
-``config/logback.xml``
+config/logback.xml:
 
 ::
 
@@ -234,7 +235,7 @@ Change log level
     <appender-ref ref="CONSOLE"/>
   </root>
 
-You can tail log from Heroku Toolbelt command.
+Tail log from Heroku command:
 
 ::
 
@@ -243,24 +244,24 @@ You can tail log from Heroku Toolbelt command.
 Create alias for ``xitrum-package``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-At deploy time, Heroku runs ``sbt clean compile stage``. So you should add alias for ``xitrum-package``.
+At deploy time, Heroku runs ``sbt clean compile stage``. So you need to add alias
+for ``xitrum-package``.
 
-``build.sbt``
+build.sbt:
 
 ::
 
   addCommandAlias("stage", ";xitrum-package")
 
 
-Push Heroku
-~~~~~~~~~~~
+Push to Heroku
+~~~~~~~~~~~~~~
 
-Deploy process will hooked by git push.
+Deploy process is hooked by git push.
 
 ::
 
   git push heroku master
 
 
-See also `Official document for Scala <https://devcenter.heroku.com/articles/getting-started-with-scala>`_,
-
+See also `Official document for Scala <https://devcenter.heroku.com/articles/getting-started-with-scala>`_.
