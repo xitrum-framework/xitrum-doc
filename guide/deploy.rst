@@ -79,6 +79,8 @@ is a very good tool. To install it on CentOS, see
 Tune Linux for many connections
 -------------------------------
 
+Note that on Mac, `JDKs suffer from a serious problem with IO (NIO) performance <https://groups.google.com/forum/#!topic/spray-user/S-SNR2m0BWU>`_.
+
 Good read:
 
 * `Ipsysctl tutorial <http://www.frozentux.net/ipsysctl-tutorial/chunkyhtml/>`_
@@ -171,9 +173,8 @@ To tune temporarily, you can do like this:
 
   sudo sysctl -w net.core.somaxconn=1024
 
-
-Use Heroku
-----------
+Deploy to Heroku
+----------------
 
 You may run Xitrum at `Heroku <https://www.heroku.com/‎>`_.
 
