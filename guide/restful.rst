@@ -156,26 +156,26 @@ If you manually write form in Scalate template, use ``antiCSRFInput``:
 
     input(type="submit" value="Add")
 
-SkipCSRFCheck
+SkipCsrfCheck
 -------------
 
 When you create APIs for machines, e.g. smartphones, you may want to skip this
-automatic CSRF check. Add the trait xitrum.SkipCSRFCheck to you action:
+automatic CSRF check. Add the trait xitrum.SkipCsrfCheck to you action:
 
 ::
 
-  import xitrum.{Action, SkipCSRFCheck}
+  import xitrum.{Action, SkipCsrfCheck}
   import xitrum.annotatin.POST
 
-  trait API extends Action with SkipCSRFCheck
+  trait Api extends Action with SkipCsrfCheck
 
   @POST("api/positions")
-  class LogPositionAPI extends API {
+  class LogPositionAPI extends Api {
     def execute() {...}
   }
 
   @POST("api/todos")
-  class CreateTodoAPI extends API {
+  class CreateTodoAPI extends Api {
     def execute() {...}
   }
 
@@ -205,12 +205,12 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
 
 ::
 
-  import xitrum.{Action, SkipCSRFCheck}
+  import xitrum.{Action, SkipCsrfCheck}
 
   import xitrum.annotation.GET
   import xitrum.annotation.swagger.{Swagger, SwaggerParam, SwaggerResponse}
 
-  trait API extends Action with SkipCSRFCheck
+  trait Api extends Action with SkipCsrfCheck
 
   @GET("image/:width")
   @Swagger(
@@ -226,7 +226,7 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
     responses = Array(
       new SwaggerResponse(code = 400, message = "Width is invalid or too big"))
   )
-  class ImageAPI extends API {
+  class ImageApi extends Api {
     def execute { /*...*/ }
   }
 
