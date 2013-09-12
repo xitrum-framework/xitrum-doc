@@ -176,7 +176,7 @@ To tune temporarily, you can do like this:
 Deploy to Heroku
 ----------------
 
-You may run Xitrum at `Heroku <https://www.heroku.com/‎>`_.
+You may run Xitrum at `Heroku <https://www.heroku.com/>`_.
 
 Sign up and create repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
