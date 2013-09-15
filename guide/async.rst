@@ -94,6 +94,7 @@ WebSocket
 
     override def postStop() {
       logger.debug("onClose")
+      super.postStop()
     }
   }
 
@@ -182,6 +183,7 @@ Xitrum automatically does it for you.
 
     override def postStop() {
       logger.info("onClose")
+      super.postStop()
     }
   }
 
