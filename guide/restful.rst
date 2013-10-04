@@ -206,28 +206,20 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
 ::
 
   import xitrum.{Action, SkipCsrfCheck}
-
-  import xitrum.annotation.GET
-  import xitrum.annotation.swagger.{Swagger, SwaggerParam, SwaggerResponse}
+  import xitrum.annotation.{GET, Swagger}
 
   trait Api extends Action with SkipCsrfCheck
 
-  @GET("image/:width")
+  @GET("image/:width/:height")
   @Swagger(
-    summary = "Generate Square image",
-    notes   = "Format is PNG",
-    params  = Array(
-      new SwaggerParam(
-        name        = "width",
-        paramType   = "path",            // default = "path" (can be omitted)
-        valueType   = "integer",
-        required    = true,              // default = true   (can be omitted)
-        description = "Square width")),  // default = ""     (can be omitted)
-    responses = Array(
-      new SwaggerResponse(code = 400, message = "Width is invalid or too big"))
+    "Generate image",
+    Swagger.IntPath("width", "Image width, should not be bigger than 2000"),
+    Swagger.IntPath("height", "Image height, should not be bigger than 2000"),
+    Swagger.Response(200, "PNG image"),
+    Swagger.Response(400, "Width or height is invalid or too big")
   )
   class ImageApi extends Api {
-    def execute { /*...*/ }
+    def execute { /* ... */ }
   }
 
 Read more about `paramType <https://github.com/wordnik/swagger-core/wiki/Parameters>`_
@@ -255,17 +247,25 @@ and `valueType <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_.
       "path":"/image/{width}",
       "operations":[{
         "httpMethod":"GET",
-        "summary":"Generate rectangle image",
-        "notes":"Format is PNG",
+        "summary":"Generate image",
         "nickname":"ImageAPI",
         "parameters":[{
           "name":"width",
           "paramType":"path",
           "type":"integer",
-          "description":"Square width",
+          "description":"Image width, should not be bigger than 2000",
+          "required":true
+        },{
+          "name":"height",
+          "paramType":"path",
+          "type":"integer",
+          "description":"Image height, should not be bigger than 2000",
           "required":true
         }],
         "responseMessages":[{
+          "code":"200",
+          "message":"PNG image"
+        },{
           "code":"400",
           "message":"Width is invalid or too big"
         }]
@@ -273,23 +273,14 @@ and `valueType <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_.
     }]
   }
 
-Swagger UI use the above information to generate interactive API doc.
+Swagger UI uses the above information to generate interactive API doc.
 
-Swagger annotation specification:
+Params other than Swagger.IntPath above: BytePath, IntQuery, StringForm etc.
+They are in the form:
 
-::
+* <Value type><Param type>
+* Optional<Value type><Param type>
 
-  Swagger
-    |-summary
-    |-notes
-    |-params
-    |   |-SwaggerParam
-    |       |-name
-    |       |-paramType:   default = "path" (can be omitted)
-    |       |-valueType
-    |       |-required:    default = true   (can be omitted)
-    |       |-description: default = ""     (can be omitted)
-    |-responses
-        |-SwaggerResponse
-            |-code
-            |-message
+Value type: Byte, Int, Int32, Int64, Long, Number, Float, Double, String, Boolean, Date DateTime
+
+Param type: Path, Query, Body, Header, Form
