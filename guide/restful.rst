@@ -80,6 +80,19 @@ You must make sure the second route be checked first. ``First`` is for this purp
 
 ``Last`` is similar.
 
+Multiple paths for one action
+-----------------------------
+
+::
+
+  @GET("image", "image/:format")
+  class Image extends Action {
+    def execute() {
+      val format = paramo("format").getOrElse("png")
+      // ...
+    }
+  }
+
 Regex in route
 --------------
 
