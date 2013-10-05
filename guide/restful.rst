@@ -226,13 +226,19 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
   @GET("image/:width/:height")
   @Swagger(
     "Generate image",
-    Swagger.IntPath("width", "Image width, should not be bigger than 2000"),
+    Swagger.IntPath("width",  "Image width, should not be bigger than 2000"),
     Swagger.IntPath("height", "Image height, should not be bigger than 2000"),
+    Swagger.OptionalStringQuery("text",  "Text to render on the image"),
     Swagger.Response(200, "PNG image"),
     Swagger.Response(400, "Width or height is invalid or too big")
   )
   class ImageApi extends Api {
-    def execute { /* ... */ }
+    def execute {
+      val width  = param[Int]("width")
+      val height = param[Int]("height")
+      val text   = paramo("text").getOrElse("Dummy text")
+      // ...
+    }
   }
 
 Read more about `paramType <https://github.com/wordnik/swagger-core/wiki/Parameters>`_
@@ -274,6 +280,12 @@ and `valueType <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_.
           "type":"integer",
           "description":"Image height, should not be bigger than 2000",
           "required":true
+        },{
+          "name":"text",
+          "paramType":"query",
+          "type":"string",
+          "description":"Text to render on the image",
+          "required":false
         }],
         "responseMessages":[{
           "code":"200",
@@ -288,7 +300,7 @@ and `valueType <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_.
 
 Swagger UI uses the above information to generate interactive API doc.
 
-Params other than Swagger.IntPath above: BytePath, IntQuery, StringForm etc.
+Params other than Swagger.IntPath and Swagger.OptionalStringQuery above: BytePath, IntQuery, OptionalStringForm etc.
 They are in the form:
 
 * <Value type><Param type>
