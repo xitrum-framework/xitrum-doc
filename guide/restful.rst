@@ -208,9 +208,11 @@ Documenting API
 
 You can document your API with `Swagger <https://developers.helloreverb.com/swagger/>`_
 out of the box. Add ``@Swagger`` annotation on actions that need to be documented.
-Xitrum will generate `/xitrum/swagger.json <https://github.com/wordnik/swagger-core/wiki/API-Declaration>`_
-when your app starts. This file can be used with `Swagger UI <https://github.com/wordnik/swagger-ui>`_
+Xitrum will generate `/xitrum/swagger.json <https://github.com/wordnik/swagger-core/wiki/API-Declaration>`_.
+This file can be used with `Swagger UI <https://github.com/wordnik/swagger-ui>`_
 to generate interactive API documentation.
+
+Xitrum includes Swagger UI. Access it at the path ``/xitrum/swagger`` of your program.
 
 .. image:: swagger.png
 
