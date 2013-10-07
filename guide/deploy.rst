@@ -41,7 +41,8 @@ deploy to production server:
 
   target/xitrum
     bin
-      runner.sh
+      runner
+      runner.bat
     config
       [config files]
     public
@@ -63,14 +64,15 @@ and directories (README, INSTALL, doc etc.), config ``build.sbt`` like this:
 Start Xitrum in production mode
 -------------------------------
 
-``bin/runner.sh`` is the script to run any object with ``main`` method. Use it to
-start the web server in production environment.
+``bin/runner`` (for *nix) and ``bin/runner.bat`` (for Windows) are the script to
+run any object with ``main`` method. Use it to start the web server in production
+environment.
 
 ::
 
-  bin/runner.sh quickstart.Boot
+  bin/runner quickstart.Boot
 
-You may want to modify runner.sh to tune JVM settings. Also see ``config/xitrum.conf``.
+You may want to modify ``runner`` and ``runner.bat`` to tune JVM settings. Also see ``config/xitrum.conf``.
 
 To start Xitrum in background when the system starts, `daemontools <http://cr.yp.to/daemontools.html>`_
 is a very good tool. To install it on CentOS, see
@@ -192,7 +194,7 @@ executes on start. Port number is ginven by Heroku automatically as ``$PORT``.
 
 ::
 
-  web: target/xitrum/bin/runner.sh <YOUR_PACKAGE.YOUR_MAIN_CLASS> $PORT
+  web: target/xitrum/bin/runner <YOUR_PACKAGE.YOUR_MAIN_CLASS> $PORT
 
 Change port setting
 ~~~~~~~~~~~~~~~~~~~~
