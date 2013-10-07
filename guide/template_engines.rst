@@ -35,7 +35,7 @@ build.sbt:
   ...
   ...
 
-  libraryDependencies += "tv.cntt" %% "xitrum-scalate" % "1.1"
+  libraryDependencies += "tv.cntt" %% "xitrum-scalate" % "1.2"
 
   // Precompile Scalate
   seq(scalateSettings:_*)
