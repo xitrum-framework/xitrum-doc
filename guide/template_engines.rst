@@ -13,7 +13,7 @@ config/xitrum.conf:
 
 ::
 
-  templateEngine = xitrum.view.ScalateTemplateEngine
+  templateEngine = xitrum.view.Scalate
 
 You can change ``templateEngine`` to another one. Note that each template engine
 may require its own config. In the case of Scalate:
@@ -66,7 +66,7 @@ config/xitrum.conf:
 
 ::
 
-  #templateEngine = xitrum.view.ScalateTemplateEngine
+  #templateEngine = xitrum.view.Scalate
 
 Then remove template related configs from your project.
 

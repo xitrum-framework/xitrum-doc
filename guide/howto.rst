@@ -255,3 +255,20 @@ You can specify a key for encryption:
 
 If no key is specified, ``secureKey`` in xitrum.conf file in config directory
 is used.
+
+Convert Markdown text to HTML
+-----------------------------
+
+If you have already configured your project to use :doc:`Scalate template engine </template_engines>`,
+you only have to do like this:
+
+::
+
+  import org.fusesource.scalamd.Markdown
+  val html = Markdown("input")
+
+Otherwise, you need to add this dependency to your project's build.sbt:
+
+::
+
+  libraryDependencies += "org.fusesource.scalamd" %% "scalamd" % "1.6"
