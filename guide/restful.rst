@@ -231,7 +231,7 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
     "Generate image",
     Swagger.IntPath("width",  "Image width, should not be bigger than 2000"),
     Swagger.IntPath("height", "Image height, should not be bigger than 2000"),
-    Swagger.OptionalStringQuery("text",  "Text to render on the image"),
+    Swagger.OptionalStringQuery("text", "Text to render on the image"),
     Swagger.Response(200, "PNG image"),
     Swagger.Response(400, "Width or height is invalid or too big")
   )
