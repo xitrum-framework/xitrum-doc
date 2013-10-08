@@ -212,7 +212,8 @@ Xitrum will generate `/xitrum/swagger.json <https://github.com/wordnik/swagger-c
 This file can be used with `Swagger UI <https://github.com/wordnik/swagger-ui>`_
 to generate interactive API documentation.
 
-Xitrum includes Swagger UI. Access it at the path ``/xitrum/swagger`` of your program.
+Xitrum includes Swagger UI. Access it at the path ``/xitrum/swagger`` of your program,
+e.g. http://localhost:8000/xitrum/swagger.
 
 .. image:: swagger.png
 
