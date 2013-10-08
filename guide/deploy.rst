@@ -7,7 +7,7 @@ You may run Xitrum directly:
 
   Browser ------ Xitrum instance
 
-Or behind a load balancer like HAProxy, or reverse proxy like Nginx:
+Or behind a load balancer like HAProxy, or reverse proxy like Apache or Nginx:
 
 ::
 
@@ -61,8 +61,8 @@ and directories (README, INSTALL, doc etc.), config ``build.sbt`` like this:
 
   TODO
 
-Start Xitrum in production mode
--------------------------------
+Start Xitrum in production mode when the system starts
+------------------------------------------------------
 
 ``bin/runner`` (for *nix) and ``bin/runner.bat`` (for Windows) are the script to
 run any object with ``main`` method. Use it to start the web server in production
@@ -72,26 +72,26 @@ environment.
 
   bin/runner quickstart.Boot
 
-You may want to modify ``runner`` and ``runner.bat`` to tune JVM settings. Also see ``config/xitrum.conf``.
+You may want to modify ``runner`` (or ``runner.bat``) to tune JVM settings. Also see ``config/xitrum.conf``.
 
-To start Xitrum in background when the system starts, `daemontools <http://cr.yp.to/daemontools.html>`_
+To start Xitrum in background on Linux when the system starts, `daemontools <http://cr.yp.to/daemontools.html>`_
 is a very good tool. To install it on CentOS, see
 `this instruction <http://whomwah.com/2008/11/04/installing-daemontools-on-centos5-x86_64/>`_.
 
 Or use `Supervisord <http://supervisord.org/>`_.
-This is a sample setting of ``/etc/supervisord.conf``
+``/etc/supervisord.conf`` example:
 
 ::
 
-  [program:<YOUR_APPLICARION>]
-  directory = /PATH/TO/YOUR_APPLICARION
-  command = /PATH/TO/YOUR_APPLICARION/target/xitrum/bin/runner quickstart.Boot
-  autostart =true
-  autorestart =true
-  startsecs = 3
-  user = <YOUR_USER>
-  redirect_stderr =true
-  stdout_logfile=/var/log/xitrum.log
+  [program:my_app]
+  directory=/path/to/my_app
+  command=/path/to/my_app/bin/runner quickstart.Boot
+  autostart=true
+  autorestart=true
+  startsecs=3
+  user=my_user
+  redirect_stderr=true
+  stdout_logfile=/path/to/my_app/log/stdout.log
   stdout_logfile_maxbytes=10MB
   stdout_logfile_backups=7
   stdout_capture_maxbytes=1MB
@@ -99,34 +99,36 @@ This is a sample setting of ``/etc/supervisord.conf``
   environment=PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:~/bin
 
 Set up port forwarding
-~~~~~~~~~~~~~~~~~~~~~~
-Xitrum listen port 8000 and 4430 by default setting.
-You can change these ports number in ``config/xitrum.conf``.
+----------------------
 
-If you want to run Xitrum on port 80 and 443 by non-root privileges user,
-update ``/etc/sysconfig/iptables`` with these commands.
+Xitrum listens on port 8000 and 4430 by default.
+You can change these ports in ``config/xitrum.conf``.
+
+You can update ``/etc/sysconfig/iptables`` with these commands to forward port
+80 to 8000 and 443 to 4430:
 
 ::
 
-    sudo su - root
-    chmod 700 /etc/sysconfig/iptables
-    iptables-restore < /etc/sysconfig/iptables
-    iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8000
-    iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 4430
-    iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8000
-    iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 443 -j REDIRECT --to-ports 4430
-    iptables-save -c > /etc/sysconfig/iptables
-    chmod 644 /etc/sysconfig/iptables
+  sudo su - root
+  chmod 700 /etc/sysconfig/iptables
+  iptables-restore < /etc/sysconfig/iptables
+  iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8000
+  iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 4430
+  iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8000
+  iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 443 -j REDIRECT --to-ports 4430
+  iptables-save -c > /etc/sysconfig/iptables
+  chmod 644 /etc/sysconfig/iptables
 
-    # Stop Apache HTTP Server, if it is running.
-    sudo /etc/init.d/httpd stop
-    sudo chkconfig httpd off
+Of course for example if you have Apache running on port 80 and 443, you have to stop it:
 
+::
+
+  sudo /etc/init.d/httpd stop
+  sudo chkconfig httpd off
 
 Good read:
 
 * `Iptables tutorial <http://www.frozentux.net/iptables-tutorial/chunkyhtml/>`_
-
 
 Tune Linux for many connections
 -------------------------------
