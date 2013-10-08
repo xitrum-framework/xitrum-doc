@@ -78,6 +78,56 @@ To start Xitrum in background when the system starts, `daemontools <http://cr.yp
 is a very good tool. To install it on CentOS, see
 `this instruction <http://whomwah.com/2008/11/04/installing-daemontools-on-centos5-x86_64/>`_.
 
+Or use `Supervisord <http://supervisord.org/>`_.
+This is a sample setting of ``/etc/supervisord.conf``
+
+::
+
+  [program:<YOUR_APPLICARION>]
+  directory = /PATH/TO/YOUR_APPLICARION
+  command = /PATH/TO/YOUR_APPLICARION/target/xitrum/bin/runner quickstart.Boot
+  autostart =true
+  autorestart =true
+  startsecs = 3
+  user = <YOUR_USER>
+  redirect_stderr =true
+  stdout_logfile=/var/log/xitrum.log
+  stdout_logfile_maxbytes=10MB
+  stdout_logfile_backups=7
+  stdout_capture_maxbytes=1MB
+  stdout_events_enabled=false
+  environment=PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:~/bin
+
+Set up port forwarding
+~~~~~~~~~~~~~~~~~~~~~~
+Xitrum listen port 8000 and 4430 by default setting.
+You can change these ports number in ``config/xitrum.conf``
+
+If you want to run Xitrum on port 80 and 443 by non-root privileges user.
+Update ``/etc/sysconfig/iptables`` with these commands.
+
+::
+
+    sudo su - root
+    chmod 700 /etc/sysconfig/iptables
+    iptables-restore < /etc/sysconfig/iptables
+    iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8000
+    iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 4430
+    iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8000
+    iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 443 -j REDIRECT --to-ports 4430
+    iptables-save -c > /etc/sysconfig/iptables
+    chmod 644 /etc/sysconfig/iptables
+
+    # Stop Apache HTTP Server, if it is running.
+    sudo /etc/init.d/httpd stop
+    sudo chkconfig httpd off
+
+
+Good read:
+
+* `Iptables tutorial <http://www.frozentux.net/iptables-tutorial/chunkyhtml/>`_
+
+
 Tune Linux for many connections
 -------------------------------
 
@@ -86,7 +136,6 @@ Note that on Mac, `JDKs suffer from a serious problem with IO (NIO) performance 
 Good read:
 
 * `Ipsysctl tutorial <http://www.frozentux.net/ipsysctl-tutorial/chunkyhtml/>`_
-* `Iptables tutorial <http://www.frozentux.net/iptables-tutorial/chunkyhtml/>`_
 * `TCP variables <http://www.frozentux.net/ipsysctl-tutorial/chunkyhtml/tcpvariables.html>`_
 
 Increase open file limit
