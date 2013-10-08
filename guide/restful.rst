@@ -244,9 +244,6 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
     }
   }
 
-Read more about `paramType <https://github.com/wordnik/swagger-core/wiki/Parameters>`_
-and `valueType <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_.
-
 /xitrum/swagger.json will look like this:
 
 ::
@@ -312,3 +309,6 @@ They are in the form:
 Value type: Byte, Int, Int32, Int64, Long, Number, Float, Double, String, Boolean, Date DateTime
 
 Param type: Path, Query, Body, Header, Form
+
+Read more about `value type <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_
+and `param type <https://github.com/wordnik/swagger-core/wiki/Parameters>`_.
