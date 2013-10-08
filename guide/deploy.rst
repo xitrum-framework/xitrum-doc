@@ -101,10 +101,10 @@ This is a sample setting of ``/etc/supervisord.conf``
 Set up port forwarding
 ~~~~~~~~~~~~~~~~~~~~~~
 Xitrum listen port 8000 and 4430 by default setting.
-You can change these ports number in ``config/xitrum.conf``
+You can change these ports number in ``config/xitrum.conf``.
 
-If you want to run Xitrum on port 80 and 443 by non-root privileges user.
-Update ``/etc/sysconfig/iptables`` with these commands.
+If you want to run Xitrum on port 80 and 443 by non-root privileges user,
+update ``/etc/sysconfig/iptables`` with these commands.
 
 ::
 
