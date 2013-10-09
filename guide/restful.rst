@@ -231,7 +231,7 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
     "Generate image",
     Swagger.IntPath("width",  "Image width, should not be bigger than 2000"),
     Swagger.IntPath("height", "Image height, should not be bigger than 2000"),
-    Swagger.OptionalStringQuery("text", "Text to render on the image"),
+    Swagger.OptStringQuery("text", "Text to render on the image"),
     Swagger.Response(200, "PNG image"),
     Swagger.Response(400, "Width or height is invalid or too big")
   )
@@ -300,11 +300,11 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
 
 Swagger UI uses the above information to generate interactive API doc.
 
-Params other than Swagger.IntPath and Swagger.OptionalStringQuery above: BytePath, IntQuery, OptionalStringForm etc.
+Params other than Swagger.IntPath and Swagger.OptStringQuery above: BytePath, IntQuery, OptStringForm etc.
 They are in the form:
 
-* <Value type><Param type>
-* Optional<Value type><Param type>
+* <Value type><Param type> (required parameter)
+* Opt<Value type><Param type> (optional parameter)
 
 Value type: Byte, Int, Int32, Int64, Long, Number, Float, Double, String, Boolean, Date DateTime
 
