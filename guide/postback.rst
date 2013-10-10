@@ -31,8 +31,8 @@ AppAction.scala
     override def layout = DocType.html5(
       <html>
         <head>
-          {antiCSRFMeta}
-          {xitrumCSS}
+          {antiCsrfMeta}
+          {xitrumCss}
           {jsDefaults}
           <title>Welcome to Xitrum</title>
         </head>

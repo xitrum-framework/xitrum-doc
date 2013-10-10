@@ -108,7 +108,7 @@ Anti-CSRF
 For non-GET requests, Xitrum protects your web application from
 `Cross-site request forgery <http://en.wikipedia.org/wiki/CSRF>`_ by default.
 
-When you include ``antiCSRFMeta`` in your layout:
+When you include ``antiCsrfMeta`` in your layout:
 
 ::
 
@@ -119,8 +119,8 @@ When you include ``antiCSRFMeta`` in your layout:
     override def layout = DocType.html5(
       <html>
         <head>
-          {antiCSRFMeta}
-          {xitrumCSS}
+          {antiCsrfMeta}
+          {xitrumCss}
           {jsDefaults}
           <title>Welcome to Xitrum</title>
         </head>
@@ -149,15 +149,15 @@ The ``<head>`` part will include something like this:
 The token will be automatically included in all non-GET Ajax requests sent by
 jQuery.
 
-antiCSRFInput
+antiCsrfInput
 -------------
 
-If you manually write form in Scalate template, use ``antiCSRFInput``:
+If you manually write form in Scalate template, use ``antiCsrfInput``:
 
 ::
 
   form(method="post" action={url[AdminAddGroup]})
-    != antiCSRFInput
+    != antiCsrfInput
 
     label Group name *
     input.required(type="text" name="name" placeholder="Required")
