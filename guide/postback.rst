@@ -57,7 +57,7 @@ Articles.scala
   @GET("articles/:id")
   class ArticlesShow extends AppAction {
     def execute() {
-      val id = param("id")
+      val id      = param("id")
       val article = Article.find(id)
       respondInlineView(
         <h1>{article.title}</h1>

@@ -224,27 +224,43 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
   import xitrum.{Action, SkipCsrfCheck}
   import xitrum.annotation.{GET, Swagger}
 
-  trait Api extends Action with SkipCsrfCheck
-
-  @GET("image/:width/:height")
   @Swagger(
-    "Generate image",
-    Swagger.IntPath("width",  "Image width, should not be bigger than 2000"),
-    Swagger.IntPath("height", "Image height, should not be bigger than 2000"),
-    Swagger.OptStringQuery("text", "Text to render on the image"),
+    Swagger.Note("Dimensions should not be bigger than 2000 x 2000")
+    Swagger.OptStringQuery("text", "Text to render on the image, default: Placeholder"),
     Swagger.Response(200, "PNG image"),
     Swagger.Response(400, "Width or height is invalid or too big")
   )
-  class ImageApi extends Api {
+  trait ImageApi extends Action with SkipCsrfCheck {
+    lazy val text = paramo("text").getOrElse("Placeholder")
+  }
+
+  @GET("image/:width/:height")
+  @Swagger(  // <-- Inherits other info from ImageApi
+    Swagger.Summary("Generate rectangle image"),
+    Swagger.IntPath("width"),
+    Swagger.IntPath("height")
+  )
+  class RectImageApi extends Api {
     def execute {
       val width  = param[Int]("width")
       val height = param[Int]("height")
-      val text   = paramo("text").getOrElse("Dummy text")
       // ...
     }
   }
 
-/xitrum/swagger.json will look like this:
+  @GET("image/:width")
+  @Swagger(  // <-- Inherits other info from ImageApi
+    Swagger.Summary("Generate square image"),
+    Swagger.IntPath("width")
+  )
+  class SquareImageApi extends Api {
+    def execute {
+      val width  = param[Int]("width")
+      // ...
+    }
+  }
+
+/xitrum/swagger.json will look like this (note the inheritance):
 
 ::
 
@@ -256,35 +272,61 @@ Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
       "path":"/xitrum/swagger.json",
       "operations":[{
         "httpMethod":"GET",
-        "summary":"API doc",
-        "notes":"Use this route in Swagger UI to see the doc",
+        "summary":"JSON for Swagger Doc of this whole project",
+        "notes":"Use this route in Swagger UI to see API doc.",
         "nickname":"SwaggerAction",
         "parameters":[],
         "responseMessages":[]
       }]
     },{
-      "path":"/image/{width}",
+      "path":"/image/{width}/{height}",
       "operations":[{
         "httpMethod":"GET",
-        "summary":"Generate image",
-        "nickname":"ImageAPI",
+        "summary":"Generate rectangle image",
+        "notes":"Dimensions should not be bigger than 2000 x 2000",
+        "nickname":"RectImageApi",
         "parameters":[{
           "name":"width",
           "paramType":"path",
           "type":"integer",
-          "description":"Image width, should not be bigger than 2000",
           "required":true
         },{
           "name":"height",
           "paramType":"path",
           "type":"integer",
-          "description":"Image height, should not be bigger than 2000",
           "required":true
         },{
           "name":"text",
           "paramType":"query",
           "type":"string",
-          "description":"Text to render on the image",
+          "description":"Text to render on the image, default: Placeholder",
+          "required":false
+        }],
+        "responseMessages":[{
+          "code":"200",
+          "message":"PNG image"
+        },{
+          "code":"400",
+          "message":"Width is invalid or too big"
+        }]
+      }]
+    },{
+      "path":"/image/{width}",
+      "operations":[{
+        "httpMethod":"GET",
+        "summary":"Generate square image",
+        "notes":"Dimensions should not be bigger than 2000 x 2000",
+        "nickname":"SquareImageApi",
+        "parameters":[{
+          "name":"width",
+          "paramType":"path",
+          "type":"integer",
+          "required":true
+        },{
+          "name":"text",
+          "paramType":"query",
+          "type":"string",
+          "description":"Text to render on the image, default: Placeholder",
           "required":false
         }],
         "responseMessages":[{
