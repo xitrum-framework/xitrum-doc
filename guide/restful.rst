@@ -93,6 +93,20 @@ Multiple paths for one action
     }
   }
 
+Dot in route
+------------
+
+::
+
+  @GET("articles/:id", "articles/:id.:format")
+  class ArticlesShow extends Action {
+    def execute() {
+      val id     = param[Int]("id")
+      val format = paramo("format").getOrElse("html")
+      // ...
+    }
+  }
+
 Regex in route
 --------------
 
