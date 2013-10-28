@@ -44,6 +44,23 @@ To send a static file on disk from your action, use ``respondFile``.
   respondFile("/absolute/path")
   respondFile("path/relative/to/the/current/working/directory")
 
+index.html fallback
+-------------------
+If there's no route for URL ``/foo/bar`` (or ``/foo/bar/``),
+Xitrum will try to look for static file ``public/foo/bar/index.html``.
+To enable this feature, ``.html`` should be match with ``pathRegex`` in ``xitrum.conf``
+
+::
+
+  staticFile {
+    # This regex is to optimze static file serving speed by avoiding unnecessary
+    # file existance check. Ex:
+    # - "\\.(ico|txt)$": files should end with .txt or .ico extension
+    # - ".*": file existance will be checked for all requests (not recommended)
+    pathRegex = "\\.(ico|jpg|jpeg|gif|png|html|htm|txt|css|js)$"
+  }
+
+
 404 and 500
 -----------
 
