@@ -61,6 +61,9 @@ copy additional directories or files change ``build.sbt`` like this:
 
   XitrumPackage.copy("config", "public, "script", "doc/README.txt", "etc.")
 
+See `xitrum-package homepage <https://github.com/ngocdaothanh/xitrum-package>`_
+for more information.
+
 Start Xitrum in production mode when the system starts
 ------------------------------------------------------
 
