@@ -53,24 +53,24 @@ deploy to production server:
 Customize xitrum-package
 ------------------------
 
-By default ``sbt/sbt xitrum-package`` command simply copies ``config`` and ``public``
-directories to ``target/xitrum``. If you want it to copy additional files
-and directories (README, INSTALL, doc etc.), config ``build.sbt`` like this:
+By default ``sbt/sbt xitrum-package`` command is configured to copy directories
+``config``, ``public``, and ``script`` to ``target/xitrum``. If you want it to
+copy additional directories or files change ``build.sbt`` like this:
 
 ::
 
-  TODO
+  XitrumPackage.copy("config", "public, "script", "doc/README.txt", "etc.")
 
 Start Xitrum in production mode when the system starts
 ------------------------------------------------------
 
-``bin/runner`` (for *nix) and ``bin/runner.bat`` (for Windows) are the script to
+``script/runner`` (for *nix) and ``script/runner.bat`` (for Windows) are the script to
 run any object with ``main`` method. Use it to start the web server in production
 environment.
 
 ::
 
-  bin/runner quickstart.Boot
+  script/runner quickstart.Boot
 
 You may want to modify ``runner`` (or ``runner.bat``) to tune JVM settings. Also see ``config/xitrum.conf``.
 
@@ -85,7 +85,7 @@ Or use `Supervisord <http://supervisord.org/>`_.
 
   [program:my_app]
   directory=/path/to/my_app
-  command=/path/to/my_app/bin/runner quickstart.Boot
+  command=/path/to/my_app/script/runner quickstart.Boot
   autostart=true
   autorestart=true
   startsecs=3
@@ -245,7 +245,7 @@ executes on start. Port number is ginven by Heroku automatically as ``$PORT``.
 
 ::
 
-  web: target/xitrum/bin/runner <YOUR_PACKAGE.YOUR_MAIN_CLASS> $PORT
+  web: target/xitrum/script/runner <YOUR_PACKAGE.YOUR_MAIN_CLASS> $PORT
 
 Change port setting
 ~~~~~~~~~~~~~~~~~~~~

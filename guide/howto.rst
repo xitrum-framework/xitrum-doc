@@ -136,7 +136,7 @@ JSON file
 JSON is neat for config files that need nested structures.
 
 Save your own config files in "config" directory. This directory is put into
-classpath in development mode by build.sbt and in production mode by bin/runner (and bin/runner.bat).
+classpath in development mode by build.sbt and in production mode by script/runner (and script/runner.bat).
 
 myconfig.json:
 
