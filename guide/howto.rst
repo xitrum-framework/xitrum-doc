@@ -111,30 +111,55 @@ Add basic authentication to an action
 Log
 ---
 
-Xitrum actions extend trait xitrum.Logger, which provides ``logger``.
+Use object xitrum.Log directly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+From anywhere, you can call like this directly:
+
+::
+
+  xitrum.Log.debug("My debug msg")
+  xitrum.Log.info("My info msg")
+  ...
+
+Use trait xitrum.Log
+~~~~~~~~~~~~~~~~~~~~
+
+If you want to have the information about where (which class) the log has been
+made, you should extend trait xitrum.Log
+
+::
+
+  package my_package
+
+  object MyModel extends xitrum.Log {
+    xitrum.Log.debug("My debug msg")
+    xitrum.Log.info("My info msg")
+    ...
+  }
+
+In file log/xitrum.log you will see that the log messages comes from ``MyModel``.
+
+Xitrum actions extend trait xitrum.Log, which provides ``log``.
 In any action, you can do like this:
 
 ::
 
-  logger.debug("Hello World")
+  log.debug("Hello World")
 
-Of course you can extend xitrum.Logger any time you want:
+Config log level, log output file etc.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-::
-
-  object MyModel extends xitrum.Logger {
-    ...
-  }
-
-In build.sbt, notice this line:
+In build.sbt, there's this line:
 
 ::
 
-  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.9"
+  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13"
 
 This means that `Logback <http://logback.qos.ch/>`_ is used by default.
-Logback config file is at ``config/logback.xml``.
 You may replace Logback with any implementation of SLF4J.
+
+Logback config file is at ``config/logback.xml``.
 
 Load config files
 -----------------
