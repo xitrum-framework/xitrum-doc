@@ -71,6 +71,15 @@ Use ``isAjax``.
 Basic authentication
 --------------------
 
+You can protect the whole site or just certain actions with
+`basic authentication <http://en.wikipedia.org/wiki/Basic_access_authentication>`_.
+
+Note that Xitrum does not support
+`digest authentication <http://en.wikipedia.org/wiki/Digest_access_authentication>`_
+because it provides a false sense of security. It is vulnerable to a man-in-the-middle attack.
+For better security, you should use HTTPS, which Xitrum has built-in support
+(no need for additional reverse proxy like Apache or Nginx just to add HTTPS support).
+
 Config basic authentication for the whole site
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
