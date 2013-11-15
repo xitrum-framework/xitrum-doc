@@ -159,3 +159,16 @@ You may also put extra params in a separate form:
   </form>
 
 ``#myform`` is the jQuery selector to select the form that contains extra params.
+
+Display animation image while Ajax is loading
+---------------------------------------------
+
+If you want to display image like this while Ajax is loading
+
+.. image:: ajax_loading.gif
+
+please call this JS snippet after including ``jsDefaults`` (which includes xitrum.js):
+
+::
+
+  xitrum.ajaxLoaderImg = 'path/to/your/image';
