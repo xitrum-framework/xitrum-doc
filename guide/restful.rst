@@ -183,6 +183,26 @@ If you manually write form in Scalate template, use ``antiCsrfInput``:
 
     input(type="submit" value="Add")
 
+X-csrf-token
+------------
+
+Optionally csrf token can be sent to server in request header ``X-csrf-token``:
+
+::
+  
+  $.ajax({
+    url: '/somethin',
+    type: 'POST',
+    data: data,
+    processData: false,
+    contentType: 'application/octet-stream',
+    beforeSend: function(request) {
+      return request.setRequestHeader('X-csrf-token', $("meta[name='csrf-token']").attr("content"));
+    },
+    success: function(resp) { /**/ },
+    error: function(xhr, state, error) { /**/ }
+  });
+
 SkipCsrfCheck
 -------------
 
