@@ -186,6 +186,26 @@ described in the previous section, you need to use ``antiCsrfInput`` or
   form(method="post" action={url[AdminAddGroup]})
     input(type="hidden" name="csrf-token" value={antiCsrfToken})
 
+X-csrf-token
+------------
+
+Optionally csrf token can be sent to server in request header ``X-csrf-token``:
+
+::
+  
+  $.ajax({
+    url: '/somethin',
+    type: 'POST',
+    data: data,
+    processData: false,
+    contentType: 'application/octet-stream',
+    beforeSend: function(request) {
+      return request.setRequestHeader('X-csrf-token', $("meta[name='csrf-token']").attr("content"));
+    },
+    success: function(resp) { /**/ },
+    error: function(xhr, state, error) { /**/ }
+  });
+
 SkipCsrfCheck
 -------------
 
