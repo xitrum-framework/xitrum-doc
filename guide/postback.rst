@@ -171,4 +171,4 @@ please call this JS snippet after including ``jsDefaults`` (which includes xitru
 
 ::
 
-  xitrum.ajaxLoaderImg = 'path/to/your/image';
+  xitrum.ajaxLoadingImg = 'path/to/your/image';
