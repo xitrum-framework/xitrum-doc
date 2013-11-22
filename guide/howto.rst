@@ -290,6 +290,22 @@ You can specify a key for encryption:
 If no key is specified, ``secureKey`` in xitrum.conf file in config directory
 is used.
 
+Serialize and deserialize
+-------------------------
+
+To serialize to Array[Byte]:
+
+::
+
+  import xitrum.util.SeriDeseri
+  val bytes = SeriDeseri.serialize("my serializable object")
+
+To deserialize bytes back:
+
+::
+
+  val option: Option[Any] = SeriDeseri.deserialize(bytes)
+
 Multiple sites at the same domain name
 --------------------------------------
 
