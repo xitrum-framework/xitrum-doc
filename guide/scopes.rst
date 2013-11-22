@@ -325,6 +325,9 @@ or
 `ServerSessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/session/ServerSessionStore.scala>`_
 and implement the abstract methods.
 
+Store sessions on client side cookie when you can, because it's more scalable.
+Store sessions on server side (memory or DB) when you must.
+
 Good read:
 `Web Based Session Management - Best practices in managing HTTP-based client sessions <http://www.technicalinfo.net/papers/WebBasedSessionManagement.html>`_.
 
