@@ -8,18 +8,18 @@ Config template engine
 ----------------------
 
 In `config/xitrum.conf <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/xitrum.conf>`_,
-template engine can be configured in one of the following 2 ways, depending on the engine you use:
+template engine can be configured in one of the following 2 forms, depending on the engine you use:
 
 ::
 
-  template = my.template.Engine
+  template = my.template.EngineClassName
 
 Or:
 
 ::
 
   template {
-    "my.template.Engine" {
+    "my.template.EngineClassName" {
       option1 = value1
       option2 = value2
     }
