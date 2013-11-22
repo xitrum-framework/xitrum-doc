@@ -174,3 +174,20 @@ Downstream
                            |
   <---------YES------------+
     store response to cache
+
+xitrum.util.LocalLruCache
+-------------------------
+
+The above cache is the cache shared by the whole system. If you only want a
+small convenient cache, you can use ``xitrum.util.LocalLruCache``.
+
+::
+
+  import xitrum.util.LocalLruCache
+
+  // LRU (Least Recently Used) cache that can contain 1000 elements.
+  // Keys and values are both of type String.
+  val cache = LocalLruCache[String, String](1000)
+
+The returned ``cache`` is a `java.util.LinkedHashMap <http://docs.oracle.com/javase/6/docs/api/java/util/LinkedHashMap.html>`_.
+You can call ``LinkedHashMap`` methods from it.
