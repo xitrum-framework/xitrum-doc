@@ -48,7 +48,8 @@ Cache page or action
 Cache object
 ------------
 
-You use methods in ``xitrum.Cache``.
+You use methods in ``xitrum.Config.xitrum.cache``, it's an instance of
+`xitrum.Cache <http://ngocdaothanh.github.io/xitrum/api/index.html#xitrum.Cache>`_.
 
 Without an explicit TTL (time to live):
 
@@ -96,15 +97,15 @@ changes, you want to remove all those things.
 
 ::
 
-  import xitrum.Cache
+  import xitrum.Config.xitrum.cache
 
   // Cache with a prefix
   val prefix = "articles/" + article.id
-  Cache.put(prefix + "/likes", likes)
-  Cache.put(prefix + "/comments", comments)
+  cache.put(prefix + "/likes", likes)
+  cache.put(prefix + "/comments", comments)
 
   // Later, when something happens and you want to remove all cache related to the article
-  Cache.remove(prefix)
+  cache.remove(prefix)
 
 Config
 ------
