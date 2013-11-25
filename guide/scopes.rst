@@ -83,23 +83,28 @@ AppAction.scala
       </html>
     )
   }
-  
+
 "atJs"
 ~~~~~~
-There are helper method ``atJs`` to render JSON form of at("key"). ``atJs`` is useful when you need to pass 
-model from scala to JavaScript.
+
+``atJs`` helper method automatically converts ``at("key")`` to JSON.
+It is useful when you need to pass model from Scala to JavaScript.
+
+``atJs("key")`` is equivalent to ``xitrum.util.Json.generate(at("key"))``:
 
 Action.scala
 
 ::
 
   case class User(login: String, name: String)
-  //...
+
+  ...
+
   def execute() {
     at("user") = User("admin", "Admin")
     respondView()
   }
-  
+
 Action.ssp
 
 ::
@@ -109,7 +114,6 @@ Action.ssp
     alert(user.login);
     alert(user.name);
   </script>
-
 
 RequestVar
 ~~~~~~~~~~
