@@ -83,6 +83,33 @@ AppAction.scala
       </html>
     )
   }
+  
+"atJs"
+~~~~~~
+There are helper method ``atJs`` to render JSON form of at("key"). ``atJs`` is useful when you need to pass 
+model from scala to JavaScript.
+
+Action.scala
+
+::
+
+  case class User(login: String, name: String)
+  //...
+  def execute() {
+    at("user") = User("admin", "Admin")
+    respondView()
+  }
+  
+Action.ssp
+
+::
+
+  <script type="text/javascript">
+    var user = ${atJs("user")};
+    alert(user.login);
+    alert(user.name);
+  </script>
+
 
 RequestVar
 ~~~~~~~~~~
