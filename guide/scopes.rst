@@ -214,6 +214,36 @@ If you want to sign your cookie value to prevent user from tampering, use
 ``xitrum.util.SecureUrlSafeBase64.encrypt`` and ``xitrum.util.SecureUrlSafeBase64.decrypt``.
 For more information, see :doc:`How to encrypt data </howto>`.
 
+Allowed characters in cookie
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You cannot use `arbitrary characters in cookie <http://stackoverflow.com/questions/1969232/allowed-characters-in-cookies>`_.
+For example, if you need to use UTF-8 characters, you need to encode them.
+You can use ``xitrum.utill.UrlSafeBase64`` or ``xitrum.util.SecureUrlSafeBase64``.
+
+Write cookie example:
+
+::
+
+  import org.jboss.netty.util.CharsetUtil
+  import xitrum.util.UrlSafeBase64
+
+  val value   = """{"identity":"epicport.com/u/caiiiycuk@gmail.com","first_name":"Александр"}"""
+  val encoded = UrlSafeBase64.noPaddingEncode(value.getBytes(CharsetUtil.UTF_8))
+  val cookie  = new DefaultCookie("profile", encoded)
+  responseCookies.append(cookie)
+
+Read cookie example:
+
+::
+
+  requestCookies.get("profile").foreach { encoded =>
+    UrlSafeBase64.autoPaddingDecode(encoded).foreach { bytes =>
+      val value = new String(bytes, CharsetUtil.UTF_8)
+      println("profile: " + value)
+    }
+  }
+
 Session
 -------
 
