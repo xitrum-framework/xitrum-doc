@@ -172,7 +172,7 @@ AppAction.scala
 Cookie
 ------
 
-`Read Wikipedia about cookie path etc. <http://en.wikipedia.org/wiki/HTTP_cookie#Domain_and_Path>`_
+Read Wikipedia about `cookies <http://en.wikipedia.org/wiki/HTTP_cookie>`_.
 
 Inside an action, use ``requestCookies``, a ``Map[String, String]``, to read cookies sent by browser.
 
@@ -204,8 +204,11 @@ delete cookie when the browser closes windows, set max age to ``Integer.MIN_VALU
 
   cookie.setMaxAge(Integer.MIN_VALUE)
 
-Note that `Internet Explorer does not support "max-age" <http://mrcoles.com/blog/cookies-max-age-vs-expires/>`_,
+`Internet Explorer does not support "max-age" <http://mrcoles.com/blog/cookies-max-age-vs-expires/>`_,
 but Netty detects and outputs either "max-age" or "expires" properly. Don't worry!
+
+Browsers will not send cookie attributes back to the server. They will
+`only send the cookie name-value pairs <http://en.wikipedia.org/wiki/HTTP_cookie#Cookie_attributes>`_.
 
 If you want to sign your cookie value to prevent user from tampering, use
 ``xitrum.util.SecureUrlSafeBase64.encrypt`` and ``xitrum.util.SecureUrlSafeBase64.decrypt``.
