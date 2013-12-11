@@ -31,6 +31,19 @@ To config HAProxy for SockJS, see `this example <https://github.com/sockjs/sockj
 
 To have HAProxy reload config file without restarting, see `this discussion <http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy>`_.
 
+Nginx
+-----
+
+Nginx by default uses HTTP 1.0 protocol for reverse proxy. If your backend server
+returns chunked response, you need to tell Nginx to use HTTP 1.1 like this:
+
+::
+
+  location / {
+    proxy_http_version 1.1;
+    proxy_pass http://127.0.0.1:8000;
+  }
+
 Package directory
 -----------------
 
