@@ -163,7 +163,12 @@ The ``<head>`` part will include something like this:
 The token will be automatically included in all non-GET Ajax requests as
 ``X-CSRF-Token`` header sent by jQuery if you include
 `xitrum.js <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_
-in your view template. xitrum.js is included in ``jsDefaults``.
+in your view template. xitrum.js is included in ``jsDefaults``. If you don't
+use ``jsDefaults``, you can include xitrum.js in your template like this:
+
+::
+
+  <script type="text/javascript" src={url[xitrum.js]}></script>
 
 antiCsrfInput and antiCsrfToken
 -------------------------------
