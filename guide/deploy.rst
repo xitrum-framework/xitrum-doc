@@ -14,36 +14,6 @@ Or behind a load balancer like HAProxy, or reverse proxy like Apache or Nginx:
   Browser ------ Load balancer/Reverse proxy -+---- Xitrum instance1
                                               +---- Xitrum instance2
 
-If you use WebSocket or SockJS feature in Xitrum and want to run Xitrum behind
-Nginx 1.2, you must install additional module like
-`nginx_tcp_proxy_module <https://github.com/yaoweibin/nginx_tcp_proxy_module>`_.
-Nginx 1.3+ supports WebSocket natively.
-
-HAProxy is much easier to use. It suits Xitrum because as mentioned in
-:doc:`the section about caching </cache>`, Xitrum serves static files
-`very fast <https://gist.github.com/3293596>`_. You don't need to use static file
-serving feature in Nginx.
-
-HAProxy
--------
-
-To config HAProxy for SockJS, see `this example <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_.
-
-To have HAProxy reload config file without restarting, see `this discussion <http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy>`_.
-
-Nginx
------
-
-Nginx by default uses HTTP 1.0 protocol for reverse proxy. If your backend server
-returns chunked response, you need to tell Nginx to use HTTP 1.1 like this:
-
-::
-
-  location / {
-    proxy_http_version 1.1;
-    proxy_pass http://127.0.0.1:8000;
-  }
-
 Package directory
 -----------------
 
@@ -241,6 +211,37 @@ To tune temporarily, you can do like this:
 ::
 
   sudo sysctl -w net.core.somaxconn=1024
+
+HAProxy tips
+------------
+
+To config HAProxy for SockJS, see `this example <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_.
+
+To have HAProxy reload config file without restarting, see `this discussion <http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy>`_.
+
+HAProxy is much easier to use than Nginx. It suits Xitrum because as mentioned in
+:doc:`the section about caching </cache>`, Xitrum serves static files
+`very fast <https://gist.github.com/3293596>`_. You don't have to use the static file
+serving feature in Nginx.
+
+Nginx tips
+----------
+
+If you use WebSocket or SockJS feature in Xitrum and want to run Xitrum behind
+Nginx 1.2, you must install additional module like
+`nginx_tcp_proxy_module <https://github.com/yaoweibin/nginx_tcp_proxy_module>`_.
+Nginx 1.3+ supports WebSocket natively.
+
+Nginx by default uses HTTP 1.0 protocol for reverse proxy. If your backend server
+returns chunked response, you need to tell Nginx to use HTTP 1.1 like this:
+
+::
+
+  location / {
+    proxy_http_version 1.1;
+    proxy_pass http://127.0.0.1:8000;
+  }
+
 
 Deploy to Heroku
 ----------------
