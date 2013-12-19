@@ -214,18 +214,26 @@ automatic CSRF check. Add the trait xitrum.SkipCsrfCheck to you action:
     def execute() {...}
   }
 
-Getting entire request body
----------------------------
+Getting entire request content
+------------------------------
 
-To get the entire request body, use `request.getContent <http://netty.io/3.6/api/org/jboss/netty/handler/codec/http/HttpRequest.html>`_.
-It returns `ChannelBuffer <http://netty.io/3.6/api/org/jboss/netty/buffer/ChannelBuffer.html>`_,
-which has ``toString(Charset)`` method.
+Usually, when the request content type is not ``application/x-www-form-urlencoded``,
+you may need to get the entire request content (and parse it manually etc.).
+
+To get it as a string:
 
 ::
 
-  import org.jboss.netty.util.CharsetUtil.UTF_8
+  val body = requestContentString
 
-  val body = request.getContent.toString(UTF_8)
+To get it as a string and parse it as JSON:
+
+::
+
+  val myMap = requestContentJson[Map[String, Int]]
+
+If you want to full control, use `request.getContent <http://netty.io/3.8/api/org/jboss/netty/handler/codec/http/HttpRequest.html>`_.
+It returns a `ChannelBuffer <http://netty.io/3.8/api/org/jboss/netty/buffer/ChannelBuffer.html>`_.
 
 Documenting API
 ---------------
