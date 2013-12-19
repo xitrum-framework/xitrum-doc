@@ -84,13 +84,13 @@ AppAction.scala
     )
   }
 
-"atJs"
-~~~~~~
+"atJson"
+~~~~~~~~
 
-``atJs`` helper method automatically converts ``at("key")`` to JSON.
+``atJson`` helper method automatically converts ``at("key")`` to JSON.
 It is useful when you need to pass model from Scala to JavaScript.
 
-``atJs("key")`` is equivalent to ``xitrum.util.Json.generate(at("key"))``:
+``atJson("key")`` is equivalent to ``xitrum.util.Json.generate(at("key"))``:
 
 Action.scala
 
@@ -110,7 +110,7 @@ Action.ssp
 ::
 
   <script type="text/javascript">
-    var user = ${atJs("user")};
+    var user = ${atJson("user")};
     alert(user.login);
     alert(user.name);
   </script>
