@@ -47,42 +47,53 @@ copy additional directories or files change ``build.sbt`` like this:
 See `xitrum-package homepage <https://github.com/ngocdaothanh/xitrum-package>`_
 for more information.
 
-Install Oracle JDK on CentOS and Ubuntu manually
-------------------------------------------------
+Install Oracle JDK on CentOS or Ubuntu manually
+-----------------------------------------------
 
-Check installed alternatives.
+This guide is here for convenient reference. You can certainly install Java from
+a package manager.
+
+Check installed alternatives:
 
 ::
 
   sudo update-alternatives --list java
+
+Output example:
+
+::
+
   /usr/lib/jvm/jdk1.7.0_15/bin/java
   /usr/lib/jvm/jdk1.7.0_25/bin/java
 
-Check machine environment(32bit or 64bit).
+Check machine environment (32 bit or 64 bit):
 
 ::
 
   file /sbin/init
 
+Output example:
+
+::
+
   /sbin/init: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=0x4efe732752ed9f8cc491de1c8a271eb7f4144a5c, stripped
 
-
-Download jdk from `Oracle <http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html>`_.
-This is a good `hack <http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux>`_ to download jdk without browser.
+Download JDK from `Oracle <http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html>`_.
+There's a `trick <http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux>`_
+to download jdk without browser:
 
 ::
 
   wget --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/7u45-b18/jdk-7u45-linux-x64.tar.gz"
 
-
-Unarchive and move it.
+Unarchive and move it:
 
 ::
 
   tar -xzvf jdk-7u45-linux-x64.tar.gz
   sudo mv jdk1.7.0_45 /usr/lib/jvm/jdk1.7.0_45
 
-Register commands as alternative.
+Register commands as an alternative:
 
 ::
 
@@ -91,11 +102,16 @@ Register commands as alternative.
   sudo update-alternatives --install "/usr/bin/javap" "javap" "/usr/lib/jvm/jdk1.7.0_45/bin/javap" 1
   sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0_45/bin/javaws" 1
 
-Chose new path with interactive shell.
+Chose new path with interactive shell:
 
 ::
 
   sudo update-alternatives --config java
+
+Output example:
+
+::
+
   There are 3 choices for the alternative java (providing /usr/bin/java).
 
     Selection    Path                               Priority   Status
@@ -108,13 +124,24 @@ Chose new path with interactive shell.
   Press enter to keep the current choice[*], or type selection number: 3
   update-alternatives: using /usr/lib/jvm/jdk1.7.0_45/bin/java to provide /usr/bin/java (java) in manual mode
 
-  #check version
+Check version:
+
+::
+
   java -version
+
+Output example:
+
+::
+
   java version "1.7.0_45"
   Java(TM) SE Runtime Environment (build 1.7.0_45-b18)
   Java HotSpot(TM) 64-Bit Server VM (build 24.45-b08, mixed mode)
 
-  #Do also
+Do also:
+
+::
+
   sudo update-alternatives --config javac
   sudo update-alternatives --config javap
   sudo update-alternatives --config javaws
