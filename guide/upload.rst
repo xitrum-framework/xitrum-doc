@@ -21,6 +21,8 @@ MyUpload:
 
 ::
 
+  import org.jboss.netty.handler.codec.http.multipart.FileUpload
+
   val myFile = param[FileUpload]("myFile")
 
 myFile is an instance of `FileUpload <http://netty.io/3.6/api/org/jboss/netty/handler/codec/http/multipart/FileUpload.html>`_.
