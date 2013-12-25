@@ -29,9 +29,9 @@ myFile is an instance of `FileUpload <http://netty.io/3.9/api/org/jboss/netty/ha
 Use its methods to get file name, move file to a directory etc.
 
 Small files (less than 16 KB) will be saved in memory. Big files will be saved
-in the system temporary directory (or the directory specified in xitrum.conf),
-and will be deleted automatically when the connection is closed or when the
-response is sent.
+in the system temporary directory (or the directory specified by
+xitrum.request.tmpUploadDir in xitrum.conf), and will be deleted automatically
+when the connection is closed or when the response is sent.
 
 Ajax style upload
 -----------------
