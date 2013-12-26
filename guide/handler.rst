@@ -109,16 +109,16 @@ only needs Xitrum's fast static file serving, it may use only these handlers:
 Upstream:
 
 * HttpRequestDecoder
-* noPipelining
-* requestAttacher
-* publicFileServer
-* its own dispatcher
+* BodyParser
+* NoPipelining
+* PublicFileServer
+* Its own dispatcher
 
 Downstream:
 
 * HttpResponseEncoder
 * ChunkedWriteHandler
-* xSendFile
+* XSendFile
 
 Tips
 ----
