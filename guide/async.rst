@@ -62,11 +62,11 @@ WebSocket
 
 ::
 
-  import xitrum.WebSocketActor
+  import xitrum.WebSocketAction
   import xitrum.annotation.WEBSOCKET
 
   @WEBSOCKET("echo")
-  class EchoWebSocketActor extends WebSocketActor {
+  class EchoWebSocketActor extends WebSocketAction {
     /**
      * The current action is the one just before switching to this WebSocket actor.
      * You can extract session data, request headers etc. from it, but do not use
@@ -161,11 +161,11 @@ Xitrum automatically does it for you.
 
 ::
 
-  import xitrum.{Action, SockJsActor, SockJsText}
+  import xitrum.{Action, SockJsAction, SockJsText}
   import xitrum.annotation.SOCKJS
 
   @SOCKJS("echo")
-  class EchoSockJsActor extends SockJsActor {
+  class EchoSockJsActor extends SockJsAction {
     /**
      * The current action is the one just before switching to this SockJS actor.
      * You can extract session data, request headers etc. from it, but do not use
@@ -241,7 +241,7 @@ Notes:
 * Headers are only sent on the first respondXXX call.
 * :doc:`Page and action cache </cache>` cannot be used with chunked response.
 
-Using chunked response together with ActionActor, you can easily implement
+Using chunked response together with ActorAction, you can easily implement
 `Facebook BigPipe <http://www.cubrid.org/blog/dev-platform/faster-web-page-loading-with-facebook-bigpipe/>`_.
 
 Forever iframe
