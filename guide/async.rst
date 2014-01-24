@@ -35,14 +35,14 @@ You can also use ``addConnectionClosedListener``:
 
 Because of the async nature, the response is not sent right away.
 respondXXX returns
-`ChannelFuture <http://netty.io/3.9/api/org/jboss/netty/channel/ChannelFuture.html>`_.
+`ChannelFuture <http://netty.io/4.0/api/io/netty/channel/ChannelFuture.html>`_.
 You can use it to perform actions when the response has actually been sent.
 
 For example, if you want to close the connection after the response has been sent:
 
 ::
 
-  import org.jboss.netty.channel.{ChannelFuture, ChannelFutureListener}
+  import io.netty.channel.{ChannelFuture, ChannelFutureListener}
 
   val future = respondText("Hello")
   future.addListener(new ChannelFutureListener {
