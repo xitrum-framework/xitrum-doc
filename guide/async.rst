@@ -73,7 +73,7 @@ WebSocket
      * respondText, respondView etc.
      */
     def execute() {
-      log..debug("onOpen")
+      log.debug("onOpen")
 
       context.become {
         case WebSocketText(text) =>
