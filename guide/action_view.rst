@@ -158,9 +158,6 @@ In templates you can use all methods of the class `xitrum.Action <https://github
 Also, you can use utility methods provided by Scalate like ``unescape``.
 See the `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_.
 
-If you want to have exactly instance of the current action, cast ``currentAction`` to
-the action you wish.
-
 The default Scalate template type is `Jade <http://scalate.fusesource.org/documentation/jade.html>`_.
 You can also use `Mustache <http://scalate.fusesource.org/documentation/mustache.html>`_,
 `Scaml <http://scalate.fusesource.org/documentation/scaml-reference.html>`_, or
@@ -174,6 +171,26 @@ or "ssp" to `respondView`.
 ::
 
   respondView(Map("type" ->"mustache"))
+
+Type casting currentAction
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to have exactly instance of the current action, cast ``currentAction`` to
+the action you wish.
+
+::
+
+  p= currentAction.asInstanceOf[MyAction].hello("World")
+
+If you have multiple lines like above, you can cast only one time:
+
+::
+
+  - val myAction = currentAction.asInstanceOf[MyAction]; import myAction._
+
+  p= hello("World")
+  p= hello("Scala")
+  p= hello("Xitrum")
 
 Mustache
 ~~~~~~~~
