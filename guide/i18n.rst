@@ -68,6 +68,10 @@ Where to save po files
 i18n.pot is the template file. You need to copy it to <language>.po files and
 translate.
 
+Xitrum is monitoring the directory named ``i18n`` in classpath.
+If <language>.po file in that directory was updated or added at runtime,
+Xitrum will automatically reload that <language>.po file.
+
 ::
 
   src
@@ -99,6 +103,7 @@ them when running.
       ja.po
       vi.po
 	  ...
+
 
 Set language
 ------------
