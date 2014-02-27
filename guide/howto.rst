@@ -365,3 +365,24 @@ Otherwise, you need to add this dependency to your project's build.sbt:
 ::
 
   libraryDependencies += "org.fusesource.scalamd" %% "scalamd" % "1.6"
+
+Monitoring file change
+----------------------
+
+You can register callback(s) for `StandardWatchEventKinds <http://docs.oracle.com/javase/7/docs/api/java/nio/file/StandardWatchEventKinds.html>`_ on specified file or directory.
+::
+
+  import xitrum.util.FileMonitor
+
+  val target = FileMonitor.pathFromString("my_monitoring_relative_path_name_from_application_root")
+  FileMonitor.monitor(xFileMonitor.MODIFY, target, {path =>
+    // Do some callback with path
+    println(s"File Modified: $path")
+
+    // And stop monitoring if necessary
+    FileMonitor.unmonitor(xFileMonitor.MODIFY, target)
+  })
+
+
+``xitrum.util.FileMonitor`` use `schwatcher <https://github.com/lloydmeta/schwatcher>`_ for actor based monitoring feature.
+
