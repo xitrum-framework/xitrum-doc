@@ -73,12 +73,12 @@ To convert between Scala case object and JSON string:
 
 ::
 
-  import xitrum.util.Json
+  import xitrum.util.SeriDeseri
 
   case class Person(name: String, age: Int, phone: Option[String])
   val person1 = Person("Jack", 20, None)
-  val json    = Json.generate(person)
-  val person2 = Json.parse(json)
+  val json    = SeriDeseri.toJson(person)
+  val person2 = SeriDeseri.fromJson(json)
 
 To respond JSON:
 

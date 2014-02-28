@@ -90,7 +90,7 @@ AppAction.scala
 ``atJson`` helper method automatically converts ``at("key")`` to JSON.
 It is useful when you need to pass model from Scala to JavaScript.
 
-``atJson("key")`` is equivalent to ``xitrum.util.Json.generate(at("key"))``:
+``atJson("key")`` is equivalent to ``xitrum.util.SeriDeseri.toJson(at("key"))``:
 
 Action.scala
 
@@ -211,7 +211,7 @@ Browsers will not send cookie attributes back to the server. They will
 `only send the cookie name-value pairs <http://en.wikipedia.org/wiki/HTTP_cookie#Cookie_attributes>`_.
 
 If you want to sign your cookie value to prevent user from tampering, use
-``xitrum.util.SecureUrlSafeBase64.encrypt`` and ``xitrum.util.SecureUrlSafeBase64.decrypt``.
+``xitrum.util.SeriDeseri.toSecureUrlSafeBase64`` and ``xitrum.util.SeriDeseri.fromSecureUrlSafeBase64``.
 For more information, see :doc:`How to encrypt data </howto>`.
 
 Allowed characters in cookie
@@ -219,7 +219,7 @@ Allowed characters in cookie
 
 You cannot use `arbitrary characters in cookie <http://stackoverflow.com/questions/1969232/allowed-characters-in-cookies>`_.
 For example, if you need to use UTF-8 characters, you need to encode them.
-You can use ``xitrum.utill.UrlSafeBase64`` or ``xitrum.util.SecureUrlSafeBase64``.
+You can use ``xitrum.utill.UrlSafeBase64`` or ``xitrum.util.SeriDeseri``.
 
 Write cookie example:
 

@@ -268,6 +268,21 @@ Load it:
   val password = config.getString("password")
   val children = config.getStringList("children")
 
+Serialize and deserialize
+-------------------------
+
+To serialize to ``Array[Byte]``:
+
+::
+
+  val bytes = SeriDeseri.toBytes("my serializable object")
+
+To deserialize bytes back:
+
+::
+
+  val option = SeriDeseri.fromBytes[MyType](bytes)  // Option[MyType]
+
 Encrypt data
 ------------
 
@@ -280,52 +295,54 @@ If you want to decrypt later, you can use the utility Xitrum provides:
 
   import xitrum.util.Secure
 
-  val encrypted: Array[Byte]         = Secure.encrypt("my data".getBytes)
-  val decrypted: Option[Array[Byte]] = Secure.decrypt(encrypted)
+  // Array[Byte]
+  val encrypted = Secure.encrypt("my data".getBytes)
+
+  // Option[Array[Byte]]
+  val decrypted = Secure.decrypt(encrypted)
 
 You can use ``xitrum.util.UrlSafeBase64`` to encode and decode the binary data to
 normal string (to embed to HTML for response etc.).
+
+::
+
+  // String that can be included in URL, cookie etc.
+  val string = UrlSafeBase64.noPaddingEncode(encrypted)
+
+  // Option[Array[Byte]]
+  val encrypted2 = UrlSafeBase64.autoPaddingDecode(string)
 
 If you can combine the above operations in one step:
 
 ::
 
-  import xitrum.util.SecureUrlSafeBase64
+  import xitrum.util.SeriDeseri
 
-  val encrypted = SecureUrlSafeBase64.encrypt(mySerializableObject)  // A String
-  val decrypted = SecureUrlSafeBase64.decrypt(encrypted).asInstanceOf[Option[mySerializableClass]]
+  val mySerializableObject = new MySerializableClass
 
-``SecureUrlSafeBase64`` uses `Twitter Chill <https://github.com/twitter/chill>`_
+  // String
+  val encrypted = SeriDeseri.toSecureUrlSafeBase64(mySerializableObject)
+
+  // Option[MySerializableClass]
+  val decrypted = SeriDeseri.fromSecureUrlSafeBase64[MySerializableClass](encrypted)
+
+``SeriDeseri`` uses `Twitter Chill <https://github.com/twitter/chill>`_
 to serialize and deserialize. Your data must be serializable.
 
-You can specify a key for encryption:
+You can specify a key for encryption.
 
 ::
 
   val encrypted = Secure.encrypt("my data".getBytes, "my key")
   val decrypted = Secure.decrypt(encrypted, "my key")
 
-  val encrypted = SecureUrlSafeBase64.encrypt(mySerializableObject, "my key")
-  val decrypted = SecureUrlSafeBase64.decrypt(encrypted, "my key").asInstanceOf[Option[mySerializableClass]]
+::
+
+  val encrypted = SeriDeseri.toSecureUrlSafeBase64(mySerializableObject, "my key")
+  val decrypted = SeriDeseri.fromSecureUrlSafeBase64[MySerializableClass](encrypted, "my key")
 
 If no key is specified, ``secureKey`` in xitrum.conf file in config directory
-is used.
-
-Serialize and deserialize
--------------------------
-
-To serialize to Array[Byte]:
-
-::
-
-  import xitrum.util.SeriDeseri
-  val bytes = SeriDeseri.serialize("my serializable object")
-
-To deserialize bytes back:
-
-::
-
-  val option: Option[Any] = SeriDeseri.deserialize(bytes)
+will be used.
 
 Multiple sites at the same domain name
 --------------------------------------
