@@ -215,8 +215,8 @@ Good read:
 
 * `Iptables tutorial <http://www.frozentux.net/iptables-tutorial/chunkyhtml/>`_
 
-Tune Linux for many connections
--------------------------------
+Tune Linux for massive connections
+----------------------------------
 
 Note that on Mac, `JDKs suffer from a serious problem with IO (NIO) performance <https://groups.google.com/forum/#!topic/spray-user/S-SNR2m0BWU>`_.
 
