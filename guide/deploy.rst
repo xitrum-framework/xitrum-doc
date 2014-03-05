@@ -340,9 +340,11 @@ returns chunked response, you need to tell Nginx to use HTTP 1.1 like this:
 
   location / {
     proxy_http_version 1.1;
+    proxy_set_header Connection "";
     proxy_pass http://127.0.0.1:8000;
   }
 
+The `documentation <http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive>`_ states that for http keepalive, you should also set proxy_set_header Connection "";
 
 Deploy to Heroku
 ----------------
