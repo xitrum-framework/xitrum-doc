@@ -26,52 +26,52 @@ For each connection, there is a channel pipeline to handle the IO data.
 A channel pipeline is a series of handlers.
 
 In Netty, there are 2 types of handlers:
-* upstream: the request direction client -> server
-* downstream: the response direction server -> client
+* Inbound: the request direction client -> server
+* Outbound: the response direction server -> client
 
 Please see the doc of `ChannelPipeline <http://netty.io/4.0/api/io/netty/channel/ChannelPipeline.html>`_
 for more information.
 
 ::
 
-                                       I/O Request
-                                     via Channel or
-                                 ChannelHandlerContext
-                                           |
-  +----------------------------------------+---------------+
-  |                  ChannelPipeline       |               |
-  |                                       \|/              |
-  |  +----------------------+  +-----------+------------+  |
-  |  | Upstream Handler  N  |  | Downstream Handler  1  |  |
-  |  +----------+-----------+  +-----------+------------+  |
-  |            /|\                         |               |
-  |             |                         \|/              |
-  |  +----------+-----------+  +-----------+------------+  |
-  |  | Upstream Handler N-1 |  | Downstream Handler  2  |  |
-  |  +----------+-----------+  +-----------+------------+  |
-  |            /|\                         .               |
-  |             .                          .               |
-  |     [ sendUpstream() ]        [ sendDownstream() ]     |
-  |     [ + INBOUND data ]        [ + OUTBOUND data  ]     |
-  |             .                          .               |
-  |             .                         \|/              |
-  |  +----------+-----------+  +-----------+------------+  |
-  |  | Upstream Handler  2  |  | Downstream Handler M-1 |  |
-  |  +----------+-----------+  +-----------+------------+  |
-  |            /|\                         |               |
-  |             |                         \|/              |
-  |  +----------+-----------+  +-----------+------------+  |
-  |  | Upstream Handler  1  |  | Downstream Handler  M  |  |
-  |  +----------+-----------+  +-----------+------------+  |
-  |            /|\                         |               |
-  +-------------+--------------------------+---------------+
-                |                         \|/
-  +-------------+--------------------------+---------------+
-  |             |                          |               |
-  |     [ Socket.read() ]          [ Socket.write() ]      |
-  |                                                        |
-  |  Netty Internal I/O Threads (Transport Implementation) |
-  +--------------------------------------------------------+
+                                                 I/O Request
+                                            via Channel or
+                                        ChannelHandlerContext
+                                                      |
+  +---------------------------------------------------+---------------+
+  |                           ChannelPipeline         |               |
+  |                                                  \|/              |
+  |    +---------------------+            +-----------+----------+    |
+  |    | Inbound Handler  N  |            | Outbound Handler  1  |    |
+  |    +----------+----------+            +-----------+----------+    |
+  |              /|\                                  |               |
+  |               |                                  \|/              |
+  |    +----------+----------+            +-----------+----------+    |
+  |    | Inbound Handler N-1 |            | Outbound Handler  2  |    |
+  |    +----------+----------+            +-----------+----------+    |
+  |              /|\                                  .               |
+  |               .                                   .               |
+  | ChannelHandlerContext.fireIN_EVT() ChannelHandlerContext.OUT_EVT()|
+  |        [ method call]                       [method call]         |
+  |               .                                   .               |
+  |               .                                  \|/              |
+  |    +----------+----------+            +-----------+----------+    |
+  |    | Inbound Handler  2  |            | Outbound Handler M-1 |    |
+  |    +----------+----------+            +-----------+----------+    |
+  |              /|\                                  |               |
+  |               |                                  \|/              |
+  |    +----------+----------+            +-----------+----------+    |
+  |    | Inbound Handler  1  |            | Outbound Handler  M  |    |
+  |    +----------+----------+            +-----------+----------+    |
+  |              /|\                                  |               |
+  +---------------+-----------------------------------+---------------+
+                  |                                  \|/
+  +---------------+-----------------------------------+---------------+
+  |               |                                   |               |
+  |       [ Socket.read() ]                    [ Socket.write() ]     |
+  |                                                                   |
+  |  Netty Internal I/O Threads (Transport Implementation)            |
+  +-------------------------------------------------------------------+
 
 Custom handlers
 ---------------
@@ -106,15 +106,13 @@ of default handlers.
 When an app uses its own dispatcher (not Xitrum's routing/dispatcher) and
 only needs Xitrum's fast static file serving, it may use only these handlers:
 
-Upstream:
+Inbound:
 
 * HttpRequestDecoder
-* BodyParser
-* NoPipelining
 * PublicFileServer
 * Its own dispatcher
 
-Downstream:
+Outbound:
 
 * HttpResponseEncoder
 * ChunkedWriteHandler

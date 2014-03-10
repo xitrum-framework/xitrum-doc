@@ -178,7 +178,7 @@ If you want to create your own cache engine, implement the
 How cache works
 ---------------
 
-Upstream
+Inbound:
 
 ::
 
@@ -191,7 +191,7 @@ Upstream
     respond from cache
 
 
-Downstream
+Outbound:
 
 ::
 
