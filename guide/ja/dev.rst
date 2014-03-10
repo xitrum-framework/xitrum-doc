@@ -33,7 +33,7 @@ IntelliJを起動してインポートしてください。
 ignoreファイルの設定
 --------------------
 
-:doc:`チュートリアル </ja/tutorial>` に沿ってプロジェクトを作成した場合 `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master/.gitignore>`_ を参考にignoreファイルを追加します。
+:doc:`チュートリアル </ja/tutorial>` に沿ってプロジェクトを作成した場合 `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master/.gitignore>`_ を参考にignoreファイルを作成してください。
 
 ::
 
@@ -51,7 +51,7 @@ JRebelのインストール
 通常、ソースコードを変更した場合、CTRL+Cでサーバーを停止し、再度 ``sbt/sbt run`` を実行する必要があります。
 これには毎回10秒ほどかかってしまいます。
 
-`JRebel <http://www.zeroturnaround.com/jrebel/>`_ を使用することでこれを回避することができます。
+`JRebel <http://www.zeroturnaround.com/jrebel/>`_ を使用することでこの問題を回避することができます。
 JRabelはScala開発者に無料ライセンスを提供しています。
 
 インストール:
@@ -82,7 +82,7 @@ Eclipse以外のテキストエディターを使用する場合
 2. 別のターミナル画面で ``sbt/sbt ~compile`` を実行し継続的コンパイルモードでコンソールを起動します。
 3. エディター上でScalaファイルを編集し保存します。
 
-``sbt/sbt ~compile`` で起動したプロセスが自動的にリコンパイルし、生成されたクラスファイルをJRebelがリロードしてくれます。
+``sbt/sbt ~compile`` で起動したプロセスが自動的にリコンパイルを実施し、生成されたクラスファイルをJRebelがリロードしてくれます。
 
 bash、shを使用している場合 ``sbt/sbt ~compile`` は問題なく実行できます。
 zshを使用している場合, ``sbt/sbt "~compile"`` とすることで"no such user or named directory: compile"のエラーを回避できます。
