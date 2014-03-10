@@ -12,3 +12,4 @@ Xitrum ガイド
    intro
    tutorial
    dev
+   action_view
