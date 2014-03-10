@@ -1,4 +1,4 @@
 Xitrum Guide in other Languages
 ===============================
 
-  :doc:`ja/index`
+  :doc:`日本語 </ja/index>`
