@@ -45,6 +45,33 @@ Cache page or action
     }
   }
 
+The terms "page cache" and "action cache" came from
+`Ruby on Rails <http://guides.rubyonrails.org/caching_with_rails.html>`_.
+
+The order of processing a request is designed like this:
+(1) request -> (2) before filter methods -> (3) action's execute method -> (4) response
+
+At the 1st request, Xitrum will cache the response for the time period specified.
+``@CachePageMinute(1)`` or ``@CacheActionMinute(1)`` both mean caching for 1 minute.
+Xitrum only caches when the response status is "200 OK". For example, response
+with status "500 Internal Server Error" or "302 Found" (redirect) will not be cached.
+
+At the following requests to the same action, if the cached response is still
+within the specified time, Xitrum will just respond the cached response:
+
+* For page cache, the order is (1) -> (4).
+* For action cache, the order is (1) -> (2) -> (4), or just (1) -> (2)
+  if one of the before filters return "false".
+
+So the difference is: For page cache, the before filters are not run.
+
+Usually, page cache is used when the same response can be used for all users.
+Action cache is used when you want to run a before filter to "guard" the cached
+response, like checking if the user has logged in:
+
+* If the user has logged in, he can use the cached response.
+* If the user has not logged in, redirect him to the login page.
+
 Cache object
 ------------
 
