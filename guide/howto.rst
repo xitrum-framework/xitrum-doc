@@ -394,7 +394,7 @@ on files or directories.
 
   import xitrum.util.FileMonitor
 
-  val target = FileMonitor.pathFromString("path_relative_to_application_root")
+  val target = java.nio.file.Paths.get("path_relative_to_application_root").toAbsolutePath
   FileMonitor.monitor(FileMonitor.MODIFY, target, { path =>
     // Do some callback with path
     println(s"File modified: $path")
