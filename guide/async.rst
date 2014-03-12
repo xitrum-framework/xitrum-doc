@@ -62,9 +62,9 @@ WebSocket
 
 ::
 
-  import xitrum.WebSocketAction
+  import scala.runtime.ScalaRunTime
   import xitrum.annotation.WEBSOCKET
-  import xitrum.{WebSocketText, WebSocketBinary, WebSocketPing, WebSocketPong}
+  import xitrum.{WebSocketAction, WebSocketBinary, WebSocketText, WebSocketPing, WebSocketPong}
 
   @WEBSOCKET("echo")
   class EchoWebSocketActor extends WebSocketAction {
@@ -82,7 +82,7 @@ WebSocket
           respondWebSocketText(text.toUpperCase)
 
         case WebSocketBinary(bytes) =>
-          log.info("onBinaryMessage: " + bytes)
+          log.info("onBinaryMessage: " + ScalaRunTime.stringOf(bytes))
           respondWebSocketBinary(bytes)
 
         case WebSocketPing =>
