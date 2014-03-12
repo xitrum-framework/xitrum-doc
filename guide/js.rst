@@ -77,8 +77,8 @@ To convert between Scala case object and JSON string:
 
   case class Person(name: String, age: Int, phone: Option[String])
   val person1 = Person("Jack", 20, None)
-  val json    = SeriDeseri.toJson(person)
-  val person2 = SeriDeseri.fromJson(json)
+  val json    = SeriDeseri.toJson(person1)
+  val person2 = SeriDeseri.fromJson[Person](json)
 
 To respond JSON:
 
