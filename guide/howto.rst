@@ -392,9 +392,10 @@ on files or directories.
 
 ::
 
+  import java.nio.file.Paths
   import xitrum.util.FileMonitor
 
-  val target = java.nio.file.Paths.get("path_relative_to_application_root").toAbsolutePath
+  val target = Paths.get("absolute_path_or_path_relative_to_application_directory").toAbsolutePath
   FileMonitor.monitor(FileMonitor.MODIFY, target, { path =>
     // Do some callback with path
     println(s"File modified: $path")
@@ -403,5 +404,5 @@ on files or directories.
     FileMonitor.unmonitor(FileMonitor.MODIFY, target)
   })
 
-Under the hood, ``xitrum.util.FileMonitor`` uses
+Under the hood, ``FileMonitor`` uses
 `Schwatcher <https://github.com/lloydmeta/schwatcher>`_.
