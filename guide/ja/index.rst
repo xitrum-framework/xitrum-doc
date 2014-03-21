@@ -13,3 +13,4 @@ Xitrum ガイド
    tutorial
    dev
    action_view
+   restful
