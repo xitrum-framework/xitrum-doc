@@ -16,3 +16,5 @@ Xitrum ガイド
    restful
    template_engines
    postback
+   xml
+   js
