@@ -31,4 +31,5 @@ Xitrum Guide
    cluster
    howto
    handler
+   metrics
    deps
