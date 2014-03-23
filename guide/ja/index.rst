@@ -14,3 +14,4 @@ Xitrum ガイド
    dev
    action_view
    restful
+   template_engines
