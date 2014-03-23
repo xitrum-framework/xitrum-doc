@@ -15,3 +15,4 @@ Xitrum ガイド
    action_view
    restful
    template_engines
+   postback

@@ -1,5 +1,5 @@
 テンプレートエンジン
-==================
+====================
 
 :doc:`renderView, renderFragment,or respondView <./action_view>` 実行時には
 設定ファイルで指定したテンプレートエンジンが使用されます。
