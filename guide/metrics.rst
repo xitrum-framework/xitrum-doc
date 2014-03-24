@@ -1,68 +1,78 @@
 Metrics
 =======
 
-Xitrum collect metrics of your (clusterd) application and publish it as json data.
-By Default, Xitrum collect JVM HeapMemory, CPU, and action's execution status from each nodes of cluster.
+Xitrum collects JVM heap memory, CPU, and actions' execution status from each
+node of your application's Akka cluster. It publishes the metrics as JSON data.
+Xitrum also lets you publish your own metrics.
+
+This metrics feature is based on the library `Coda Hale Metrics <http://metrics.codahale.com/>`_.
 
 Collect metrics
 ---------------
 
-HeapMemory and CPU
-~~~~~~~~~~~~~~~~~~
+Heap memory and CPU
+~~~~~~~~~~~~~~~~~~~
 
-JVM Heap Memory and CPU will be collected as `NodeMetrics <http://doc.akka.io/api/akka/snapshot/index.html#akka.cluster.NodeMetrics>`_ of akka actor system from each node.
+JVM heap memory and CPU will be collected as
+`NodeMetrics <http://doc.akka.io/api/akka/2.3.0/index.html#akka.cluster.NodeMetrics>`_
+of Akka actor system from each node.
 
-HeapMemory:
-You can see how much memory is used in JVM from Heap Memory NodeMetrics.
+Heap memory:
 
 .. image:: metrics_heapmemory.png
 
 
-CPU:
-You can know about how many processor is working, and how much load average is reached from CPU NodeMetrics.
+CPU: Number of processors and load average
 
 .. image:: metrics_cpu.png
 
+Action metrics
+~~~~~~~~~~~~~~
 
-Application Metrics
-~~~~~~~~~~~~~~~~~~~
-
-Xitrum includes `Coda Hale Metrics <http://metrics.codahale.com/>`_.
-Xitrum measure action's execution status of each nodes as a `Histogram <http://metrics.codahale.com/getting-started/#histograms>`_.
-You can know about how many action was executed, and how long it took to complete.
+Xitrum measure actions' execution status of each node as a
+`Histogram <http://metrics.codahale.com/getting-started/#histograms>`_.
+You can know how many times actions were executed, and execution time of
+non-async actions.
 
 .. image:: metrics_action_count.png
 
-You can also know about latest execution time for specified action.
+Latest execution time of a specific action:
 
 .. image:: metrics_action_time.png
 
+Collect your custom metrics
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Collect your customized metrics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In addition to default metrics above, you can collect your custom metrics.
+``xitrum.Metrics`` is a shortcut for ``gauge``, ``counter``, ``meter``,
+``timer`` and ``histogram``. Please read about
+`Coda Hale Metrics <http://metrics.codahale.com/>`_ and
+`its Scala implementation <https://github.com/erikvanoosten/metrics-scala>`_
+to know how to use them.
 
-In addition to default metrics, you can collect your customized metrics.
-``xitrum.Metrics`` is shortcut for ``gauge``, ``counter``, ``meter``, ``timer`` and ``histogram``.
-Please read about `Coda Hale Metrics <http://metrics.codahale.com/>`_ and `it's Scala implementation <https://github.com/erikvanoosten/metrics-scala>`_ to know how to use it.
-
-Eexample about timer:
+Timer example:
 
 ::
 
-  private lazy val myTimer = xitrum.Metrics.timer("myTimer")
+  import xitrum.{Action, Metrics}
+  import xitrum.annotation.GET
 
-  class MyAction extends AppAction {
-    def execute() {
-      myTimer.time {
-        HeavyTask()
-      }
-    }
-
-    def HeavyTask {
-      // something heavy task
-    }
+  object MyAction {
+    lazy val myTimer = Metrics.timer("myTimer")
   }
 
+  @GET("my/action")
+  class MyAction extends Action {
+    import MyAction._
+
+    def execute() {
+      myTimer.time {
+        // Something that you want to measure execution time
+        ...
+      }
+      ...
+    }
+  }
 
 Publish metrics
 ---------------
@@ -105,22 +115,20 @@ CPU:
 
 MetricsRegistry will be parsed with `metrics-json <http://metrics.codahale.com/manual/json/>`_.
 
-
-Xitrum default viewr
+Xitrum default viewer
 ~~~~~~~~~~~~~~~~~~~~
 
-Xitrum provide default metrics viewer at ``/xitrum/metrics/viewer``.
-This url show some dynamic glaphs created by `D3.js <http://d3js.org/>`_ like above.
+Xitrum provides default metrics viewer at URL ``/xitrum/metrics/viewer``.
+This URL shows graphs like above. The graphs are created using `D3.js <http://d3js.org/>`_.
 
-
-Jconsole viewr
+Jconsole viewer
 ~~~~~~~~~~~~~~
 
-You can see it with feature of `JVM Reporter <http://metrics.codahale.com/getting-started/#reporting-via-jmx>`_.
+You can see it with `JVM Reporter <http://metrics.codahale.com/getting-started/#reporting-via-jmx>`_.
 
 .. image:: metrics_jconsole.png
 
-Start jmx reporter:
+Start JMX reporter:
 
 ::
 
@@ -133,30 +141,30 @@ Start jmx reporter:
     }
   }
 
-And then from terminal
+Then run the `jconsole <http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html>`_ command.
+
+Display metrics with custom viewer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The metrics will be published at SockJS URL ``xitrum/metrics/channel`` as JSON.
+``jsAddMetricsNameSpace`` is a convenient JavaScript snippet that Xitrum provides
+for creating connection to this endpoint.
+
+Implement your own JSON handler, and call ``initMetricsChannel`` with your handler.
+
+Action example:
 
 ::
 
-  > jconsole
-
-
-Display metrics with customized view
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-JSON values will be published at ``xitrum/metrics/channel`` as a SockJS url.
-``jsAddMetricsNameSpace`` is a JavaScript snippet for create connection to this endpoint.
-Implement your own json handler, and call ``initMetricsChannel`` with your handler.
-
-Create connection to metrics channel:
-
-::
-
+  import xitrum.annotation.GET
   import xitrum.metrics.MetricsViewer
 
-  class mySubscriber extends MetricsViewer {
+  @GET("my/metrics/viewer")
+  class MySubscriber extends MetricsViewer {
     def execute() {
       jsAddMetricsNameSpace("window")
       jsAddToView("""
-        function onValue(json){
+        function onValue(json) {
           console.log(json);
         }
         function onClose(){
@@ -168,20 +176,24 @@ Create connection to metrics channel:
     }
   }
 
+Save metrics
+~~~~~~~~~~~~
 
-Save metrics in persistently
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-If you want to save metrics in persistantly to the database or files,
-Implement your customized subscriber.
+To save memory, Xitrum doesn't remember old metrics values. If you want to save
+metrics to the database or files for later use, you need to implement your custom
+subscriber.
 
-Subscribe publisher:
+Example:
 
 ::
 
+  import akka.actor.Actor
   import xitrum.metrics.PublisherLookUp
 
-  class mySubscriber extends Actor with PublisherLookUp {
-    lookUpPublisher()
+  class MySubscriber extends Actor with PublisherLookUp {
+    override def preStart() {
+      lookUpPublisher()
+    }
 
     def receive = {
       case _ =>
@@ -189,20 +201,18 @@ Subscribe publisher:
 
     override def doWithPublisher(globalPublisher: ActorRef) = {
       context.become {
-        case msg @ (first::rest) =>
-          // case of clusterd NodeMetrics as Set
-          // SaveDB or write to file.
+        // When run in multinode environment
+        case multinodeMetrics: Set[NodeMetrics] =>
+          // Save to DB or write to file.
 
+        // When run in single node environment
         case nodeMetrics: NodeMetrics =>
-          // case of single NodeMetrics
-          // SaveDB or write to file.
+          // Save to DB or write to file.
 
         case Publish(registryAsJson) =>
-          // case of metrics registory
-          // SaveDB or write to file.
+          // Save to DB or write to file.
 
         case _ =>
       }
     }
   }
-
