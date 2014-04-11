@@ -72,7 +72,10 @@ Manipulate collected routes
 ---------------------------
 
 Xitrum automatically collect routes on startup.
-If you want to manipulate the routes, you can do like this:
+If you want to manipulate the routes, you can use
+`xitrum.Config.routes <http://ngocdaothanh.github.io/xitrum/api/index.html#xitrum.routing.RouteCollection>`_.
+
+Example:
 
 ::
 
@@ -82,7 +85,18 @@ If you want to manipulate the routes, you can do like this:
     def main(args: Array[String]) {
       // You can modify routes before starting the server
       val routes = Config.routes
-      routes.remove[xitrum.js]()
+
+      // Remove routes to an action by its class
+      routes.removeByClass[MyClass]()
+
+      if (demoVersion) {
+        // Remove routes to actions by a prefix
+        routes.removeByPrefix("/premium/features")
+
+        // This also works
+        routes.removeByPrefix("premium/features")
+      }
+
       ...
 
       Server.start()
