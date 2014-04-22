@@ -4,16 +4,22 @@ Introduction
 ::
 
   +--------------------+
-  |      Your app      |
+  |      Clients       |
   +--------------------+
-  |    Xitrum fusion   |
+            ↑
+            |
+            ↓
+  +--------------------+
+  |       Netty        |
+  +--------------------+
+  |        Xitrum      |
   | +----------------+ |
-  | | Web framework  | |  <-- Akka cluster --> Other instances
+  | | Web framework  | |  <-- Akka, Hazelcast --> Other instances
   | |----------------| |
   | | HTTP(S) Server | |
   | +----------------+ |
   +--------------------+
-  |       Netty        |
+  |      Your app      |
   +--------------------+
 
 Xitrum is an async and clustered Scala web framework and HTTP(S) server fusion
