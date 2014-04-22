@@ -6,17 +6,15 @@ Introduction
   +--------------------+
   |      Clients       |
   +--------------------+
-            ↑
-            |
-            ↓
+          ↓   ↑
   +--------------------+
   |       Netty        |
   +--------------------+
-  |        Xitrum      |
+  |       Xitrum       |
   | +----------------+ |
-  | | Web framework  | |  <-- Akka, Hazelcast --> Other instances
-  | |----------------| |
   | | HTTP(S) Server | |
+  | |----------------| |
+  | | Web framework  | |  ← Akka, Hazelcast → Other instances
   | +----------------+ |
   +--------------------+
   |      Your app      |
