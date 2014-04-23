@@ -157,7 +157,9 @@ environment.
 
   script/runner quickstart.Boot
 
-You may want to modify ``runner`` (or ``runner.bat``) to tune JVM settings. Also see ``config/xitrum.conf``.
+You may want to modify ``runner`` (or ``runner.bat``) to tune
+`JVM settings <http://www.oracle.com/technetwork/java/hotspotfaq-138619.html>`_.
+Also see ``config/xitrum.conf``.
 
 To start Xitrum in background on Linux when the system starts, `daemontools <http://cr.yp.to/daemontools.html>`_
 is a very good tool. To install it on CentOS, see
