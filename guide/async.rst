@@ -292,11 +292,11 @@ Event Source
 See http://dev.w3.org/html5/eventsource/
 
 Event Source response is a special kind of chunked response.
-Data must be Must be  UTF-8.
+Data must be UTF-8.
 
 To respond event source, call ``respondEventSource`` as many time as you want.
 
 ::
 
-  respondEventSource("data1", "event1")
-  respondEventSource("data2")  // Event name defaults to "message"
+  respondEventSource("data1", "event1")  // Event name is "event1"
+  respondEventSource("data2")            // Event name is set to "message" by default
