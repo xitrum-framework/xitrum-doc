@@ -116,13 +116,13 @@ CPU:
 MetricsRegistry will be parsed with `metrics-json <http://metrics.codahale.com/manual/json/>`_.
 
 Xitrum default viewer
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 Xitrum provides default metrics viewer at URL ``/xitrum/metrics/viewer``.
 This URL shows graphs like above. The graphs are created using `D3.js <http://d3js.org/>`_.
 
 Jconsole viewer
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 You can see it with `JVM Reporter <http://metrics.codahale.com/getting-started/#reporting-via-jmx>`_.
 
