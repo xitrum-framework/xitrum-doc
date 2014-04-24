@@ -18,3 +18,5 @@ Xitrum ガイド
    postback
    xml
    js
+   deps
+   metrics
