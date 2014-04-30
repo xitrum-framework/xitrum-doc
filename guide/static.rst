@@ -44,6 +44,12 @@ To send a static file on disk from your action, use ``respondFile``.
   respondFile("/absolute/path")
   respondFile("path/relative/to/the/current/working/directory")
 
+To optimize static file serving speed,
+you can avoid unnecessary file existence check with regex filter.
+If request url does not match pathRegex, Xitrum will respond 404 for that request.
+
+See ``pathRegex`` in ``config/xitrum.conf``.
+
 index.html fallback
 -------------------
 
