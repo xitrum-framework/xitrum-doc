@@ -6,7 +6,7 @@ Introduction
   +--------------------+
   |      Clients       |
   +--------------------+
-          ↓   ↑
+            |
   +--------------------+
   |       Netty        |
   +--------------------+
@@ -14,7 +14,7 @@ Introduction
   | +----------------+ |
   | | HTTP(S) Server | |
   | |----------------| |
-  | | Web framework  | |  ← Akka, Hazelcast → Other instances
+  | | Web framework  | |  <- Akka, Hazelcast -> Other instances
   | +----------------+ |
   +--------------------+
   |      Your app      |
