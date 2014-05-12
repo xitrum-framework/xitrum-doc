@@ -35,7 +35,7 @@ To access ``textParams``:
 
 You can convert text params to other types (Int, Long, Fload, Double) automatically
 by using ``param[Int]("x")``, ``params[Int]("x")`` etc. To convert text params to more types,
-override `convertText <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/scope/request/ParamAccess.scala>`_.
+override `convertTextParam <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/scope/request/ParamAccess.scala>`_.
 
 For file upload: ``param[FileUpload]("x")``, ``params[FileUpload]("x")`` etc.
 For more details, see :doc:`Upload chapter </upload>`.
