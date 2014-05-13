@@ -17,9 +17,10 @@ Generate HTML version
 
 ::
 
-  make html
+  cd en
+  ./make_html
 
-The generated HTML files will be put in _build/html directory.
+The generated HTML files will be put in en/_build/html directory.
 
 Generate PDF version
 --------------------
@@ -31,6 +32,7 @@ texlive-fonts-recommended.
 
 ::
 
-  make latexpdf
+  cd en
+  ./make_latexpdf
 
-xitrum.pdf will be put in _build/latex directory.
+xitrum.pdf will be put in en/_build/latex directory.
