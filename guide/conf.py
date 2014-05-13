@@ -179,7 +179,7 @@ htmlhelp_basename = 'xitrumdoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'xitrum.tex', u'Xitrum Guide',
-   u'Ngoc Dao', 'manual'),
+   u'Ngoc Dao, Takeharu Oshida', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -212,5 +212,5 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'xitrum', u'Xitrum Guide',
-     [u'Ngoc Dao'], 1)
+     [u'Ngoc Dao', u'Takeharu Oshida'], 1)
 ]
