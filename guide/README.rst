@@ -1,5 +1,5 @@
-This Xitrum Guide is written using Sphinx:
-http://en.wikipedia.org/wiki/Sphinx_%28documentation_generator%29
+This Xitrum Guide is written using
+`Sphinx Documentation Generator <http://en.wikipedia.org/wiki/Sphinx_%28documentation_generator%29>`_.
 
 Install Sphinx
 --------------
