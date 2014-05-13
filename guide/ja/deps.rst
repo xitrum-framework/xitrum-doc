@@ -4,7 +4,7 @@
 Xitrumは以下のライブラリにが依存しています。
 つまりあなたのXitrumプロジェクトはこれらのライブラリを直接使用することができます。
 
-.. image:: ../deps.png
+.. image:: ../img/deps.png
 
 * `Scala <http://www.scala-lang.org/>`_:
   XitrumはScalaで書かれています。

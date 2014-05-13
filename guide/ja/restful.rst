@@ -243,7 +243,7 @@ Xitrumはアノテーション情報から `/xitrum/swagger.json <https://github
 XitrumはSwagger UI を内包しており、 ``/xitrum/swagger`` というパスにルーティングします。
 例: http://localhost:8000/xitrum/swagger.
 
-.. image:: ../swagger.png
+.. image:: ../img/swagger.png
 
 `サンプル <https://github.com/georgeOsdDev/xitrum-placeholder>`_ を見てみましょう
 

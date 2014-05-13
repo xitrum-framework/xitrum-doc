@@ -18,12 +18,12 @@ JVMのヒープメモリとCPUはAkkaのactor systemの各ノードから `NodeM
 
 ヒープメモリ:
 
-.. image:: ../metrics_heapmemory.png
+.. image:: ../img/metrics_heapmemory.png
 
 
 CPU: プロセッサ数とロードアベレージ
 
-.. image:: ../metrics_cpu.png
+.. image:: ../img/metrics_cpu.png
 
 アクションの実行ステータス
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -31,11 +31,11 @@ CPU: プロセッサ数とロードアベレージ
 Xitrumは各ノードにおける各アクションの実行ステータスを `Histogram <http://metrics.codahale.com/getting-started/#histograms>`_ として収集します。
 アクションの実行回数や実行時間についてをここから知ることができます。
 
-.. image:: ../metrics_action_count.png
+.. image:: ../img/metrics_action_count.png
 
 特定のアクションの最新の実行時間:
 
-.. image:: ../metrics_action_time.png
+.. image:: ../img/metrics_action_time.png
 
 カスタムメトリクスの収集
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -120,7 +120,7 @@ Jconsoleビューア
 
 `JVM Reporter <http://metrics.codahale.com/getting-started/#reporting-via-jmx>`_ を使用することも可能です。
 
-.. image:: ../metrics_jconsole.png
+.. image:: ../img/metrics_jconsole.png
 
 JVM Reporterの開始方法:
 

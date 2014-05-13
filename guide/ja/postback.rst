@@ -165,7 +165,7 @@ formエレメント以外に対しては、以下のように指定します:
 
 .. Use ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
 
-.. image:: ../ajax_loading.gif
+.. image:: ../img/ajax_loading.gif
 
 ``jsDefault`` (これは `xitrum.js <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_ をインクルードするための関数です) の後にテンプレートに次の1行を追加します。
 
