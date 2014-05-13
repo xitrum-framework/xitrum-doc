@@ -4,7 +4,7 @@ Dependencies
 This chapter lists all dependency libraries that Xitrum uses so that in
 your Xitrum project, you can use them directly if you want.
 
-.. image:: deps.png
+.. image:: ../img/deps.png
 
 * `Scala <http://www.scala-lang.org/>`_:
   Xitrum is written in Scala language.
