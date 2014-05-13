@@ -247,7 +247,7 @@ to generate interactive API documentation.
 Xitrum includes Swagger UI. Access it at the path ``/xitrum/swagger`` of your program,
 e.g. http://localhost:8000/xitrum/swagger.
 
-.. image:: swagger.png
+.. image:: ../img/swagger.png
 
 Let's see `an example <https://github.com/georgeOsdDev/xitrum-placeholder>`_:
 

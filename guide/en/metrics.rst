@@ -19,12 +19,12 @@ of Akka actor system from each node.
 
 Heap memory:
 
-.. image:: metrics_heapmemory.png
+.. image:: ../img/metrics_heapmemory.png
 
 
 CPU: Number of processors and load average
 
-.. image:: metrics_cpu.png
+.. image:: ../img/metrics_cpu.png
 
 Action metrics
 ~~~~~~~~~~~~~~
@@ -34,11 +34,11 @@ Xitrum measure actions' execution status of each node as a
 You can know how many times actions were executed, and execution time of
 non-async actions.
 
-.. image:: metrics_action_count.png
+.. image:: ../img/metrics_action_count.png
 
 Latest execution time of a specific action:
 
-.. image:: metrics_action_time.png
+.. image:: ../img/metrics_action_time.png
 
 Collect your custom metrics
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,7 +126,7 @@ Jconsole viewer
 
 You can see it with `JVM Reporter <http://metrics.codahale.com/getting-started/#reporting-via-jmx>`_.
 
-.. image:: metrics_jconsole.png
+.. image:: ../img/metrics_jconsole.png
 
 Start JMX reporter:
 

@@ -165,9 +165,9 @@ Display animation image while Ajax is loading
 
 If you want to display image like this while Ajax is loading
 
-.. Use ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
+.. Use ../img/ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
 
-.. image:: ajax_loading.gif
+.. image:: ../img/ajax_loading.gif
 
 please call this JS snippet after including ``jsDefaults`` (which includes
 `xitrum.js <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_)
