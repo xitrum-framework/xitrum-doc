@@ -73,7 +73,7 @@ Manipulate collected routes
 
 Xitrum automatically collect routes on startup.
 If you want to manipulate the routes, you can use
-`xitrum.Config.routes <http://ngocdaothanh.github.io/xitrum/api/index.html#xitrum.routing.RouteCollection>`_.
+`xitrum.Config.routes <http://xitrum-framework.github.io/xitrum/api/index.html#xitrum.routing.RouteCollection>`_.
 
 Example:
 
@@ -372,7 +372,7 @@ at the same domain name:
 You can config baseUrl in config/xitrum.conf.
 
 In your JS code, to have the correct URLs for Ajax requests, use ``withBaseUrl``
-in `xitrum.js <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_.
+in `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_.
 
 ::
 

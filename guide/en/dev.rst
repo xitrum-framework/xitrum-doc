@@ -31,7 +31,7 @@ Ignore files
 ------------
 
 Create a new project as described at the :doc:`tutorial </tutorial>`.
-These should be `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master/.gitignore>`_:
+These should be `ignored <https://github.com/xitrum-framework/xitrum-new/blob/master/.gitignore>`_:
 
 ::
 

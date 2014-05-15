@@ -35,7 +35,7 @@ To access ``textParams``:
 
 You can convert text params to other types (Int, Long, Fload, Double) automatically
 by using ``param[Int]("x")``, ``params[Int]("x")`` etc. To convert text params to more types,
-override `convertTextParam <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/scope/request/ParamAccess.scala>`_.
+override `convertTextParam <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/request/ParamAccess.scala>`_.
 
 For file upload: ``param[FileUpload]("x")``, ``params[FileUpload]("x")`` etc.
 For more details, see :doc:`Upload chapter </upload>`.
@@ -331,7 +331,7 @@ Display the username:
 Session store
 ~~~~~~~~~~~~~
 
-In `config/xitrum.conf <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/xitrum.conf>`_
+In `config/xitrum.conf <https://github.com/xitrum-framework/xitrum-new/blob/master/config/xitrum.conf>`_
 you can config the session store:
 
 It can be in one of the following 2 forms, depending on the session store you use:
@@ -370,11 +370,11 @@ And:
   }
 
 Server side session store is recommended when using
-`continuations-based actions <https://github.com/ngocdaothanh/xitrum-demos/blob/master/src/main/scala/demos/action/BoringGreeter.scala>`_,
+`continuations-based actions <https://github.com/xitrum-framework/xitrum-demos/blob/master/src/main/scala/demos/action/BoringGreeter.scala>`_,
 since serialized continuations are usually too big to store in cookies.
 
 If you run multiple servers in a cluster, you can
-`use Hazelcast to store cluster-aware sessions <https://github.com/ngocdaothanh/xitrum-hazelcast>`_,
+`use Hazelcast to store cluster-aware sessions <https://github.com/xitrum-framework/xitrum-hazelcast>`_,
 
 Note that when you use ``CookieSessionStore`` or Hazelcast, your session data must be
 serializable. If you must store unserializable things, use ``LruSessionStore``.
@@ -384,9 +384,9 @@ you must use a load balancer that supports sticky sessions.
 The three default session stores above are enough for normal cases.
 If you have a special case and want to implement your own session store,
 extend
-`SessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/session/SessionStore.scala>`_
+`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/session/SessionStore.scala>`_
 or
-`ServerSessionStore <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/session/ServerSessionStore.scala>`_
+`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/session/ServerSessionStore.scala>`_
 and implement the abstract methods.
 
 Store sessions on client side cookie when you can, because it's more scalable.

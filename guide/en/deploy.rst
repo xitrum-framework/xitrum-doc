@@ -44,7 +44,7 @@ copy additional directories or files change ``build.sbt`` like this:
 
   XitrumPackage.copy("config", "public, "script", "doc/README.txt", "etc.")
 
-See `xitrum-package homepage <https://github.com/ngocdaothanh/xitrum-package>`_
+See `xitrum-package homepage <https://github.com/xitrum-framework/xitrum-package>`_
 for more information.
 
 Install Oracle JDK on CentOS or Ubuntu manually

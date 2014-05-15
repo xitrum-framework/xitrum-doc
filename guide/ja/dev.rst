@@ -33,7 +33,7 @@ IntelliJを起動してインポートしてください。
 ignoreファイルの設定
 --------------------
 
-:doc:`チュートリアル </ja/tutorial>` に沿ってプロジェクトを作成した場合 `ignored <https://github.com/ngocdaothanh/xitrum-new/blob/master/.gitignore>`_ を参考にignoreファイルを作成してください。
+:doc:`チュートリアル </ja/tutorial>` に沿ってプロジェクトを作成した場合 `ignored <https://github.com/xitrum-framework/xitrum-new/blob/master/.gitignore>`_ を参考にignoreファイルを作成してください。
 
 ::
 

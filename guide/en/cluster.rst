@@ -11,7 +11,7 @@ behind a proxy server or load balancer:
                                 \ Xitrum instance 3
 
 Cache, sessions, and SockJS sessions can be clustered out of the box thanks to
-`Akka <http://akka.io/>`_ and `Hazelcast <https://github.com/ngocdaothanh/xitrum-hazelcast>`_.
+`Akka <http://akka.io/>`_ and `Hazelcast <https://github.com/xitrum-framework/xitrum-hazelcast>`_.
 
 For sessions, you can also :doc:`store them in cookie </scopes>`.
 

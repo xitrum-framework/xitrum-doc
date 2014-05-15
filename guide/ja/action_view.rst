@@ -145,7 +145,7 @@ scr/main/scalate/mypackage/MyAction.jade:
 * ``jsDefaults`` jQuery, jQuery Validate plugin等を含みます。<head>内に記載する必要があります。
 * ``jsForView`` ``jsAddToView`` によって追加されたjavascriptが出力されます。レイアウトの末尾に記載する必要があります。
 
-テンプレートファイル内では `xitrum.Action <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Action.scala>`_ クラスの全てのメソッドを使用することができます。
+テンプレートファイル内では `xitrum.Action <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/Action.scala>`_ クラスの全てのメソッドを使用することができます。
 また、`unescape` のようなScalateのユーティリティも使用することができます。Scalateのユーティリティについては `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_　を参照してください。
 
 Scalateテンプレートのデフォルトタイプは `Jade <http://scalate.fusesource.org/documentation/jade.html>`_ を使用しています。

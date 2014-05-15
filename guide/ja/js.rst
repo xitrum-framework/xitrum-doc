@@ -96,4 +96,4 @@ JSONはネストした構造が必要な設定ファイルを作成する場合�
 Knockout.jsプラグイン
 ---------------------
 
-参照 `xitrum-ko <https://github.com/ngocdaothanh/xitrum-ko>`_
+参照 `xitrum-ko <https://github.com/xitrum-framework/xitrum-ko>`_

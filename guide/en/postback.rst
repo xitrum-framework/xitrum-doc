@@ -170,7 +170,7 @@ If you want to display image like this while Ajax is loading
 .. image:: ../img/ajax_loading.gif
 
 please call this JS snippet after including ``jsDefaults`` (which includes
-`xitrum.js <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_)
+`xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_)
 in your view template:
 
 ::

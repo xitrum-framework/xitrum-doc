@@ -7,7 +7,7 @@ or respondView </action_view>` is called.
 Config template engine
 ----------------------
 
-In `config/xitrum.conf <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/xitrum.conf>`_,
+In `config/xitrum.conf <https://github.com/xitrum-framework/xitrum-new/blob/master/config/xitrum.conf>`_,
 template engine can be configured in one of the following 2 forms, depending on the engine you use:
 
 ::
@@ -25,7 +25,7 @@ Or:
     }
   }
 
-The default template engine is `xitrum-scalate <https://github.com/ngocdaothanh/xitrum-scalate>`_.
+The default template engine is `xitrum-scalate <https://github.com/xitrum-framework/xitrum-scalate>`_.
 
 Remove template engine
 ----------------------
@@ -41,7 +41,7 @@ Create your own template engine
 -------------------------------
 
 To create your own template engine, create a class that implements
-`xitrum.view.TemplateEngine <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/view/TemplateEngine.scala>`_.
+`xitrum.view.TemplateEngine <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/view/TemplateEngine.scala>`_.
 Then set your class in config/xitrum.conf.
 
-For an example, see `xitrum-scalate <https://github.com/ngocdaothanh/xitrum-scalate>`_.
+For an example, see `xitrum-scalate <https://github.com/xitrum-framework/xitrum-scalate>`_.

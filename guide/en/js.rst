@@ -93,4 +93,4 @@ See :doc:`Load config files </howto>`.
 Plugin for Knockout.js
 ----------------------
 
-See https://github.com/ngocdaothanh/xitrum-ko
+See https://github.com/xitrum-framework/xitrum-ko

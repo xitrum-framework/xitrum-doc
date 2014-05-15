@@ -96,7 +96,7 @@ You can reuse Xitrum handlers in your pipeline.
 Xitrum default handlers
 -----------------------
 
-See `xitrum.handler.DefaultHttpChannelPipelineFactory <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelPipelineFactory.scala>`_.
+See `xitrum.handler.DefaultHttpChannelPipelineFactory <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelPipelineFactory.scala>`_.
 
 Sharable handlers (same instances are shared among many connections) are put in
 ``DefaultHttpChannelPipelineFactory`` object so that they can be easily picked

@@ -28,7 +28,7 @@ From `a user <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576
   Wow, this is a really impressive body of work, arguably the most
   complete Scala framework outside of Lift (but much easier to use).
 
-  `Xitrum <http://ngocdaothanh.github.com/xitrum>`_ is truly a full stack web framework, all the bases are covered,
+  `Xitrum <http://xitrum-framework.github.com/xitrum>`_ is truly a full stack web framework, all the bases are covered,
   including wtf-am-I-on-the-moon extras like ETags, static file cache
   identifiers & auto-gzip compression. Tack on built-in JSON converter,
   before/around/after interceptors, request/session/cookie/flash scopes,
@@ -76,18 +76,18 @@ Features
 
 Xitrum tries to fill the spectrum between `Scalatra <https://github.com/scalatra/scalatra>`_
 and `Lift <http://liftweb.net/>`_: more powerful than Scalatra and easier to
-use than Lift. You can easily create both RESTful APIs and postbacks. `Xitrum <http://ngocdaothanh.github.com/xitrum>`_
+use than Lift. You can easily create both RESTful APIs and postbacks. `Xitrum <http://xitrum-framework.github.com/xitrum>`_
 is controller-first like Scalatra, not
 `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ like Lift.
 Most people are familliar with controller-first style.
 
-`Xitrum <http://ngocdaothanh.github.com/xitrum>`_ is `open source <https://github.com/ngocdaothanh/xitrum>`_, please join
+`Xitrum <http://xitrum-framework.github.com/xitrum>`_ is `open source <https://github.com/xitrum-framework/xitrum>`_, please join
 its `Google group <http://groups.google.com/group/xitrum-framework>`_.
 
 Samples
 -------
 
-* `Xitrum Demos <https://github.com/ngocdaothanh/xitrum-demos>`_
-* `Xitrum Modularized Demo <https://github.com/ngocdaothanh/xitrum-modularized-demo>`_
-* `Placeholder <https://github.com/georgeOsdDev/xitrum-placeholder>`_
-* `Comy <https://github.com/ngocdaothanh/comy>`_
+* `Xitrum Demos <https://github.com/xitrum-framework/xitrum-demos>`_
+* `Xitrum Modularized Demo <https://github.com/xitrum-framework/xitrum-modularized-demo>`_
+* `Placeholder <https://github.com/xitrum-framework/xitrum-placeholder>`_
+* `Comy <https://github.com/xitrum-framework/comy>`_

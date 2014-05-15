@@ -19,9 +19,9 @@ Xitrumは以下のライブラリにが依存しています。
 * `JSON4S <https://github.com/json4s/json4s>`_:
   JSONのパースと生成のために使用します。
   JSON4Sは `Paranamer <http://paranamer.codehaus.org/>`_ を使用しています。
-* `Sclasner <https://github.com/ngocdaothanh/sclasner>`_:
+* `Sclasner <https://github.com/xitrum-framework/sclasner>`_:
   クラスファイルとjarファイルからHTTPルートをスキャンするために使用しています。
-* `Scaposer <https://github.com/ngocdaothanh/scaposer>`_:
+* `Scaposer <https://github.com/xitrum-framework/scaposer>`_:
   国際化対応のために使用しています。
 * `Commons Lang <http://commons.apache.org/lang/>`_:
   JSONデータのエスケープに使用しています。
@@ -36,5 +36,5 @@ Xitrumは以下のライブラリにが依存しています。
   メトリクス取得のために使用しています。Metrics-Scalaは `Metrics <http://metrics.codahale.com/>`_ を元にしています。
 
 
-Xitrumはデフォルトで `xitrum-scalate <https://github.com/ngocdaothanh/xitrum-scalate>`_ をテンプレートエンジンとして使用しており、
+Xitrumはデフォルトで `xitrum-scalate <https://github.com/xitrum-framework/xitrum-scalate>`_ をテンプレートエンジンとして使用しており、
 それは `Scalate <http://scalate.fusesource.org/>`_ と `Scalamd <https://github.com/chirino/scalamd>`_ を使用しています。

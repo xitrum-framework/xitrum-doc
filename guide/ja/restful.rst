@@ -160,7 +160,7 @@ GET以外のリクエストに対して、Xitrumはデフォルトで `Cross-sit
     ...
   </html>
 
-`xitrum.js <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_ をテンプレート内で使用した場合、
+`xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_ をテンプレート内で使用した場合、
 このトークンは ``X-CSRF-Token`` ヘッダーとしてGETを除く全てのjQueryによるAjaxリクエストに含まれます。
 xitrum.jsは ``jsDefaults`` タグを使用することでロードされます。
 もし ``jsDefaults`` を使用したくない場合、以下のようにテンプレートに記載することですることでxitrum.jsをロードすることができます。
@@ -245,7 +245,7 @@ XitrumはSwagger UI を内包しており、 ``/xitrum/swagger`` というパス
 
 .. image:: ../img/swagger.png
 
-`サンプル <https://github.com/georgeOsdDev/xitrum-placeholder>`_ を見てみましょう
+`サンプル <https://github.com/xitrum-framework/xitrum-placeholder>`_ を見てみましょう
 
 ::
 

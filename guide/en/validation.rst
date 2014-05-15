@@ -68,11 +68,11 @@ Model example:
       Required.v("Body",  body)
   }
 
-See `xitrum.validator pakage <https://github.com/ngocdaothanh/xitrum/tree/master/src/main/scala/xitrum/validator>`_
+See `xitrum.validator pakage <https://github.com/xitrum-framework/xitrum/tree/master/src/main/scala/xitrum/validator>`_
 for the full list of default validators.
 
 Write custom validators
 -----------------------
 
-Extend `xitrum.validator.Validator <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/validator/Validator.scala>`_.
+Extend `xitrum.validator.Validator <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/validator/Validator.scala>`_.
 You only have to implement ``v`` method. This method should returns Some(error message) or None.

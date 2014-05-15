@@ -8,17 +8,17 @@ Xitrumプロジェクトの作成
 --------------------------
 
 新規のプロジェクトを作成するには
-`xitrum-new.zip <https://github.com/ngocdaothanh/xitrum-new/archive/master.zip>`_ をダウンロードしましょう。
+`xitrum-new.zip <https://github.com/xitrum-framework/xitrum-new/archive/master.zip>`_ をダウンロードしましょう。
 
 ::
 
-  wget -O xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
+  wget -O xitrum-new.zip https://github.com/xitrum-framework/xitrum-new/archive/master.zip
 
 または、
 
 ::
 
-  curl -L -o xitrum-new.zip https://github.com/ngocdaothanh/xitrum-new/archive/master.zip
+  curl -L -o xitrum-new.zip https://github.com/xitrum-framework/xitrum-new/archive/master.zip
 
 起動
 ----

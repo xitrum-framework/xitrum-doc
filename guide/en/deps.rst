@@ -19,9 +19,9 @@ your Xitrum project, you can use them directly if you want.
 * `JSON4S <https://github.com/json4s/json4s>`_:
   For parsing and generating JSON data. JSON4S depends on
   `Paranamer <http://paranamer.codehaus.org/>`_.
-* `Sclasner <https://github.com/ngocdaothanh/sclasner>`_:
+* `Sclasner <https://github.com/xitrum-framework/sclasner>`_:
   For scanning HTTP routes in action classes in .class and .jar files.
-* `Scaposer <https://github.com/ngocdaothanh/scaposer>`_:
+* `Scaposer <https://github.com/xitrum-framework/scaposer>`_:
   For i18n.
 * `Commons Lang <http://commons.apache.org/lang/>`_:
   For escaping JSON data.
@@ -31,5 +31,5 @@ your Xitrum project, you can use them directly if you want.
 * `SLF4J <http://www.slf4j.org/>`_, `Logback <http://logback.qos.ch/>`_:
   For logging.
 
-The default template engine in Xitrum is `xitrum-scalate <https://github.com/ngocdaothanh/xitrum-scalate>`_.
+The default template engine in Xitrum is `xitrum-scalate <https://github.com/xitrum-framework/xitrum-scalate>`_.
 It depends on `Scalate <http://scalate.fusesource.org/>`_ and `Scalamd <https://github.com/chirino/scalamd>`_.

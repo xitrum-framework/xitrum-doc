@@ -148,13 +148,13 @@ scr/main/scalate/mypackage/MyAction.jade:
       != jsForView
 
 * ``xitrumCss`` includes the default CSS for Xitrum. You may remove it if you
-  don't like.
+  don't like.xitrum-framework
 * ``jsDefaults`` includes jQuery, jQuery Validate plugin etc.
   should be put at layout's <head>.
 * ``jsForView`` contains JS fragments added by ``jsAddToView``,
   should be put at layout's bottom.
 
-In templates you can use all methods of the class `xitrum.Action <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Action.scala>`_.
+In templates you can use all methods of the class `xitrum.Action <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/Action.scala>`_.
 Also, you can use utility methods provided by Scalate like ``unescape``.
 See the `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_.
 

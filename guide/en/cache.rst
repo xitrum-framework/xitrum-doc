@@ -76,7 +76,7 @@ Cache object
 ------------
 
 You use methods in ``xitrum.Config.xitrum.cache``, it's an instance of
-`xitrum.Cache <http://ngocdaothanh.github.io/xitrum/api/index.html#xitrum.Cache>`_.
+`xitrum.Cache <http://xitrum-framework.github.io/xitrum/api/index.html#xitrum.Cache>`_.
 
 Without an explicit TTL (time to live):
 
@@ -140,7 +140,7 @@ Config
 The cache feature in Xitrum is provided by cache engines. You can choose the
 engine that suits your need.
 
-In `config/xitrum.conf <https://github.com/ngocdaothanh/xitrum-new/blob/master/config/xitrum.conf>`_,
+In `config/xitrum.conf <https://github.com/xitrum-framework/xitrum-new/blob/master/config/xitrum.conf>`_,
 you can config cache engine in one of the following 2 forms, depending on the engine you choose:
 
 ::
@@ -169,10 +169,10 @@ Xitrum provides this one:
     }
   }
 
-If you have a cluster of servers, you can use `Hazelcast <https://github.com/ngocdaothanh/xitrum-hazelcast>`_.
+If you have a cluster of servers, you can use `Hazelcast <https://github.com/xitrum-framework/xitrum-hazelcast>`_.
 
 If you want to create your own cache engine, implement the
-`interface <https://github.com/ngocdaothanh/xitrum/blob/master/src/main/scala/xitrum/Cache.scala>`_
+`interface <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/Cache.scala>`_
 ``xitrum.Cache``.
 
 How cache works

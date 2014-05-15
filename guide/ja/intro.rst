@@ -1,7 +1,7 @@
 Xitrum ガイド日本語版
 =====================
 
-このドキュメントは `Xitrum Guide <http://ngocdaothanh.github.io/xitrum/guide/>`_ の日本語翻訳版です。
+このドキュメントは `Xitrum Guide <http://xitrum-framework.github.io/xitrum/guide/>`_ の日本語翻訳版です。
 
 
 
@@ -69,16 +69,16 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
 
 Xitrumは `Scalatra <https://github.com/scalatra/scalatra>`_ よりパワフルに、
 `Lift <http://liftweb.net/>`_ より簡単であることで両者のスペクトルを満たすことを目的としています。
-`Xitrum <http://ngocdaothanh.github.com/xitrum>`_ はScalatraのようにcontroller-firstであり、Liftのような `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ ではありません。
+`Xitrum <http://xitrum-framework.github.com/xitrum>`_ はScalatraのようにcontroller-firstであり、Liftのような `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ ではありません。
 多くの開発者にとって馴染み部会controller-firstスタイルです。
 
-`Xitrum <http://ngocdaothanh.github.com/xitrum>`_ は `オープンソース <https://github.com/ngocdaothanh/xitrum>`_ プロジェクトです。
+`Xitrum <http://xitrum-framework.github.com/xitrum>`_ は `オープンソース <https://github.com/xitrum-framework/xitrum>`_ プロジェクトです。
 `Google group <http://groups.google.com/group/xitrum-framework>`_. のコミュニティに参加してみてください。
 
 サンプル
 --------
 
-* `Xitrum Demos <https://github.com/ngocdaothanh/xitrum-demos>`_
-* `Xitrum Modularized Demo <https://github.com/ngocdaothanh/xitrum-modularized-demo>`_
-* `Placeholder <https://github.com/georgeOsdDev/xitrum-placeholder>`_
-* `Comy <https://github.com/ngocdaothanh/comy>`_
+* `Xitrum Demos <https://github.com/xitrum-framework/xitrum-demos>`_
+* `Xitrum Modularized Demo <https://github.com/xitrum-framework/xitrum-modularized-demo>`_
+* `Placeholder <https://github.com/xitrum-framework/xitrum-placeholder>`_
+* `Comy <https://github.com/xitrum-framework/comy>`_
