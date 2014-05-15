@@ -23,15 +23,18 @@ deploy to production server:
 ::
 
   target/xitrum
-    bin
-      runner
-      runner.bat
     config
       [config files]
     public
       [static public files]
     lib
       [dependencies and packaged project file]
+    script
+      runner
+      runner.bat
+      scalive
+      scalive.jar
+      scalive.bat
 
 Customize xitrum-package
 ------------------------
@@ -46,6 +49,24 @@ copy additional directories or files change ``build.sbt`` like this:
 
 See `xitrum-package homepage <https://github.com/xitrum-framework/xitrum-package>`_
 for more information.
+
+Connect a Scala console to a running JVM process
+------------------------------------------------
+
+In production environment, without prior setup, you can use
+`Scalive <https://github.com/xitrum-framework/scalive>`_
+to connect a Scala console to a running JVM process for live debugging.
+
+Run ``scalive`` in the script directory:
+
+::
+
+  script
+    runner
+    runner.bat
+    scalive
+    scalive.jar
+    scalive.bat
 
 Install Oracle JDK on CentOS or Ubuntu manually
 -----------------------------------------------
