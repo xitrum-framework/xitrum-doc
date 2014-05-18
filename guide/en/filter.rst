@@ -1,5 +1,5 @@
-Filters
-=======
+Action filters
+==============
 
 Before filters
 --------------
@@ -63,7 +63,8 @@ Around filters
       val begin = System.currentTimeMillis()
       action()
       val end   = System.currentTimeMillis()
-      log.info("The action took " + (end - begin) + " [ms]")
+      val dt    = end - begin
+      log.info(s"The action took $dt [ms]")
     }
 
     def execute() {
@@ -73,15 +74,15 @@ Around filters
 
 If there are many around filters, they will be nested.
 
-Priority
---------
+Execution order of filters
+--------------------------
 
-* Before filters are run first, then around filters, then after filters
+* Before filters are run first, then around filters, then after filters.
 * If one of the before filters returns false, the rest (including around and
-  after filters) will not be run
-* After filters are always run if at least an around filter is run
+  after filters) will not be run.
+* After filters are always run if at least an around filter is run.
 * If an around filter decide not to call ``action``, the inner nested
-  around filters will not be run
+  around filters will not be run.
 
 ::
 
