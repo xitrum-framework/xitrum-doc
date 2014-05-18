@@ -32,7 +32,7 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
   XitrumはWebアプリケーションフレームワークの基本的な機能を全て満たしている本物のフルスタックのWebフレームワークである。
   とてもうれしいことにそこには、ETag、静的ファイルキャッシュ、自動gzip圧縮があり、
   組込みのJSONのコンバータ、インターセプタ、リクエスト/セッション/クッキー/フラッシュの各種スコープ、
-  サーバー・クライアントにおける統合的バリデーション、内蔵キャッシュ(`Hazelcast <http://www.hazelcast.com/>`_)、i18N、そしてNettyが組み込まれている。
+  サーバー・クライアントにおける統合的バリデーション、内蔵キャッシュ(`Hazelcast <http://www.hazelcast.org/>`_)、i18N、そしてNettyが組み込まれている。
   これらの機能を直ぐに使うことができる。ワオ。
 
 
@@ -58,7 +58,7 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
   `Swagger Doc <http://swagger.wordnik.com/>`_ を使用したルーティングに関するドキュメント作成も可能となります。
 * Viewは独立した `Scalate <http://scalate.fusesource.org/>`_ テンプレートとして、
   またはScalaによるインラインXMLとして、どちらも型安全に記述することが可能です。
-* クッキーによる（よりスケーラブルな）、`Hazelcast <http://www.hazelcast.com/>`_ クラスターによる(よりセキュアな)セッション管理。
+* クッキーによる（よりスケーラブルな）、`Hazelcast <http://www.hazelcast.org/>`_ クラスターによる(よりセキュアな)セッション管理。
   Hazelcastは（とても早くて、簡単に）プロセス間分散キャッシュも提供してくれます。
   このため別のキャッシュサーバーを用意する必要はなくなります。これはAkkaのpubsub機能にも言えることです。
 * `jQuery Validation <http://docs.jquery.com/Plugins/validation>`_ によるブラウザー、サーバーサイド双方でのバリデーション。

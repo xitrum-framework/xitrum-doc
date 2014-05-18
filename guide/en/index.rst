@@ -29,7 +29,7 @@ Xitrum Guide
    i18n
    deploy
    cluster
-   howto
    handler
    metrics
+   howto
    deps

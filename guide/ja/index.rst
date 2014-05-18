@@ -19,5 +19,6 @@ Xitrum ガイド
    xml
    js
    flash
+   cluster
    metrics
    deps
