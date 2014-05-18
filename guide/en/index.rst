@@ -33,4 +33,3 @@ Xitrum Guide
    handler
    metrics
    deps
-   other_lang
