@@ -18,5 +18,6 @@ Xitrum ガイド
    postback
    xml
    js
-   deps
+   flash
    metrics
+   deps
