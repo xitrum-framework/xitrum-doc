@@ -11,16 +11,20 @@ Xitrum ガイド日本語版
 ::
 
   +--------------------+
-  |      Your app      |
+  |      Clients       |
   +--------------------+
-  |    Xitrum fusion   |
-  | +----------------+ |
-  | | Web framework  | |  <-- Akka cluster --> Other instances
-  | |----------------| |
-  | | HTTP(S) Server | |
-  | +----------------+ |
+            |
   +--------------------+
   |       Netty        |
+  +--------------------+
+  |       Xitrum       |
+  | +----------------+ |
+  | | HTTP(S) Server | |
+  | |----------------| |
+  | | Web framework  | |  <- Akka, Hazelcast -> Other instances
+  | +----------------+ |
+  +--------------------+
+  |      Your app      |
   +--------------------+
 
 Xitrumは `Netty <http://netty.io/>`_ と `Akka <http://akka.io/>`_ をベースに構築された非同期でスケーラブルなHTTP(S) WEBフレームワークです。
