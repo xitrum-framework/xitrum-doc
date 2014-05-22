@@ -38,7 +38,7 @@ Other dependencies:
 * `Twitter Chill <https://github.com/twitter/chill>`_:
   For serializing and deserializing cookies and sessions.
   Chill is based on `Kryo <http://code.google.com/p/kryo/>`_.
-* `SLF4J <http://www.slf4j.org/>`_, `Logback <http://logback.qos.ch/>`_:
+* `SLF4S <http://slf4s.org/>`_, `Logback <http://logback.qos.ch/>`_:
   For logging.
 
 `Xitrum new project skeleton <https://github.com/xitrum-framework/xitrum-new>`_

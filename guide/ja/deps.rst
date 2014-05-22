@@ -28,7 +28,7 @@ Xitrumは以下のライブラリにが依存しています。
 * `Twitter Chill <https://github.com/twitter/chill>`_:
   クッキーとセッションのシリアライズ・デシリアライズに使用しています。
   Chillは `Kryo <http://code.google.com/p/kryo/>`_ を元にしています。
-* `SLF4J <http://www.slf4j.org/>`_ と `Logback <http://logback.qos.ch/>`_:
+* `SLF4S <http://slf4s.org/>`_ と `Logback <http://logback.qos.ch/>`_:
   ロギングのために使用しています。
 * `Schwatcher <https://github.com/lloydmeta/schwatcher/>`_:
   ファイルモニターのために使用しています。
