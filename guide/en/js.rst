@@ -20,7 +20,7 @@ In your action, call ``jsAddToView`` (multiple times if you need):
       ...
       jsAddToView("alert('Hello again')")
       ...
-      respondView(<p>My view</p>)
+      respondInlineView(<p>My view</p>)
     }
   }
 

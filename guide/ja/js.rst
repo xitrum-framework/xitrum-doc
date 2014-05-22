@@ -22,7 +22,7 @@ JavaScriptフラグメントをViewに追加する
       ...
       jsAddToView("alert('Hello again')")
       ...
-      respondView(<p>My view</p>)
+      respondInlineView(<p>My view</p>)
     }
   }
 

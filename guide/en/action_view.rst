@@ -87,8 +87,8 @@ Respond to client
 
 From an action, to respond something to client, use:
 
-* ``respondView``: responds view template with or without layout
-* ``respondInlineView``: responds with or without layout
+* ``respondView``: responds view template file, with or without layout
+* ``respondInlineView``: responds embedded template (not separate template file), with or without layout
 * ``respondText("hello")``: responds a string without layout
 * ``respondHtml("<html>...</html>")``: same as above, with content type set to "text/html"
 * ``respondJson(List(1, 2, 3))``: converts Scala object to JSON object then responds
@@ -333,7 +333,7 @@ scr/main/scalate/mypackage/MyAction.jade:
   a(href={url}) Path to the current action
   p= currentAction.asInstanceOf[MyAction].hello("World")
 
-Without separate layout file
+Layout without separate file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 AppAction.scala
@@ -360,7 +360,7 @@ AppAction.scala
     )
   }
 
-Pass layout directly in respondView
+Pass layout directly to respondView
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -396,7 +396,7 @@ Normally, you write view in a Scalate file. You can also write it directly:
   @GET("myAction")
   class MyAction extends Action {
     def execute() {
-      val s = "World"  // Will be automatically escaped
+      val s = "World"  // Will be automatically HTML-escaped
       respondInlineView(
         <p>Hello <em>{s}</em>!</p>
       )
@@ -418,3 +418,70 @@ If MyAction is the current action, you can skip it:
 ::
 
   renderFragment("myfragment")
+
+Respond view of other action
+----------------------------
+
+Use the syntax ``respondView[ClassName]()``:
+
+::
+
+  package mypackage
+
+  import xitrum.Action
+  import xitrum.annotation.{GET, POST}
+
+  @GET("login")
+  class LoginFormAction extends Action {
+    def execute() {
+      // Respond scr/main/scalate/mypackage/LoginFormAction.jade
+      respondView()
+    }
+  }
+
+  @POST("login")
+  class DoLoginAction extends Action {
+    def execute() {
+      val authenticated = ...
+      if (authenticated)
+        redirectTo[HomeAction]()
+      else
+        // Reuse the view of LoginFormAction
+        respondView[LoginFormAction]()
+    }
+  }
+
+One action - multiple views
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to have multiple views for one:
+
+::
+
+  package mypackage
+
+  import xitrum.Action
+  import xitrum.annotation.GET
+
+  // These are non-routed actions, for mapping to view template files:
+  // scr/main/scalate/mypackage/HomeAction_NormalUser.jade
+  // scr/main/scalate/mypackage/HomeAction_Moderator.jade
+  // scr/main/scalate/mypackage/HomeAction_Admin.jade
+  trait HomeAction_NormalUser extends Action
+  trait HomeAction_Moderator  extends Action
+  trait HomeAction_Admin      extends Action
+
+  @GET("")
+  class HomeAction extends Action {
+    def execute() {
+      val userType = ...
+      userType match {
+        case NormalUser => respondView[HomeAction_NormalUser]()
+        case Moderator  => respondView[HomeAction_Moderator]()
+        case Admin      => respondView[HomeAction_Admin]()
+      }
+    }
+  }
+
+Using addional non-routed actions like above seems to be tedious, but this way
+your program will be typesafe.

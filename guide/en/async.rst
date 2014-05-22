@@ -3,8 +3,8 @@ Async response
 
 List of normal responding methods:
 
-* ``respondView``: responds view template with or without layout
-* ``respondInlineView``: responds with or without layout
+* ``respondView``: responds view template file, with or without layout
+* ``respondInlineView``: responds embedded template (not separate template file), with or without layout
 * ``respondText("hello")``: responds a string without layout
 * ``respondHtml("<html>...</html>")``: same as above, with content type set to "text/html"
 * ``respondJson(List(1, 2, 3))``: converts Scala object to JSON object then responds

@@ -84,8 +84,8 @@ actorインスタンスはリクエストが発生時に生成されます。こ
 
 Actionからクライアントへレスポンスを返すには以下のメソッドを使用します
 
-* ``respondView``: レイアウトファイルを使用または使用せずに、Viewを送信します
-* ``respondInlineView``: レイアウトファイルを使用せずに、直接Viewを送信します
+* ``respondView``: レイアウトファイルを使用または使用せずに、Viewテンプレートファイルを送信します
+* ``respondInlineView``: レイアウトファイルを使用または使用せずに、直接Viewを送信します
 * ``respondText("hello")``: レイアウトファイルを使用せずに文字列を送信します
 * ``respondHtml("<html>...</html>")``: contentTypeを"text/html"として文字列を送信します
 * ``respondJson(List(1, 2, 3))``: ScalaオブジェクトをJSONに変換し、contentTypeを"application/json"として送信します
@@ -384,7 +384,7 @@ respondInlineView
   @GET("myAction")
   class MyAction extends Action {
     def execute() {
-      val s = "World"  // Will be automatically escaped
+      val s = "World"  // Will be automatically HTML-escaped
       respondInlineView(
         <p>Hello <em>{s}</em>!</p>
       )
