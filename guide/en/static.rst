@@ -96,8 +96,8 @@ don't have to set yourself.
 Serve resource files in classpath with WebJars convention
 ---------------------------------------------------------
 
-Using WebJars
-~~~~~~~~~~~~~
+WebJars
+~~~~~~~
 
 `WebJars <http://www.webjars.org/>`_ provides a lot of web libraries that you can
 delare as a dependency in your project.
