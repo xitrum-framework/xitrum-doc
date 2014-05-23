@@ -54,6 +54,19 @@ includes these tools:
 Related projects
 ----------------
 
+Demos:
+
+* `xitrum-new <https://github.com/xitrum-framework/xitrum-new>`_:
+  Xitrum new project skeleton.
+* `xitrum-demos <https://github.com/xitrum-framework/xitrum-demos>`_:
+  Demos features in Xitrum.
+* `xitrum-placeholder <https://github.com/xitrum-framework/xitrum-placeholder>`_:
+  Demos APIs that return images.
+* `comy <https://github.com/xitrum-framework/comy>`_:
+  Demos a simple URL shortening service.
+* `xitrum-multimodule-demo <https://github.com/xitrum-framework/xitrum-multimodule-demo>`_:
+  Example about creating multimodule `SBT <http://www.scala-sbt.org/>`_ project.
+
 Plugins:
 
 * `xitrum-scalate <https://github.com/xitrum-framework/xitrum-scalate>`_:
@@ -67,19 +80,6 @@ Plugins:
   For clustering cache and server side sessions.
 * `xitrum-ko <https://github.com/xitrum-framework/xitrum-ko>`_:
   Provides some convenient helpers for `Knockoutjs <http://knockoutjs.com/>`_.
-
-Demos:
-
-* `xitrum-new <https://github.com/xitrum-framework/xitrum-new>`_:
-  Xitrum new project skeleton.
-* `xitrum-demos <https://github.com/xitrum-framework/xitrum-demos>`_:
-  Demos features in Xitrum.
-* `xitrum-placeholder <https://github.com/xitrum-framework/xitrum-placeholder>`_:
-  Demos APIs that return images.
-* `comy <https://github.com/xitrum-framework/comy>`_:
-  Demos a simple URL shortening service.
-* `xitrum-multimodule-demo <https://github.com/xitrum-framework/xitrum-multimodule-demo>`_:
-  Example about creating multimodule `SBT <http://www.scala-sbt.org/>`_ project.
 
 Other projects:
 

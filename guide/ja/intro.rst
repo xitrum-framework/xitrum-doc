@@ -1,12 +1,10 @@
 Xitrum ガイド日本語版
-=====================
+===================
 
 このドキュメントは `Xitrum Guide <http://xitrum-framework.github.io/xitrum/guide/>`_ の日本語翻訳版です。
 
-
-
 はじめに
-========
+=======
 
 ::
 
@@ -38,7 +36,6 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
   組込みのJSONのコンバータ、インターセプタ、リクエスト/セッション/クッキー/フラッシュの各種スコープ、
   サーバー・クライアントにおける統合的バリデーション、内蔵キャッシュ(`Hazelcast <http://www.hazelcast.org/>`_)、i18N、そしてNettyが組み込まれている。
   これらの機能を直ぐに使うことができる。ワオ。
-
 
 特徴
 ----
@@ -76,13 +73,22 @@ Xitrumは `Scalatra <https://github.com/scalatra/scalatra>`_ よりパワフル�
 `Xitrum <http://xitrum-framework.github.com/xitrum>`_ はScalatraのようにcontroller-firstであり、Liftのような `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ ではありません。
 多くの開発者にとって馴染み部会controller-firstスタイルです。
 
+:doc:`関係プロジェクト </deps>` デモやプラグインなどのプロジェクト一覧をご覧ください。
+
+貢献者
+-----
+
 `Xitrum <http://xitrum-framework.github.com/xitrum>`_ は `オープンソース <https://github.com/xitrum-framework/xitrum>`_ プロジェクトです。
 `Google group <http://groups.google.com/group/xitrum-framework>`_. のコミュニティに参加してみてください。
 
-サンプル
---------
+貢献者の一覧が`最初の貢献 <https://github.com/xitrum-framework/xitrum/graphs/contributors>`_の順番で記載されています:
 
-* `Xitrum Demos <https://github.com/xitrum-framework/xitrum-demos>`_
-* `Xitrum Modularized Demo <https://github.com/xitrum-framework/xitrum-modularized-demo>`_
-* `Placeholder <https://github.com/xitrum-framework/xitrum-placeholder>`_
-* `Comy <https://github.com/xitrum-framework/comy>`_
+(*): 現在アクティブなコアメンバー
+
+* `Ngoc Dao (*) <https://github.com/ngocdaothanh>`_
+* `Linh Tran <https://github.com/alide>`_
+* `James Earl Douglas <https://github.com/JamesEarlDouglas>`_
+* `Aleksander Guryanov <https://github.com/caiiiycuk>`_
+* `Takeharu Oshida (*) <https://github.com/georgeOsdDev>`_
+* `Nguyen Kim Kha <https://github.com/kimkha>`_
+* `Michael Murray <https://github.com/murz>`_

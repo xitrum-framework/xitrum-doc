@@ -81,13 +81,23 @@ is controller-first like Scalatra, not
 `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ like Lift.
 Most people are familliar with controller-first style.
 
-`Xitrum <http://xitrum-framework.github.com/xitrum>`_ is `open source <https://github.com/xitrum-framework/xitrum>`_, please join
-its `Google group <http://groups.google.com/group/xitrum-framework>`_.
+See :doc:`related projects </deps>` for a list of demos, plugins etc.
 
-Samples
--------
+Contributors
+------------
 
-* `Xitrum Demos <https://github.com/xitrum-framework/xitrum-demos>`_
-* `Xitrum Modularized Demo <https://github.com/xitrum-framework/xitrum-modularized-demo>`_
-* `Placeholder <https://github.com/xitrum-framework/xitrum-placeholder>`_
-* `Comy <https://github.com/xitrum-framework/comy>`_
+`Xitrum <http://xitrum-framework.github.com/xitrum>`_ is `open source <https://github.com/xitrum-framework/xitrum>`_,
+please join its `Google group <http://groups.google.com/group/xitrum-framework>`_.
+
+Contributors are listed in the order of their
+`first contribution <https://github.com/xitrum-framework/xitrum/graphs/contributors>`_.
+
+(*): Currently active core members.
+
+* `Ngoc Dao (*) <https://github.com/ngocdaothanh>`_
+* `Linh Tran <https://github.com/alide>`_
+* `James Earl Douglas <https://github.com/JamesEarlDouglas>`_
+* `Aleksander Guryanov <https://github.com/caiiiycuk>`_
+* `Takeharu Oshida (*) <https://github.com/georgeOsdDev>`_
+* `Nguyen Kim Kha <https://github.com/kimkha>`_
+* `Michael Murray <https://github.com/murz>`_
