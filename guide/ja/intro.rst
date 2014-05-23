@@ -73,7 +73,7 @@ Xitrumは `Scalatra <https://github.com/scalatra/scalatra>`_ よりパワフル�
 `Xitrum <http://xitrum-framework.github.com/xitrum>`_ はScalatraのようにcontroller-firstであり、Liftのような `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ ではありません。
 多くの開発者にとって馴染み部会controller-firstスタイルです。
 
-:doc:`関係プロジェクト </deps>` デモやプラグインなどのプロジェクト一覧をご覧ください。
+:doc:`関係プロジェクト </deps>` サンプルやプラグインなどのプロジェクト一覧をご覧ください。
 
 貢献者
 -----
