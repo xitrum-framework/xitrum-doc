@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Xitrum'
+project = u'Xitrum Scala Web Framework Guide'
 copyright = u'2010, Ngoc Dao'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -178,7 +178,7 @@ htmlhelp_basename = 'xitrumdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'xitrum.tex', u'Xitrum Guide',
+  ('index', 'xitrum.tex', u'Xitrum Scala Web Framework Guide',
    u'Ngoc Dao, Takeharu Oshida', 'manual'),
 ]
 
@@ -211,6 +211,6 @@ latex_preamble = '\setcounter{tocdepth}{4}'
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'xitrum', u'Xitrum Guide',
+    ('index', 'xitrum', u'Xitrum Scala Web Framework Guide',
      [u'Ngoc Dao', u'Takeharu Oshida'], 1)
 ]
