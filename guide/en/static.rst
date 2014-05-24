@@ -30,12 +30,20 @@ URLs to them are in the form:
 
   /img/myimage.png
   /css/mystyle.css
+  /css/mystyle.min.css
 
 To refer to them:
 
 ::
 
   <img src={publicUrl("img/myimage.png")} />
+
+To serve normal file in development environment and its minimized version in
+production environment (mystyle.css and mystyle.min.css as above):
+
+::
+
+  <img src={publicUrl("css", "mystyle.css", "mystyle.min.css")} />
 
 To send a static file on disk from your action, use ``respondFile``.
 

@@ -30,12 +30,20 @@
 
   /img/myimage.png
   /css/mystyle.css
+  /css/mystyle.min.css
 
 プログラムからそのURLを参照するには以下のように指定します:
 
 ::
 
   <img src={publicUrl("img/myimage.png")} />
+
+開発環境で普通ファイルをレスポンスし、本番環境でその圧縮ファイルをレスポンスには(例: 上記の
+mystyle.cssとmystyle.min.css):
+
+::
+
+  <img src={publicUrl("css", "mystyle.css", "mystyle.min.css")} />
 
 ディスク上の静的ファイルをアクションでレスポンスするには ``respondFile`` を使用します。
 
