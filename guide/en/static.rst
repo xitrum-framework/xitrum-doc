@@ -110,30 +110,33 @@ WebJars
 `WebJars <http://www.webjars.org/>`_ provides a lot of web libraries that you can
 delare as a dependency in your project.
 
-For example, if you want to use `Bootstrap <http://getbootstrap.com/>`_, declare
-in your project's ``build.sbt`` file:
+For example, if you want to use `Underscore.js <http://underscorejs.org/>`_,
+declare in your project's ``build.sbt`` like this:
 
 ::
 
-  libraryDependencies += "org.webjars" % "bootstrap" % "3.1.1-1"
+  libraryDependencies += "org.webjars" % "underscorejs" % "1.6.0-3"
 
 Then in your .jade template file:
 
 ::
 
-  link(type="text/css" rel="stylesheet" media="all" href={webJarsUrl("bootstrap/3.1.1/css", "bootstrap.css", "bootstrap.min.css")})
+  script(src={webJarsUrl("underscorejs/1.6.0", "underscore.js", "underscore-min.js")})
 
-In development environment, the URL will be:
+Xitrum will automatically use ``underscore.js`` for development environment and
+``underscore-min.js`` for production environment.
 
-::
-
-  /webjars/bootstrap/3.1.1/css/bootstrap.css?A8vF3AtbEXJkrnRRXNP7dg
-
-In production environment, the URL will be:
+The result will look like this:
 
 ::
 
-  /webjars/bootstrap/3.1.1/css/bootstrap.min.css?inRCymvt1izsSIEEC5qegw
+  /webjars/underscorejs/1.6.0/underscore.js?XOKgP8_KIpqz9yUqZ1aVzw
+
+If you want to use the same file for both environments:
+
+::
+
+  script(src={webJarsUrl("underscorejs/1.6.0/underscore.js")})
 
 Save resource file inside .jar file with WebJars convention
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -173,8 +176,8 @@ Ex:
 ::
 
   respondResource("akka/actor/Actor.class")
-  respondResource("META-INF/resources/webjars/bootstrap/3.1.1/css/bootstrap.css")
-  respondResource("META-INF/resources/webjars/bootstrap/3.1.1/css/bootstrap.min.css")
+  respondResource("META-INF/resources/webjars/underscorejs/1.6.0/underscore.js")
+  respondResource("META-INF/resources/webjars/underscorejs/1.6.0/underscore-min.js")
 
 Client side cache with ETag and max-age
 ---------------------------------------
