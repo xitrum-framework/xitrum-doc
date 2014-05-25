@@ -85,7 +85,7 @@ actorインスタンスはリクエストが発生時に生成されます。こ
 Actionからクライアントへレスポンスを返すには以下のメソッドを使用します
 
 * ``respondView``: レイアウトファイルを使用または使用せずに、Viewテンプレートファイルを送信します
-* ``respondInlineView``: レイアウトファイルを使用または使用せずに、直接Viewを送信します
+* ``respondInlineView``: レイアウトファイルを使用または使用せずに、インライン記述されたテンプレートを送信します
 * ``respondText("hello")``: レイアウトファイルを使用せずに文字列を送信します
 * ``respondHtml("<html>...</html>")``: contentTypeを"text/html"として文字列を送信します
 * ``respondJson(List(1, 2, 3))``: ScalaオブジェクトをJSONに変換し、contentTypeを"application/json"として送信します
@@ -98,7 +98,7 @@ Actionからクライアントへレスポンスを返すには以下のメソ�
 * ``respondEventSource("data", "event")``: チャンクレスポンスを送信します
 
 テンプレートViewファイルのレスポンス
---------------------------------
+---------------------------------------------------------
 
 全てのActionは `Scalate <http://scalate.fusesource.org/>`_ のテンプレートViewファイルと関連付ける事ができます。
 上記のレスポンスメソッドを使用して直接レスポンスを送信する代わりに独立したViewファイルを使用することができます。
@@ -407,3 +407,68 @@ scr/main/scalate/mypackage/MyAction/_myfragment.jade:
 ::
 
   renderFragment("myfragment")
+
+別のアクションに紐付けられたViewをレスポンスする場合
+--------------------------------------------------------------------------------
+
+次のシンタックスを使用します ``respondView[ClassName]()``:
+
+::
+
+  package mypackage
+
+  import xitrum.Action
+  import xitrum.annotation.{GET, POST}
+
+  @GET("login")
+  class LoginFormAction extends Action {
+    def execute() {
+      // Respond scr/main/scalate/mypackage/LoginFormAction.jade
+      respondView()
+    }
+  }
+
+  @POST("login")
+  class DoLoginAction extends Action {
+    def execute() {
+      val authenticated = ...
+      if (authenticated)
+        redirectTo[HomeAction]()
+      else
+        // Reuse the view of LoginFormAction
+        respondView[LoginFormAction]()
+    }
+  }
+
+ひとつのアクションに複数のViweを紐付ける方法
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  package mypackage
+
+  import xitrum.Action
+  import xitrum.annotation.GET
+
+  // These are non-routed actions, for mapping to view template files:
+  // scr/main/scalate/mypackage/HomeAction_NormalUser.jade
+  // scr/main/scalate/mypackage/HomeAction_Moderator.jade
+  // scr/main/scalate/mypackage/HomeAction_Admin.jade
+  trait HomeAction_NormalUser extends Action
+  trait HomeAction_Moderator  extends Action
+  trait HomeAction_Admin      extends Action
+
+  @GET("")
+  class HomeAction extends Action {
+    def execute() {
+      val userType = ...
+      userType match {
+        case NormalUser => respondView[HomeAction_NormalUser]()
+        case Moderator  => respondView[HomeAction_Moderator]()
+        case Admin      => respondView[HomeAction_Admin]()
+      }
+    }
+  }
+
+上記のようにルーティングとは関係ないアクションを記述することは一見して面倒ですが、
+この方法はプログラムをタイプセーフに保つことができます。
