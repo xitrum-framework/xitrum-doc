@@ -38,14 +38,14 @@
 
   <img src={publicUrl("img/myimage.png")} />
 
-開発環境で普通ファイルをレスポンスし、本番環境でその圧縮ファイルをレスポンスには(例: 上記の
+開発環境で非圧縮ファイルをレスポンスし、本番環境でその圧縮ファイルをレスポンスするには(例: 上記の
 mystyle.cssとmystyle.min.css):
 
 ::
 
   <img src={publicUrl("css", "mystyle.css", "mystyle.min.css")} />
 
-ディスク上の静的ファイルをアクションでレスポンスするには ``respondFile`` を使用します。
+ディスク上の静的ファイルをアクションからレスポンスするには ``respondFile`` を使用します。
 
 ::
 
@@ -101,33 +101,84 @@ Xitrumは ``public`` ディレクトリ内に、``public/foo/bar/index.html`` �
 HTTPレスポンスステータスは、アノテーションにより自動的に404または500がセットされるため、
 あなたのプログラム上でセットする必要はありません。
 
-クラスパス上のリソースファイルの配信
-------------------------------------
+WebJarによるクラスパス上のリソースファイルの配信
+------------------------------------------------------------------------
 
-もしあなたがライブラリ開発者で、クラスパス上の.jarファイル内に存在するmyimage.pngというファイルを使用したい場合、
-.jarファイルを ``public`` ディレクトリに配置します。
+WebJars
+~~~~~~~
+
+`WebJars <http://www.webjars.org/>`_ はフロントエンドに関わるのライブラリを多く提供しています。
+Xitrumプロジェクトではそれらを依存ライブラリとして利用することができます。
+
+例えば `Underscore.js <http://underscorejs.org/>`_ を使用する場合、
+プロジェクトの ``build.sbt`` に以下のように記述します。
 
 ::
 
-  public/my_lib/img/myimage.png
+  libraryDependencies += "org.webjars" % "underscorejs" % "1.6.0-3"
+
+そして.jadeファイルからは以下のように参照します:
+
+::
+
+  script(src={webJarsUrl("underscorejs/1.6.0", "underscore.js", "underscore-min.js")})
+
+開発環境では  ``underscore.js`` が、 本番環境では　``underscore-min.js`` が、
+Xitrumによって自動的に選択されます。
+
+コンパイル結果は以下のようになります:
+
+::
+
+  /webjars/underscorejs/1.6.0/underscore.js?XOKgP8_KIpqz9yUqZ1aVzw
+
+いずれの環境でも同じファイルを使用したい場合:
+
+::
+
+  script(src={webJarsUrl("underscorejs/1.6.0/underscore.js")})
+
+WebJars形式によるリソースの保存
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+もしあなたがライブラリ開発者で、ライブラリ内のmyimage.pngというファイルを配信したい場合、
+`WebJars <http://www.webjars.org/>`_ 形式で.jarファイルを作成し
+クラスパス上に配置します。 .jarは以下の様な形式となります。
+
+::
+
+  META-INF/resources/webjars/mylib/1.0/myimage.png
 
 プログラムから参照する場合:
 
 ::
 
-  <img src={resourceUrl("my_lib/img/myimage.png")} />
+  <img src={webJarsUrl("mylib/1.0/myimage.png")} />
 
-と記述することで、以下のように展開されます:
-
-::
-
-  <img src="/resources/public/my_lib/img/myimage.png" />
-
-クラスパス上の静的ファイルをレスポンスする場合:
+開発環境、本番環境ともに以下のようにコンパイルされます:
 
 ::
 
-  respondResource("path/relative/to/the/element")
+  /webjars/mylib/1.0/myimage.png?xyz123
+
+クラスパス上の要素をレスポンスする場合
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`WebJars <http://www.webjars.org/>`_ 形式で保存されていない
+クラスパス上の静的ファイル(.jarファイルやディレクトリ)をレスポンスする場合
+
+::
+
+  respondResource("path/relative/to/the/classpath/element")
+
+例:
+
+::
+
+  respondResource("akka/actor/Actor.class")
+  respondResource("META-INF/resources/webjars/underscorejs/1.6.0/underscore.js")
+  respondResource("META-INF/resources/webjars/underscorejs/1.6.0/underscore-min.js")
+
 
 ETagとmax-ageによるクライアントサイドキャッシュ
 ------------------------------------------------

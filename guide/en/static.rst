@@ -108,7 +108,7 @@ WebJars
 ~~~~~~~
 
 `WebJars <http://www.webjars.org/>`_ provides a lot of web libraries that you can
-delare as a dependency in your project.
+declare as a dependency in your project.
 
 For example, if you want to use `Underscore.js <http://underscorejs.org/>`_,
 declare in your project's ``build.sbt`` like this:
