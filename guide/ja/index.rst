@@ -21,6 +21,7 @@ Xitrum ガイド
    async
    static
    flash
+   upload
    filter
    cluster
    metrics
