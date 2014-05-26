@@ -19,9 +19,9 @@ List of normal responding methods:
 * ``respondEventSource("data", "event")``
 
 Xitrum does not automatically send any default response.
-You must explicitly call respondXXX methods above to send response.
-If you don't call respondXXX, Xitrum will keep the HTTP connection for you,
-and you can call respondXXX later.
+You must explicitly call ``respondXXX`` methods above to send response.
+If you don't call ``respondXXX``, Xitrum will keep the HTTP connection for you,
+and you can call ``respondXXX`` later.
 
 To check if the connection is still open, call ``channel.isOpen``.
 You can also use ``addConnectionClosedListener``:
@@ -34,7 +34,7 @@ You can also use ``addConnectionClosedListener``:
   }
 
 Because of the async nature, the response is not sent right away.
-respondXXX returns
+``respondXXX`` returns
 `ChannelFuture <http://netty.io/4.0/api/io/netty/channel/ChannelFuture.html>`_.
 You can use it to perform actions when the response has actually been sent.
 
@@ -68,12 +68,11 @@ WebSocket
 
   @WEBSOCKET("echo")
   class EchoWebSocketActor extends WebSocketAction {
-    /**
-     * The current action is the one just before switching to this WebSocket actor.
-     * You can extract session data, request headers etc. from it, but do not use
-     * respondText, respondView etc.
-     */
     def execute() {
+      // Here you can extract session data, request headers etc.
+      // but do not use respondText, respondView etc.
+      // To respond, use respondWebSocketXXX like below.
+
       log.debug("onOpen")
 
       context.become {
@@ -111,7 +110,8 @@ Use these to send WebSocket frames:
 * respondWebSocketPing
 * respondWebSocketClose
 
-There's no respondWebSocketPong, because pong is automatically sent by Xitrum for you.
+There's no respondWebSocketPong, because Xitrum will automatically send pong frame
+for you when it receives ping frame.
 
 To get URL to the above WebSocket action:
 
@@ -124,8 +124,8 @@ SockJS
 ------
 
 `SockJS <https://github.com/sockjs/sockjs-client>`_ is a browser JavaScript
-library that provides a WebSocket-like object.
-SockJS tries to use WebSocket first. If that fails it can use a variety
+library that provides a WebSocket-like object, for browsers that don't support
+WebSocket. SockJS tries to use WebSocket first. If that fails it can use a variety
 of ways but still presents them through the WebSocket-like object.
 
 If you want to work with WebSocket API on all kind of browsers, you should use
@@ -167,12 +167,9 @@ Xitrum automatically does it for you.
 
   @SOCKJS("echo")
   class EchoSockJsActor extends SockJsAction {
-    /**
-     * The current action is the one just before switching to this SockJS actor.
-     * You can extract session data, request headers etc. from it, but do not use
-     * respondText, respondView etc.
-     */
     def execute() {
+      // To respond, use respondSockJsXXX like below
+
       log.info("onOpen")
 
       context.become {
@@ -188,7 +185,7 @@ Xitrum automatically does it for you.
     }
   }
 
-An actor will be created when there's new SockJS session. It will be stopped when
+An actor will be created when there's a new SockJS session. It will be stopped when
 the SockJS session is closed.
 
 Use these to send SockJS frames:
@@ -210,18 +207,21 @@ To config SockJS clustering, see :doc:`Clustering with Akka </cluster>`.
 Chunked response
 ----------------
 
+To send `chunked response <http://en.wikipedia.org/wiki/Chunked_transfer_encoding>`_:
+
 1. Call ``setChunked``
-2. Call respondXXX as many times as you want
+2. Call ``respondXXX`` as many times as you want
 3. Lastly, call ``respondLastChunk``
 
-`Chunked response <http://en.wikipedia.org/wiki/Chunked_transfer_encoding>`_
-has many use cases. For example, when you need to generate a very large CSV
-file that does may not fit memory.
+Chunked response has many use cases. For example, when you need to generate a
+very large CSV file that does may not fit memory, you can generate chunk by chunk
+and send them while you generate:
 
 ::
 
   // "Cache-Control" header will be automatically set to:
   // "no-store, no-cache, must-revalidate, max-age=0"
+  //
   // Note that "Pragma: no-cache" is linked to requests, not responses:
   // http://palizine.plynt.com/issues/2008Jul/cache-control-attributes/
   setChunked()
@@ -239,10 +239,11 @@ file that does may not fit memory.
 
 Notes:
 
-* Headers are only sent on the first respondXXX call.
+* Headers are sent on the first ``respondXXX`` call.
+* You can send optional trailing headers at ``respondLastChunk``
 * :doc:`Page and action cache </cache>` cannot be used with chunked response.
 
-Using chunked response together with ActorAction, you can easily implement
+Using chunked response together with ``ActorAction``, you can easily implement
 `Facebook BigPipe <http://www.cubrid.org/blog/dev-platform/faster-web-page-loading-with-facebook-bigpipe/>`_.
 
 Forever iframe
@@ -263,9 +264,11 @@ The page that embeds the iframe:
   <iframe width="1" height="1" src="path/to/forever/iframe"></iframe>
   ...
 
-The action that responds <script> snippets forever:
+The action that responds ``<script>`` snippets forever:
 
 ::
+
+  // Prepare forever iframe
 
   setChunked()
 

@@ -18,6 +18,7 @@ Xitrum ガイド
    postback
    xml
    js
+   async
    static
    flash
    filter
