@@ -105,10 +105,10 @@ An actor will be created when there's request. It will be stopped when:
 
 Use these to send WebSocket frames:
 
-* respondWebSocketText
-* respondWebSocketBinary
-* respondWebSocketPing
-* respondWebSocketClose
+* ``respondWebSocketText``
+* ``respondWebSocketBinary``
+* ``respondWebSocketPing``
+* ``respondWebSocketClose``
 
 There's no respondWebSocketPong, because Xitrum will automatically send pong frame
 for you when it receives ping frame.
@@ -190,8 +190,8 @@ the SockJS session is closed.
 
 Use these to send SockJS frames:
 
-* respondSockJsText
-* respondSockJsClose
+* ``respondSockJsText``
+* ``respondSockJsClose``
 
 See `Various issues and design considerations <https://github.com/sockjs/sockjs-node#various-issues-and-design-considerations>`_:
 

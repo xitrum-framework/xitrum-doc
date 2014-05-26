@@ -100,10 +100,10 @@ WebSocket
 
 WebSocketフレームを送信するメソッド:
 
-* respondWebSocketText
-* respondWebSocketBinary
-* respondWebSocketPing
-* respondWebSocketClose
+* ``respondWebSocketText``
+* ``respondWebSocketBinary``
+* ``respondWebSocketPing``
+* ``respondWebSocketClose``
 
 ``respondWebSocketPong``はありません。Xitrumがpingフレームを受信したら自動でpongフレームを
 送信するからです。
@@ -185,8 +185,8 @@ Xitrumがその処理をやってくれるのです。
 
 SockJSフレームを送信するには:
 
-* respondSockJsText
-* respondSockJsClose
+* ``respondSockJsText``
+* ``respondSockJsClose``
 
 `SockJsの注意事項 <https://github.com/sockjs/sockjs-node#various-issues-and-design-considerations>`_:
 
