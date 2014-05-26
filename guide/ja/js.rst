@@ -91,7 +91,7 @@ JSONをレスポンスする場合:
 
 JSONはネストした構造が必要な設定ファイルを作成する場合に適しています。
 
-参照 :doc:`Load config files </ja/howto>`.
+参照 :doc:`Load config files </howto>`.
 
 Knockout.jsプラグイン
 ---------------------
