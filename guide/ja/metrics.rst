@@ -41,7 +41,7 @@ Xitrumは各ノードにおける各アクションの実行ステータスを `
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 上記のメトリクスに加えて収集するメトリクスをカスタムすることができます。
-``xitrum.Metrics`` は ``gauge``, ``counter``, ``meter``, ``timer`` そして ``histogram`` にアクセスするためのショートカットです。。
+``xitrum.Metrics`` は ``gauge``, ``counter``, ``meter``, ``timer`` そして ``histogram`` にアクセスするためのショートカットです。
 これらの使い方は `Coda Hale Metrics <http://metrics.codahale.com/>`_ と `そのScala実装 <https://github.com/erikvanoosten/metrics-scala>`_ を参照ください。
 
 例 Timer:
@@ -69,7 +69,7 @@ Xitrumは各ノードにおける各アクションの実行ステータスを `
   }
 
 メトリクスの配信
---------------
+----------------
 
 Xitrumは最新のメトリクスをJSONフォーマットで定期的に配信します。
 収集されたデータは揮発性であり、永続的に保存はされません。
@@ -140,7 +140,7 @@ JVM Reporterの開始方法:
 カスタムビューア
 ~~~~~~~~~~~~~~~~
 
-メトリクスはJSONとして次のSockJS URL ``xitrum/metrics/channel`` から取得する事ができます。
+メトリクスはJSONとしてSockJS URL ``xitrum/metrics/channel`` から取得する事ができます。
 ``jsAddMetricsNameSpace`` はそのURLへ接続するためのJavaScriptスニペットをビューに出力します。
 JavaScriptでJSONハンドラを実装し、``initMetricsChannel`` を呼び出してください。
 
