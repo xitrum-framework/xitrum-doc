@@ -1,7 +1,7 @@
 テンプレートエンジン
 ====================
 
-:doc:`renderView, renderFragment,or respondView <./action_view>` 実行時には
+:doc:`renderViewやrenderFragment, respondView <./action_view>` 実行時には
 設定ファイルで指定したテンプレートエンジンが使用されます。
 
 テンプレートエンジンの設定
@@ -14,7 +14,7 @@
 
   template = my.template.EngineClassName
 
-または
+または:
 
 ::
 
@@ -30,7 +30,7 @@
 テンプレートエンジンの削除
 --------------------------
 
-一般にRESTfulなAPIとしてプロジェクトを作成した場合、renderView, renderFragment, あるいは respondView
+一般にRESTfulなAPIのみを持つプロジェクトを作成した場合、renderView、renderFragment、あるいはrespondView
 は不要となります。このようなケースではテンプレートエンジンを削除することでプロジェクトを軽量化することができます。
 その場合 config/xitrum.conf から ``templateEngine`` の設定をコメントアウトします。
 
