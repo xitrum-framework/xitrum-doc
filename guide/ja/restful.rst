@@ -1,7 +1,7 @@
 RESTful APIs
 ============
 
-iPhone、Androidなどのアプリケーション用のRESTful APIsを非常に簡単に記述することができます。
+XitrumではiPhone、Androidなどのアプリケーション用のRESTful APIsを非常に簡単に記述することができます。
 
 ::
 
@@ -19,10 +19,10 @@ iPhone、Androidなどのアプリケーション用のRESTful APIsを非常に�
   }
 
 POST、 PUT、 PATCH、 DELETEそしてOPTIONSと同様に
-XitrumはHEADリクエストをボディが空のGETリクエストとして扱うことができます。
+XitrumはHEADリクエストをボディが空のGETリクエストとして自動的に扱います。
 
 通常のブラウザーのようにPUTとDELETEをサポートしていないHTTPクライアントにおいて、
-PUTとDELETEを実現するには、リクエストボディに `_method=put` や、 `_method=delete` を含めることで
+PUTとDELETEを実現するには、リクエストボディに ``_method=put`` や、 ``_method=delete`` を含めることで
 可能になります。
 
 アプリケーションの起動時にXitrumはアプリケーションをスキャンし、ルーティングテーブルを作成し出力します。
@@ -67,7 +67,6 @@ PUTとDELETEを実現するには、リクエストボディに `_method=put` �
 
   import xitrum.annotation.{GET, First}
 
-  @First
   @GET("articles/:id")
   class ArticlesShow extends Action {
     def execute() {...}
@@ -169,10 +168,10 @@ xitrum.jsは ``jsDefaults`` タグを使用することでロードされます�
 
   <script type="text/javascript" src={url[xitrum.js]}></script>
 
-CSRFインプットとCSRFトークン
-------------------------------
+CSRF対策インプットとCSRF対策トークン
+--------------------------------------
 
-XitrumはCSRFトークンをリクエストヘッダーの ``X-CSRF-Token`` から取得します。
+XitrumはCSRF対策トークンをリクエストヘッダーの ``X-CSRF-Token`` から取得します。
 もしリクエストヘッダーが存在しない場合、Xitrumはリクエストボディの ``csrf-token`` から取得します。
 （URLパラメータ内には含まれません。）
 
@@ -193,7 +192,7 @@ CSRFチェックの省略
 ------------------
 
 スマートフォン向けアプリケーションなどでCSRFチェックを省略したい場合、
-``xitrum.SkipCsrfCheck`` をActionに使用します。
+``xitrum.SkipCsrfCheck`` を継承してActionを作成します。
 
 ::
 
@@ -215,7 +214,7 @@ CSRFチェックの省略
 リクエストコンテンツの取得
 --------------------------
 
-通常リクエストコンテンツタイプが ``application/x-www-form-urlencoded`` でない場合、
+通常リクエストコンテンツタイプが ``application/x-www-form-urlencoded`` 以外の場合、
 以下のようにしてリクエストコンテンツを取得することができます。
 
 文字列として取得:
@@ -224,7 +223,7 @@ CSRFチェックの省略
 
   val body = requestContentString
 
-文字列として取得し、JSONへのパース
+文字列として取得し、JSONへのパース:
 
 ::
 
@@ -245,7 +244,7 @@ XitrumはSwagger UI を内包しており、 ``/xitrum/swagger`` というパス
 
 .. image:: ../img/swagger.png
 
-`サンプル <https://github.com/xitrum-framework/xitrum-placeholder>`_ を見てみましょう
+`サンプル <https://github.com/xitrum-framework/xitrum-placeholder>`_ を見てみましょう。
 
 ::
 

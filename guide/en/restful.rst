@@ -22,7 +22,7 @@ The same for POST, PUT, PATCH, DELETE, and OPTIONS.
 Xitrum automatically handles HEAD as GET with empty response body.
 
 For HTTP clients that do not support PUT and DELETE (like normal browsers), to
-simulate PUT and DELETE, send a POST with _method=put or _method=delete in the
+simulate PUT and DELETE, send a POST with ``_method=put`` or ``_method=delete`` in the
 request body.
 
 On web application startup, Xitrum will scan all those annotations, build the
@@ -41,6 +41,7 @@ Think of this feature as distributed routes. You can plug an app into another ap
 If you have a blog engine, you can package it as a JAR file, then you can put
 that JAR file into another app and that app automatically has blog feature!
 Routing is also two-way: you can recreate URLs (reverse routing) in a typesafe way.
+You can document routes using `Swagger Doc <http://swagger.wordnik.com/>`_.
 
 Route cache
 -----------
@@ -67,12 +68,12 @@ You must make sure the second route be checked first. ``First`` is for this purp
 
   import xitrum.annotation.{GET, First}
 
-  @First
   @GET("articles/:id")
   class ArticlesShow extends Action {
     def execute() {...}
   }
 
+  @First  // This route has higher priority than "ArticlesShow" above
   @GET("articles/new")
   class ArticlesNew extends Action {
     def execute() {...}
