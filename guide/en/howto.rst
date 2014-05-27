@@ -185,9 +185,10 @@ In any action, you can do like this:
 Don't have to check log level before logging
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``xitrum.Log`` is based on `SLF4S <http://slf4s.org/>`_ (`API <http://slf4s.org/api/1.7.7/>`_).
+``xitrum.Log`` is based on `SLF4S <http://slf4s.org/>`_ (`API <http://slf4s.org/api/1.7.7/>`_),
+which is in turn based on `SLF4J <http://www.slf4j.org/>`_.
 
-Traditionally, before doing a heavy calculation to get a result to log, you had
+Traditionally, before doing a heavy calculation to get a result to log, you have
 to check log level to avoid wasting CPU to do the calculation.
 
 `SLF4S automatically does the check <https://github.com/mattroberts297/slf4s/blob/master/src/main/scala/org/slf4s/Logger.scala>`_,
@@ -211,16 +212,16 @@ Now:
 Config log level, log output file etc.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In build.sbt, there's this line:
+In build.sbt, there's a line like this:
 
 ::
 
-  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13"
+  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.2"
 
 This means that `Logback <http://logback.qos.ch/>`_ is used by default.
-You may replace Logback with any implementation of SLF4J.
-
 Logback config file is at ``config/logback.xml``.
+
+You may replace Logback with any other implementation of `SLF4J <http://www.slf4j.org/>`_.
 
 Load config files
 -----------------
