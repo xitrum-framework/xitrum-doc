@@ -3,7 +3,8 @@
 make_html() {
   cd $1
 
-  ln -s ../conf.py .
+  rm -f conf.py
+  cp ../conf.py .
   ln -s ../Makefile .
   make html
 

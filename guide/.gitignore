@@ -1,3 +1,4 @@
 _build
 conf.py
+conf.py.bak
 Makefile

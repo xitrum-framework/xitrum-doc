@@ -1,8 +1,8 @@
 This Xitrum Guide is written using
 `Sphinx Documentation Generator <http://en.wikipedia.org/wiki/Sphinx_%28documentation_generator%29>`_.
 
-Install Sphinx
---------------
+Install Sphinx 1.2+
+-------------------
 
 ::
 
@@ -34,6 +34,9 @@ texlive-fonts-recommended.
   ./make_latexpdf
 
 xitrum.pdf will be put in ``<lang>/_build/latex`` directory.
+
+More info about generating PDF for Japanese language:
+http://sphinx-users.jp/cookbook/pdf/latex.html
 
 Update Xitrum Guide to Xitrum Homepage
 --------------------------------------
