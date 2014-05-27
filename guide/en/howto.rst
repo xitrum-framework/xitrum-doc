@@ -182,6 +182,32 @@ In any action, you can do like this:
 
   log.debug("Hello World")
 
+Don't have to check log level before logging
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``xitrum.Log`` is based on `SLF4S <http://slf4s.org/>`_ (`API <http://slf4s.org/api/1.7.7/>`_).
+
+Traditionally, before doing a heavy calculation to get a result to log, you had
+to check log level to avoid wasting CPU to do the calculation.
+
+`SLF4S automatically does the check <https://github.com/mattroberts297/slf4s/blob/master/src/main/scala/org/slf4s/Logger.scala>`_,
+so you don't have to do the check yourself.
+
+Before (this code doesn't work for the current Xitrum 3.13+ any more):
+
+::
+
+  if (log.isTraceEnabled) {
+    val result = heavyCalculation()
+    log.trace("Output: {}", result)
+  }
+
+Now:
+
+::
+
+  log.trace(s"Output: #{heavyCalculation()}")
+
 Config log level, log output file etc.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
