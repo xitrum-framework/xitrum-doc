@@ -34,3 +34,20 @@ texlive-fonts-recommended.
   ./make_latexpdf
 
 xitrum.pdf will be put in ``<lang>/_build/latex`` directory.
+
+Update Xitrum Guide to Xitrum Homepage
+--------------------------------------
+
+Copy to ``guide`` directory. Also copy ``xitrum.pdf``.
+
+Be careful not to delete ``guide/xitrum-pdf.png``.
+
+Add to ``guide/index.html``:
+
+::
+
+  <p>
+    <a href="xitrum.pdf" title="PDF" style="float:left"><img src="xitrum-pdf.png"/></a>
+    <a href="xitrum.pdf" title="PDF">Download PDF</a></p>
+  </p>
+  <div style="clear:both"></div>
