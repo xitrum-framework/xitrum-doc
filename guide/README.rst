@@ -38,6 +38,8 @@ xitrum.pdf will be put in ``<lang>/_build/latex`` directory.
 Update Xitrum Guide to Xitrum Homepage
 --------------------------------------
 
+`Xitrum Homepage <https://github.com/xitrum-framework/xitrum/tree/gh-pages>`_
+
 Copy to ``guide`` directory. Also copy ``xitrum.pdf``.
 
 Be careful not to delete ``guide/xitrum-pdf.png``.
