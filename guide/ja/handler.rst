@@ -1,34 +1,33 @@
-Netty handlers
+Nettyハンドラ
 ==============
 
-This chapter is advanced, you don't have to know to use Xitrum normally. To
-understand, you must have knowlege about `Netty <http://netty.io/>`_.
+この章はXitrumを普通に使用するには読まなくても良いです。理解するには`Netty <http://netty.io/>`_
+の経験が必要です。
 
-`Rack <http://en.wikipedia.org/wiki/Rack_(Web_server_interface)>`_,
-`WSGI <http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_, and
-`PSGI <http://en.wikipedia.org/wiki/PSGI>`_ have middleware architecture.
-Xitrum is based on `Netty <http://netty.io/>`_ which has the same thing called
-handlers. You can create additional handlers and customize the channel pipeline
-of handlers. Doing this, you can maximize server performance for your specific
-use case.
+`Rack <http://en.wikipedia.org/wiki/Rack_(Web_server_interface)>`_、
+`WSGI <http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_、
+`PSGI <http://en.wikipedia.org/wiki/PSGI>`_はミドルウェア構成があります。
+`Netty <http://netty.io/>`_が同じようなハンドラ構成があります。
+XitrumがNettyの上で構築され、ハンドラ追加作成やハンドラのパイプライン変更などができ、
+特定のユースケースにサーバーのパフォーマンスを最大化することができます。
 
-This chaper describes:
+この章では次の内容を説明します:
 
-* Netty handler architecture
-* Handlers that Xitrum provides and their default order
-* How to create and use custom handler
+* Nettyハンドラ構成
+* Xitrumが提供するハンドラ一覧とそのデフォルト順番
+* ハンドラ一の追加作成と使用方法
 
-Netty handler architecture
+Nettyハンドラ構成
 --------------------------
 
-For each connection, there is a channel pipeline to handle the IO data.
-A channel pipeline is a series of handlers. There are 2 types of handlers:
+ーつのコネクションには入出力データを処理するハンドラのパイプラインがーつあります。
+ハンドラが2種類あります:
 
-* Inbound: the request direction client -> server
-* Outbound: the response direction server -> client
+* 入力方向: リクエスト方向クライアント -> サーバー
+* 出力方向: リスポンス方向サーバー -> クライアント
 
-Please see the doc of `ChannelPipeline <http://netty.io/4.0/api/io/netty/channel/ChannelPipeline.html>`_
-for more information.
+`ChannelPipeline <http://netty.io/4.0/api/io/netty/channel/ChannelPipeline.html>`_
+の資料を参考にしてください。
 
 ::
 
@@ -71,11 +70,12 @@ for more information.
   |  Netty Internal I/O Threads (Transport Implementation)            |
   +-------------------------------------------------------------------+
 
-Custom handlers
+ハンドラ追加作成
 ---------------
 
-When starting Xitrum server, you can pass in your own
-`ChannelInitializer <http://netty.io/4.0/api/io/netty/channel/ChannelInitializer.html>`_:
+Xitrumを立ち上げる際に自分の
+`ChannelInitializer <http://netty.io/4.0/api/io/netty/channel/ChannelInitializer.html>`_
+が設定できます:
 
 ::
 
@@ -87,29 +87,29 @@ When starting Xitrum server, you can pass in your own
     }
   }
 
-For HTTPS server, Xitrum will automatically prepend SSL handler to the pipeline.
-You can reuse Xitrum handlers in your pipeline.
+HTTPSサーバーの場合、Xitrumが自動でパイプラインの先頭にSSLハンドラを追加します。
+Xitrumが提供するハンドラを自分のパイプラインに利用できます。
 
-Xitrum default handlers
+Xitrumが提供するハンドラ
 -----------------------
 
-See `xitrum.handler.DefaultHttpChannelInitializer <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelInitializer.scala>`_.
+`xitrum.handler.DefaultHttpChannelInitializer <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelInitializer.scala>`_
+をご覧ください。
 
-Sharable handlers (same instances are shared among many connections) are put in
-``DefaultHttpChannelInitializer`` object above so that they can be easily picked
-up by apps that want to use custom pipeline. Those apps may only want a subset
-of default handlers.
+共有できるハンドラ（同じハンドラインスタンスを複数コネクションに共有できる。）は上記
+``DefaultHttpChannelInitializer``オブジェクトに置かれてあります。使いたいXitrumハンドラを
+選択し自分のパイプラインに簡単に設定できます。
 
-For example, when an app uses its own dispatcher (not Xitrum's routing/dispatcher)
-and only needs Xitrum's fast static file serving, it may use only these handlers:
+例えば、Xitrumのrouting/dispatcherでなく自分のものと静的ファイルのハンドラを使いたい場合、
+以下のハンドラのみ設定して良い:
 
-Inbound:
+入力方向:
 
 * ``HttpRequestDecoder``
 * ``PublicFileServer``
-* Its own dispatcher
+* 自分のrouting/dispatcher
 
-Outbound:
+出力方向:
 
 * ``HttpResponseEncoder``
 * ``ChunkedWriteHandler``

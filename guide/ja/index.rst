@@ -24,5 +24,6 @@ Xitrum ガイド
    upload
    filter
    cluster
+   handler
    metrics
    deps
