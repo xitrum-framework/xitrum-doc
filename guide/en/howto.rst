@@ -91,10 +91,10 @@ Example:
 
       if (demoVersion) {
         // Remove routes to actions by a prefix
-        routes.removeByPrefix("/premium/features")
+        routes.removeByPrefix("premium/features")
 
         // This also works
-        routes.removeByPrefix("premium/features")
+        routes.removeByPrefix("/premium/features")
       }
 
       ...

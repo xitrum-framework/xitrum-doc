@@ -27,19 +27,22 @@ Action example:
   import xitrum.validator._
 
   ...
-  def create = POST("articles") {
-    val title = param("tite")
-    val body  = param("body")
-    try {
-      Required.e("Title", title)
-      Required.e("Body",  body)
-    } catch {
-      case ValidationError(message) =>
-        respondText(message)
-        return
-    }
+  @POST("articles")
+  class CreateArticle {
+    def execute() {
+      val title = param("tite")
+      val body  = param("body")
+      try {
+        Required.e("Title", title)
+        Required.e("Body",  body)
+      } catch {
+        case ValidationError(message) =>
+          respondText(message)
+          return
+      }
 
-    // Do with the valid title and body...
+      // Do with the valid title and body...
+    }
   }
   ...
 
