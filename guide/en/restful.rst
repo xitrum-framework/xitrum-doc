@@ -115,7 +115,29 @@ Regex can be used in routes to specify requirements:
 
 ::
 
-  def show = GET("/articles/:id<[0-9]+>") { ... }
+  GET("articles/:id<[0-9]+>")
+
+Catch the rest of path
+----------------------
+
+``/`` character is special thus not allowed in param names. If you want to allow
+it, the param must be the last and you must write like this:
+
+::
+
+  GET("service/:id/proxy/:*")
+
+The path below will match:
+
+::
+
+  /service/123/proxy/http://foo.com/bar
+
+To extract the ``:*`` part:
+
+::
+
+  val url = param("*")  // Will be "http://foo.com/bar"
 
 Anti-CSRF
 ---------
@@ -378,10 +400,10 @@ Swagger UI uses the above information to generate interactive API doc.
 Params other than Swagger.IntPath and Swagger.OptStringQuery above: BytePath, IntQuery, OptStringForm etc.
 They are in the form:
 
-* <Value type><Param type> (required parameter)
-* Opt<Value type><Param type> (optional parameter)
+* ``<Value type><Param type>`` (required parameter)
+* ``Opt<Value type><Param type>`` (optional parameter)
 
-Value type: Byte, Int, Int32, Int64, Long, Number, Float, Double, String, Boolean, Date DateTime
+Value type: Byte, Int, Int32, Int64, Long, Number, Float, Double, String, Boolean, Date, DateTime
 
 Param type: Path, Query, Body, Header, Form
 

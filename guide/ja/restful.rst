@@ -114,7 +114,28 @@ Actionへの複数パスの関連付け
 
 ::
 
-  def show = GET("/articles/:id<[0-9]+>") { ... }
+  GET("articles/:id<[0-9]+>")
+
+パスの残り部分の取得
+----------------------
+
+``/``文字が特別でパラメータ名に含まれられません。``/``文字を使いたい場合、以下のように書きます:
+
+::
+
+  GET("service/:id/proxy/:*")
+
+以下のパスがマッチされます:
+
+::
+
+  /service/123/proxy/http://foo.com/bar
+
+``:*``を取得:
+
+::
+
+  val url = param("*")  // "http://foo.com/bar"となります
 
 CSRF対策
 --------
@@ -373,10 +394,10 @@ Swagger UIはこの情報をもとにインタラクティブなAPIドキュメ�
 ここででてきたSwagger.IntPath、Swagger.OptStringQuery以外にも、BytePath, IntQuery, OptStringFormなど
 以下の形式でアノテーションを使用することができます。
 
-* <Value type><Param type> (必須パラメータ)
-* Opt<Value type><Param type> (オプションパラメータ)
+* ``<Value type><Param type>`` (必須パラメータ)
+* ``Opt<Value type><Param type>`` (オプションパラメータ)
 
-Value type: Byte, Int, Int32, Int64, Long, Number, Float, Double, String, Boolean, Date DateTime
+Value type: Byte, Int, Int32, Int64, Long, Number, Float, Double, String, Boolean, Date, DateTime
 
 Param type: Path, Query, Body, Header, Form
 
