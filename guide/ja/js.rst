@@ -8,10 +8,10 @@ XitrumはjQueryを内包しています。
 
 またいくつかのjsXXXヘルパー関数を提供しています。
 
-JavaScriptフラグメントをViewに追加する
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+JavaScriptフラグメントをViewに追加する方法
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-アクションの内部で ``jsAddToView`` を呼び出します。（必要であれば何度でも呼び出すことができます）
+アクション内では ``jsAddToView`` を呼び出します。（必要であれば何度でも呼び出すことができます）:
 
 ::
 
@@ -26,7 +26,7 @@ JavaScriptフラグメントをViewに追加する
     }
   }
 
-レイアウト内で ``jsForView`` を呼び出します。
+レイアウト内では ``jsForView`` を呼び出します:
 
 ::
 
@@ -49,16 +49,16 @@ JavaScriptフラグメントをViewに追加する
       </html>
     )
 
-JavaScript直接レスポンスする
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+JavaScriptを直接レスポンスする方法
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Javascriptをレスポンスする場合
+Javascriptをレスポンスする場合:
 
 ::
 
   jsRespond("$('#error').html(%s)".format(jsEscape(<p class="error">Could not login.</p>)))
 
-Javascriptでリダイレクトさせる場合
+Javascriptでリダイレクトさせる場合:
 
 ::
 
@@ -91,7 +91,7 @@ JSONをレスポンスする場合:
 
 JSONはネストした構造が必要な設定ファイルを作成する場合に適しています。
 
-参照 :doc:`Load config files </howto>`.
+参照 :doc:`設定ファイルの読み込み </howto>`
 
 Knockout.jsプラグイン
 ---------------------
