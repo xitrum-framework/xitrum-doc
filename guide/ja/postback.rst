@@ -156,7 +156,7 @@ formエレメント以外に対しては、以下のように指定します:
        action={postbackUrl[SiteSearch]("page" -> page)}>{page}</a>
   </form>
 
-``#myform`` には追加パラメーターを含むエレメントをJQueryのセレクタ形式で指定します。
+``#myform`` はJQueryのセレクタ形式で追加パラメーターを含むエレメントを指定します。
 
 ローディングイメージの表示
 ----------------------------
@@ -167,7 +167,7 @@ formエレメント以外に対しては、以下のように指定します:
 
 .. image:: ../img/ajax_loading.gif
 
-``jsDefault`` (これは `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_ をインクルードするための関数です) の後にテンプレートに次の1行を追加します。
+テンプレート内で、``jsDefault`` (これは `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_ をインクルードするための関数です) の後に次の1行を追加します。
 
 ::
 
