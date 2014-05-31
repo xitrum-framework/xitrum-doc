@@ -11,7 +11,7 @@ ScalaではXMLリテラルを記述することが可能です。Xitrumではこ
 XMLのアンエスケープ
 -------------------
 
-``scala.xml.Unparsed`` を使用します。
+``scala.xml.Unparsed`` を使用する場合:
 
 ::
 
@@ -21,7 +21,7 @@ XMLのアンエスケープ
     {Unparsed("if (1 < 2) alert('Xitrum rocks');")}
   </script>
 
-または ``<xml:unparsed>`` を使用します。
+``<xml:unparsed>`` を使用する場合:
 
 ::
 
@@ -31,7 +31,7 @@ XMLのアンエスケープ
     </xml:unparsed>
   </script>
 
-``<xml:unparsed>`` は出力されません。
+``<xml:unparsed>`` は実際の出力には含まれません:
 
 ::
 
@@ -57,7 +57,7 @@ XMLエレメントのグループ化
       </xml:group>}
   </div>
 
-``<xml:group>`` は出力されません。ユーザーがログイン状態の場合、出力は以下のようになります。
+``<xml:group>`` は実際の出力には含まれません。ユーザーがログイン状態の場合、以下のように出力されます:
 
 ::
 
@@ -71,12 +71,12 @@ XHTMLの描画
 -----------
 
 XitrumはviewとレイアウトはXHTMLとして出力します。
-レアケースではありますが、もしあなたが直接、出力を記述する場合以下のコードが示す内容に注意してください。
+レアケースではありますが、もしあなたが直接、出力内容を定義する場合、以下のコードが示す内容に注意してください。
 
 ::
 
   import scala.xml.Xhtml
 
   val br = <br />
-  br.toString            // => <br></br>, some browsers will render this as 2 <br />s
+  br.toString            // => <br></br>, この場合ブラウザによってはbrタグが2つあると認識されることがあります。
   Xhtml.toXhtml(<br />)  // => "<br />"
