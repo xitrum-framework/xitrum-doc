@@ -1,7 +1,7 @@
 Tutorial
 ========
 
-This chapter describes how to create and run a Xitrum project.
+This chapter shortly describes how to create and run a Xitrum project.
 **It assumes that you are using Linux and you have installed Java.**
 
 Create a new empty Xitrum project
@@ -25,7 +25,7 @@ Run
 
 The de facto stardard way of building Scala projects is using
 `SBT <https://github.com/harrah/xsbt/wiki/Setup>`_. The newly created project
-has already included SBT 0.13.2 in ``sbt`` directory. If you want to install
+has already included SBT 0.13 in ``sbt`` directory. If you want to install
 SBT yourself, see its `setup guide <https://github.com/harrah/xsbt/wiki/Setup>`_.
 
 Change to the newly created project directory and run ``sbt/sbt run``:
@@ -82,3 +82,63 @@ console you will see request information:
 ::
 
   [INFO] GET quickstart.action.SiteIndex, 1 [ms]
+
+Autoreload
+----------
+
+In development mode, Xitrum automatically reloads routes and classes in directory
+`target/scala-2.11/classes`, so you don't need addional tool like
+`JRebel <http://zeroturnaround.com/software/jrebel/>`_.
+
+Xitrum doesn't reload class instances in long running threads, e.g. instances
+that are created and kept in long running threads.
+
+In another console window, you can continuously compile your project when there's
+change:
+
+::
+
+  sbt/sbt ~compile
+
+You can also use Eclipse or IntelliJ to edit and compile your project.
+
+Import the project to Eclipse
+-----------------------------
+
+You can `use Eclipse to write Scala code <http://scala-ide.org/>`_.
+
+From the project directory, run:
+
+::
+
+  sbt/sbt eclipse
+
+``.project`` file for Eclipse will be created from definitions in ``build.sbt``.
+Now open Eclipse, and import the project.
+
+Import the project to IntelliJ
+------------------------------
+
+You can also use `IntelliJ <http://www.jetbrains.com/idea/>`_, which also
+has very good support for Scala.
+
+To generate project files for IDEA, run:
+
+::
+
+  sbt/sbt gen-idea
+
+Ignore files
+------------
+
+Create a new project as described at the :doc:`tutorial </tutorial>`.
+These should be `ignored <https://github.com/xitrum-framework/xitrum-new/blob/master/.gitignore>`_:
+
+::
+
+  .*
+  log
+  project/project
+  project/target
+  routes.cache
+  target
