@@ -90,8 +90,9 @@ In development mode, Xitrum automatically reloads routes and classes in director
 `target/scala-2.11/classes`, so you don't need addional tool like
 `JRebel <http://zeroturnaround.com/software/jrebel/>`_.
 
-Xitrum doesn't reload class instances in long running threads, e.g. instances
-that are created and kept in long running threads.
+Xitrum uses the new classes to create new instances. Xitrum doesn't reload class
+instances that have already been created, e.g. instances that are created and
+kept in long running threads.
 
 In another console window, you can continuously compile your project when there's
 change:
@@ -101,6 +102,13 @@ change:
   sbt/sbt ~compile
 
 You can also use Eclipse or IntelliJ to edit and compile your project.
+
+When there's a change in directory `target/scala-2.11/classes`, Xitrum will
+display log:
+
+::
+
+  [INFO] target/scala-2.11/classes changed; Reload classes and routes on next request
 
 Import the project to Eclipse
 -----------------------------
