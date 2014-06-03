@@ -57,6 +57,7 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
   ルーティングには更に2つの特徴があります。
   ルートの作成（リバースルーティング）は型安全に実施され、
   `Swagger Doc <http://swagger.wordnik.com/>`_ を使用したルーティングに関するドキュメント作成も可能となります。
+* クラスファイルおよびルートは開発時にはXitrumによって自動的にリロードされます。
 * Viewは独立した `Scalate <http://scalate.fusesource.org/>`_ テンプレートとして、
   またはScalaによるインラインXMLとして、どちらも型安全に記述することが可能です。
 * クッキーによる（よりスケーラブルな）、`Hazelcast <http://www.hazelcast.org/>`_ クラスターによる(よりセキュアな)セッション管理。

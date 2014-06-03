@@ -1,7 +1,8 @@
 チュートリアル
 ==============
 
-本章ではXitrumプロジェクトを作成して実行するところまでを紹介します。
+本章ではXitrumプロジェクトを作成して実行するところまでを簡単に紹介します。
+
 **このチュートリアルではJavaがインストールされたLinux環境を想定しています。**
 
 Xitrumプロジェクトの作成
@@ -14,7 +15,7 @@ Xitrumプロジェクトの作成
 
   wget -O xitrum-new.zip https://github.com/xitrum-framework/xitrum-new/archive/master.zip
 
-または、
+または:
 
 ::
 
@@ -24,10 +25,10 @@ Xitrumプロジェクトの作成
 ----
 
 Scalaのビルドツールとしてデファクトスタンダードである `SBT <https://github.com/harrah/xsbt/wiki/Setup>`_ を使用します。
-先ほどダウンロードしたプロジェクトには既に SBT 0.13.1 が ``sbt`` ディレクトリに梱包されています。
+先ほどダウンロードしたプロジェクトには既に SBT 0.13 が ``sbt`` ディレクトリに梱包されています。
 SBTを自分でインストールするには、SBTの `セットアップガイド <https://github.com/harrah/xsbt/wiki/Setup>`_ を参照してください。
 
-作成したプロジェクトのルートディレクトリで ``sbt/sbt run`` と実行することでXitrumが起動します。
+作成したプロジェクトのルートディレクトリで ``sbt/sbt run`` と実行することでXitrumが起動します:
 
 ::
 
@@ -80,4 +81,70 @@ SBTを自分でインストールするには、SBTの `セットアップガイ
 
 ::
 
-  [DEBUG] GET quickstart.action.SiteIndex, 1 [ms]
+  [INFO] GET quickstart.action.SiteIndex, 1 [ms]
+
+自動リロード
+------------
+
+開発モードでは、`target/scala-2.11/classes` ディレクトリ内のクラスファイルおよびルートをXitrumが自動的にリロードします。
+そのため、`JRebel <http://zeroturnaround.com/software/jrebel/>`_ のようなツールを追加で使用する必要はありません。
+
+Xitrumは長期的に動き続けるスレッド上のクラスはリロードしません。
+例えば生成したインスタンスを保持し続けるようなスレッドは対象外となります。
+
+ソースコードの変更を監視し、継続的にコンパイルを行うには別のコンソールから以下のコマンドを実行します:
+
+::
+
+  sbt/sbt ~compile
+
+EclipseやIntelliJを使用してソースコードの編集やコンパイルを行うことも可能です。
+
+`target/scala-2.11/classes` ディレクトリ内に変更があった場合、以下の様なログが出力されます:
+
+::
+
+  [INFO] target/scala-2.11/classes changed; Reload classes and routes on next request
+
+Eclipseプロジェクトの作成
+-------------------------
+
+開発環境に `Eclipse <http://scala-ide.org/>`_ を使用する場合
+
+プロジェクトディレクトリで以下のコマンドを実行します:
+
+::
+
+  sbt/sbt eclipse
+
+``build.sbt`` に記載されたプロジェクト設定に応じてEclipse用の ``.project`` ファイルが生成されます。
+Eclipseを起動してインポートしてください。
+
+IntelliJ IDEAプロジェクトの作成
+-------------------------------
+
+開発環境に `IntelliJ IDEA <http://www.jetbrains.com/idea/>`_ を仕様する場合
+
+プロジェクトディレクトリで以下のコマンドを実行します:
+
+::
+
+  sbt/sbt gen-idea
+
+``build.sbt`` に記載されたプロジェクト設定に応じてIntelliJ用の ``.idea`` ファイルが生成されます。
+IntelliJを起動してインポートしてください。
+
+
+ignoreファイルの設定
+--------------------
+
+:doc:`チュートリアル </tutorial>` に沿ってプロジェクトを作成した場合 `ignored <https://github.com/xitrum-framework/xitrum-new/blob/master/.gitignore>`_ を参考にignoreファイルを作成してください。
+
+::
+
+  .*
+  log
+  project/project
+  project/target
+  routes.cache
+  target
