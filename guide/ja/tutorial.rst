@@ -89,22 +89,28 @@ SBTを自分でインストールするには、SBTの `セットアップガイ
 開発モードでは、`target/scala-2.11/classes` ディレクトリ内のクラスファイルおよびルートをXitrumが自動的にリロードします。
 そのため、`JRebel <http://zeroturnaround.com/software/jrebel/>`_ のようなツールを追加で使用する必要はありません。
 
-Xitrumは長期的に動き続けるスレッド上のクラスはリロードしません。
-例えば生成したインスタンスを保持し続けるようなスレッドは対象外となります。
+Xitrum uses the new classes to create new instances. Xitrum doesn't reload class
+instances that have already been created, e.g. instances that are created and
+kept in long running threads. This is sufficient for most cases.
 
-ソースコードの変更を監視し、継続的にコンパイルを行うには別のコンソールから以下のコマンドを実行します:
-
-::
-
-  sbt/sbt ~compile
-
-EclipseやIntelliJを使用してソースコードの編集やコンパイルを行うことも可能です。
+Xitrumは新たなインスタンスを生成する際にnewを使用します。
+Xitrumは既にインスタンスとして生成されたクラスはリロードしません。
+例えば長く動き続けるスレッド上で生成され保持され続けるようなインスタンスは対象外となります。
+多くのケースにおいてこれは十分であると言えます。
 
 `target/scala-2.11/classes` ディレクトリ内に変更があった場合、以下の様なログが出力されます:
 
 ::
 
   [INFO] target/scala-2.11/classes changed; Reload classes and routes on next request
+
+SBTを使用してソースコードの変更を監視し継続的にコンパイルを行うには、別のコンソールから以下のコマンドを実行します:
+
+::
+
+  sbt/sbt ~compile
+
+EclipseやIntelliJを使用してソースコードの編集やコンパイルを行うことも可能です。
 
 Eclipseプロジェクトの作成
 -------------------------
