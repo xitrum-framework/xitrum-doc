@@ -89,10 +89,6 @@ SBTを自分でインストールするには、SBTの `セットアップガイ
 開発モードでは、`target/scala-2.11/classes` ディレクトリ内のクラスファイルおよびルートをXitrumが自動的にリロードします。
 そのため、`JRebel <http://zeroturnaround.com/software/jrebel/>`_ のようなツールを追加で使用する必要はありません。
 
-Xitrum uses the new classes to create new instances. Xitrum doesn't reload class
-instances that have already been created, e.g. instances that are created and
-kept in long running threads. This is sufficient for most cases.
-
 Xitrumは新たなインスタンスを生成する際にnewを使用します。
 Xitrumは既にインスタンスとして生成されたクラスはリロードしません。
 例えば長く動き続けるスレッド上で生成され保持され続けるようなインスタンスは対象外となります。
