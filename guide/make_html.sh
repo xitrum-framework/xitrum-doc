@@ -10,6 +10,6 @@ make_html() {
 
   cd ..
 }
-
+make clean
 make_html en
 make_html ja
