@@ -92,16 +92,7 @@ In development mode, Xitrum automatically reloads routes and classes in director
 
 Xitrum uses the new classes to create new instances. Xitrum doesn't reload class
 instances that have already been created, e.g. instances that are created and
-kept in long running threads.
-
-In another console window, you can continuously compile your project when there's
-change:
-
-::
-
-  sbt/sbt ~compile
-
-You can also use Eclipse or IntelliJ to edit and compile your project.
+kept in long running threads. This is sufficient for most cases.
 
 When there's a change in directory `target/scala-2.11/classes`, Xitrum will
 display log:
@@ -109,6 +100,16 @@ display log:
 ::
 
   [INFO] target/scala-2.11/classes changed; Reload classes and routes on next request
+
+You can use SBT to continuously compile your project when there's change in your
+project source code. Run in a console window other than the console window for
+``sbt/sbt run`` above:
+
+::
+
+  sbt/sbt ~compile
+
+You can also use Eclipse or IntelliJ to edit and compile your project.
 
 Import the project to Eclipse
 -----------------------------
