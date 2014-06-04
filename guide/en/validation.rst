@@ -62,3 +62,5 @@ Write custom validators
 
 Extend `xitrum.validator.Validator <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/validator/Validator.scala>`_.
 You only have to implement ``check`` and ``message`` method.
+
+You can also use `Commons Validator <http://commons.apache.org/proper/commons-validator/>`_.
