@@ -370,7 +370,7 @@ And:
   }
 
 Server side session store is recommended when using
-`continuations-based actions <https://github.com/xitrum-framework/xitrum-demos/blob/master/src/main/scala/demos/action/BoringGreeter.scala>`_,
+`continuations-based actions <https://github.com/xitrum-framework/xitrum-imperatively>`_,
 since serialized continuations are usually too big to store in cookies.
 
 If you run multiple servers in a cluster, you can

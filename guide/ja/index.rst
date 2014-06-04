@@ -20,6 +20,7 @@ Xitrum ガイド
    async
    static
    flash
+   scopes
    upload
    filter
    cluster
