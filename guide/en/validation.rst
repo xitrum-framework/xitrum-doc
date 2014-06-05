@@ -51,7 +51,8 @@ Model example:
   import xitrum.validator.Required
 
   case class Article(id: Int = 0, title: String = "", body: String = "") {
-    def isValid = Required.check(title) && Required.check(body)
+    def isValid           = Required.check(title)   &&     Required.check(body)
+    def validationMessage = Required.message(title) orElse Required.message(body)
   }
 
 See `xitrum.validator pakage <https://github.com/xitrum-framework/xitrum/tree/master/src/main/scala/xitrum/validator>`_
