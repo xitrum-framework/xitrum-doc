@@ -485,3 +485,53 @@ If you want to have multiple views for one:
 
 Using addional non-routed actions like above seems to be tedious, but this way
 your program will be typesafe.
+
+Component
+---------
+
+You can create reusable view components that can be embedded to multiple views.
+In concept, a component is similar to an action:
+
+* But it does not have routes, thus ``execute`` method is not needed.
+* It does not "responds" a full response, it just "renders" a view fragment.
+  So inside a component, instead of calling ``respondXXX``, please call ``renderXXX``.
+* Just like an action, a component can have none, one, or multiple associated view
+  templates.
+
+::
+
+  package mypackage
+
+  import xitrum.{FutureAction, Component}
+  import xitrum.annotation.GET
+
+  class CompoWithView extends Component {
+    def render() = {
+      // Render associated view template, e.g. CompoWithView.jade
+      renderView()
+    }
+  }
+
+  class CompoWithoutView extends Component {
+    def render() = {
+      "Hello World"
+    }
+  }
+
+  @GET("foo/bar")
+  class MyAction extends FutureAction {
+    def execute() {
+      // In the associated view template, e.g. MyAction.jade,
+      // CompoWithView and CompoWithoutView will be displayed
+      respondView()
+    }
+  }
+
+MyAction.jade:
+
+::
+
+  - import mypackage._
+
+  != newComponent[CompoWithView]().render()
+  != newComponent[CompoWithoutView]().render()
