@@ -508,6 +508,7 @@ In concept, a component is similar to an action:
   class CompoWithView extends Component {
     def render() = {
       // Render associated view template, e.g. CompoWithView.jade
+      // Note that this is renderView, not respondView!
       renderView()
     }
   }
@@ -521,8 +522,6 @@ In concept, a component is similar to an action:
   @GET("foo/bar")
   class MyAction extends FutureAction {
     def execute() {
-      // In the associated view template, e.g. MyAction.jade,
-      // CompoWithView and CompoWithoutView will be displayed
       respondView()
     }
   }
