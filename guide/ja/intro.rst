@@ -71,7 +71,7 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
 
 Xitrumは `Scalatra <https://github.com/scalatra/scalatra>`_ よりパワフルに、
 `Lift <http://liftweb.net/>`_ より簡単であることで両者のスペクトルを満たすことを目的としています。
-`Xitrum <http://xitrum-framework.github.com/xitrum>`_ はScalatraのようにcontroller-firstであり、Liftのような `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ ではありません。
+`Xitrum <http://xitrum-framework.github.io/>`_ はScalatraのようにcontroller-firstであり、Liftのような `view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ ではありません。
 多くの開発者にとって馴染み部会controller-firstスタイルです。
 
 :doc:`関係プロジェクト </deps>` サンプルやプラグインなどのプロジェクト一覧をご覧ください。
@@ -79,7 +79,7 @@ Xitrumは `Scalatra <https://github.com/scalatra/scalatra>`_ よりパワフル�
 貢献者
 -----
 
-`Xitrum <http://xitrum-framework.github.com/xitrum>`_ は `オープンソース <https://github.com/xitrum-framework/xitrum>`_ プロジェクトです。
+`Xitrum <http://xitrum-framework.github.io/>`_ は `オープンソース <https://github.com/xitrum-framework/xitrum>`_ プロジェクトです。
 `Google group <http://groups.google.com/group/xitrum-framework>`_. のコミュニティに参加してみてください。
 
 貢献者の一覧が`最初の貢献 <https://github.com/xitrum-framework/xitrum/graphs/contributors>`_の順番で記載されています:
