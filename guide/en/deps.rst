@@ -84,4 +84,4 @@ Plugins:
 Other projects:
 
 * `xitrum-doc <https://github.com/xitrum-framework/xitrum-doc>`_:
-  Source code of the `Xitrum Guide <http://xitrum-framework.github.io/xitrum/guide/index.html>`_
+  Source code of the `Xitrum Guide <http://xitrum-framework.github.io/guide/index.html>`_

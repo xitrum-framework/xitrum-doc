@@ -82,4 +82,4 @@ Xitrumは以下のライブラリにが依存しています。
 その他のプロジェクト:
 
 * `xitrum-doc <https://github.com/xitrum-framework/xitrum-doc>`_:
-  `Xitrum Guide <http://xitrum-framework.github.io/xitrum/guide/index.html>`_ のソースコード。
+  `Xitrum Guide <http://xitrum-framework.github.io/guide/index.html>`_ のソースコード。
