@@ -45,6 +45,9 @@ Features
   and SockJS are supported.
 * Fast built-in HTTP and HTTPS web server based on `Netty <http://netty.io/>`_.
   Xitrum's static file serving speed is `similar to that of Nginx <https://gist.github.com/3293596>`_.
+* The server supports `range requests <http://en.wikipedia.org/wiki/Byte_serving>`_
+  (you can pause/resume file download) for static files. Serving movie files for
+  smartphones requires this feature.
 * Extensive client-side and server-side caching for faster responding.
   At the web server layer, small files are cached in memory, big files are sent
   using NIO's zero copy.
