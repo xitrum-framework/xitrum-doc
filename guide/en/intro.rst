@@ -43,7 +43,8 @@ Features
 * Async, in the spirit of Netty. Your request proccessing action does not have
   to respond immediately. Long polling, chunked response (streaming), WebSocket,
   and SockJS are supported.
-* Fast built-in HTTP and HTTPS web server based on `Netty <http://netty.io/>`_.
+* Fast built-in HTTP and HTTPS web server based on `Netty <http://netty.io/>`_
+  (HTTPS can use Java engine or native OpenSSL engine).
   Xitrum's static file serving speed is `similar to that of Nginx <https://gist.github.com/3293596>`_.
 * The server supports `range requests <http://en.wikipedia.org/wiki/Byte_serving>`_
   (you can pause/resume file download) for static files. Serving movie files for

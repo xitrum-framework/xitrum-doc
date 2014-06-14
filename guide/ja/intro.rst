@@ -44,6 +44,7 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
 * Nettyの思想に基づく非同期。 リクエストを捌くアクションは直ぐにレスポンスを返す必要はありません。
   ロングポーリング、チャンクレスポンス（ストリーミング）、WebSocket、そしてSockJSをサポートしています。
 * `Netty <http://netty.io/>`_ 上に構築された高速HTTP(S) サーバー。
+  (HTTPSはJavaエンジンとOpenSSLエンジン選択できます。)
   Xitrumの静的ファイル配信速度は `Nginxに匹敵 <https://gist.github.com/3293596>`_ します。
 * 高速なレスポンスを実現する大規模なサーバサイドおよびクライアントサイド双方のキャッシュシステム。
   サーバーレイヤでは小さなファイルはメモリにキャッシュされ、大きなファイルはNIOのzero copyを使用して送信されます。
