@@ -52,6 +52,7 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
   `All Google's best practices <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_ にあるように、
   条件付きGETに対してはクライアントサイドキャッシュが適用されます。
   もちろんブラウザにリクエストの再送信を強制させることもできます。
+* `CORS <http://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_ 対応.
 * JAX-RSとRailsエンジンの思想に基づく自動ルートコレクション。全てのルートを１箇所に宣言する必要はありません。
   この機能は分散ルーティングと捉えることができます。この機能のおかげでアプリケーションを他のアプリケーションに取り込むことが可能になります。
   もしあなたがブログエンジンを作ったならそれをJARにして別のアプリケーションに取り込むだけですぐにブログ機能が使えるようになるでしょう。

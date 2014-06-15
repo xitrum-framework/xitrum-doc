@@ -46,9 +46,6 @@ Features
 * Fast built-in HTTP and HTTPS web server based on `Netty <http://netty.io/>`_
   (HTTPS can use Java engine or native OpenSSL engine).
   Xitrum's static file serving speed is `similar to that of Nginx <https://gist.github.com/3293596>`_.
-* The server supports `range requests <http://en.wikipedia.org/wiki/Byte_serving>`_
-  (you can pause/resume file download) for static files. Serving movie files for
-  smartphones requires this feature.
 * Extensive client-side and server-side caching for faster responding.
   At the web server layer, small files are cached in memory, big files are sent
   using NIO's zero copy.
@@ -57,6 +54,10 @@ Features
   `All Google's best practices <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_
   like conditional GET are applied for client-side caching.
   You can also force browsers to always send request to server to revalidate cache before using.
+* `Range requests <http://en.wikipedia.org/wiki/Byte_serving>`_ support
+  for static files. Serving movie files for smartphones requires this feature.
+  You can pause/resume file download.
+* `CORS <http://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_ support.
 * Routes are automatically collected in the spirit of JAX-RS
   and Rails Engines. You don't have to declare all routes in a single place.
   Think of this feature as distributed routes. You can plug an app into another app.
