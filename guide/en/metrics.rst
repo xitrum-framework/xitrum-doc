@@ -118,8 +118,17 @@ MetricsRegistry will be parsed with `metrics-json <http://metrics.codahale.com/m
 Xitrum default viewer
 ~~~~~~~~~~~~~~~~~~~~~
 
-Xitrum provides default metrics viewer at URL ``/xitrum/metrics/viewer``.
+Xitrum provides default metrics viewer at URL ``/xitrum/metrics/viewer?api_key=<see xitrum.conf>``.
 This URL shows graphs like above. The graphs are created using `D3.js <http://d3js.org/>`_.
+
+The URL can be generated with:
+
+::
+
+  import xitrum.Config
+  import xitrum.metrics.XitrumMetricsViewer
+
+  url[XitrumMetricsViewer]("api_key" -> Config.xitrum.metrics.get.apiKey)
 
 Jconsole viewer
 ~~~~~~~~~~~~~~~

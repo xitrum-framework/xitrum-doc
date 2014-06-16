@@ -112,8 +112,17 @@ CPU:
 Xitrumデフォルトビューア
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Xitrumはデフォルトで次のURLにメトリクスビューアを提供します。``/xitrum/metrics/viewer``
+Xitrumはデフォルトで次のURLにメトリクスビューアを提供します。``/xitrum/metrics/viewer?api_key=<xitrum.confの中のキー>``
 このURLでは上記のような `D3.js <http://d3js.org/>`_ によって生成されたグラフを参照することができます。
+
+URLが動的に算出できます:
+
+::
+
+  import xitrum.Config
+  import xitrum.metrics.XitrumMetricsViewer
+
+  url[XitrumMetricsViewer]("api_key" -> Config.xitrum.metrics.get.apiKey)
 
 Jconsoleビューア
 ~~~~~~~~~~~~~~~~
