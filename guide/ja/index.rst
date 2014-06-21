@@ -24,6 +24,7 @@ Xitrum ガイド
    validation
    upload
    filter
+   cache
    cluster
    handler
    metrics
