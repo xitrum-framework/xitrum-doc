@@ -472,3 +472,53 @@ scr/main/scalate/mypackage/MyAction/_myfragment.jade:
 
 上記のようにルーティングとは関係ないアクションを記述することは一見して面倒ですが、
 この方法はプログラムをタイプセーフに保つことができます。
+
+Component
+---------
+
+複数のViewに対して組み込むことができる再利用可能なコンポーネントを作成することもできます。
+コンポーネントのコンセプトはアクションに非常に似ています。
+以下のような特徴があります。
+
+* コンポーネントはルートを持ちません。すなわち ``execute`` メソッドは不要となります。
+* コンポーネントは全レスポンスを返すわけではありません。 断片的なviewを "render" するのみとなります。
+  そのため、コンポーネント内部では ``respondXXX`` の代わりに ``renderXXX`` を呼び出す必要があります。
+* アクションのように、コンポーネントは単一のまたは複数のViewと紐付けるたり、あるいは紐付けないで使用することも可能です。
+
+
+::
+
+  package mypackage
+
+  import xitrum.{FutureAction, Component}
+  import xitrum.annotation.GET
+
+  class CompoWithView extends Component {
+    def render() = {
+      // Render associated view template, e.g. CompoWithView.jade
+      // Note that this is renderView, not respondView!
+      renderView()
+    }
+  }
+
+  class CompoWithoutView extends Component {
+    def render() = {
+      "Hello World"
+    }
+  }
+
+  @GET("foo/bar")
+  class MyAction extends FutureAction {
+    def execute() {
+      respondView()
+    }
+  }
+
+MyAction.jade:
+
+::
+
+  - import mypackage._
+
+  != newComponent[CompoWithView]().render()
+  != newComponent[CompoWithoutView]().render()
