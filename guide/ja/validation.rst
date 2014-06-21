@@ -1,14 +1,12 @@
-Validation
-==========
+バリデーション
+==============
 
-Xitrum includes `jQuery Validation plugin <http://bassistance.de/jquery-plugins/jquery-plugin-validation/>`_
-for validation at client side and provides validation helpers for server side.
+Xitrumは、クライアントサイドでのバリデーション用に `jQuery Validation plugin <http://bassistance.de/jquery-plugins/jquery-plugin-validation/>`_ を内包し、サーバーサイドにおけるバリデーション用のいくつかのヘルパーを提供します。
 
-Default validators
-------------------
+デフォルトバリデーター
+----------------------
 
-Xitrum provides validators in ``xitrum.validator`` package.
-They have these methods:
+``xitrum.validator`` パッケージには以下の3つのメソッドが含まれます:
 
 ::
 
@@ -16,12 +14,13 @@ They have these methods:
   message(name, value): Option[String]
   exception(name, value)
 
-If the validation check does not pass, ``message`` will return ``Some(error message)``,
-``exception`` will throw ``xitrum.exception.InvalidInput(error message)``.
+もしバリデーション結果が ``false`` である場合、
+``message`` は ``Some(error, message)`` を返却します。
+``exception`` メソッドは ``xitrum.exception.InvalidInput(error message)`` をスローします。
 
-You can use validators anywhere you want.
+バリデーターは何処ででも使用することができます。
 
-Action example:
+Actionで使用する例:
 
 ::
 
@@ -39,12 +38,12 @@ Action example:
     }
   }
 
-If you don't ``try`` and ``catch``, when the validation check does not pass,
-Xitrum will automatically catch the exception and respond the error message to
-the requesting client. This is convenient when writing web APIs or when you
-already have validation at the client side.
+``try`` 、 ``catch`` ブロックを使用しない場合において、バリデーションエラーとなると、
+xitrumは自動でエラーをキャッチし、クライアントに対してエラーメッセージを送信します。
+これはクライアントサイドでバリデーションを正しく書いている場合や、webAPIを作成する場合において便利なやり方と言えます。
 
-Model example:
+
+Modelで使用する例:
 
 ::
 
@@ -55,13 +54,13 @@ Model example:
     def validationMessage = Required.message(title) orElse Required.message(body)
   }
 
-See `xitrum.validator pakage <https://github.com/xitrum-framework/xitrum/tree/master/src/main/scala/xitrum/validator>`_
-for the full list of default validators.
 
-Write custom validators
------------------------
+デフォルトバリデーターの一覧については　`xitrum.validator パッケージ <https://github.com/xitrum-framework/xitrum/tree/master/src/main/scala/xitrum/validator>`_ を参照してください。
 
-Extend `xitrum.validator.Validator <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/validator/Validator.scala>`_.
-You only have to implement ``check`` and ``message`` method.
+カスタムバリデーターの作成
+--------------------------
 
-You can also use `Commons Validator <http://commons.apache.org/proper/commons-validator/>`_.
+`xitrum.validator.Validator <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/validator/Validator.scala>`_ を継承し、
+``check`` メソッドと、 ``message`` メソッドのみ実装することでカスタムバリデーターとして使用できます。
+
+また、 `Commons Validator <http://commons.apache.org/proper/commons-validator/>`_ を使用することもできます。

@@ -21,6 +21,7 @@ Xitrum ガイド
    static
    flash
    scopes
+   validation
    upload
    filter
    cluster
