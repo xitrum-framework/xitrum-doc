@@ -41,7 +41,7 @@ Xitrumは以下のライブラリにが依存しています。
 * `SLF4S <http://slf4s.org/>`_, `Logback <http://logback.qos.ch/>`_:
   ロギングに使用しています。
 
-`Xitrum プロジェクトスケルトン <https://github.com/xitrum-framework/xitrum-new>`_は
+`Xitrum プロジェクトスケルトン <https://github.com/xitrum-framework/xitrum-new>`_ は
 
 以下のツールを梱包しています:
 
@@ -66,7 +66,7 @@ Xitrumは以下のライブラリにが依存しています。
 * `comy <https://github.com/xitrum-framework/comy>`_:
   XitrumによるURLショートナーアプリのデモ。
 * `xitrum-multimodule-demo <https://github.com/xitrum-framework/xitrum-multimodule-demo>`_:
-  `SBT<http://www.scala-sbt.org/>`_ マルチモジュールプロジェクトのデモ。
+  `SBT <http://www.scala-sbt.org/>`_ マルチモジュールプロジェクトのデモ。
 
 プラグイン:
 

@@ -1,5 +1,5 @@
-非同期リスポンス
-==============
+非同期レスポンス
+================
 
 Actionからクライアントへレスポンスを返すには以下のメソッドを使用します
 
@@ -16,7 +16,7 @@ Actionからクライアントへレスポンスを返すには以下のメソ�
 * ``respondFile``: ディスクからファイルを直接送信します。 `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_ を使用するため非常に高速です。
 * ``respondEventSource("data", "event")``: チャンクレスポンスを送信します
 
-Xitrumは自動でデフォルトリスポンスを送信しません。自分で明確に上記の``respondXXX``を呼ばなければなりません。
+Xitrumは自動でデフォルトレスポンスを送信しません。自分で明確に上記の``respondXXX``を呼ばなければなりません。
 呼ばなければ、XitrumがそのHTTP接続を保持します。あとで``respondXXX``を読んでもいいです。
 
 接続がopen状態になっているかを確認するには``channel.isOpen``を呼びます。``addConnectionClosedListener``
@@ -29,11 +29,11 @@ Xitrumは自動でデフォルトリスポンスを送信しません。自分�
     // リソース開放などをする。
   }
 
-非同期なのでリスポンスはすぐに送信されません。``respondXXX``の戻り値が
+非同期なのでレスポンスはすぐに送信されません。``respondXXX`` の戻り値が
 `ChannelFuture <http://netty.io/4.0/api/io/netty/channel/ChannelFuture.html>`_
-となります。それを使って実際にリスポンスを送信されるコールバックを登録できます。
+となります。それを使って実際にレスポンスを送信されるコールバックを登録できます。
 
-例えばリスポンスの送信あとに切断するには:
+例えばレスポンスの送信あとに切断するには:
 
 ::
 
@@ -66,7 +66,7 @@ WebSocket
     def execute() {
       // ここでセッションデータ、リクエストヘッダなどを抽出できますが
       // respondTextやrespondViewなどは使えません。
-      // リスポンスするには以下のようにrespondWebSocketXXXを使ってください。
+      // レスポンスするには以下のようにrespondWebSocketXXXを使ってください。
 
       log.debug("onOpen")
 
@@ -105,7 +105,7 @@ WebSocketフレームを送信するメソッド:
 * ``respondWebSocketPing``
 * ``respondWebSocketClose``
 
-``respondWebSocketPong``はありません。Xitrumがpingフレームを受信したら自動でpongフレームを
+``respondWebSocketPong`` はありません。Xitrumがpingフレームを受信したら自動でpongフレームを
 送信するからです。
 
 上記のWebSocketアクションへのURLを取得するには:
@@ -118,7 +118,7 @@ WebSocketフレームを送信するメソッド:
 SockJS
 ------
 
-`SockJS <https://github.com/sockjs/sockjs-client>`_とはWebSocketのようなAPIを提供
+`SockJS <https://github.com/sockjs/sockjs-client>`_ とはWebSocketのようなAPIを提供
 するJavaScriptライブラリです。WebSocketを対応しないブラウザで使います。SockJSがブラウザがの
 WebSocketの機能の存在を確認し、存在しない場合、他の適切な通信プロトコルへフォルバックします。
 
@@ -150,7 +150,7 @@ XitrumがSockJSライブラリのファイルを含めており、テンプレ�
       != jsDefaults
   ...
 
-SockJSは`サーバー側の特別処理 <https://github.com/sockjs/sockjs-protocol>`_が必要ですが、
+SockJSは `サーバー側の特別処理 <https://github.com/sockjs/sockjs-protocol>`_ が必要ですが、
 Xitrumがその処理をやってくれるのです。
 
 ::
@@ -163,7 +163,7 @@ Xitrumがその処理をやってくれるのです。
     def execute() {
       // ここでセッションデータ、リクエストヘッダなどを抽出できますが
       // respondTextやrespondViewなどは使えません。
-      // リスポンスするには以下のようにrespondSockJsXXXを使ってください。
+      // レスポンスするには以下のようにrespondSockJsXXXを使ってください。
 
       log.info("onOpen")
 
@@ -199,16 +199,16 @@ SockJSフレームを送信するには:
 SockJSクラスタリングを構築するには :doc:`Akkaでサーバーをクラスタリングする </cluster>`
 説明をご覧ください。
 
-Chunkリスポンス
+Chunkレスポンス
 ----------------
 
-`Chunkリスポンス <http://en.wikipedia.org/wiki/Chunked_transfer_encoding>`_ を送信するには:
+`Chunkレスポンス <http://en.wikipedia.org/wiki/Chunked_transfer_encoding>`_ を送信するには:
 
-1. ``setChunked``を呼ぶ
-2. ``respondXXX``を呼ぶ（複数回呼んでよい）
-3. 最後に``respondLastChunk``を呼ぶ
+1. ``setChunked`` を呼ぶ
+2. ``respondXXX`` を呼ぶ（複数回呼んでよい）
+3. 最後に ``respondLastChunk`` を呼ぶ
 
-Chunkリスポンスはいろいろな応用があります。例えばメモリがかかる大きなCSVファイルを一括で生成
+Chunkレスポンスはいろいろな応用があります。例えばメモリがかかる大きなCSVファイルを一括で生成
 できない場合、生成しながら送信して良い:
 
 ::
@@ -216,7 +216,7 @@ Chunkリスポンスはいろいろな応用があります。例えばメモリ
   // 「Cache-Control」ヘッダが自動で設定されます:
   // 「no-store, no-cache, must-revalidate, max-age=0」
   //
-  // 因みに 「Pragma: no-cache」 ヘッダはリスポンスでなくリクエストのためです:
+  // 因みに 「Pragma: no-cache」 ヘッダはレスポンスでなくリクエストのためです:
   // http://palizine.plynt.com/issues/2008Jul/cache-control-attributes/
   setChunked()
 
@@ -241,18 +241,18 @@ Chunkリスポンスはいろいろな応用があります。例えばメモリ
 
 注意:
 
-* ヘッダが最初の``respondXXX``で送信されます。
-* 末尾ヘッダがオプションで``respondLastChunk``に設定できます。
-* :doc:`ページとアクションキャッシュ </cache>` はchunkリスポンスとは使えません。
+* ヘッダが最初の ``respondXXX`` で送信されます。
+* 末尾ヘッダがオプションで ``respondLastChunk`` に設定できます。
+* :doc:`ページとアクションキャッシュ </cache>` はchunkレスポンスとは使えません。
 
-Chunkリスポンスを``ActorAction``の組み合わせで
+Chunkレスポンスを ``ActorAction`` の組み合わせて
 `Facebook BigPipe <http://www.cubrid.org/blog/dev-platform/faster-web-page-loading-with-facebook-bigpipe/>`_
 が実装できます。
 
 無限iframe
 ~~~~~~~~~~~
 
-Chunkリスポンスで `Comet <http://en.wikipedia.org/wiki/Comet_(programming)/>`_ を
+Chunkレスポンスで `Comet <http://en.wikipedia.org/wiki/Comet_(programming)/>`_ を
 実装することが
 `可能 <http://www.shanison.com/2010/05/10/stop-the-browser-%E2%80%9Cthrobber-of-doom%E2%80%9D-while-loading-comet-forever-iframe/>`_
 です。
@@ -269,7 +269,7 @@ Iframeを含めるページ:
   <iframe width="1" height="1" src="path/to/forever/iframe"></iframe>
   ...
 
-無限``<script>``を生成するアクションで:
+無限 ``<script>`` を生成するアクションで:
 
 ::
 
@@ -299,9 +299,9 @@ Event Source
 
 参考: http://dev.w3.org/html5/eventsource/
 
-Event SourceはデータがUTF-8でchunkリスポンスの一種です。
+Event SourceはデータがUTF-8でchunkレスポンスの一種です。
 
-Event Sourceをリスポンスするには``respondEventSource``を呼んでください（複数回可）:
+Event Sourceをレスポンスするには ``respondEventSource`` を呼んでください（複数回可）:
 
 ::
 

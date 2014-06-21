@@ -1,10 +1,10 @@
 Xitrum ガイド日本語版
-===================
+=====================
 
 このドキュメントは `Xitrum Guide <http://xitrum-framework.github.io/guide/>`_ の日本語翻訳版です。
 
 はじめに
-=======
+========
 
 ::
 
@@ -54,7 +54,6 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
   もちろんブラウザにリクエストの再送信を強制させることもできます。
 * 静的なファイルに対する `Range requests <http://en.wikipedia.org/wiki/Byte_serving>`_  対応。
   例えばスマートフォンに対して動画を配信する場合、ファイルダウンロードの停止と再開を実現できます。
-  You can pause/resume file download.
 * `CORS <http://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_ 対応。
 * JAX-RSとRailsエンジンの思想に基づく自動ルートコレクション。全てのルートを１箇所に宣言する必要はありません。
   この機能は分散ルーティングと捉えることができます。この機能のおかげでアプリケーションを他のアプリケーションに取り込むことが可能になります。
@@ -82,7 +81,7 @@ Xitrumは `Scalatra <https://github.com/scalatra/scalatra>`_ よりパワフル�
 :doc:`関係プロジェクト </deps>` サンプルやプラグインなどのプロジェクト一覧をご覧ください。
 
 貢献者
------
+------
 
 `Xitrum <http://xitrum-framework.github.io/>`_ は `オープンソース <https://github.com/xitrum-framework/xitrum>`_ プロジェクトです。
 `Google group <http://groups.google.com/group/xitrum-framework>`_. のコミュニティに参加してみてください。
