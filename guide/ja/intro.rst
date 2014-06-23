@@ -52,8 +52,8 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
   `All Google's best practices <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_ にあるように、
   条件付きGETに対してはクライアントサイドキャッシュが適用されます。
   もちろんブラウザにリクエストの再送信を強制させることもできます。
-* 静的なファイルに対する `Range requests <http://en.wikipedia.org/wiki/Byte_serving>`_  対応。
-  例えばスマートフォンに対して動画を配信する場合、ファイルダウンロードの停止と再開を実現できます。
+* 静的ファイルに対する `Range requests <http://en.wikipedia.org/wiki/Byte_serving>`_ サポート。
+  この機能により、スマートフォンに対する動画配信や、全てのクライアントに対するファイルダウンロードの停止と再開を実現できます。
 * `CORS <http://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_ 対応。
 * JAX-RSとRailsエンジンの思想に基づく自動ルートコレクション。全てのルートを１箇所に宣言する必要はありません。
   この機能は分散ルーティングと捉えることができます。この機能のおかげでアプリケーションを他のアプリケーションに取り込むことが可能になります。
