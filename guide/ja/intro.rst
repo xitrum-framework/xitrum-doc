@@ -1,8 +1,3 @@
-Xitrum ガイド日本語版
-=====================
-
-このドキュメントは `Xitrum Guide <http://xitrum-framework.github.io/guide/>`_ の日本語翻訳版です。
-
 はじめに
 ========
 

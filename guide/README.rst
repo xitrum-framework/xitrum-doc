@@ -41,7 +41,7 @@ http://sphinx-users.jp/cookbook/pdf/latex.html
 Update Xitrum Guide to Xitrum Homepage
 --------------------------------------
 
-`Xitrum Homepage <https://github.com/xitrum-framework/xitrum/tree/gh-pages>`_
+`Xitrum Homepage <https://github.com/xitrum-framework/xitrum-framework.github.io>`_
 
 Copy to ``guide`` directory. Also copy ``xitrum.pdf``.
 

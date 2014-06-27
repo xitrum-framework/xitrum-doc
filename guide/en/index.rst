@@ -1,10 +1,11 @@
-.. Xitrum Guide master file, created by
-   sphinx-quickstart on Sat May 28 22:50:50 2011.
+.. Xitrum Guide master file, created by sphinx-quickstart.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 Xitrum Guide
 ============
+
+There is also `Xitrum Guide Japanese version <http://xitrum-framework.github.io/guide/ja>`_.
 
 .. toctree::
    :maxdepth: 4
