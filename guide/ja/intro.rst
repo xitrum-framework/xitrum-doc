@@ -81,7 +81,7 @@ Xitrumは `Scalatra <https://github.com/scalatra/scalatra>`_ よりパワフル�
 `Xitrum <http://xitrum-framework.github.io/>`_ は `オープンソース <https://github.com/xitrum-framework/xitrum>`_ プロジェクトです。
 `Google group <http://groups.google.com/group/xitrum-framework>`_. のコミュニティに参加してみてください。
 
-貢献者の一覧が`最初の貢献 <https://github.com/xitrum-framework/xitrum/graphs/contributors>`_の順番で記載されています:
+貢献者の一覧が `最初の貢献 <https://github.com/xitrum-framework/xitrum/graphs/contributors>`_ の順番で記載されています:
 
 (*): 現在アクティブなコアメンバー
 
