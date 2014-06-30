@@ -26,3 +26,4 @@ make_latexpdf() {
 
 make_latexpdf en
 make_latexpdf ja
+make_latexpdf ru
