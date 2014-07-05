@@ -447,3 +447,25 @@ on files or directories.
 
 Under the hood, ``FileMonitor`` uses
 `Schwatcher <https://github.com/lloydmeta/schwatcher>`_.
+
+Temporary directory
+-------------------
+
+Xitrum projects by default (see ``tmpDir`` in xitrum.conf) uses ``tmp`` directory
+in the current working directory to save Scalate generated .scala files, big
+upload files etc.
+
+To get path to that directory:
+
+::
+
+  xitrum.Config.xitrum.tmpDir.getAbsolutePath
+
+To create a new file or directory in that directory:
+
+::
+
+  val file = new java.io.File(xitrum.Config.xitrum.tmpDir, "myfile")
+
+  val dir = new java.io.File(xitrum.Config.xitrum.tmpDir, "mydir")
+  dir.mkdirs()
