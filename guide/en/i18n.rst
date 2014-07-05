@@ -171,7 +171,7 @@ Your plural forms must be exactly one of the following:
   nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3
 
 Date and number format
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 If you use Scalate template engine, by default the date and number format will
 be the format of the language of the current action.
