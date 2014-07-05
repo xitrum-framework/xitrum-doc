@@ -111,6 +111,39 @@ project source code. Run in a console window other than the console window for
 
 You can also use Eclipse or IntelliJ to edit and compile your project.
 
+Specify classes that shouldn't be reloaded
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because Xitrum creates new a class loader each time it reloads classes, by default
+all classes will be reloaded and all Scala objects will be reinitialized in the
+new class loader. To avoid that, you may tell Xitrum to use the old ones in the
+parent class loader (system class loader) of the new class loader.
+
+There are cases you may want to do that. For example: Heavy classes that take
+time to initialize or rarely modified during development.
+
+Another example: Scala objects that contain actors with unique names. Reloading
+the objects will cause them to be initialized again, thus cause
+``akka.actor.InvalidActorNameException: actor name [name goes here] is not unique!``:
+
+::
+
+  package mypackage
+
+  object WorkerPool {
+    val numWorkers = Runtime.getRuntime.availableProcessors * 2
+    val workers    = Seq.tabulate() { i =>
+      val name = getClass.getName + "-" + i
+      xitrum.Config.actorSystem.actorOf(Props[Worker], name)
+    }
+  }
+
+To specify that the above shouldn't be reloaded:
+
+::
+
+  xitrum.DevClassLoader.ignorePattern = "mypackage\\.WorkerPool".r
+
 Import the project to Eclipse
 -----------------------------
 
