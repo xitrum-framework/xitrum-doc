@@ -154,11 +154,12 @@ Scalateテンプレートのデフォルトタイプは `Jade <http://scalate.fu
 `Ssp <http://scalate.fusesource.org/documentation/ssp-reference.html>`_ を選択することもできます。
 テンプレートのデフォルトタイプを指定は、アプリケーションのconfigディレクトリ内の`xitrum.conf`で設定することができます。
 
-`respondView` メソッドにtypeパラメータとして"jade"、 "mustache"、"scamal"、"ssp"のいずれか指定することでデフォルトテンプレートタイプをオーバーライドすることも可能です。
+`respondView` メソッドにtypeパラメータとして"jade"、 "mustache"、"scaml"、"ssp"のいずれか指定することでデフォルトテンプレートタイプをオーバーライドすることも可能です。
 
 ::
 
-  respondView(Map("type" ->"mustache"))
+  val options = Map("type" ->"mustache")
+  respondView(options)
 
 currentActionのキャスト
 ~~~~~~~~~~~~~~~~~~~~~~~

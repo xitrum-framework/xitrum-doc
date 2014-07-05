@@ -165,12 +165,13 @@ You can also use `Mustache <http://scalate.fusesource.org/documentation/mustache
 To config the default template type, see xitrum.conf file in the config directory
 of your Xitrum application.
 
-You can override the default template type by passing "jade", "mustache", "scamal",
+You can override the default template type by passing "jade", "mustache", "scaml",
 or "ssp" to `respondView`.
 
 ::
 
-  respondView(Map("type" ->"mustache"))
+  val options = Map("type" ->"mustache")
+  respondView(options)
 
 Type casting currentAction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
