@@ -144,6 +144,13 @@ To specify that the above shouldn't be reloaded:
 
   xitrum.DevClassLoader.ignorePattern = "mypackage\\.WorkerPool".r
 
+If you want to disable the autoreload feature, set this before starting
+Xitrum server:
+
+::
+
+  xitrum.Config.autoreloadInDevMode = false
+
 Import the project to Eclipse
 -----------------------------
 
