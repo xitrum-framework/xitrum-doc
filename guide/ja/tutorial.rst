@@ -108,6 +108,47 @@ SBTを使用してソースコードの変更を監視し継続的にコンパ�
 
 EclipseやIntelliJを使用してソースコードの編集やコンパイルを行うことも可能です。
 
+自動リロード対象外クラスの設定
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+デフォルトではクラスファイルリロード時にXitrumは新しいクラスローダーを生成し、
+生成されたクラスローダーでは、全てのクラスがリロードされ、Scalaオブジェクトが初期化されます。
+
+しかしプロジェクトには
+例えば、重厚で初期化に時間がかかるクラスや、めったに変更されることのないクラスなど、
+再ロードの対象外としたいファイルがいくつかあります。
+また、以下の例のように、ユニークな名前を保持するScalaオブジェクトが再ロードによって初期化されてしまった場合、
+``akka.actor.InvalidActorNameException: actor name [name goes here] is not unique!`` が発生してしまいます。
+
+::
+
+  package mypackage
+
+  object WorkerPool {
+    val numWorkers = Runtime.getRuntime.availableProcessors * 2
+    val workers    = Seq.tabulate() { i =>
+      val name = getClass.getName + "-" + i
+      xitrum.Config.actorSystem.actorOf(Props[Worker], name)
+    }
+  }
+
+
+自動リロード対象外のクラスを指定することで、親クラスローダー（システムクラスローダー）がロードしたクラスを
+新しいクラスローダーから使用することができるようになります。
+
+再ロードの対象外を指定するには:
+
+::
+
+  xitrum.DevClassLoader.ignorePattern = "mypackage\\.WorkerPool".r
+
+もし、自動リロード機能自体を無効にする場合、Xitrum serverを起動する前にいかの1行を加えます:
+
+::
+
+  xitrum.Config.autoreloadInDevMode = false
+
+
 Eclipseプロジェクトの作成
 -------------------------
 
