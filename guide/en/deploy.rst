@@ -206,6 +206,11 @@ Or use `Supervisord <http://supervisord.org/>`_.
   stdout_events_enabled=false
   environment=PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:~/bin
 
+Other alternatives:
+
+* `runit <http://smarden.org/runit/>`_
+* `upstart <http://upstart.ubuntu.com/>`_
+
 Set up port forwarding
 ----------------------
 
