@@ -258,8 +258,8 @@ To get it as a string and parse it as JSON:
 If you want to full control, use `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_.
 It returns a `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_.
 
-Documenting API
----------------
+Documenting API with Swagger
+----------------------------
 
 You can document your API with `Swagger <https://developers.helloreverb.com/swagger/>`_
 out of the box. Add ``@Swagger`` annotation on actions that need to be documented.

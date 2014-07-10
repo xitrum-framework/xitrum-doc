@@ -253,8 +253,8 @@ CSRFチェックの省略
 より詳細にリクエストを扱う場合、 `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_ を使用することで
 `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_ としてリクエストを取得することができます。
 
-ドキュメンテーション API
-------------------------
+SwaggerによるAPIドキュメンテーション
+-----------------------------------
 
 `Swagger <https://developers.helloreverb.com/swagger/>`_ を使用してAPIドキュメントを作成することができます。
 ``@Swagger`` アノテーションをドキュメント化したいActionに記述します。
