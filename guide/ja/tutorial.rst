@@ -136,17 +136,17 @@ EclipseやIntelliJを使用してソースコードの編集やコンパイル�
 自動リロード対象外のクラスを指定することで、親クラスローダー（システムクラスローダー）がロードしたクラスを
 新しいクラスローダーから使用することができるようになります。
 
-再ロードの対象外を指定するには:
+再ロードの対象外を指定するには、Xitrum serverを起動する前にいかの1行を加えます:
 
 ::
 
   xitrum.DevClassLoader.ignorePattern = "mypackage\\.WorkerPool".r
 
-もし、自動リロード機能自体を無効にする場合、Xitrum serverを起動する前にいかの1行を加えます:
+もし、自動リロード機能自体を無効にする場合:
 
 ::
 
-  xitrum.Config.autoreloadInDevMode = false
+  xitrum.DevClassLoader.enabled = false
 
 
 Eclipseプロジェクトの作成

@@ -138,18 +138,18 @@ the objects will cause them to be initialized again, thus cause
     }
   }
 
-To specify that the above shouldn't be reloaded:
+To specify that the above shouldn't be reloaded, set this before starting
+Xitrum server:
 
 ::
 
   xitrum.DevClassLoader.ignorePattern = "mypackage\\.WorkerPool".r
 
-If you want to disable the autoreload feature, set this before starting
-Xitrum server:
+If you want to disable the autoreload feature:
 
 ::
 
-  xitrum.Config.autoreloadInDevMode = false
+  xitrum.DevClassLoader.enabled = false
 
 Import the project to Eclipse
 -----------------------------
