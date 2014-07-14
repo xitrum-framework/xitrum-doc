@@ -122,7 +122,7 @@ If you want to display a confirmation dialog:
 ::
 
   <a href="#" data-postback="click"
-              action={postbackUrl[LogoutAction]}
+              action={url[LogoutAction]}
               data-confirm="Do you want to logout?">Logout</a>
 
 If the user clicks "Cancel", the postback will not be sent.
@@ -139,7 +139,7 @@ For other elements, you do like this:
 
   <a href="#"
      data-postback="click"
-     action={postbackUrl[ArticlesDestroy]("id" -> item.id)}
+     action={url[ArticlesDestroy]("id" -> item.id)}
      data-extra="_method=delete"
      data-confirm={"Do you want to delete %s?".format(item.name)}>Delete</a>
 
@@ -147,7 +147,7 @@ You may also put extra params in a separate form:
 
 ::
 
-  <form id="myform" data-postback="submit" action={postbackUrl[SiteSearch]}>
+  <form id="myform" data-postback="submit" action={url[SiteSearch]}>
     Search:
     <input type="text" name="keyword" />
 
@@ -155,7 +155,7 @@ You may also put extra params in a separate form:
        href="#"
        data-postback="click"
        data-extra="#myform"
-       action={postbackUrl[SiteSearch]("page" -> page)}>{page}</a>
+       action={url[SiteSearch]("page" -> page)}>{page}</a>
   </form>
 
 ``#myform`` is the jQuery selector to select the form that contains extra params.

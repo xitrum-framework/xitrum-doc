@@ -109,7 +109,7 @@ formエレメント以外への適用
 
 ::
 
-  <a href="#" data-postback="click" action={postbackUrl[LogoutAction]}>Logout</a>
+  <a href="#" data-postback="click" action={url[LogoutAction]}>Logout</a>
 
 リンク要素をクリックした場合LogoutActionへポストバックが行われます。
 
@@ -121,7 +121,7 @@ formエレメント以外への適用
 ::
 
   <a href="#" data-postback="click"
-              action={postbackUrl[LogoutAction]}
+              action={url[LogoutAction]}
               data-confirm="Do you want to logout?">Logout</a>
 
 "キャンセル"がクリックされた場合、ポストバックの送信は行われません。
@@ -137,7 +137,7 @@ formエレメント以外に対しては、以下のように指定します:
 
   <a href="#"
      data-postback="click"
-     action={postbackUrl[ArticlesDestroy]("id" -> item.id)}
+     action={url[ArticlesDestroy]("id" -> item.id)}
      data-extra="_method=delete"
      data-confirm={"Do you want to delete %s?".format(item.name)}>Delete</a>
 
@@ -145,7 +145,7 @@ formエレメント以外に対しては、以下のように指定します:
 
 ::
 
-  <form id="myform" data-postback="submit" action={postbackUrl[SiteSearch]}>
+  <form id="myform" data-postback="submit" action={url[SiteSearch]}>
     Search:
     <input type="text" name="keyword" />
 
@@ -153,7 +153,7 @@ formエレメント以外に対しては、以下のように指定します:
        href="#"
        data-postback="click"
        data-extra="#myform"
-       action={postbackUrl[SiteSearch]("page" -> page)}>{page}</a>
+       action={url[SiteSearch]("page" -> page)}>{page}</a>
   </form>
 
 ``#myform`` はJQueryのセレクタ形式で追加パラメーターを含むエレメントを指定します。
