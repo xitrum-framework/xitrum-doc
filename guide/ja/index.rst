@@ -5,7 +5,11 @@
 Xitrum ガイド
 =============
 
-`Xitrum ガイドの英語版 <http://xitrum-framework.github.io/guide/en>`_ もあります。
+Xitrum ガイド は
+`英語版 <http://xitrum-framework.github.io/guide/en>`_
+と
+`ロシア語版 <http://xitrum-framework.github.io/guide/ru>`_
+もあります。
 
 .. toctree::
    :maxdepth: 4
