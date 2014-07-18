@@ -36,6 +36,7 @@ help:
 clean:
 	-rm -rf en/$(BUILDDIR)
 	-rm -rf ja/$(BUILDDIR)
+	-rm -rf ru/$(BUILDDIR)
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
