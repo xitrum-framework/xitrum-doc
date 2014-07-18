@@ -13,3 +13,4 @@ make_html() {
 make clean
 make_html en
 make_html ja
+make_html ru
