@@ -30,6 +30,7 @@ Xitrum ガイド は
    upload
    filter
    cache
+   i18n
    cluster
    handler
    metrics

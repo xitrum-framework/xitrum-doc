@@ -135,7 +135,7 @@ In your action, typically in a before filter, to set language:
 Validation messages
 -------------------
 
-jQuery Validation plugin provides `i18n error messages <https://github.com/jzaefferer/jquery-validation/tree/master/localization>`_.
+jQuery Validation plugin provides `i18n error messages <https://github.com/jzaefferer/jquery-validation/tree/master/src/localization>`_.
 Xitrum automatically include the message file corresponding to the current language.
 
 For server side default validators in ``xitrum.validator`` package, Xitrum also
