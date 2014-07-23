@@ -34,4 +34,5 @@ Xitrum ガイド は
    cluster
    handler
    metrics
+   howto
    deps
