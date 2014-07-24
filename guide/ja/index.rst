@@ -31,6 +31,7 @@ Xitrum ガイド は
    filter
    cache
    i18n
+   deploy
    cluster
    handler
    metrics
