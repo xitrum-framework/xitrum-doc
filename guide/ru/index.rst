@@ -2,14 +2,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Xitrum
-======
+Xitrum Guide
+============
 
-There are also
-`English <http://xitrum-framework.github.io/guide/en>`_
-and
-`Japanese <http://xitrum-framework.github.io/guide/ja>`_
-versions.
+`Есть также английский и японская версии. <http://xitrum-framework.github.io/guide.html>`_
 
 .. toctree::
    :maxdepth: 4
