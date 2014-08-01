@@ -83,74 +83,6 @@ console you will see request information:
 
   [INFO] GET quickstart.action.SiteIndex, 1 [ms]
 
-Autoreload
-----------
-
-In development mode, Xitrum automatically reloads routes and classes in directory
-`target/scala-2.11/classes`, so you don't need addional tool like
-`JRebel <http://zeroturnaround.com/software/jrebel/>`_.
-
-Xitrum uses the new classes to create new instances. Xitrum doesn't reload class
-instances that have already been created, e.g. instances that are created and
-kept in long running threads. This is sufficient for most cases.
-
-When there's a change in directory `target/scala-2.11/classes`, Xitrum will
-display log:
-
-::
-
-  [INFO] target/scala-2.11/classes changed; Reload classes and routes on next request
-
-You can use SBT to continuously compile your project when there's change in your
-project source code. Run in a console window other than the console window for
-``sbt/sbt run`` above:
-
-::
-
-  sbt/sbt ~compile
-
-You can also use Eclipse or IntelliJ to edit and compile your project.
-
-Specify classes that shouldn't be reloaded
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Because Xitrum creates new a class loader each time it reloads classes, by default
-all classes will be reloaded and all Scala objects will be reinitialized in the
-new class loader. To avoid that, you may tell Xitrum to use the old ones in the
-parent class loader (system class loader) of the new class loader.
-
-There are cases you may want to do that. For example: Heavy classes that take
-time to initialize or rarely modified during development.
-
-Another example: Scala objects that contain actors with unique names. Reloading
-the objects will cause them to be initialized again, thus cause
-``akka.actor.InvalidActorNameException: actor name [name goes here] is not unique!``:
-
-::
-
-  package mypackage
-
-  object WorkerPool {
-    val numWorkers = Runtime.getRuntime.availableProcessors * 2
-    val workers    = Seq.tabulate() { i =>
-      val name = getClass.getName + "-" + i
-      xitrum.Config.actorSystem.actorOf(Props[Worker], name)
-    }
-  }
-
-To specify that the above shouldn't be reloaded, set this before starting
-Xitrum server:
-
-::
-
-  xitrum.DevClassLoader.ignorePattern = "mypackage\\.WorkerPool".r
-
-If you want to disable the autoreload feature:
-
-::
-
-  xitrum.DevClassLoader.enabled = false
-
 Import the project to Eclipse
 -----------------------------
 
@@ -177,11 +109,69 @@ To generate project files for IDEA, run:
 
   sbt/sbt gen-idea
 
+Autoreload
+----------
+
+You can autoreload .class files (hot swap) without having to restart your
+program. However, to avoid performance and stability problems, you should only
+autoreload .class files while developing (development mode).
+
+Run with IDEs
+~~~~~~~~~~~~~
+
+While developing, when you run project in advanced IDEs like Eclipse or IntelliJ,
+by default the IDEs will automatically reload code for you.
+
+Run with SBT
+~~~~~~~~~~~~
+
+When you run with SBT, you need to open 2 console windows:
+
+* One to run ``sbt/sbt run``. This will run the program and reload .class files
+  when they are changed.
+* One to run ``sbt/sbt ~compile``. Whenever you edit source code files, this
+  will compile the source code to .class files.
+
+In the sbt directory, there's `agent7.jar <https://github.com/xitrum-framework/agent7>`_.
+It's in charge of reloading .class files in the current working directory (and its subdirectories).
+If you see the ``sbt/sbt`` script, you'll see the option like ``-javaagent:agent7.jar``.
+
+DCEVM
+~~~~~
+
+Normal JVM only allows only changing method bodies. You may use
+`DCEVM <https://github.com/dcevm/dcevm>`_, which is an open source modification
+of the Java HotSpot VM that allows unlimited redefinition of loaded classes.
+
+You can install DCEVM in 2 ways:
+
+* `Patch <https://github.com/dcevm/dcevm/releases>`_ your existing Java installation.
+* Install a `prebuilt <http://dcevm.nentjes.com/>`_ version (easier).
+
+If you choose to patch:
+
+* You can enable DCEVM permanently.
+* Or set it as an "alternative" JVM. In this case, to enable DCEVM, every time
+  you run ``java`` command, you need to specify ``-XXaltjvm=dcevm`` option.
+  For example, you need to add ``-XXaltjvm=dcevm`` option to the ``sbt/sbt`` script.
+
+If you use IDEs like Eclipse or IntelliJ, you need to configure them to use DCEVM
+(not the default JVM) to run your project.
+
+If you use SBT, you need to configure the ``PATH`` environment variable so that
+the ``java`` command is from DCEVM (not from the default JVM). You still need
+the ``javaagent`` above, because although DCEVM supports advanced class changes,
+it itself doesn't reload classes.
+
+See `DCEVM - A JRebel free alternative <http://javainformed.blogspot.jp/2014/01/jrebel-free-alternative.html>`_
+for more info.
+
 Ignore files
 ------------
 
-Create a new project as described at the :doc:`tutorial </tutorial>`.
-These should be `ignored <https://github.com/xitrum-framework/xitrum-new/blob/master/.gitignore>`_:
+Normally, these file should be
+`ignored <https://github.com/xitrum-framework/xitrum-new/blob/master/.gitignore>`_
+(not commited to your SVN or Git repository):
 
 ::
 
@@ -191,3 +181,4 @@ These should be `ignored <https://github.com/xitrum-framework/xitrum-new/blob/ma
   project/target
   routes.cache
   target
+  tmp
