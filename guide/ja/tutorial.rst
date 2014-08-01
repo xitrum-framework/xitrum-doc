@@ -83,72 +83,6 @@ SBTを自分でインストールするには、SBTの `セットアップガイ
 
   [INFO] GET quickstart.action.SiteIndex, 1 [ms]
 
-自動リロード
-------------
-
-開発モードでは、`target/scala-2.11/classes` ディレクトリ内のクラスファイルおよびルートをXitrumが自動的にリロードします。
-そのため、`JRebel <http://zeroturnaround.com/software/jrebel/>`_ のようなツールを追加で使用する必要はありません。
-
-Xitrumは新たなインスタンスを生成する際にnewを使用します。
-Xitrumは既にインスタンスとして生成されたクラスはリロードしません。
-例えば長く動き続けるスレッド上で生成され保持され続けるようなインスタンスは対象外となります。
-多くのケースにおいてこれは十分であると言えます。
-
-`target/scala-2.11/classes` ディレクトリ内に変更があった場合、以下の様なログが出力されます:
-
-::
-
-  [INFO] target/scala-2.11/classes changed; Reload classes and routes on next request
-
-SBTを使用してソースコードの変更を監視し継続的にコンパイルを行うには、別のコンソールから以下のコマンドを実行します:
-
-::
-
-  sbt/sbt ~compile
-
-EclipseやIntelliJを使用してソースコードの編集やコンパイルを行うことも可能です。
-
-自動リロード対象外クラスの設定
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-デフォルトではクラスファイルリロード時にXitrumは新しいクラスローダーを生成し、
-生成されたクラスローダーでは、全てのクラスがリロードされ、Scalaオブジェクトが初期化されます。
-
-しかしプロジェクトには
-例えば、重厚で初期化に時間がかかるクラスや、めったに変更されることのないクラスなど、
-再ロードの対象外としたいファイルがいくつかあります。
-また、以下の例のように、ユニークな名前を保持するScalaオブジェクトが再ロードによって初期化されてしまった場合、
-``akka.actor.InvalidActorNameException: actor name [name goes here] is not unique!`` が発生してしまいます。
-
-::
-
-  package mypackage
-
-  object WorkerPool {
-    val numWorkers = Runtime.getRuntime.availableProcessors * 2
-    val workers    = Seq.tabulate() { i =>
-      val name = getClass.getName + "-" + i
-      xitrum.Config.actorSystem.actorOf(Props[Worker], name)
-    }
-  }
-
-
-自動リロード対象外のクラスを指定することで、親クラスローダー（システムクラスローダー）がロードしたクラスを
-新しいクラスローダーから使用することができるようになります。
-
-再ロードの対象外を指定するには、Xitrum serverを起動する前にいかの1行を加えます:
-
-::
-
-  xitrum.DevClassLoader.ignorePattern = "mypackage\\.WorkerPool".r
-
-もし、自動リロード機能自体を無効にする場合:
-
-::
-
-  xitrum.DevClassLoader.enabled = false
-
-
 Eclipseプロジェクトの作成
 -------------------------
 
@@ -177,6 +111,55 @@ IntelliJ IDEAプロジェクトの作成
 ``build.sbt`` に記載されたプロジェクト設定に応じてIntelliJ用の ``.idea`` ファイルが生成されます。
 IntelliJを起動してインポートしてください。
 
+自動リロード
+------------
+
+プログラムを再起動することなく .classファイルをリロード（ホットスワップ)することができます。
+ただし、プログラムのパフォーマンスと安定性を維持するため、自動リロード機能は開発時のみ使用することを推奨します。
+
+IDEを使用する場合
+~~~~~~~~~~~~~~~~~~~
+
+最新のEclipseやIntelliJのようなIDEを使用して開発、起動を行う場合、
+デフォルトでIDEがソースコードの変更を監視して、変更があった場合に自動でコンパイルしてくれます。
+
+SBTを使用する場合
+~~~~~~~~~~~~~~~~~~~
+
+SBTを使用する場合、2つのコンソールを用意する必要があります:
+
+* 一つ目は ``sbt/sbt run`` を実行します。 このコマンドはプログラムを起動して、 .classファイルに変更があった場合にリロードを行います。
+* もう一方は ``sbt/sbt ~compile`` を実行します。 このコマンドはソースコードの変更を監視して、変更があった場合に .classファイルにコンパイルします。
+
+sbtディレクトリには `agent7.jar <https://github.com/xitrum-framework/agent7>`_ が含まれます。
+このライブラリは、カレントディレクトリ（およびサブディレクトリ)の .classファイルのリロードを担当します。
+``sbt/sbt`` スクリプトの中で ``-javaagent:agent7.jar`` として使用されています。
+
+DCEVM
+~~~~~
+
+通常のJVMはクラスファイルがリロードされた際、メソッドのボディのみ変更が反映されます。
+Java HotSpot VM のオープンソース実装である `DCEVM <https://github.com/dcevm/dcevm>`_ を使用することで、
+ロードしたクラスの再定義をより柔軟に行うことができるようになります。
+
+DCEVMは以下の2つの方法でインストールできます:
+
+* インストール済みのJavaへ `Patch <https://github.com/dcevm/dcevm/releases>`_ を行う方法
+* `prebuilt <http://dcevm.nentjes.com/>`_ バージョンのインストール (こちらのほうが簡単です)
+
+パッチを使用してインストールを行う場合:
+
+* DCEVMを常に有効にすることができます。
+* もしくはDCEVMを"alternative" JVMとして適用することができます。
+  この場合、``java`` コマンドに ``-XXaltjvm=dcevm`` オプションを指定することでDCEVMを使用することができます。
+  例えば、 ``sbt/sbt`` スクリプトファイルに ``-XXaltjvm=dcevm`` を追記する必要があります。
+
+EclipseやIntelliJのようなIDEを使用している場合、DCEVMをプロジェクトの実行JVMに指定する必要があります。
+
+SBTを使用している場合は、 ``java`` コマンドがDCEVMのものを利用できるように ``PATH`` 環境変数を設定する必要があります。
+DCEVM自体はクラスの変更をサポートしますが、リロードは行わないため、DCEVMを使用する場合も前述の ``javaagent`` は必要となります。
+
+詳細は `DCEVM - A JRebel free alternative <http://javainformed.blogspot.jp/2014/01/jrebel-free-alternative.html>`_ を参照してください。
 
 ignoreファイルの設定
 --------------------
@@ -191,3 +174,4 @@ ignoreファイルの設定
   project/target
   routes.cache
   target
+  tmp
