@@ -446,7 +446,7 @@ Tail log from Heroku command:
 Create alias for ``xitrum-package``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-At deploy time, Heroku runs ``sbt clean compile stage``. So you need to add alias
+At deploy time, Heroku runs ``sbt/sbt clean compile stage``. So you need to add alias
 for ``xitrum-package``.
 
 build.sbt:

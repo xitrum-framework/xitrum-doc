@@ -435,7 +435,7 @@ Herokuで稼働するアプリのログをtailするには:
 ``xitrum-package`` のエイリアス作成
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-デプロイ実行時にHerokuは、``sbt clean compile stage`` を実行します。
+デプロイ実行時にHerokuは、``sbt/sbt clean compile stage`` を実行します。
 そのため、 ``xitrum-package`` に対するエイリアスを作成する必要があります。
 
 build.sbt:
