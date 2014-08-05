@@ -172,6 +172,5 @@ ignoreファイルの設定
   log
   project/project
   project/target
-  routes.cache
   target
   tmp

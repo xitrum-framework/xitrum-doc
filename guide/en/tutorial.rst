@@ -179,6 +179,5 @@ Normally, these file should be
   log
   project/project
   project/target
-  routes.cache
   target
   tmp
