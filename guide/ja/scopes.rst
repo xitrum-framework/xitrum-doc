@@ -36,7 +36,7 @@
 * ``paramso("x")``: ``Option[List[String]]`` を返却します。
 
 ``param[Int]("x")`` や ``params[Int]("x")`` と型を指定することでテキストパラメーターを別の型として取得することができます。
-テキストパラメーターを独自の型に変換する場合、 `convertTextParam <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/request/ParamAccess.scala>`_ をオーバーライドすることで可能となります。
+テキストパラメーターを独自の型に変換する場合、 `convertTextParam <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala-2.11/xitrum/scope/request/ParamAccess.scala>`_ をオーバーライドすることで可能となります。
 
 ファイルアップロードに対しては、``param[FileUpload]("x")`` や ``params[FileUpload]("x")`` でアクセスすることができます。
 詳しくは :doc:`ファイルアップロードの章 </upload>` を参照してください。
