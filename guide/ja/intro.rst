@@ -87,7 +87,7 @@ Xitrumは `Scalatra <https://github.com/scalatra/scalatra>`_ よりパワフル�
 
 * `Ngoc Dao (*) <https://github.com/ngocdaothanh>`_
 * `Linh Tran <https://github.com/alide>`_
-* `James Earl Douglas <https://github.com/JamesEarlDouglas>`_
+* `James Earl Douglas <https://github.com/earldouglas>`_
 * `Aleksander Guryanov <https://github.com/caiiiycuk>`_
 * `Takeharu Oshida (*) <https://github.com/georgeOsdDev>`_
 * `Nguyen Kim Kha <https://github.com/kimkha>`_
