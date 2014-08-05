@@ -73,7 +73,7 @@ Xitrum использует некоторые библиотеки. Вы мож
 * `xitrum-scalate <https://github.com/xitrum-framework/xitrum-scalate>`_:
   Стандартный шаблонизатор для Xitrum, подключенный в
   `шаблонном проекте <https://github.com/xitrum-framework/xitrum-new>`_.
-  Вы можете заменить его другим шаблонизатором, или вообще убрать если вам 
+  Вы можете заменить его другим шаблонизатором, или вообще убрать если вам
   не нужен шаблонизатор. Он зависит от
   `Scalate <http://scalate.fusesource.org/>`_ и
   `Scalamd <https://github.com/chirino/scalamd>`_.
@@ -85,6 +85,6 @@ Xitrum использует некоторые библиотеки. Вы мож
 Другие проекты:
 
 * `xitrum-doc <https://github.com/xitrum-framework/xitrum-doc>`_:
-  Исходный код `учебника Xitrum <http://xitrum-framework.github.io/guide/en/index.html>`_.
+  Исходный код `учебника Xitrum <http://xitrum-framework.github.io/guide.html>`_.
 * `xitrum-hp <https://github.com/xitrum-framework/xitrum-framework.github.io>`_:
   Исходный код `домашней страниц Xitrum <http://xitrum-framework.github.io/>`_.
