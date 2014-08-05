@@ -252,7 +252,7 @@ Chunkレスポンスを ``ActorAction`` の組み合わせて
 無限iframe
 ~~~~~~~~~~~
 
-Chunkレスポンスで `Comet <http://en.wikipedia.org/wiki/Comet_(programming)/>`_ を
+Chunkレスポンスで `Comet <http://en.wikipedia.org/wiki/Comet_%28programming%29>`_ を
 実装することが
 `可能 <http://www.shanison.com/2010/05/10/stop-the-browser-%E2%80%9Cthrobber-of-doom%E2%80%9D-while-loading-comet-forever-iframe/>`_
 です。

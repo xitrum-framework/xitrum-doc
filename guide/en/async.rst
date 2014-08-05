@@ -258,7 +258,7 @@ Forever iframe
 ~~~~~~~~~~~~~~
 
 Chunked response `can be used <http://www.shanison.com/2010/05/10/stop-the-browser-%E2%80%9Cthrobber-of-doom%E2%80%9D-while-loading-comet-forever-iframe/>`_
-for `Comet <http://en.wikipedia.org/wiki/Comet_(programming)/>`_.
+for `Comet <http://en.wikipedia.org/wiki/Comet_%28programming%29>`_.
 
 The page that embeds the iframe:
 
