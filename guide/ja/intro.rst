@@ -62,7 +62,7 @@ Xitrum `ユーザーの声 <https://groups.google.com/group/xitrum-framework/msg
 * クッキーによる（よりスケーラブルな）、`Hazelcast <http://www.hazelcast.org/>`_ クラスターによる(よりセキュアな)セッション管理。
   Hazelcastは（とても早くて、簡単に）プロセス間分散キャッシュも提供してくれます。
   このため別のキャッシュサーバーを用意する必要はなくなります。これはAkkaのpubsub機能にも言えることです。
-* `jQuery Validation <http://docs.jquery.com/Plugins/validation>`_ によるブラウザー、サーバーサイド双方でのバリデーション。
+* `jQuery Validation <http://jqueryvalidation.org/>`_ によるブラウザー、サーバーサイド双方でのバリデーション。
 * `GNU gettext <http://en.wikipedia.org/wiki/GNU_gettext>`_ を使用した国際化対応。
   翻訳テキストの抽出は自動で行われるため、プロパティファイルに煩わされることはなくなるでしょう。
   翻訳とマージ作業には `Poedit <http://www.poedit.net/screenshots.php>`_ のようなパワフルなツールが使えます。

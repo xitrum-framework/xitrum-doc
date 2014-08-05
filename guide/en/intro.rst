@@ -71,7 +71,7 @@ Features
 * Sessions can be stored in cookies (more scalable) or clustered `Hazelcast <http://www.hazelcast.org/>`_ (more secure).
   Hazelcast also gives in-process (thus faster and simpler to use) distribued cache,
   you don't need separate cache servers. The same is for pubsub feature in Akka.
-* `jQuery Validation <http://docs.jquery.com/Plugins/validation>`_ is integrated
+* `jQuery Validation <http://jqueryvalidation.org/>`_ is integrated
   for browser side and server side validation.
 * i18n using `GNU gettext <http://en.wikipedia.org/wiki/GNU_gettext>`_.
   Translation text extraction is done automatically.
