@@ -372,9 +372,9 @@ Xitrumはシンプルなセッションストアを2種類提供しています�
 
 一般的に、上記のデフォルトセッションストアのいずれかで事足りることですが、
 もし特殊なセッションストアを独自に実装する場合
-`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/session/SessionStore.scala>`_
+`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
 または
-`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/session/ServerSessionStore.scala>`_
+`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/ServerSessionStore.scala>`_
 を継承し、抽象メソッドを実装してください。
 
 スケーラブルにする場合、できるだけセッションはクライアントサイドのクッキーに保存しましょう。

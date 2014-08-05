@@ -377,9 +377,9 @@ SessionVar, как и RequestVar, это способ сделать сесси�
 
 Эти три типа хранилища сессии обычно покрывают все необходимые случаи. Существует
 возможность определить свою реализацию хранилища сессии, используйте наследование от
-`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/session/SessionStore.scala>`_
+`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
 или
-`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/session/ServerSessionStore.scala>`_ и реализуйте абстрактные методы.
+`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/ServerSessionStore.scala>`_ и реализуйте абстрактные методы.
 
 Используйте куки когда это возможно, поскольку они более масштабируемы.
 Храните сессии на сервере (в памяти или базе данных) если это необходимо.

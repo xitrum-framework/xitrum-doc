@@ -384,9 +384,9 @@ you must use a load balancer that supports sticky sessions.
 The three default session stores above are enough for normal cases.
 If you have a special case and want to implement your own session store,
 extend
-`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/session/SessionStore.scala>`_
+`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
 or
-`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/session/ServerSessionStore.scala>`_
+`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/ServerSessionStore.scala>`_
 and implement the abstract methods.
 
 Store sessions on client side cookie when you can, because it's more scalable.
