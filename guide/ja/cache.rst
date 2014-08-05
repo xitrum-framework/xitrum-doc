@@ -74,7 +74,7 @@ Xitrumはすぐにキャッシュされたレスポンスを返却します:
 オブジェクトのキャッシュ
 ------------------------
 
-`xitrum.Cache <http://xitrum-framework.github.io/api/index.html#xitrum.Cache>`_ のインスタンスである、
+`xitrum.Cache <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.Cache>`_ のインスタンスである、
 ``xitrum.Config.xitrum.cache`` を使用することができます。
 
 明示的な有効期限を設定しない場合:

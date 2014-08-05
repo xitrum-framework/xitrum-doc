@@ -73,7 +73,7 @@ Manipulate collected routes
 
 Xitrum automatically collect routes on startup.
 If you want to manipulate the routes, you can use
-`xitrum.Config.routes <http://xitrum-framework.github.io/api/index.html#xitrum.routing.RouteCollection>`_.
+`xitrum.Config.routes <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.routing.RouteCollection>`_.
 
 Example:
 

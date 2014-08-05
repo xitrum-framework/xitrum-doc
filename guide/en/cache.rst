@@ -76,7 +76,7 @@ Cache object
 ------------
 
 You use methods in ``xitrum.Config.xitrum.cache``, it's an instance of
-`xitrum.Cache <http://xitrum-framework.github.io/api/index.html#xitrum.Cache>`_.
+`xitrum.Cache <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.Cache>`_.
 
 Without an explicit TTL (time to live):
 

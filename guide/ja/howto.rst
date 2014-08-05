@@ -73,7 +73,7 @@ Ajaxリクエストの判定
 ------------------
 
 Xitrumは起動時に自動でルーティングを収集します。
-収集されたルーティングにアクセスするには、`xitrum.Config.routes <http://xitrum-framework.github.io/api/index.html#xitrum.routing.RouteCollection>`_ を使用します。
+収集されたルーティングにアクセスするには、`xitrum.Config.routes <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.routing.RouteCollection>`_ を使用します。
 
 例:
 
