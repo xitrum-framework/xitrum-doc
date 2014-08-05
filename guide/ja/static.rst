@@ -202,7 +202,7 @@ ETagを全く使用しないよりはいくらかマシといえます。
   => /resources/public/xitrum/jquery-1.6.4.js?xndGJVH0zA8q8ZJJe1Dz9Q
 
 
-またXitrumは、``max-age`` と ``Expires`` を `一年 <http://code.google.com/intl/en/speed/page-speed/docs/caching.html>`_ としてヘッダに設定します。.
+またXitrumは、``max-age`` と ``Expires`` を `一年 <https://developers.google.com/speed/docs/best-practices/caching>`_ としてヘッダに設定します。.
 ブラウザが最新ファイルを参照しなくなるのではないかと心配する必要はありません。
 なぜなら、あなたがディスク上のファイルを変更した場合、その ``更新時刻`` は変化します。
 これによって、``publicUrl`` と ``resourceUrl`` が生成するURLも変わります。
