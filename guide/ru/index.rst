@@ -27,6 +27,7 @@ Xitrum Guide
    filter
    cache
    i18n
+   log
    deploy
    cluster
    handler
