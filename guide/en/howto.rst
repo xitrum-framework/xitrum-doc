@@ -161,22 +161,22 @@ Use trait xitrum.Log
 ~~~~~~~~~~~~~~~~~~~~
 
 If you want to have the information about where (which class) the log has been
-made, you should extend trait xitrum.Log
+made, you should extend trait xitrum.Log:
 
 ::
 
   package my_package
+  import xitrum.Log
 
-  object MyModel extends xitrum.Log {
-    xitrum.Log.debug("My debug msg")
-    xitrum.Log.info("My info msg")
+  object MyModel extends Log {
+    log.debug("My debug msg")
+    log.info("My info msg")
     ...
   }
 
 In file log/xitrum.log you will see that the log messages comes from ``MyModel``.
 
-Xitrum actions extend trait xitrum.Log, which provides ``log``.
-In any action, you can do like this:
+Xitrum actions extend trait xitrum.Log, so in actions, you can do write:
 
 ::
 

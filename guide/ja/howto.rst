@@ -164,17 +164,17 @@ xitrum.Logトレイトを継承します。
 ::
 
   package my_package
+  import xitrum.Log
 
-  object MyModel extends xitrum.Log {
-    xitrum.Log.debug("My debug msg")
-    xitrum.Log.info("My info msg")
+  object MyModel extends Log {
+    log.debug("My debug msg")
+    log.info("My info msg")
     ...
   }
 
 ``log/xitrum.log`` にはメッセージが ``MyModel`` から出力されていることがわかります。
 
-Xitrumのアクションはxitrum.Logトレイトを継承し、 ``log`` メソッドを提供しています。
-つまり、どのactionからでも以下のようにログを出力することができます:
+Xitrumのアクションはxitrum.Logトレイトを継承しており、どのactionからでも以下のようにログを出力することができます:
 
 ::
 

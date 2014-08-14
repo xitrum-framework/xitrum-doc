@@ -167,10 +167,11 @@ Xitrum автоматически собирает маршруты при за�
 ::
 
   package my_package
+  import xitrum.Log
 
-  object MyModel extends xitrum.Log {
-    xitrum.Log.debug("My debug msg")
-    xitrum.Log.info("My info msg")
+  object MyModel extends Log {
+    log.debug("My debug msg")
+    log.info("My info msg")
     ...
   }
 
