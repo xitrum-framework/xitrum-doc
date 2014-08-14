@@ -77,3 +77,41 @@ This means that `Logback <http://logback.qos.ch/>`_ is used by default.
 Logback config file is at ``config/logback.xml``.
 
 You may replace Logback with any other implementation of `SLF4J <http://www.slf4j.org/>`_.
+
+Log to Fluentd
+--------------
+
+`Fluentd <http://www.fluentd.org/>`_ is a very popular log collector. You can
+configure Logback to send log (maybe from many places) to a Fluentd server.
+
+First, add `logback-more-appenders <https://github.com/sndyuk/logback-more-appenders>`_
+library to your project:
+
+::
+
+  libraryDependencies += "org.fluentd" % "fluent-logger" % "0.2.11"
+
+  resolvers += "Logback more appenders" at "http://sndyuk.github.com/maven"
+
+  libraryDependencies += "com.sndyuk" % "logback-more-appenders" % "1.1.0"
+
+Then, in ``config/logback.xml``:
+
+::
+
+  ...
+
+  <appender name="FLUENT" class="ch.qos.logback.more.appenders.DataFluentAppender">
+    <tag>mytag</tag>
+    <label>mylabel</label>
+    <remoteHost>localhost</remoteHost>
+    <port>24224</port>
+    <maxQueueSize>20000</maxQueueSize>  <!-- Save to memory when remote server is down -->
+  </appender>
+
+  <root level="DEBUG">
+    <appender-ref ref="FLUENT"/>
+    <appender-ref ref="OTHER_APPENDER"/>
+  </root>
+
+  ...
