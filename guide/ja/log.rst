@@ -76,3 +76,41 @@ build.sbtに以下の1行があります:
 Logbackの設定ファイルは ``config/logback.xml`` になります。
 
 Logback以外の `SLF4J <http://www.slf4j.org/>`_ 対応ライブラリに置き換えることも可能です。
+
+
+Fluentd へのログ出力
+--------------------
+
+ログコレクターとして有名な `Fluentd <http://www.fluentd.org/>`_ というソフトウェアがあります。
+Logbackの設定を変更することでFluentdサーバにXitrumのログを（複数の箇所から）転送することができます。
+
+利用するにはまず、プロジェクトの依存ライブラリに `logback-more-appenders <https://github.com/sndyuk/logback-more-appenders>`_ を追加します:
+
+::
+
+  libraryDependencies += "org.fluentd" % "fluent-logger" % "0.2.11"
+
+  resolvers += "Logback more appenders" at "http://sndyuk.github.com/maven"
+
+  libraryDependencies += "com.sndyuk" % "logback-more-appenders" % "1.1.0"
+
+そして ``config/logback.xml`` を編集します:
+
+::
+
+  ...
+
+  <appender name="FLUENT" class="ch.qos.logback.more.appenders.DataFluentAppender">
+    <tag>mytag</tag>
+    <label>mylabel</label>
+    <remoteHost>localhost</remoteHost>
+    <port>24224</port>
+    <maxQueueSize>20000</maxQueueSize>  <!-- Save to memory when remote server is down -->
+  </appender>
+
+  <root level="DEBUG">
+    <appender-ref ref="FLUENT"/>
+    <appender-ref ref="OTHER_APPENDER"/>
+  </root>
+
+  ...
