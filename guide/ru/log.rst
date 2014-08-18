@@ -41,7 +41,7 @@
 Проверка уровня логирования
 ---------------------------
 
-``xitrum.Log`` онснован на `SLF4S <http://slf4s.org/>`_ (`API <http://slf4s.org/api/1.7.7/>`_),
+``xitrum.Log`` основан на `SLF4S <http://slf4s.org/>`_ (`API <http://slf4s.org/api/1.7.7/>`_),
 который в свою очередь на `SLF4J <http://www.slf4j.org/>`_.
 
 Обычно, перед выполнением сложных вычислений которые будут отправлены в лог, выполняют
@@ -78,3 +78,41 @@
 Конфигурационный файл Logback - ``config/logback.xml``.
 
 Вы можете заменить Logback любой другой реализацией `SLF4J <http://www.slf4j.org/>`_.
+
+Использование Fluentd
+---------------------
+
+`Fluentd <http://www.fluentd.org/>`_ очень популярная система сбора логов. Вы можете
+настроить Logback так что бы отправлять логи (возможно из нескольких мест) на Fluentd сервер.
+
+Первое, добавьте библиотеку `logback-more-appenders <https://github.com/sndyuk/logback-more-appenders>`_
+в ваш проект:
+
+::
+
+  libraryDependencies += "org.fluentd" % "fluent-logger" % "0.2.11"
+
+  resolvers += "Logback more appenders" at "http://sndyuk.github.com/maven"
+
+  libraryDependencies += "com.sndyuk" % "logback-more-appenders" % "1.1.0"
+
+Затем исправьте конфигурацию ``config/logback.xml``:
+
+::
+
+  ...
+
+  <appender name="FLUENT" class="ch.qos.logback.more.appenders.DataFluentAppender">
+    <tag>mytag</tag>
+    <label>mylabel</label>
+    <remoteHost>localhost</remoteHost>
+    <port>24224</port>
+    <maxQueueSize>20000</maxQueueSize>  <!-- Позволяет экономить память если сервер выключен -->
+  </appender>
+
+  <root level="DEBUG">
+    <appender-ref ref="FLUENT"/>
+    <appender-ref ref="OTHER_APPENDER"/>
+  </root>
+
+  ...
