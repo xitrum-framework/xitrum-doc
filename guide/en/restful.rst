@@ -267,8 +267,8 @@ Xitrum will generate `/xitrum/swagger.json <https://github.com/wordnik/swagger-c
 This file can be used with `Swagger UI <https://github.com/wordnik/swagger-ui>`_
 to generate interactive API documentation.
 
-Xitrum includes Swagger UI. Access it at the path ``/xitrum/swagger`` of your program,
-e.g. http://localhost:8000/xitrum/swagger.
+Xitrum includes Swagger UI. Access it at the path ``/xitrum/swagger-ui`` of your program,
+e.g. http://localhost:8000/xitrum/swagger-ui.
 
 .. image:: ../img/swagger.png
 
@@ -280,8 +280,10 @@ Let's see `an example <https://github.com/xitrum-framework/xitrum-placeholder>`_
   import xitrum.annotation.{GET, Swagger}
 
   @Swagger(
-    Swagger.Note("Dimensions should not be bigger than 2000 x 2000")
+    Swagger.Resource("image", "APIs to create images"),
+    Swagger.Note("Dimensions should not be bigger than 2000 x 2000"),
     Swagger.OptStringQuery("text", "Text to render on the image, default: Placeholder"),
+    Swagger.Produces("image/png"),
     Swagger.Response(200, "PNG image"),
     Swagger.Response(400, "Width or height is invalid or too big")
   )
@@ -291,6 +293,7 @@ Let's see `an example <https://github.com/xitrum-framework/xitrum-placeholder>`_
 
   @GET("image/:width/:height")
   @Swagger(  // <-- Inherits other info from ImageApi
+    Swagger.Nickname("rect"),
     Swagger.Summary("Generate rectangle image"),
     Swagger.IntPath("width"),
     Swagger.IntPath("height")
@@ -305,6 +308,7 @@ Let's see `an example <https://github.com/xitrum-framework/xitrum-placeholder>`_
 
   @GET("image/:width")
   @Swagger(  // <-- Inherits other info from ImageApi
+    Swagger.Nickname("square"),
     Swagger.Summary("Generate square image"),
     Swagger.IntPath("width")
   )
@@ -315,87 +319,10 @@ Let's see `an example <https://github.com/xitrum-framework/xitrum-placeholder>`_
     }
   }
 
-/xitrum/swagger.json will look like this (note the inheritance):
+`JSON for Swagger <https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md>`_
+will be generated when you access ``/xitrum/swagger``.
 
-::
-
-  {
-    "basePath":"http://localhost:8000",
-    "swaggerVersion":"1.2",
-    "resourcePath":"/xitrum/swagger.json",
-    "apis":[{
-      "path":"/xitrum/swagger.json",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"JSON for Swagger Doc of this whole project",
-        "notes":"Use this route in Swagger UI to see API doc.",
-        "nickname":"SwaggerAction",
-        "parameters":[],
-        "responseMessages":[]
-      }]
-    },{
-      "path":"/image/{width}/{height}",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"Generate rectangle image",
-        "notes":"Dimensions should not be bigger than 2000 x 2000",
-        "nickname":"RectImageApi",
-        "parameters":[{
-          "name":"width",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"height",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"text",
-          "paramType":"query",
-          "type":"string",
-          "description":"Text to render on the image, default: Placeholder",
-          "required":false
-        }],
-        "responseMessages":[{
-          "code":"200",
-          "message":"PNG image"
-        },{
-          "code":"400",
-          "message":"Width is invalid or too big"
-        }]
-      }]
-    },{
-      "path":"/image/{width}",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"Generate square image",
-        "notes":"Dimensions should not be bigger than 2000 x 2000",
-        "nickname":"SquareImageApi",
-        "parameters":[{
-          "name":"width",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"text",
-          "paramType":"query",
-          "type":"string",
-          "description":"Text to render on the image, default: Placeholder",
-          "required":false
-        }],
-        "responseMessages":[{
-          "code":"200",
-          "message":"PNG image"
-        },{
-          "code":"400",
-          "message":"Width is invalid or too big"
-        }]
-      }]
-    }]
-  }
-
-Swagger UI uses the above information to generate interactive API doc.
+Swagger UI uses the JSON above to generate interactive API doc.
 
 Params other than Swagger.IntPath and Swagger.OptStringQuery above: BytePath, IntQuery, OptStringForm etc.
 They are in the form:

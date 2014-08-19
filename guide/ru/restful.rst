@@ -37,7 +37,7 @@ Xitrum автоматически обрабатывает HEAD запросы �
 Например, движок блога можно упаковать в JAR файл и подключить его в другое приложение,
 после этого у приложения появятся все возможности блога. Маршрутизация осуществляется
 в два направления, можно генерировать URL по контроллеру (обратная маршрутизация).
-Автоматическое документирование ваших маршрутов можно выполнить используя 
+Автоматическое документирование ваших маршрутов можно выполнить используя
 `Swagger Doc <http://swagger.wordnik.com/>`_.
 
 Кэш маршрутов
@@ -181,7 +181,7 @@ Anti-CSRF
   </html>
 
 Этот токен будет автоматически включен во все Ajax запросы jQuery как заголовок
-``X-CSRF-Token`` если вы подключите `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_. xitrum.js  подключается вызовом ``jsDefaults``. Если вы не хотите 
+``X-CSRF-Token`` если вы подключите `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_. xitrum.js  подключается вызовом ``jsDefaults``. Если вы не хотите
 использовать ``jsDefaults``, вы можете подключить xitrum.js следующим образом (или посылать токен самостоятельно):
 
 ::
@@ -255,14 +255,14 @@ JSON:
 Документирование API
 --------------------
 
-Из коробки вы можете документировать API и использованием `Swagger <https://developers.helloreverb.com/swagger/>`_. 
+Из коробки вы можете документировать API и использованием `Swagger <https://developers.helloreverb.com/swagger/>`_.
 Добавьте аннотацию ``@Swagger`` к контроллеру который нужно задокументировать
 Xitrum генерирует `/xitrum/swagger.json <https://github.com/wordnik/swagger-core/wiki/API-Declaration>`_.
 Этот файл может быть использован в `Swagger UI <https://github.com/wordnik/swagger-ui>`_
 для генерации интерактивной документации.
 
-Xitrum включает Swagger UI, по пути ``/xitrum/swagger``,
-например http://localhost:8000/xitrum/swagger.
+Xitrum включает Swagger UI, по пути ``/xitrum/swagger-ui``,
+например http://localhost:8000/xitrum/swagger-ui.
 
 .. image:: ../img/swagger.png
 
@@ -274,8 +274,10 @@ Xitrum включает Swagger UI, по пути ``/xitrum/swagger``,
   import xitrum.annotation.{GET, Swagger}
 
   @Swagger(
-    Swagger.Note("Dimensions should not be bigger than 2000 x 2000")
+    Swagger.Resource("image", "APIs to create images"),
+    Swagger.Note("Dimensions should not be bigger than 2000 x 2000"),
     Swagger.OptStringQuery("text", "Text to render on the image, default: Placeholder"),
+    Swagger.Produces("image/png"),
     Swagger.Response(200, "PNG image"),
     Swagger.Response(400, "Width or height is invalid or too big")
   )
@@ -285,6 +287,7 @@ Xitrum включает Swagger UI, по пути ``/xitrum/swagger``,
 
   @GET("image/:width/:height")
   @Swagger(  // <-- Inherits other info from ImageApi
+    Swagger.Nickname("rect"),
     Swagger.Summary("Generate rectangle image"),
     Swagger.IntPath("width"),
     Swagger.IntPath("height")
@@ -299,6 +302,7 @@ Xitrum включает Swagger UI, по пути ``/xitrum/swagger``,
 
   @GET("image/:width")
   @Swagger(  // <-- Inherits other info from ImageApi
+    Swagger.Nickname("square"),
     Swagger.Summary("Generate square image"),
     Swagger.IntPath("width")
   )
@@ -309,85 +313,8 @@ Xitrum включает Swagger UI, по пути ``/xitrum/swagger``,
     }
   }
 
-/xitrum/swagger.json будет выглядеть так (обратите внимание на наследование):
-
-::
-
-  {
-    "basePath":"http://localhost:8000",
-    "swaggerVersion":"1.2",
-    "resourcePath":"/xitrum/swagger.json",
-    "apis":[{
-      "path":"/xitrum/swagger.json",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"JSON for Swagger Doc of this whole project",
-        "notes":"Use this route in Swagger UI to see API doc.",
-        "nickname":"SwaggerAction",
-        "parameters":[],
-        "responseMessages":[]
-      }]
-    },{
-      "path":"/image/{width}/{height}",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"Generate rectangle image",
-        "notes":"Dimensions should not be bigger than 2000 x 2000",
-        "nickname":"RectImageApi",
-        "parameters":[{
-          "name":"width",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"height",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"text",
-          "paramType":"query",
-          "type":"string",
-          "description":"Text to render on the image, default: Placeholder",
-          "required":false
-        }],
-        "responseMessages":[{
-          "code":"200",
-          "message":"PNG image"
-        },{
-          "code":"400",
-          "message":"Width is invalid or too big"
-        }]
-      }]
-    },{
-      "path":"/image/{width}",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"Generate square image",
-        "notes":"Dimensions should not be bigger than 2000 x 2000",
-        "nickname":"SquareImageApi",
-        "parameters":[{
-          "name":"width",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"text",
-          "paramType":"query",
-          "type":"string",
-          "description":"Text to render on the image, default: Placeholder",
-          "required":false
-        }],
-        "responseMessages":[{
-          "code":"200",
-          "message":"PNG image"
-        },{
-          "code":"400",
-          "message":"Width is invalid or too big"
-        }]
-      }]
-    }]
-  }
+`JSON для Swagger <https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md>`_
+будет генерироваться при доступе ``/xitrum/swagger``.
 
 Swagger UI использует эту информацию для генерации интерактивной документации к API.
 

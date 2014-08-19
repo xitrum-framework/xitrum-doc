@@ -260,8 +260,8 @@ SwaggerによるAPIドキュメンテーション
 ``@Swagger`` アノテーションをドキュメント化したいActionに記述します。
 Xitrumはアノテーション情報から `/xitrum/swagger.json <https://github.com/wordnik/swagger-core/wiki/API-Declaration>`_ を作成します。
 このファイルを `Swagger UI <https://github.com/wordnik/swagger-ui>`_ で読み込むことでインタラクティブなAPIドキュメンテーションとなります。
-XitrumはSwagger UI を内包しており、 ``/xitrum/swagger`` というパスにルーティングします。
-例: http://localhost:8000/xitrum/swagger.
+XitrumはSwagger UI を内包しており、 ``/xitrum/swagger-ui`` というパスにルーティングします。
+例: http://localhost:8000/xitrum/swagger-ui.
 
 .. image:: ../img/swagger.png
 
@@ -273,8 +273,10 @@ XitrumはSwagger UI を内包しており、 ``/xitrum/swagger`` というパス
   import xitrum.annotation.{GET, Swagger}
 
   @Swagger(
-    Swagger.Note("Dimensions should not be bigger than 2000 x 2000")
+    Swagger.Resource("image", "APIs to create images"),
+    Swagger.Note("Dimensions should not be bigger than 2000 x 2000"),
     Swagger.OptStringQuery("text", "Text to render on the image, default: Placeholder"),
+    Swagger.Produces("image/png"),
     Swagger.Response(200, "PNG image"),
     Swagger.Response(400, "Width or height is invalid or too big")
   )
@@ -284,6 +286,7 @@ XitrumはSwagger UI を内包しており、 ``/xitrum/swagger`` というパス
 
   @GET("image/:width/:height")
   @Swagger(  // <-- Inherits other info from ImageApi
+    Swagger.Nickname("rect"),
     Swagger.Summary("Generate rectangle image"),
     Swagger.IntPath("width"),
     Swagger.IntPath("height")
@@ -298,6 +301,7 @@ XitrumはSwagger UI を内包しており、 ``/xitrum/swagger`` というパス
 
   @GET("image/:width")
   @Swagger(  // <-- Inherits other info from ImageApi
+    Swagger.Nickname("square"),
     Swagger.Summary("Generate square image"),
     Swagger.IntPath("width")
   )
@@ -309,85 +313,9 @@ XitrumはSwagger UI を内包しており、 ``/xitrum/swagger`` というパス
   }
 
 
-`/xitrum/swagger.json` はこのように出力されます(継承に注意):
-
-::
-
-  {
-    "basePath":"http://localhost:8000",
-    "swaggerVersion":"1.2",
-    "resourcePath":"/xitrum/swagger.json",
-    "apis":[{
-      "path":"/xitrum/swagger.json",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"JSON for Swagger Doc of this whole project",
-        "notes":"Use this route in Swagger UI to see API doc.",
-        "nickname":"SwaggerAction",
-        "parameters":[],
-        "responseMessages":[]
-      }]
-    },{
-      "path":"/image/{width}/{height}",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"Generate rectangle image",
-        "notes":"Dimensions should not be bigger than 2000 x 2000",
-        "nickname":"RectImageApi",
-        "parameters":[{
-          "name":"width",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"height",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"text",
-          "paramType":"query",
-          "type":"string",
-          "description":"Text to render on the image, default: Placeholder",
-          "required":false
-        }],
-        "responseMessages":[{
-          "code":"200",
-          "message":"PNG image"
-        },{
-          "code":"400",
-          "message":"Width is invalid or too big"
-        }]
-      }]
-    },{
-      "path":"/image/{width}",
-      "operations":[{
-        "httpMethod":"GET",
-        "summary":"Generate square image",
-        "notes":"Dimensions should not be bigger than 2000 x 2000",
-        "nickname":"SquareImageApi",
-        "parameters":[{
-          "name":"width",
-          "paramType":"path",
-          "type":"integer",
-          "required":true
-        },{
-          "name":"text",
-          "paramType":"query",
-          "type":"string",
-          "description":"Text to render on the image, default: Placeholder",
-          "required":false
-        }],
-        "responseMessages":[{
-          "code":"200",
-          "message":"PNG image"
-        },{
-          "code":"400",
-          "message":"Width is invalid or too big"
-        }]
-      }]
-    }]
-  }
+``/xitrum/swagger`` にアクセスすると
+`SwaggerのためのJSON <https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md>`_
+が生成されます。
 
 Swagger UIはこの情報をもとにインタラクティブなAPIドキュメンテーションを作成します。
 
