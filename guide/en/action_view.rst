@@ -407,18 +407,21 @@ Normally, you write view in a Scalate file. You can also write it directly:
 Render fragment
 ---------------
 
-If you want to render the frament file
-scr/main/scalate/mypackage/MyAction/_myfragment.jade:
+Suppose MyAction.jade is at:
+scr/main/scalate/mypackage/MyAction.jade
+
+If you want to render the fragment file in the same directory:
+scr/main/scalate/mypackage/_MyFragment.jade
 
 ::
 
-  renderFragment[MyAction]("myfragment")
+  renderFragment[MyAction]("MyFragment")
 
-If MyAction is the current action, you can skip it:
+If ``MyAction`` is the current action, you can skip it:
 
 ::
 
-  renderFragment("myfragment")
+  renderFragment("MyFragment")
 
 Respond view of other action
 ----------------------------

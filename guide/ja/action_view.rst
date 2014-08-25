@@ -395,19 +395,21 @@ respondInlineView
 renderFragment
 --------------
 
-フラグメントを返す場合
-
-scr/main/scalate/mypackage/MyAction/_myfragment.jade:
-
-::
-
-  renderFragment[MyAction]("myfragment")
-
-現在のActionがMyActionの場合、キャストは省略できます。
+MyAction.jadeが
+``scr/main/scalate/mypackage/MyAction.jade``
+にある場合、同じディレクトリにあるフラグメント
+``scr/main/scalate/mypackage/_MyFragment.jade``
+を返す場合:
 
 ::
 
-  renderFragment("myfragment")
+  renderFragment[MyAction]("MyFragment")
+
+現在のActionが``MyAction``の場合、以下のように省略できます。
+
+::
+
+  renderFragment("MyFragment")
 
 別のアクションに紐付けられたViewをレスポンスする場合
 --------------------------------------------------------------------------------
