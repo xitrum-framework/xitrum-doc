@@ -139,7 +139,7 @@ Postback может быть отправлен для любого элемен
   <a href="#"
      data-postback="click"
      action={postbackUrl[ArticlesDestroy]("id" -> item.id)}
-     data-extra="_method=delete"
+     data-params="_method=delete"
      data-confirm={"Do you want to delete %s?".format(item.name)}>Delete</a>
 
 Или вы можете поместить дополнительные параметры в смежную форму:
@@ -153,7 +153,7 @@ Postback может быть отправлен для любого элемен
     <a class="pagination"
        href="#"
        data-postback="click"
-       data-extra="#myform"
+       data-form="#myform"
        action={postbackUrl[SiteSearch]("page" -> page)}>{page}</a>
   </form>
 

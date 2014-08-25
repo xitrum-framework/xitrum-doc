@@ -140,7 +140,7 @@ For other elements, you do like this:
   <a href="#"
      data-postback="click"
      action={url[ArticlesDestroy]("id" -> item.id)}
-     data-extra="_method=delete"
+     data-params="_method=delete"
      data-confirm={"Do you want to delete %s?".format(item.name)}>Delete</a>
 
 You may also put extra params in a separate form:
@@ -154,7 +154,7 @@ You may also put extra params in a separate form:
     <a class="pagination"
        href="#"
        data-postback="click"
-       data-extra="#myform"
+       data-form="#myform"
        action={url[SiteSearch]("page" -> page)}>{page}</a>
   </form>
 

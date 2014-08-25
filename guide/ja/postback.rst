@@ -138,7 +138,7 @@ formエレメント以外に対しては、以下のように指定します:
   <a href="#"
      data-postback="click"
      action={url[ArticlesDestroy]("id" -> item.id)}
-     data-extra="_method=delete"
+     data-params="_method=delete"
      data-confirm={"Do you want to delete %s?".format(item.name)}>Delete</a>
 
 または以下のように別のエレメントに指定することも可能です:
@@ -152,7 +152,7 @@ formエレメント以外に対しては、以下のように指定します:
     <a class="pagination"
        href="#"
        data-postback="click"
-       data-extra="#myform"
+       data-form="#myform"
        action={url[SiteSearch]("page" -> page)}>{page}</a>
   </form>
 
