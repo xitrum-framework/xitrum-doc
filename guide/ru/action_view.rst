@@ -36,9 +36,10 @@ FutureAction
 ::
 
   import xitrum.FutureAction
+  import xitrum.annotation.GET
 
-  @GET("hi")
-  class MyAction extends FutureAction {
+  @GET("hello")
+  class HelloAction extends FutureAction {
     def execute() {
       respondText("hi")
     }
@@ -62,19 +63,17 @@ FutureAction
   import xitrum.ActorAction
   import xitrum.annotation.GET
 
-  @GET("actor")
-  class ActorDemo extends ActorAction with AppAction {
-    // This is just a normal Akka actor
-
+  @GET("hello")
+  class HelloAction extends ActorAction with AppAction {
     def execute() {
       // See Akka doc about scheduler
       import context.dispatcher
-      context.system.scheduler.scheduleOnce(3 seconds, self, System.currentTimeMillis)
+      context.system.scheduler.scheduleOnce(3 seconds, self, System.currentTimeMillis())
 
       // See Akka doc about "become"
       context.become {
         case pastTime =>
-          respondInlineView("It's " + pastTime + " Unix ms 3s ago.")
+          respondInlineView(s"It's $pastTime Unix ms 3s ago.")
       }
     }
   }

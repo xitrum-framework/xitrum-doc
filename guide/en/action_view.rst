@@ -1,13 +1,11 @@
 Action and view
 ===============
 
-To be flexible, Xitrum provides 2 kinds of actions:
-normal action and actor action.
+To be flexible, Xitrum provides 3 kinds of actions:
+normal ``Action``, ``FutureAction``, and ``ActorAction``.
 
 Normal action
 -------------
-
-Use when you don't do async call to outside from your action.
 
 ::
 
@@ -21,42 +19,32 @@ Use when you don't do async call to outside from your action.
     }
   }
 
-With Action, the request is handled right away, but the number of concurrent
-connections can't be too high. There should not be any blocking processing
-along the way request -> response.
+Because the action will run on directly Netty's IO thread, it should not do blocking
+processing that may take a long time, otherwise Netty can't accept new connections
+or send response back to clients.
 
 FutureAction
 ------------
 
-If you extend xitrum.Action, your action will run on Netty's IO thread. This is
-only suitable if your action is lightweight and nonblocking (e.g. it returns
-immediately). Otherwise, you can extend xitrum.FutureAction to easily run on
-another thread (thread pool).
-
 ::
 
   import xitrum.FutureAction
+  import xitrum.annotation.GET
 
-  @GET("hi")
-  class MyAction extends FutureAction {
+  @GET("hello")
+  class HelloAction extends FutureAction {
     def execute() {
       respondText("hi")
     }
   }
 
+The action will run on the same thread pool for ``ActorAction`` (see below),
+separated from the thread pool of Netty.
+
 Actor action
 ------------
 
-Use when you want to do async call to outside from your action.
-If you want your action to be an actor, instead of extending xitrum.Action,
-extend xitrum.ActorAction. With ActorAction, your system can handle massive
-number of concurrent connections, but the request is not handled right away.
-This is async oriented.
-
-An actor instance will be created when there's request. It will be stopped when the
-connection is closed or when the response has been sent by respondText,
-respondView etc. methods. For chunked response, it is not stopped right away.
-It is stopped when the last chunk is sent.
+If you want your action to be an Akka actor, extend ``ActorAction``:
 
 ::
 
@@ -66,21 +54,26 @@ It is stopped when the last chunk is sent.
   import xitrum.annotation.GET
 
   @GET("actor")
-  class ActorDemo extends ActorAction with AppAction {
-    // This is just a normal Akka actor
-
+  class HelloAction extends ActorAction {
     def execute() {
       // See Akka doc about scheduler
       import context.dispatcher
-      context.system.scheduler.scheduleOnce(3 seconds, self, System.currentTimeMillis)
+      context.system.scheduler.scheduleOnce(3 seconds, self, System.currentTimeMillis())
 
       // See Akka doc about "become"
       context.become {
         case pastTime =>
-          respondInlineView("It's " + pastTime + " Unix ms 3s ago.")
+          respondInlineView(s"It's $pastTime Unix ms 3s ago.")
       }
     }
   }
+
+An actor instance will be created when there's request. It will be stopped when the
+connection is closed or when the response has been sent by ``respondText``,
+``respondView`` etc. methods. For chunked response, it is not stopped right away.
+It is stopped when the last chunk is sent.
+
+The actor will run on the thread pool of the Akka actor system named "xitrum".
 
 Respond to client
 -----------------

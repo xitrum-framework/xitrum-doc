@@ -2,12 +2,10 @@ Action と view
 ===============
 
 Xitrumは3種類のActionを提供しています。
-通常のAction、FutureAction、そしてActorActionです。
+通常の``Action``、``FutureAction``、そして``ActorAction``です。
 
 Action
 ------
-
-アプリケーションから外部に非同期処理を呼び出さない場合に使用します。
 
 ::
 
@@ -21,39 +19,31 @@ Action
     }
   }
 
-通常のActionではリクエストは直ちに処理されます。
-しかし、同時接続数が高くなり過ぎないように注意する必要があります。
-リクエスト -> レスポンスの処理中にプロセスをブロックする処理を含めてはいけません。
+リクエストはNettyのIOスレッド上で直ちに処理されますので、時間かかる処理（ブロック処理）を含めて
+はいけません。NettyのIOスレッドを長い時間使ってしまうとNettyは新しいコネクションを受信できなく
+なったりリスポンスを返信できなくなったりします。
 
 FutureAction
 ------------
 
-xitrum.Actionを継承した場合、そのActionはNettyのIOスレッド上で実行されます。
-これはActionが軽量でノンブロッキングな場合に有効です。（例：直ぐにreturnするような処理の場合）
-そうでなければxitrum.FutureActionを継承することで簡単に別のスレッド（スレッドプール）上でActionを実行することができます。
-
 ::
 
   import xitrum.FutureAction
+  import xitrum.annotation.GET
 
-  @GET("hi")
-  class MyAction extends FutureAction {
+  @GET("hello")
+  class HelloAction extends FutureAction {
     def execute() {
       respondText("hi")
     }
   }
 
+リクエストは下記の``ActorAction``と同じスレッドプール上で処理されます。
+
 ActorAction
 -----------
 
-Actionの外側へ非同期呼び出しを行いたい場合に使用します。
-Actionをactorとして定義したい場合、xitrum.Actionの代わりにxitrum.ActorActionを継承します。
-ActorActionを使用することでシステムはより多くの同時接続を実現することができます。
-ただしリクエストは直ちに処理されるわけではありません。ここでは非同期指向となります。
-
-actorインスタンスはリクエストが発生時に生成されます。このactorインスタンスはコネクションが切断された時、
-またはrespondText,respondView等を使用してレスポンスが返された時に停止されます。
-チャンクレスポンスの場合すぐには停止されず、最後のチャンクが送信された時点で停止されます。
+ActionをAkka actorとして定義したい場合、``ActorAction``を継承します。
 
 ::
 
@@ -62,22 +52,26 @@ actorインスタンスはリクエストが発生時に生成されます。こ
   import xitrum.ActorAction
   import xitrum.annotation.GET
 
-  @GET("actor")
-  class ActorDemo extends ActorAction with AppAction {
-    // This is just a normal Akka actor
-
+  @GET("hello")
+  class HelloAction extends ActorAction {
     def execute() {
       // See Akka doc about scheduler
       import context.dispatcher
-      context.system.scheduler.scheduleOnce(3 seconds, self, System.currentTimeMillis)
+      context.system.scheduler.scheduleOnce(3 seconds, self, System.currentTimeMillis())
 
       // See Akka doc about "become"
       context.become {
         case pastTime =>
-          respondInlineView("It's " + pastTime + " Unix ms 3s ago.")
+          respondInlineView(s"It's $pastTime Unix ms 3s ago.")
       }
     }
   }
+
+Actorインスタンスはリクエストが発生時に生成されます。このactorインスタンスはコネクションが切断された時、
+または``respondText``, ``respondView``等を使用してレスポンスが返された時に停止されます。
+チャンクレスポンスの場合すぐには停止されず、最後のチャンクが送信された時点で停止されます。
+
+リクエストは「xitrum」（システム名）というAkka actorシステムのスレッドプール上で処理されます。
 
 クライアントへのレスポンス送信
 --------------------------------
