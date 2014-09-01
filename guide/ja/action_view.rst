@@ -2,7 +2,7 @@ Action と view
 ===============
 
 Xitrumは3種類のActionを提供しています。
-通常の``Action``、``FutureAction``、そして``ActorAction``です。
+通常の ``Action`` 、``FutureAction`` 、そして ``ActorAction`` です。
 
 Action
 ------
@@ -38,12 +38,12 @@ FutureAction
     }
   }
 
-リクエストは下記の``ActorAction``と同じスレッドプール上で処理されます。
+リクエストは下記の ``ActorAction`` と同じスレッドプールが使用されます。これはNettyのスレッドプールとは異なります。
 
 ActorAction
 -----------
 
-ActionをAkka actorとして定義したい場合、``ActorAction``を継承します。
+ActionをAkka actorとして定義したい場合、``ActorAction`` を継承します。
 
 ::
 
@@ -68,7 +68,7 @@ ActionをAkka actorとして定義したい場合、``ActorAction``を継承し�
   }
 
 Actorインスタンスはリクエストが発生時に生成されます。このactorインスタンスはコネクションが切断された時、
-または``respondText``, ``respondView``等を使用してレスポンスが返された時に停止されます。
+または ``respondText`` 、 ``respondView`` 等を使用してレスポンスが返された時に停止されます。
 チャンクレスポンスの場合すぐには停止されず、最後のチャンクが送信された時点で停止されます。
 
 リクエストは「xitrum」（システム名）というAkka actorシステムのスレッドプール上で処理されます。
