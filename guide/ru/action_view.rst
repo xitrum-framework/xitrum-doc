@@ -407,7 +407,7 @@ MyAction.jade:
 
   renderFragment[MyAction]("MyFragment")
 
-Можно записать короче, если MyAction - текущий контроллер:
+Можно записать короче, если ``MyAction`` - текущий контроллер:
 
 ::
 
