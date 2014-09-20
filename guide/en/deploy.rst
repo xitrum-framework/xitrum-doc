@@ -182,8 +182,14 @@ You may want to modify ``runner`` (or ``runner.bat``) to tune
 `JVM settings <http://www.oracle.com/technetwork/java/hotspotfaq-138619.html>`_.
 Also see ``config/xitrum.conf``.
 
-To start Xitrum in background on Linux when the system starts, `daemontools <http://cr.yp.to/daemontools.html>`_
-is a very good tool. To install it on CentOS, see
+To start Xitrum in background on Linux when the system starts, a simple approach
+is to add a line to ``/etc/rc.local``:
+
+::
+
+  su - user_foo_bar -c /path/to/the/runner/script/above &
+
+`daemontools <http://cr.yp.to/daemontools.html>`_ is another approach. To install it on CentOS, see
 `this instruction <http://whomwah.com/2008/11/04/installing-daemontools-on-centos5-x86_64/>`_.
 
 Or use `Supervisord <http://supervisord.org/>`_.

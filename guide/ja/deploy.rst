@@ -175,10 +175,17 @@ javac等も同様に行います:
   script/runner quickstart.Boot
 
 `JVM設定 <http://www.oracle.com/technetwork/java/hotspotfaq-138619.html>`_ を調整するには、
-``runner`` （または ``runner.bat`` ）を修正します。
+``runner`` （または ``runner.bat``）を修正します。
 また、``config/xitrum.conf`` も参照してください。
 
-Linux環境でシステム起動時にXitrumをバックグラウンドでスタートさせるには、`daemontools <http://cr.yp.to/daemontools.html>`_ が便利です。
+Linux環境でシステム起動時にXitrumをバックグラウンドでスタートさせるには、一番簡単な方法は
+``/etc/rc.local`` に一行を追加します:
+
+::
+
+  su - user_foo_bar -c /path/to/the/runner/script/above &
+
+他には `daemontools <http://cr.yp.to/daemontools.html>`_ が便利です。
 CentOSへのインストール手順は `こちらの手順 <http://whomwah.com/2008/11/04/installing-daemontools-on-centos5-x86_64/>`_ を参照してください。
 あるいは `Supervisord <http://supervisord.org/>`_ を使用することもできます。
 
