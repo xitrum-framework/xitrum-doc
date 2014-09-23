@@ -180,8 +180,13 @@ Scala консоли к работающему JVM процессу для жи�
 `настроив JVM <http://www.oracle.com/technetwork/java/hotspotfaq-138619.html>`_.
 Так же смотри ``config/xitrum.conf``.
 
-Для запуска Xitrum в фоновом режиме при старте Linux системы поможет утилита `daemontools <http://cr.yp.to/daemontools.html>`_. Для установки на CentOS, смотри
-`инструкцию <http://whomwah.com/2008/11/04/installing-daemontools-on-centos5-x86_64/>`_.
+Для запуска Xitrum в фоновом режиме при старте Linux системы проще всего добавить строчку в ``/etc/rc.local``:
+
+::
+
+ su - user_foo_bar -c /path/to/the/runner/script/above &
+
+Кроме того можно использовать утилиту `daemontools <http://cr.yp.to/daemontools.html>`_. Для установки на CentOS, смотри `инструкцию <http://whomwah.com/2008/11/04/installing-daemontools-on-centos5-x86_64/>`_.
 
 Или используйте `Supervisord <http://supervisord.org/>`_.
 Пример ``/etc/supervisord.conf``:
