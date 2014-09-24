@@ -388,33 +388,19 @@ Herokuはこのファイルをもとに、起動時コマンドを実行しま�
 
 ::
 
-  web: target/xitrum/script/runner <YOUR_PACKAGE.YOUR_MAIN_CLASS> $PORT
+  web: target/xitrum/script/runner <YOUR_PACKAGE.YOUR_MAIN_CLASS>
 
 Port設定の変更
 ~~~~~~~~~~~~~~
 
-ポート番号はHerokuによって動的にアサインされるため、以下のように工夫する必要があります。
-
-メインクラス:
-
-::
-
-  import util.Properties
-
-  object Boot {
-    def main(args: Array[String]) {
-      val port = Properties.envOrElse("PORT", "8000")
-      System.setProperty("xitrum.port.http", port)
-      Server.start()
-    }
-  }
+ポート番号はHerokuによって動的にアサインされるため、以下のように設定する必要があります。
 
 config/xitrum.conf:
 
 ::
 
   port {
-    http              = 8000
+    http              = ${PORT}
     # https             = 4430
     # flashSocketPolicy = 8430  # flash_socket_policy.xml will be returned
   }
@@ -463,4 +449,3 @@ Herokuへのプッシュ
 
 
 詳しくはHerokuの `公式ドキュメント for Scala <https://devcenter.heroku.com/articles/getting-started-with-scala>`_ を参照してください.
-

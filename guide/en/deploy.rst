@@ -399,33 +399,19 @@ executes on start. Port number is ginven by Heroku automatically as ``$PORT``.
 
 ::
 
-  web: target/xitrum/script/runner <YOUR_PACKAGE.YOUR_MAIN_CLASS> $PORT
+  web: target/xitrum/script/runner <YOUR_PACKAGE.YOUR_MAIN_CLASS>
 
 Change port setting
 ~~~~~~~~~~~~~~~~~~~~
 
 Because Heroku assigns port automatically, you need to do like this:
 
-Main (boot) class:
-
-::
-
-  import util.Properties
-
-  object Boot {
-    def main(args: Array[String]) {
-      val port = Properties.envOrElse("PORT", "8000")
-      System.setProperty("xitrum.port.http", port)
-      Server.start()
-    }
-  }
-
 config/xitrum.conf:
 
 ::
 
   port {
-    http              = 8000
+    http              = ${PORT}
     # https             = 4430
     # flashSocketPolicy = 8430  # flash_socket_policy.xml will be returned
   }
@@ -473,4 +459,3 @@ Deploy process is hooked by git push.
 
 
 See also `Official document for Scala <https://devcenter.heroku.com/articles/getting-started-with-scala>`_.
-

@@ -392,26 +392,12 @@ Xitrum может быть запущен на `Heroku <https://www.heroku.com/>
 
 Поскольку Heroku назначает порт автоматически, используйте код:
 
-Main (boot) class:
-
-::
-
-  import util.Properties
-
-  object Boot {
-    def main(args: Array[String]) {
-      val port = Properties.envOrElse("PORT", "8000")
-      System.setProperty("xitrum.port.http", port)
-      Server.start()
-    }
-  }
-
 config/xitrum.conf:
 
 ::
 
   port {
-    http              = 8000
+    http              = ${PORT}
     # https             = 4430
     # flashSocketPolicy = 8430  # flash_socket_policy.xml will be returned
   }
