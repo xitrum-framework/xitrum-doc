@@ -449,3 +449,119 @@ Herokuへのプッシュ
 
 
 詳しくはHerokuの `公式ドキュメント for Scala <https://devcenter.heroku.com/articles/getting-started-with-scala>`_ を参照してください.
+
+OpenShiftへのデプロイ
+---------------------
+
+Xitrumは `OpenShift <https://developers.openshift.com/>`_ 上で動かすこともできます。
+
+サインアップとリポジトリの作成
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`公式ガイド <https://developers.openshift.com/en/getting-started-overview.html>`_ に沿って、サインアップしリポジトリを作成します。
+カートリッジには `DIY <https://developers.openshift.com/en/diy-overview.html>`_ を指定します。
+
+::
+
+  rhc app create myapp diy
+
+
+
+プロジェクト構成
+~~~~~~~~~~~~~~~~
+
+sbtを使用してXitrumアプリケーションをコンパイル、起動するために、`いくつかの準備 <http://stackoverflow.com/questions/23826770/play-openshift-deployment-sbt-using-some-directories-behind-the-scenes>`_ が必要となります。
+rhcコマンドで作成したプロジェクトディレクトリ内に`app`ディレクトリを作成し、xitrumアプリケーションのソースコードを配置します。
+また、空の`static`と`fakehome`ディレクトリを作成します、
+プロジェクトツリーは以下のようになります。
+
+::
+
+  ├── .openshift
+  │   ├── README.md
+  │   ├── action_hooks
+  │   │   ├── README.md
+  │   │   ├── start
+  │   │   └── stop
+  │   ├── cron
+  │   └── markers
+  ├── README.md
+  ├── app
+  ├── fakehome
+  ├── misc
+  └── static
+
+
+action_hooksの作成
+~~~~~~~~~~~~~~~~~~
+
+openshiftへpush時に実行されるスクリプトを以下のように修正します。
+
+.openshift/action_hooks/start:
+
+::
+
+    #!/bin/bash
+    IVY_DIR=$OPENSHIFT_DATA_DIR/.ivy2
+    mkdir -p $IVY_DIR
+    chown $OPENSHIFT_GEAR_UUID.$OPENSHIFT_GEAR_UUID -R "$IVY_DIR"
+    cd $OPENSHIFT_REPO_DIR/app
+    sbt/sbt xitrum-package
+    nohup $OPENSHIFT_REPO_DIR/app/target/xitrum/script/runner quickstart.Boot >> nohup.out 2>&1 & echo $! > $OPENSHIFT_REPO_DIR/xitrum.pid &
+
+
+.openshift/action_hooks/top:
+
+::
+
+  #!/bin/bash
+  source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+  # The logic to stop your application should be put in this script.
+  if [ -z "$(ps -ef | grep `cat $OPENSHIFT_REPO_DIR/xitrum.pid` | grep -v grep)" ]
+  then
+      client_result "Application is already stopped"
+  else
+      cat $OPENSHIFT_REPO_DIR/xitrum.pid | xargs kill
+  fi
+
+
+IP:Port設定の変更
+~~~~~~~~~~~~~~~~~
+
+IPとポート番号はopenshiftによって動的にアサインされるため、以下のように設定する必要があります。
+
+config/xitrum.conf:
+
+::
+
+  # Use opensift's Environment Variables
+  interface = ${OPENSHIFT_DIY_IP}
+
+  # Comment out the one you don't want to start.
+  port {
+    http  = ${OPENSHIFT_DIY_PORT}
+
+
+
+
+sbt引数の修正
+~~~~~~~~~~~~~
+
+opensift上でsbtが動かすために、sbt起動スクリプトに以下のオプションを追加します。
+
+sbt/sbt:
+
+::
+
+  -Duser.home=$OPENSHIFT_REPO_DIR/fakehome -Dsbt.ivy.home=$OPENSHIFT_DATA_DIR/.ivy2 -Divy.home=$OPENSHIFT_DATA_DIR/.ivy2
+
+
+openshiftへのpush
+~~~~~~~~~~~~~~~~~
+
+アプリケーションを起動するにはopensiftへソースコードをプッシュします。
+
+::
+
+  git push
