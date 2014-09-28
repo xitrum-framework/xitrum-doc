@@ -301,6 +301,12 @@ modify /etc/sysctl.conf:
   net.ipv4.tcp_max_syn_backlog = 2048
   net.ipv4.tcp_syncookies = 1
 
+  # If you run clients
+  net.ipv4.ip_local_port_range = 1024 65535
+  net.ipv4.tcp_tw_recycle = 1
+  net.ipv4.tcp_tw_reuse = 1
+  net.ipv4.tcp_fin_timeout = 10
+
 Run ``sudo sysctl -p`` to apply.
 No need to reboot, now your kernel should be able to handle a lot more open connections.
 

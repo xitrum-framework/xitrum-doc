@@ -293,6 +293,12 @@ Xitrum слушает порт 8000 и 4430 по умолчанию.
   net.ipv4.tcp_max_syn_backlog = 2048
   net.ipv4.tcp_syncookies = 1
 
+  # If you run clients
+  net.ipv4.ip_local_port_range = 1024 65535
+  net.ipv4.tcp_tw_recycle = 1
+  net.ipv4.tcp_tw_reuse = 1
+  net.ipv4.tcp_fin_timeout = 10
+
 Выполните ``sudo sysctl -p`` что бы применить изменения. Перезагрузка не требуется,
 теперь ваше ядро способно обработать гораздо больше подключений.
 
