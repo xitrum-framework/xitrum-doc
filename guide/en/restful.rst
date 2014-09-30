@@ -139,6 +139,70 @@ To extract the ``:*`` part:
 
   val url = param("*")  // Will be "http://foo.com/bar"
 
+Link to an action
+-----------------
+
+Xitrum tries to be typesafe. Don't write URL manually. Do like this:
+
+::
+
+  <a href={url[ArticlesShow]("id" -> myArticle.id)}>{myArticle.title}</a>
+
+Redirect to another action
+--------------------------
+
+Read to know `what redirection is <http://en.wikipedia.org/wiki/URL_redirection>`_.
+
+::
+
+  import xitrum.Action
+  import xitrum.annotation.{GET, POST}
+
+  @GET("login")
+  class LoginInput extends Action {
+    def execute() {...}
+  }
+
+  @POST("login")
+  class DoLogin extends Action {
+    def execute() {
+      ...
+      // After login success
+      redirectTo[AdminIndex]()
+    }
+  }
+
+  GET("admin")
+  class AdminIndex extends Action {
+    def execute() {
+      ...
+      // Check if the user has not logged in, redirect him to the login page
+      redirectTo[LoginInput]()
+    }
+  }
+
+You can also redirect to the current action with ``redirecToThis()``.
+
+Forward to another action
+-------------------------
+
+Use ``forwardTo[AnotherAction]()``. While ``redirectTo`` above causes the browser to
+make another request, ``forwardTo`` does not.
+
+Determine is the request is Ajax request
+----------------------------------------
+
+Use ``isAjax``.
+
+::
+
+  // In an action
+  val msg = "A message"
+  if (isAjax)
+    jsRender("alert(" + jsEscape(msg) + ")")
+  else
+    respondText(msg)
+
 Anti-CSRF
 ---------
 
@@ -235,6 +299,41 @@ automatic CSRF check. Add the trait xitrum.SkipCsrfCheck to you action:
   @POST("api/todos")
   class CreateTodoAPI extends Api {
     def execute() {...}
+  }
+
+Manipulate collected routes
+---------------------------
+
+Xitrum automatically collect routes on startup.
+If you want to manipulate the routes, you can use
+`xitrum.Config.routes <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.routing.RouteCollection>`_.
+
+Example:
+
+::
+
+  import xitrum.{Config, Server}
+
+  object Boot {
+    def main(args: Array[String]) {
+      // You can modify routes before starting the server
+      val routes = Config.routes
+
+      // Remove routes to an action by its class
+      routes.removeByClass[MyClass]()
+
+      if (demoVersion) {
+        // Remove routes to actions by a prefix
+        routes.removeByPrefix("premium/features")
+
+        // This also works
+        routes.removeByPrefix("/premium/features")
+      }
+
+      ...
+
+      Server.start()
+    }
   }
 
 Getting entire request content

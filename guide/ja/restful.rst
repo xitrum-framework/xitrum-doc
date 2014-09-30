@@ -137,6 +137,71 @@ Actionへの複数パスの関連付け
 
   val url = param("*")  // "http://foo.com/bar"となります
 
+アクションへのリンク
+--------------------
+
+Xitrumは型安全指向です。URLは直截記載せずにいかのように参照します:
+
+::
+
+  <a href={url[ArticlesShow]("id" -> myArticle.id)}>{myArticle.title}</a>
+
+他のアクションへのリダイレクト
+------------------------------
+
+``redirectTo[AnotherAction]()`` を使用します。
+リダイレクトについては `こちら（英語） <http://en.wikipedia.org/wiki/URL_redirection>`_ を参照してください。
+
+::
+
+  import xitrum.Action
+  import xitrum.annotation.{GET, POST}
+
+  @GET("login")
+  class LoginInput extends Action {
+    def execute() {...}
+  }
+
+  @POST("login")
+  class DoLogin extends Action {
+    def execute() {
+      ...
+      // After login success
+      redirectTo[AdminIndex]()
+    }
+  }
+
+  GET("admin")
+  class AdminIndex extends Action {
+    def execute() {
+      ...
+      // Check if the user has not logged in, redirect him to the login page
+      redirectTo[LoginInput]()
+    }
+  }
+
+また、``redirecToThis()`` を使用して現在のアクションへリダイレクトさせることも可能です。
+
+他のアクションへのフォワード
+----------------------------
+
+``forwardTo[AnotherAction]()`` を使用します。前述の ``redirectTo`` ではブラウザは別のリクエストを送信しますが、
+``forwardTo`` ではリクエストは引き継がれます。
+
+Ajaxリクエストの判定
+--------------------
+
+``isAjax`` を使用します。
+
+::
+
+  // In an action
+  val msg = "A message"
+  if (isAjax)
+    jsRender("alert(" + jsEscape(msg) + ")")
+  else
+    respondText(msg)
+
 CSRF対策
 --------
 
@@ -230,6 +295,40 @@ CSRFチェックの省略
   @POST("api/todos")
   class CreateTodoAPI extends Api {
     def execute() {...}
+  }
+
+ルーティングの操作
+------------------
+
+Xitrumは起動時に自動でルーティングを収集します。
+収集されたルーティングにアクセスするには、`xitrum.Config.routes <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.routing.RouteCollection>`_ を使用します。
+
+例:
+
+::
+
+  import xitrum.{Config, Server}
+
+  object Boot {
+    def main(args: Array[String]) {
+      // サーバーをスタートさせる前にルーティングを操作します。
+      val routes = Config.routes
+
+      // クラスを指定してルートを削除する場合
+      routes.removeByClass[MyClass]()
+
+      if (demoVersion) {
+        // prefixを指定してルートを削除する場合
+        routes.removeByPrefix("premium/features")
+
+        // '/'が先頭にある場合も同じ効果が得られます
+        routes.removeByPrefix("/premium/features")
+      }
+
+      ...
+
+      Server.start()
+    }
   }
 
 リクエストコンテンツの取得

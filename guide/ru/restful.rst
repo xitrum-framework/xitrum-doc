@@ -136,6 +136,71 @@ Xitrum автоматически обрабатывает HEAD запросы �
 
   val url = param("*")  // Будет "http://foo.com/bar"
 
+Ссылка на контроллер
+--------------------
+
+Xitrum пытается быть достаточно безопасным. Не пишите ссылки самостоятельно (в явном виде).
+Используйте генератор ссылок:
+
+::
+
+  <a href={url[ArticlesShow]("id" -> myArticle.id)}>{myArticle.title}</a>
+
+Редирект на контроллер
+----------------------
+
+Читайте подробнее про `редирект <http://en.wikipedia.org/wiki/URL_redirection>`_.
+
+::
+
+  import xitrum.Action
+  import xitrum.annotation.{GET, POST}
+
+  @GET("login")
+  class LoginInput extends Action {
+    def execute() {...}
+  }
+
+  @POST("login")
+  class DoLogin extends Action {
+    def execute() {
+      ...
+      // After login success
+      redirectTo[AdminIndex]()
+    }
+  }
+
+  GET("admin")
+  class AdminIndex extends Action {
+    def execute() {
+      ...
+      // Check if the user has not logged in, redirect him to the login page
+      redirectTo[LoginInput]()
+    }
+  }
+
+Допускается делать редирект на тот же самый контроллер с помощью метода ``redirecToThis()``.
+
+Форвардинг (перенаправление) на контроллер
+------------------------------------------
+
+Используйте ``forwardTo[AnotherAction]()``. ``redirectTo`` заставляет браузер делать новый запрос, в то
+время как ``forwardTo`` работает в рамках одного запроса.
+
+Определение Ajax запроса
+------------------------
+
+Используйте ``isAjax``.
+
+::
+
+  // В контроллере
+  val msg = "A message"
+  if (isAjax)
+    jsRender("alert(" + jsEscape(msg) + ")")
+  else
+    respondText(msg)
+
 Anti-CSRF
 ---------
 
@@ -230,6 +295,41 @@ SkipCsrfCheck
   @POST("api/todos")
   class CreateTodoAPI extends Api {
     def execute() {...}
+  }
+
+Управление маршрутами
+---------------------
+
+Xitrum автоматически собирает маршруты при запуске.
+Для управления этими маршрутами используйте
+`xitrum.Config.routes <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.routing.RouteCollection>`_.
+
+Например:
+
+::
+
+  import xitrum.{Config, Server}
+
+  object Boot {
+    def main(args: Array[String]) {
+      // Вы можете поправить маршруты до запуска сервера
+      val routes = Config.routes
+
+      // Удаление маршрутов относящихся к конкретному классу
+      routes.removeByClass[MyClass]()
+
+      if (demoVersion) {
+        // Удаление маршрутов начинающихся с префикса
+        routes.removeByPrefix("premium/features")
+
+        // Допустимый вариант
+        routes.removeByPrefix("/premium/features")
+      }
+
+      ...
+
+      Server.start()
+    }
   }
 
 Получение полных (сырых) данных запроса
