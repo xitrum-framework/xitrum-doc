@@ -137,6 +137,7 @@ myconfig.conf:
 
 ::
 
+  import xitrum.util.SeriDeseri
   val bytes = SeriDeseri.toBytes("my serializable object")
 
 Десериализация:
@@ -144,6 +145,19 @@ myconfig.conf:
 ::
 
   val option = SeriDeseri.fromBytes[MyType](bytes)  // Option[MyType]
+
+Если вы хотите сохранить в файле:
+
+::
+
+  import xitrum.util.Loader
+  Loader.bytesToFile(bytes, "myObject.bin")
+
+Чтобы загрузить из файла:
+
+::
+
+  val bytes = Loader.bytesFromFile("myObject.bin")
 
 Шифрование данных
 -----------------

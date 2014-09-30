@@ -128,12 +128,11 @@ myconfig.conf:
 シリアライズとデシリアライズ
 ----------------------------
 
-``xitrum.util.SeriDeseri`` を使用します。
-
 ``Array[Byte]`` へのシリアライズ:
 
 ::
 
+  import xitrum.util.SeriDeseri
   val bytes = SeriDeseri.toBytes("my serializable object")
 
 バイト配列からのデシリアライズ:
@@ -141,6 +140,19 @@ myconfig.conf:
 ::
 
   val option = SeriDeseri.fromBytes[MyType](bytes)  // Option[MyType]
+
+ファイルへの保存:
+
+::
+
+  import xitrum.util.Loader
+  Loader.bytesToFile(bytes, "myObject.bin")
+
+ファイルからの読み込み:
+
+::
+
+  val bytes = Loader.bytesFromFile("myObject.bin")
 
 データの暗号化
 --------------

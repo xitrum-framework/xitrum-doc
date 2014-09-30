@@ -137,6 +137,7 @@ To serialize to ``Array[Byte]``:
 
 ::
 
+  import xitrum.util.SeriDeseri
   val bytes = SeriDeseri.toBytes("my serializable object")
 
 To deserialize bytes back:
@@ -144,6 +145,19 @@ To deserialize bytes back:
 ::
 
   val option = SeriDeseri.fromBytes[MyType](bytes)  // Option[MyType]
+
+If you want to save to file:
+
+::
+
+  import xitrum.util.Loader
+  Loader.bytesToFile(bytes, "myObject.bin")
+
+To load from the file:
+
+::
+
+  val bytes = Loader.bytesFromFile("myObject.bin")
 
 Encrypt data
 ------------
