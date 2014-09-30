@@ -277,3 +277,43 @@ Xitrum предоставляет встроенное шифрование:
 
 ``FileMonitor`` внутри себя использует
 `Schwatcher <https://github.com/lloydmeta/schwatcher>`_.
+
+Временные директории
+--------------------
+
+По умолчанию Xitrum использует директорию ``tmp`` в текущем (рабочем) каталоге
+для хранения генерируемых файлов Scalate, больших загружаемых и других файлов
+(настраивается опцией ``tmpDir`` в xitrum.conf).
+
+Получение пути временной директории:
+
+::
+
+  xitrum.Config.xitrum.tmpDir.getAbsolutePath
+
+Создание нового файла или каталога во временной директории:
+
+::
+
+  val file = new java.io.File(xitrum.Config.xitrum.tmpDir, "myfile")
+
+  val dir = new java.io.File(xitrum.Config.xitrum.tmpDir, "mydir")
+  dir.mkdirs()
+
+Потоковые видео
+---------------
+
+Существует несколько способов транслировать потоковое видео. Наиболее простой:
+
+* На сервере хранить interleaved .mp4 видео файлы, пользователь сможет просматривать 
+  их в в процессе загрузки.
+* Использовать HTTP сервер который поддерживает
+  `range requests <http://en.wikipedia.org/wiki/Byte_serving>`_ (например, Xitrum), 
+  тогда пользователи смогут проматывать воспроизведение во время загрузки.
+
+Вы можете использовать `MP4Box <http://gpac.wp.mines-telecom.fr/mp4box/>`_ для генерации 
+interleaved .mp4 с блоками по 500 milliseconds:
+
+::
+
+  MP4Box -inter 500 movie.mp4
