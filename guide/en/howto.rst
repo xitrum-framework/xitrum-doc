@@ -304,3 +304,21 @@ To create a new file or directory in that directory:
 
   val dir = new java.io.File(xitrum.Config.xitrum.tmpDir, "mydir")
   dir.mkdirs()
+
+Stream videos
+-------------
+
+There are many ways to stream videos. One easy way:
+
+* Serve interleaved .mp4 video files, so that users can play the videos while
+  downloading.
+* And use a HTTP server like Xitrum that supports
+  `range requests <http://en.wikipedia.org/wiki/Byte_serving>`_, so that users
+  can skip to a movie position that has not been downloaded.
+
+You can use `MP4Box <http://gpac.wp.mines-telecom.fr/mp4box/>`_ to interleave
+movie file data by chunks of 500 milliseconds:
+
+::
+
+  MP4Box -inter 500 movie.mp4
