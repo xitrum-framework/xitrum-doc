@@ -291,3 +291,20 @@ build.sbtに以下の依存ライブラリを追記する必要があります:
 
   val dir = new java.io.File(xitrum.Config.xitrum.tmpDir, "mydir")
   dir.mkdirs()
+
+ビデオストリーミング
+----------------------------------
+
+ビデオをストリーミングする方法はいくつかあります。
+最も簡単な方法は:
+
+* インターリーブされた.mp4ファイルをサーバに配置することで、ユーザーはダウンロード中にビデオを再生することができます。
+* そして、Xitrumのように `range requests <http://en.wikipedia.org/wiki/Byte_serving>`_ をサポートしたHTTPサーバーを用いることで、
+  ユーザーはダウンロードされていない部分をスキップしてビデオを利用することができます。
+
+`MP4Box <http://gpac.wp.mines-telecom.fr/mp4box/>`_ を利用することで、
+動画ファイルを500ミリ秒毎のチャンクにインターリーブすることができます:
+
+::
+
+  MP4Box -inter 500 movie.mp4
