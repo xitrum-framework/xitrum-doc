@@ -11,14 +11,14 @@ There are 2 kinds of request params: textual params and file upload params (bina
 
 There are 3 kinds of textual params, of type ``scala.collection.mutable.Map[String, List[String]]``:
 
-1. ``uriParams``: params after the ? mark in the URL, example: http://example.com/blah?x=1&y=2
-2. ``bodyParams``: params in POST request body
+1. ``queryParams``: params after the ? mark in the URL, example: http://example.com/blah?x=1&y=2
+2. ``bodyTextParams``: params in POST request body
 3. ``pathParams``: params embedded in the URL, example: ``GET("articles/:id/:title")``
 
 These params are merged in the above order as ``textParams``
 (from 1 to 3, the latter will override the former).
 
-``fileUploadParams`` is of type scala.collection.mutable.Map[String, List[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
+``bodyFileParams`` is of type scala.collection.mutable.Map[String, List[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
 
 Accesing params
 ~~~~~~~~~~~~~~~

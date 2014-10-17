@@ -11,14 +11,14 @@
 
 Текстовые параметры делятся на три вида, каждый имеет тип ``scala.collection.mutable.Map[String, List[String]]``:
 
-1. ``uriParams``: параметры после символа ? в ссылке, например: http://example.com/blah?x=1&y=2
-2. ``bodyParams``: параметры в теле POST запроса
+1. ``queryParams``: параметры после символа ? в ссылке, например: http://example.com/blah?x=1&y=2
+2. ``bodyTextParams``: параметры в теле POST запроса
 3. ``pathParams``: параметры в пути запроса, например: ``GET("articles/:id/:title")``
 
 Параметры собираются воедино в переменной ``textParams`` в следующем порядке
 (от 1 к 3, более поздние перекрывают более ранние).
 
-``fileUploadParams`` имеет тип scala.collection.mutable.Map[String, List[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
+``bodyFileParams`` имеет тип scala.collection.mutable.Map[String, List[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
 
 Доступ к параметрам
 ~~~~~~~~~~~~~~~~~~~

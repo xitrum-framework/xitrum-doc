@@ -14,14 +14,14 @@
 
 テキストパラメーターは ``scala.collection.mutable.Map[String, List[String]]`` の型をとる3種類があります:
 
-1. ``uriParams``: URL内の?以降で指定されたパラメーター  例: ``http://example.com/blah?x=1&y=2``
-2. ``bodyParams``: POSTリクエストのbodyで指定されたパラメーター
+1. ``queryParams``: URL内の?以降で指定されたパラメーター  例: ``http://example.com/blah?x=1&y=2``
+2. ``bodyTextParams``: POSTリクエストのbodyで指定されたパラメーター
 3. ``pathParams``: URL内に含まれるパラメーター  例: ``GET("articles/:id/:title")``
 
 これらのパラメーターは上記の順番で、 ``textParams`` としてマージされます。
 （後からマージされるパラメーターは上書きとなります。）
 
-``fileUploadParams`` は ``scala.collection.mutable.Map[String, List[`` `FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_ ``]]`` の型をとります。
+``bodyFileParams`` は ``scala.collection.mutable.Map[String, List[`` `FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_ ``]]`` の型をとります。
 
 パラメーターへのアクセス
 ~~~~~~~~~~~~~~~~~~~~~~~~
