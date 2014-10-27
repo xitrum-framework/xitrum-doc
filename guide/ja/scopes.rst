@@ -318,7 +318,7 @@ SessionVarの定義:
   else
     <a href={url[LoginAction]}>Login</a>
 
-* SessionVarの削除方法: ``SVar.username.delete()``
+* SessionVarの削除方法: ``SVar.username.remove()``
 * セッション全体のクリア方法: ``session.clear()``
 
 セッションストア
