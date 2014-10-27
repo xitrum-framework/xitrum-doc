@@ -14,3 +14,4 @@ make clean
 make_html en
 make_html ja
 make_html ru
+make_html vi
