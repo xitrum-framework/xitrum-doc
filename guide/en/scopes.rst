@@ -325,7 +325,7 @@ Display the username:
   else
     <a href={url[LoginAction]}>Login</a>
 
-* To delete the session var: ``SVar.username.delete()``
+* To remove the session var: ``SVar.username.remove()``
 * To reset the whole session: ``session.clear()``
 
 Session store
