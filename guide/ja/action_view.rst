@@ -470,6 +470,32 @@ MyAction.jadeが
 上記のようにルーティングとは関係ないアクションを記述することは一見して面倒ですが、
 この方法はプログラムをタイプセーフに保つことができます。
 
+
+またはテンプレートのパスを文字列で指定します:
+
+::
+
+  package mypackage
+
+  import xitrum.Action
+  import xitrum.annotation.GET
+
+
+  @GET("")
+  class HomeAction extends Action {
+    def execute() {
+      val userType = ...
+      userType match {
+        case NormalUser => respondView("theme/normalUser")
+        case Moderator  => respondView("theme/moderator")
+        case Admin      => respondView("theme/admin")
+      }
+    }
+  }
+
+``renderView``, ``renderViewNoLayout``, ``respondView``, ``respondViewNoLayout`` では ``src/main/scalate`` からのテンプレートファイルへのパス、
+``renderFragment`` にはフラグメントを配置したディレクトリーへのパスをクラスの代わりに指定することができます。
+
 Component
 ---------
 
