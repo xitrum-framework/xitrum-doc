@@ -58,18 +58,21 @@ current_folder_path, current_folder_name = os.path.split(os.getcwd())
 language = current_folder_name
 
 # Default order of authors
-authors = [u'Ngoc Dao', u'Takeharu Oshida', u'Aleksander Guryanov', u'Phuc Le']
+#authors = [u'Ngoc Dao', u'Takeharu Oshida', u'Aleksander Guryanov', u'Phuc Le']
+authors = [u'Ngoc Dao', u'Takeharu Oshida', u'Aleksander Guryanov']
 authors_string = ', '.join(authors)
 
 # Oshida-san is the main author of the Japanese version
 # 英語→カタカナ変換機: http://www.sljfaq.org/cgi/e2k_ja.cgi
 if language == 'ja':
-    authors = [u'押田　丈治', u'Ngoc Dao', u'Aleksander Guryanov', u'Phuc Le']
+#    authors = [u'Ngoc Dao', u'Takeharu Oshida', u'Aleksander Guryanov', u'Phuc Le']
+    authors = [u'押田　丈治', u'Ngoc Dao', u'Aleksander Guryanov']
     authors_string = u'、'.join(authors)
 
 # Aleksander Guryanov is the main author of the Russian version
 if language == 'ru':
-    authors = [u'Aleksander Guryanov', u'Ngoc Dao', u'Takeharu Oshida', u'Phuc Le']
+#    authors = [u'Aleksander Guryanov', u'Ngoc Dao', u'Takeharu Oshida', u'Phuc Le']
+    authors = [u'Aleksander Guryanov', u'Ngoc Dao', u'Takeharu Oshida']
     authors_string = ', '.join(authors)
 
 # Phuc Le is the main author of the Vietnamese version
