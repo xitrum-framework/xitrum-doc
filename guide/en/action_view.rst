@@ -483,32 +483,13 @@ If you want to have multiple views for one:
 Using addional non-routed actions like above seems to be tedious, but this way
 your program will be typesafe.
 
-Or use ``location:String`` directly:
+You can also use ``String`` to specify template location:
 
 ::
 
-  package mypackage
-
-  import xitrum.Action
-  import xitrum.annotation.GET
-
-
-  @GET("")
-  class HomeAction extends Action {
-    def execute() {
-      val userType = ...
-      userType match {
-        case NormalUser => respondView("theme/normalUser")
-        case Moderator  => respondView("theme/moderator")
-        case Admin      => respondView("theme/admin")
-      }
-    }
-  }
-
-You can use relative path of template (without extention) with ``renderView``, ``renderViewNoLayout``, ``respondView``, ``respondViewNoLayout``,
-or relative path of directory with ``renderFragment`` to specify views instead of Class.
-
-
+  respondView("mypackage/HomeAction_NormalUser")
+  respondView("mypackage/HomeAction_Moderator")
+  respondView("mypackage/HomeAction_Admin")
 
 Component
 ---------
