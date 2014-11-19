@@ -324,7 +324,44 @@ SessionVarの定義:
 セッションストア
 ~~~~~~~~~~~~~~~~
 
+Xitrumはセッションストアを3種類提供しています。
 `config/xitrum.conf <https://github.com/xitrum-framework/xitrum-new/blob/master/config/xitrum.conf>`_ において、セッションストアを設定することができます。
+
+CookieSessionStore:
+
+::
+
+  # Store sessions on client side
+  store = xitrum.scope.session.CookieSessionStore
+
+LruSessionStore:
+
+::
+
+  # Simple in-memory server side session store
+  store {
+    "xitrum.local.LruSessionStore" {
+      maxElems = 10000
+    }
+  }
+
+クラスター環境で複数のサーバーを起動する場合、`Hazelcast <https://github.com/xitrum-framework/xitrum-hazelcast>`_ をクラスタ間で共有するセッションストアとして使用することができます。
+
+CookieSessionStore やHazelcastを使用する場合、セッションに保存するデータはシリアライズ可能である必要があります。
+シリアライズできないデータを保存しなければいけない場合、 LruSessionStore を使用してください。
+LruSessionStore を使用して、クラスタ環境で複数のサーバーを起動する場合、
+スティッキーセッションをサポートしたロードバランサーを使用する必要があります。
+
+サーバーサイドセッションストアは、`継続ベースのアクション <https://github.com/xitrum-framework/xitrum-imperatively>`_ に使用することが推奨されます。
+継続ベースのアクションによりシリアライズされたデータをクッキーに保存するには大きくなりすぎるためです。
+
+一般的に、上記のデフォルトセッションストアのいずれかで事足りることですが、
+もし特殊なセッションストアを独自に実装する場合
+`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
+または
+`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/ServerSessionStore.scala>`_
+を継承し、抽象メソッドを実装してください。
+
 設定ファイルには、使用するセッションストアに応じて以下のように設定できます。
 
 ::
@@ -341,41 +378,6 @@ SessionVarの定義:
       option2 = value2
     }
   }
-
-Xitrumはシンプルなセッションストアを2種類提供しています。
-
-::
-
-  # Store sessions on client side
-  store = xitrum.scope.session.CookieSessionStore
-
-または:
-
-::
-
-  # Simple in-memory server side session store
-  store {
-    "xitrum.local.LruSessionStore" {
-      maxElems = 10000
-    }
-  }
-
-サーバーサイドセッションストアは、`継続ベースのアクション <https://github.com/xitrum-framework/xitrum-imperatively>`_ に使用することが推奨されます。
-継続ベースのアクションによりシリアライズされたデータをクッキーに保存するには大きくなりすぎるためです。
-
-クラスター環境で複数のサーバーを起動する場合、`Hazelcast <https://github.com/xitrum-framework/xitrum-hazelcast>`_ をクラスタ間で共有するセッションストアとして使用することができます。
-
-``CookieSessionStore`` やHazelcastを使用する場合、セッションに保存するデータはシリアライズ可能である必要があります。
-シリアライズできないデータを保存しなければいけない場合、 ``LruSessionStore`` を使用してください。
-``LruSessionStore`` を使用して、クラスタ環境で複数のサーバーを起動する場合、
-スティッキーセッションをサポートしたロードバランサーを使用する必要があります。
-
-一般的に、上記のデフォルトセッションストアのいずれかで事足りることですが、
-もし特殊なセッションストアを独自に実装する場合
-`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
-または
-`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/ServerSessionStore.scala>`_
-を継承し、抽象メソッドを実装してください。
 
 スケーラブルにする場合、できるだけセッションはクライアントサイドのクッキーに保存しましょう。
 サーバーサイド（メモリ上やDB）には必要なときだけセッションを保存しましょう。

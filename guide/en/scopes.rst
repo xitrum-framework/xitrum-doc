@@ -328,13 +328,52 @@ Display the username:
 * To remove the session var: ``SVar.username.remove()``
 * To reset the whole session: ``session.clear()``
 
-Session store
-~~~~~~~~~~~~~
+Session stores
+~~~~~~~~~~~~~~
 
+Xitrum provides 3 session stores.
 In `config/xitrum.conf <https://github.com/xitrum-framework/xitrum-new/blob/master/config/xitrum.conf>`_
-you can config the session store:
+you can config the session store you want:
 
-It can be in one of the following 2 forms, depending on the session store you use:
+CookieSessionStore:
+
+::
+
+  # Store sessions on client side
+  store = xitrum.scope.session.CookieSessionStore
+
+LruSessionStore:
+
+::
+
+  # Simple in-memory server side session store
+  store {
+    "xitrum.local.LruSessionStore" {
+      maxElems = 10000
+    }
+  }
+
+If you run multiple servers in a cluster, you can
+`use Hazelcast to store cluster-aware sessions <https://github.com/xitrum-framework/xitrum-hazelcast>`_,
+
+Note that when you use CookieSessionStore or Hazelcast, your session data must be
+serializable. If you must store unserializable things, use LruSessionStore.
+If you use LruSessionStore and still want to run a cluster of multiple servers,
+you must use a load balancer that supports sticky sessions.
+
+Server side session store is recommended when using
+`continuations-based actions <https://github.com/xitrum-framework/xitrum-imperatively>`_,
+since serialized continuations are usually too big to store in cookies.
+
+The three default session stores above are enough for normal cases.
+If you have a special case and want to implement your own session store,
+extend
+`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
+or
+`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/ServerSessionStore.scala>`_
+and implement the abstract methods.
+
+The config can be in one of the following 2 forms:
 
 ::
 
@@ -351,49 +390,39 @@ Or:
     }
   }
 
-Xitrum provides 2 simple stores, you can use it right away:
-
-::
-
-  # Store sessions on client side
-  store = xitrum.scope.session.CookieSessionStore
-
-And:
-
-::
-
-  # Simple in-memory server side session store
-  store {
-    "xitrum.local.LruSessionStore" {
-      maxElems = 10000
-    }
-  }
-
-Server side session store is recommended when using
-`continuations-based actions <https://github.com/xitrum-framework/xitrum-imperatively>`_,
-since serialized continuations are usually too big to store in cookies.
-
-If you run multiple servers in a cluster, you can
-`use Hazelcast to store cluster-aware sessions <https://github.com/xitrum-framework/xitrum-hazelcast>`_,
-
-Note that when you use ``CookieSessionStore`` or Hazelcast, your session data must be
-serializable. If you must store unserializable things, use ``LruSessionStore``.
-If you use ``LruSessionStore`` and still want to run a cluster of multiple servers,
-you must use a load balancer that supports sticky sessions.
-
-The three default session stores above are enough for normal cases.
-If you have a special case and want to implement your own session store,
-extend
-`SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
-or
-`ServerSessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/ServerSessionStore.scala>`_
-and implement the abstract methods.
-
-Store sessions on client side cookie when you can, because it's more scalable.
-Store sessions on server side (memory or DB) when you must.
+Store sessions at client side cookie when you can, because it's more scalable.
+Store sessions at server side (memory or DB) when you must.
 
 Good read:
 `Web Based Session Management - Best practices in managing HTTP-based client sessions <http://www.technicalinfo.net/papers/WebBasedSessionManagement.html>`_.
+
+Client side session store vs Server side session store
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are 2 kinds of session stores:
+
+* Client side only
+* Client side + server side combination
+
+Client side only:
+
+* Session data is stored in encrypted cookie at client.
+* The server doesn't need to store anything.
+* When a request comes in, the server will decrypt the data.
+
+Client side + server side combination:
+
+* A session has 2 parts: session ID and session data.
+* The server keeps the session store, which is like a lookup table: ID -> data.
+* The ID is also stored in encrypted cookie at client.
+* When a request comes in, the server will decrypt the ID, and use the ID to
+  lookup the data.
+* This is like your credit card. Your money is not stored in the credit card,
+  only your ID.
+
+In both cases the client must always keep something in the cookie
+(encrypted data vs encrypted ID). "Store sessions at server side" only means
+storing session data at server side.
 
 object vs. val
 --------------
