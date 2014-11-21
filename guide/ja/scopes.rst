@@ -352,9 +352,6 @@ CookieSessionStore やHazelcastを使用する場合、セッションに保存�
 LruSessionStore を使用して、クラスタ環境で複数のサーバーを起動する場合、
 スティッキーセッションをサポートしたロードバランサーを使用する必要があります。
 
-サーバーサイドセッションストアは、`継続ベースのアクション <https://github.com/xitrum-framework/xitrum-imperatively>`_ に使用することが推奨されます。
-継続ベースのアクションによりシリアライズされたデータをクッキーに保存するには大きくなりすぎるためです。
-
 一般的に、上記のデフォルトセッションストアのいずれかで事足りることですが、
 もし特殊なセッションストアを独自に実装する場合
 `SessionStore <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/scope/session/SessionStore.scala>`_
@@ -379,7 +376,8 @@ LruSessionStore を使用して、クラスタ環境で複数のサーバーを�
     }
   }
 
-スケーラブルにする場合、できるだけセッションはクライアントサイドのクッキーに保存しましょう。
+スケーラブルにする場合、できるだけセッションはクライアントサイドのクッキーに保存しましょう
+（リアライズ可能かつ`4KB以下 <http://stackoverflow.com/questions/640938/what-is-the-maximum-size-of-a-web-browsers-cookies-key>`_）。
 サーバーサイド（メモリ上やDB）には必要なときだけセッションを保存しましょう。
 
 参考（英語）:

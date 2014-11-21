@@ -361,10 +361,6 @@ serializable. If you must store unserializable things, use LruSessionStore.
 If you use LruSessionStore and still want to run a cluster of multiple servers,
 you must use a load balancer that supports sticky sessions.
 
-Server side session store is recommended when using
-`continuations-based actions <https://github.com/xitrum-framework/xitrum-imperatively>`_,
-since serialized continuations are usually too big to store in cookies.
-
 The three default session stores above are enough for normal cases.
 If you have a special case and want to implement your own session store,
 extend
@@ -390,7 +386,9 @@ Or:
     }
   }
 
-Store sessions at client side cookie when you can, because it's more scalable.
+Store sessions at client side cookie when you can (serializable and
+`smaller than 4KB <http://stackoverflow.com/questions/640938/what-is-the-maximum-size-of-a-web-browsers-cookies-key>`_),
+because it's more scalable.
 Store sessions at server side (memory or DB) when you must.
 
 Good read:
