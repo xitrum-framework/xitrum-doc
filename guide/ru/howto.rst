@@ -71,7 +71,7 @@ myconfig.json:
 
   import xitrum.util.Loader
 
-  case class MyConfig(username: String, password: String, children: List[String])
+  case class MyConfig(username: String, password: String, children: Seq[String])
   val myConfig = Loader.jsonFromClasspath[MyConfig]("myconfig.json")
 
 Замечания:
@@ -305,13 +305,13 @@ Xitrum предоставляет встроенное шифрование:
 
 Существует несколько способов транслировать потоковое видео. Наиболее простой:
 
-* На сервере хранить interleaved .mp4 видео файлы, пользователь сможет просматривать 
+* На сервере хранить interleaved .mp4 видео файлы, пользователь сможет просматривать
   их в в процессе загрузки.
 * Использовать HTTP сервер который поддерживает
-  `range requests <http://en.wikipedia.org/wiki/Byte_serving>`_ (например, Xitrum), 
+  `range requests <http://en.wikipedia.org/wiki/Byte_serving>`_ (например, Xitrum),
   тогда пользователи смогут проматывать воспроизведение во время загрузки.
 
-Вы можете использовать `MP4Box <http://gpac.wp.mines-telecom.fr/mp4box/>`_ для генерации 
+Вы можете использовать `MP4Box <http://gpac.wp.mines-telecom.fr/mp4box/>`_ для генерации
 interleaved .mp4 с блоками по 500 milliseconds:
 
 ::

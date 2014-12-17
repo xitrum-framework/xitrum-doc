@@ -12,7 +12,7 @@
 1. テキストパラメータ
 2. ファイルアップロードパラメーター（バイナリー）
 
-テキストパラメーターは ``scala.collection.mutable.Map[String, List[String]]`` の型をとる3種類があります:
+テキストパラメーターは ``scala.collection.mutable.Map[String, Seq[String]]`` の型をとる3種類があります:
 
 1. ``queryParams``: URL内の?以降で指定されたパラメーター  例: ``http://example.com/blah?x=1&y=2``
 2. ``bodyTextParams``: POSTリクエストのbodyで指定されたパラメーター
@@ -21,7 +21,7 @@
 これらのパラメーターは上記の順番で、 ``textParams`` としてマージされます。
 （後からマージされるパラメーターは上書きとなります。）
 
-``bodyFileParams`` は ``scala.collection.mutable.Map[String, List[`` `FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_ ``]]`` の型をとります。
+``bodyFileParams`` は ``scala.collection.mutable.Map[String, Seq[`` `FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_ ``]]`` の型をとります。
 
 パラメーターへのアクセス
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -31,9 +31,8 @@
 ``textParams`` にアクセスする場合:
 
 * ``param("x")``: ``String`` を返却します。xが存在しないエクセプションがスローされます。
-* ``params("x")``: ``List[String]`` を返却します。 xが存在しないエクセプションがスローされます。
 * ``paramo("x")``: ``Option[String]`` を返却します。
-* ``paramso("x")``: ``Option[List[String]]`` を返却します。
+* ``params("x")``: ``Seq[String]`` を返却します。 xが存在しない場合``Seq.empty``を返却します。
 
 ``param[Int]("x")`` や ``params[Int]("x")`` と型を指定することでテキストパラメーターを別の型として取得することができます。
 テキストパラメーターを独自の型に変換する場合、 `convertTextParam <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala-2.11/xitrum/scope/request/ParamAccess.scala>`_ をオーバーライドすることで可能となります。

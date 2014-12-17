@@ -9,7 +9,7 @@ Kinds of params
 
 There are 2 kinds of request params: textual params and file upload params (binary).
 
-There are 3 kinds of textual params, of type ``scala.collection.mutable.Map[String, List[String]]``:
+There are 3 kinds of textual params, of type ``scala.collection.mutable.Map[String, Seq[String]]``:
 
 1. ``queryParams``: params after the ? mark in the URL, example: http://example.com/blah?x=1&y=2
 2. ``bodyTextParams``: params in POST request body
@@ -18,7 +18,7 @@ There are 3 kinds of textual params, of type ``scala.collection.mutable.Map[Stri
 These params are merged in the above order as ``textParams``
 (from 1 to 3, the latter will override the former).
 
-``bodyFileParams`` is of type scala.collection.mutable.Map[String, List[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
+``bodyFileParams`` is of type scala.collection.mutable.Map[String, Seq[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
 
 Accesing params
 ~~~~~~~~~~~~~~~
@@ -29,9 +29,8 @@ accessor methods.
 To access ``textParams``:
 
 * ``param("x")``: returns ``String``, throws exception if x does not exist
-* ``params("x")``: returns ``List[String]``, throws exception if x does not exist
 * ``paramo("x")``: returns ``Option[String]``
-* ``paramso("x")``: returns ``Option[List[String]]``
+* ``params("x")``: returns ``Seq[String]``, Seq.empty if x does not exist
 
 You can convert text params to other types (Int, Long, Fload, Double) automatically
 by using ``param[Int]("x")``, ``params[Int]("x")`` etc. To convert text params to more types,

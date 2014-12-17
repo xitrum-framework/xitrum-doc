@@ -9,7 +9,7 @@
 
 Доступны два вида параметров запроса: текстовые параметры и параметры файлы (file upload, бинарные данные)
 
-Текстовые параметры делятся на три вида, каждый имеет тип ``scala.collection.mutable.Map[String, List[String]]``:
+Текстовые параметры делятся на три вида, каждый имеет тип ``scala.collection.mutable.Map[String, Seq[String]]``:
 
 1. ``queryParams``: параметры после символа ? в ссылке, например: http://example.com/blah?x=1&y=2
 2. ``bodyTextParams``: параметры в теле POST запроса
@@ -18,7 +18,7 @@
 Параметры собираются воедино в переменной ``textParams`` в следующем порядке
 (от 1 к 3, более поздние перекрывают более ранние).
 
-``bodyFileParams`` имеет тип scala.collection.mutable.Map[String, List[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
+``bodyFileParams`` имеет тип scala.collection.mutable.Map[String, Seq[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
 
 Доступ к параметрам
 ~~~~~~~~~~~~~~~~~~~
@@ -29,9 +29,8 @@
 Для доступа к ``textParams``:
 
 * ``param("x")``: возвращает ``String``, выбрасывает исключение если x не существует
-* ``params("x")``: возвращает ``List[String]``, выбрасывает исключение если x не существует
 * ``paramo("x")``: возвращает ``Option[String]``
-* ``paramso("x")``: возвращает ``Option[List[String]]``
+* ``params("x")``: возвращает ``Seq[String]``
 
 Вы можете преобразовывать их к другим типам (Int, Long, Fload, Double) автоматически
 используя ``param[Int]("x")``, ``params[Int]("x")`` и пр. Для преобразования текстовых параметров к

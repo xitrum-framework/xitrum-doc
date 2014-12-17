@@ -69,7 +69,7 @@ myconfig.json:
 
   import xitrum.util.Loader
 
-  case class MyConfig(username: String, password: String, children: List[String])
+  case class MyConfig(username: String, password: String, children: Seq[String])
   val myConfig = Loader.jsonFromClasspath[MyConfig]("myconfig.json")
 
 備考:
