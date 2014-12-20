@@ -120,7 +120,6 @@ poファイルは複数のJARに含めることができ、Xitrumはそれらを
       case None       => autosetLanguage("ja", "vi")
       case Some(lang) => language = lang
     }
-    true
   }
 
 バリデーションメッセージ

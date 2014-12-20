@@ -9,8 +9,8 @@ Beforeフィルターが関数でアクションの実行前に実行されま�
 * 入力: なし
 * 出力: true/false
 
-Beforeフィルターを複数設定できます。その中、ーつのbeforeフィルターがfalseを返すとき、その
-フィルターの後ろのフィルターとフィルターの実行が中止されます。
+Beforeフィルターを複数設定できます。その中、ーつのbeforeフィルターが何かrespondするとき、その
+フィルターの後ろのフィルターとアクションの実行が中止されます。
 
 ::
 
@@ -21,7 +21,6 @@ Beforeフィルターを複数設定できます。その中、ーつのbefore�
   class MyAction extends Action {
     beforeFilter {
       log.info("我行くゆえに我あり")
-      true
     }
 
     // This method is run after the above filters

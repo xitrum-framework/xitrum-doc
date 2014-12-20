@@ -5,8 +5,7 @@ Before filters
 --------------
 
 Before filters are run before an action is run.
-They are funtions that take no argument and returns true or false.
-If a before filter returns false, all filters after it and the action will
+If a before filter responds something, all filters after it and the action will
 not be run.
 
 ::
@@ -18,7 +17,6 @@ not be run.
   class MyAction extends Action {
     beforeFilter {
       log.info("I run therefore I am")
-      true
     }
 
     // This method is run after the above filters

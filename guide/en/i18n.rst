@@ -129,7 +129,6 @@ In your action, typically in a before filter, to set language:
       case None       => autosetLanguage("ja", "vi")
       case Some(lang) => language = lang
     }
-    true
   }
 
 Validation messages

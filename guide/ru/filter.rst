@@ -18,7 +18,6 @@
   class MyAction extends Action {
     beforeFilter {
       log.info("I run therefore I am")
-      true
     }
 
     // метод выполнится после всех фильтров
