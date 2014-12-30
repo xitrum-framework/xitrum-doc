@@ -3,7 +3,7 @@ I18n
 
 GNU gettext is used. Unlike many other i18n methods, gettext supports plural forms.
 
-.. image:: http://www.poedit.net/screenshots/osx.png
+.. image:: ../img/poedit.png
 
 Write internationalized messages in source code
 -----------------------------------------------

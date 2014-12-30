@@ -3,7 +3,7 @@ I18n
 
 GNU gettext を使用します。gettextは他の国際化方法と異なり、複数形をサポートしています。
 
-.. image:: http://poedit.net/images/home_image2-big.png
+.. image:: ../img/poedit.png
 
 ソースコード内への国際化メッセージの記載
 ----------------------------------------
