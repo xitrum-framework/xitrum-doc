@@ -401,7 +401,7 @@ Create Procfile
 ~~~~~~~~~~~~~~~
 
 Create Procfile and save it at project root directory. Heroku reads this file and
-executes on start. Port number is ginven by Heroku automatically as ``$PORT``.
+executes on start.
 
 ::
 
