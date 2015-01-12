@@ -87,6 +87,8 @@ Xitrum will automatically reload that <language>.po file.
 Use a tool like `Poedit <http://www.poedit.net/>`_ to edit po files.
 You can use it to merge newly created pot file to existing po files.
 
+.. image:: ../img/update_from_pot.png
+
 You can package po files in multiple JAR files. Xitrum will automatically merge
 them when running.
 

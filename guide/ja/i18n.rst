@@ -82,6 +82,8 @@ Xitrumは自動的に <language>.po ファイルをリロードします。
 
 poファイルを編集やマージには `Poedit <http://www.poedit.net/>`_ のようなツールを使用することができます。
 
+.. image:: ../img/update_from_pot.png
+
 poファイルは複数のJARに含めることができ、Xitrumはそれらを自動的にマージします。
 
 ::
