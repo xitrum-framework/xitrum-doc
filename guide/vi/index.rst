@@ -9,3 +9,5 @@ Hướng dẫn sử dụng Xitrum
 
 .. toctree::
    :maxdepth: 4
+   
+   intro
