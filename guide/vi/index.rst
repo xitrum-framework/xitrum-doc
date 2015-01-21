@@ -11,3 +11,4 @@ Hướng dẫn sử dụng Xitrum
    :maxdepth: 4
    
    intro
+   tutorial
