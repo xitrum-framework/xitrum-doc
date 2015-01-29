@@ -36,6 +36,7 @@ help:
 clean:
 	-rm -rf en/$(BUILDDIR)
 	-rm -rf ja/$(BUILDDIR)
+	-rm -rf ko/$(BUILDDIR)
 	-rm -rf ru/$(BUILDDIR)
 	-rm -rf vi/$(BUILDDIR)
 

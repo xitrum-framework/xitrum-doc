@@ -14,5 +14,6 @@ make_html() {
 make clean
 make_html en
 make_html ja
+make_html ko
 make_html ru
 make_html vi
