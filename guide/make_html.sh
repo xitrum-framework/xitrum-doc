@@ -7,6 +7,7 @@ make_html() {
   cp ../conf.py .
   ln -s ../Makefile .
   make html
+  make singlehtml
   cp ../html_static/basic.css _build/html/_static/
 
   cd ..
