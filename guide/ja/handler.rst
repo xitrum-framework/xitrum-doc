@@ -93,7 +93,7 @@ Xitrumが提供するハンドラを自分のパイプラインに再利用す�
 Xitrumが提供するハンドラ
 ------------------------
 
-`xitrum.handler.DefaultHttpChannelInitializer <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelInitializer.scala>`_
+`xitrum.handler.DefaultHttpChannelInitializer <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/handler/DefaultHttpChannelInitializer.scala>`_
 を参照してください。
 
 共有可能なハンドラ（複数のコネクションで同じインスタンスを共有できるハンドラ）は上記

@@ -92,14 +92,14 @@ Xitrum 핸들러를 파이프라인에서 재사용이 가능합니다.
 Xitrum 핸들러
 ------------------------
 
-`xitrum.handler.DefaultHttpChannelInitializer <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/handler/ChannelInitializer.scala>`_
+`xitrum.handler.DefaultHttpChannelInitializer <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/handler/DefaultHttpChannelInitializer.scala>`_
 를 참고하세요.
 
 공유가능한 핸들러（다중연결에서 공유된 같은 인스턴스들）
 ``DefaultHttpChannelInitializer`` 개체위에 존재하며 수정된 파이프 라인을 통하여 사용하기 원하는 어플리케이션에 쉽게 사용이 가능합니다.
 이 어플리케이션들은 기본 핸들러의 집합입니다
 
-예를들어, 어플리케이션이 자신의 디스패쳐를 사용하고(Xitrum의 라우팅/디스패쳐가 아닌) Xitrum의 빠른 정적파일만 사용한다면, 
+예를들어, 어플리케이션이 자신의 디스패쳐를 사용하고(Xitrum의 라우팅/디스패쳐가 아닌) Xitrum의 빠른 정적파일만 사용한다면,
 다음의 핸들러만 사용하면 됩니다.
 
 인바운드(Inbound):
