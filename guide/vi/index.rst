@@ -12,3 +12,9 @@ Hướng dẫn sử dụng Xitrum
    
    intro
    tutorial
+   action_view
+   restful
+   template_engines
+   postback
+   xml
+   js
