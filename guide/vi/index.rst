@@ -5,7 +5,7 @@
 Hướng dẫn sử dụng Xitrum
 ========================
 
-`Có cả bản tiếng Anh, Nhật, và Nga. <http://xitrum-framework.github.io/guide.html>`_
+`Có cả bản tiếng Anh, Nhật, Hàn Quốc và Nga. <http://xitrum-framework.github.io/guide.html>`_
 
 .. toctree::
    :maxdepth: 4
@@ -18,3 +18,19 @@ Hướng dẫn sử dụng Xitrum
    postback
    xml
    js
+   async
+   static
+   flash
+   scopes
+   validation
+   upload
+   filter
+   cache
+   i18n
+   log
+   deploy
+   cluster
+   handler
+   metrics
+   howto
+   deps
