@@ -32,11 +32,6 @@ Khi các ứng dụng web được khởi chạy, Xitrum sẽ quét tất cả c
   GET /articles/:id quickstart.action.ArticlesShow
 
 Các Route được tự động gom lại theo tinh thần của JAX-RS và Rails Engines. Bạn không cần khai báo tất cả các route tại cùng một nơi. Hãy nghĩ về tính năng nay tương tự như distributed route. Bạn có thể sử dụng một ứng dụng trong một ứng dụng khác. Nếu bạn có một blog engine, bạn có thể đóng gói nó thành một tập tin JAR và đặt tập tin JAR đó trong một ứng dụng khác, với cách làm như vậy ứng dụng đó sẽ có thêm tính năng blog.
-Routes are automatically collected in the spirit of JAX-RS
-and Rails Engines. You don't have to declare all routes in a single place.
-Think of this feature as distributed routes. You can plug an app into another app.
-If you have a blog engine, you can package it as a JAR file, then you can put
-that JAR file into another app and that app automatically has blog feature!
 Việc định tuyến thì bao gồm 2 chiều: bạn có thể tái tạo đường dẫn URL (reverse routing) một cách an toàn từ action.
 Bạn có thể tạo tài liệu về các định tuyến bằng cách sử dụng `Swagger Doc <http://swagger.wordnik.com/>`_.
 
@@ -56,8 +51,8 @@ Nếu bạn muốn các route như sau:
   /articles/:id --> ArticlesShow
   /articles/new --> ArticlesNew
 
-Bạn phải chắc chắn rằng route thứ 2 sẽ được kiểm tra trước.``FIr
-You must make sure the second route be checked first. Annotation ``@First`` sẽ được thêm vào:
+Bạn phải chắc chắn rằng route thứ 2 sẽ được kiểm tra trước.
+Annotation ``@First`` sẽ được thêm vào:
 
 ::
 
@@ -127,7 +122,7 @@ Kí tự đặc biệt ``/`` không được phép có mặt trong tên của pa
 
   /service/123/proxy/http://foo.com/bar
 
-để lấy ra phần ``:*``:
+để lấy ra phần ``*``:
 
 ::
 

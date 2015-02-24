@@ -392,8 +392,7 @@ Hoặc:
   }
 
 Lưu trữ session ở cookie của client bất cứ khi nào có thể (serializable và
-`nhỏ hơn 4KB dữ liệu <http://stackoverflow.com/questions/640938/what-is-the-maximum-size-of-a-web-browsers-cookies-key>`_),
- it's more scalable.
+`nhỏ hơn 4KB dữ liệu <http://stackoverflow.com/questions/640938/what-is-the-maximum-size-of-a-web-browsers-cookies-key>`_), it's more scalable.
 Lưu trữ session ở phía server (trong bộ nhớ hoặc Database) chỉ khi cần thiết.
 
 Good read:

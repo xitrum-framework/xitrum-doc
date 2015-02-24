@@ -70,7 +70,7 @@ Nếu vạn muốn action của bạn hoạt động như một Akka actor, hãy
   }
 
 Một actor instance sẽ được tạo khi có một yêu cầu (request), actor sẽ được dừng khi
-đóng kết nối hoặc response được gửi bởi các method``respondText``, ``respondView``, v.v.
+đóng kết nối hoặc response được gửi bởi các method ``respondText``, ``respondView``, v.v.
 Với chunked response, actor sẽ không dừng lại ngay lập tức mà dừng lại khi chunk cuối cùng
 được gửi đi.
 
@@ -81,8 +81,8 @@ Gửi Respond cho client
 
 Từ một action để trả về một respond cho phía client bạn có thể sử dụng những method sau:
 
-* ``respondView``: trả về một tệp view template, có hoặc không có layout
-* ``respondInlineView``: trả về một template được nhúng (không phải một tệp template riêng lẻ), có hoặc không có layout
+* ``respondView``: trả về một tệp view 	, có hoặc không có layout
+* ``respondInlineView``: trả về một 	 được nhúng (không phải một tệp 	 riêng lẻ), có hoặc không có layout
 * ``respondText("hello")``: trả về một chuỗi ký tự không có layout
 * ``respondHtml("<html>...</html>")``: như trên, với content type là "text/html"
 * ``respondJson(List(1, 2, 3))``: chuyển đối tượng (object) Scala thành đối tượng JSON và trả về client.
@@ -94,11 +94,11 @@ Từ một action để trả về một respond cho phía client bạn có th�
 * ``respondFile``: gửi file trực tiếp từ đĩa một cách nhanh chóng bằng kỹ thuật `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_ (aka send-file)
 * ``respondEventSource("data", "event")`` gửi chunk respond
 
-Gửi trả một template view file
+Gửi trả một 	 view file
 ------------------------------
 
 Mỗi action có thể liên kết với `Scalate <http://scalate.fusesource.org/>`_
-template view file. Thay vì gửi tra trực tiếp ngay trong action với các method trên đây, bạn có
+	 view file. Thay vì gửi tra trực tiếp ngay trong action với các method trên đây, bạn có
 thể sử dụng một view file riêng biệt.
 
 scr/main/scala/mypackage/MyAction.scala:
@@ -140,22 +140,22 @@ scr/main/scalate/mypackage/MyAction.jade:
       != jsForView
 
 * ``xitrumCss`` bao gồm các tệp CSS mặc định cho Xitrum. Bạn có thể xóa nó nếu bạn không muốn
-sử dụng xitrum-framework.
+  sử dụng xitrum-framework.
 * ``jsDefaults`` bao gồm các jQuery, jQuery Validate plugin, v.v, bạn nên đặt nó trong thẻ <head>
 * ``jsForView`` bao gồm các đoạn mã JavaScript thêm bởi ``jsAddToView``, nên đặt ở phần cuối.
 
-Trong template bạn có thể sử dụng các method của class `xitrum.Action <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/Action.scala>`_.
+Trong 	 bạn có thể sử dụng các method của class `xitrum.Action <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/Action.scala>`_.
 Không những thế bạn có thể sử dụng các utility methods cung cấp bởi Scalate điển hình như ``unescape``.
 
 Xem thêm `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_.
 
-Template mặc định của Scalate là `Jade <http://scalate.fusesource.org/documentation/jade.html>`_.
+	 mặc định của Scalate là `Jade <http://scalate.fusesource.org/documentation/jade.html>`_.
 Bạn cũng có thể sử dụng `Mustache <http://scalate.fusesource.org/documentation/mustache.html>`_,
 `Scaml <http://scalate.fusesource.org/documentation/scaml-reference.html>`_, hoặc `Ssp <http://scalate.fusesource.org/documentation/ssp-reference.html>`_.
 
-Để cấu hình cho template mặc định, bạn có thể xem xitrum.conf tại thư mục config trong ứng dụng Xitrum
+Để cấu hình cho 	 mặc định, bạn có thể xem xitrum.conf tại thư mục config trong ứng dụng Xitrum
 
-Bạn cũng có thể override template mặc định bằng cách truyền các giá trị "jade", "mustache", "scaml",hoặc "ssp" vào tham số "type" trong method `respondView`.
+Bạn cũng có thể override 	 mặc định bằng cách truyền các giá trị "jade", "mustache", "scaml",hoặc "ssp" vào tham số "type" trong method `respondView`.
 
 ::
 
@@ -191,7 +191,7 @@ Các tài liệu tham khảo cho Mustache:
 
 Bạn không thể làm một vài điều với Mustache như với Jade bởi vì cú pháp của Mustache khá cứng nhắc và cần tuân thủ nghiêm ngặt.
 
-Để truyền tham số từ action vào template của Mustache bạn phải sử dụng method ``at``:
+Để truyền tham số từ action vào 	 của Mustache bạn phải sử dụng method ``at``:
 
 Action:
 
@@ -200,14 +200,14 @@ Action:
   at("name") = "Jack"
   at("xitrumCss") = xitrumCss
 
-Mustache template:
+Mustache 	:
 
 ::
 
   My name is {{name}}
   {{xitrumCss}}
 
-Ghi nhớ rằng bạn không thể sử dụng các từ khóa dưới đây cho method ``at`` để truyền tham số cho Scalate template, bởi vì chúng đã được sử dụng từ trước.
+Ghi nhớ rằng bạn không thể sử dụng các từ khóa dưới đây cho method ``at`` để truyền tham số cho Scalate 	, bởi vì chúng đã được sử dụng từ trước.
 
 * "context": dùng cho đối tượng (object) Sclate utility, đối tượng này đã bao gồm các method như ``unescape``
 * "helper": sử dụng cho đối tượng current action
@@ -215,7 +215,7 @@ Ghi nhớ rằng bạn không thể sử dụng các từ khóa dưới đây ch
 CoffeeScript
 ~~~~~~~~~~~~
 
-Bạn có thể nhúng CoffeeScript trong Scalate template bằng cách sử dụng:
+Bạn có thể nhúng CoffeeScript trong Scalate 	 bằng cách sử dụng:
 `:coffeescript filter <http://scalate.fusesource.org/documentation/jade-syntax.html#filters>`_:
 
 ::
@@ -444,7 +444,7 @@ Nếu bạn muốn có nhiều view cho một action:
   import xitrum.Action
   import xitrum.annotation.GET
 
-  // These are non-routed actions, for mapping to view template files:
+  // These are non-routed actions, for mapping to view 	 files:
   // scr/main/scalate/mypackage/HomeAction_NormalUser.jade
   // scr/main/scalate/mypackage/HomeAction_Moderator.jade
   // scr/main/scalate/mypackage/HomeAction_Admin.jade
@@ -466,7 +466,7 @@ Nếu bạn muốn có nhiều view cho một action:
 
 Sử dụng các non-routed action như trên khá phức tạp, nhưng đó là cách typesafe.
 
-Bạn cũng có thể sử dụng ``String``để chỉ ra đường dẫn đến template:
+Bạn cũng có thể sử dụng ``String``để chỉ ra đường dẫn đến 	:
 
 ::
 
@@ -479,8 +479,10 @@ Component
 
 Bạn có thể tạo và tái sử dụng các component của view.
 Về cơ bản, một component gần giống với một action và có các tính chất sau:
+
 * Component không có route, do đó không cần đến method ``execute``.
-* Component không trả về một respond hoàn chỉnh, Component chỉ ``render`` ra các fragment của view. Do đó trong một component, thay vì sử dụng ``repondXXX``, bạn hãy sử dụng ``renderXXX``.
+* Component không trả về một respond hoàn chỉnh, Component chỉ ``render`` ra các fragment của view. Do đó 
+  trong một component, thay vì sử dụng ``repondXXX``, bạn hãy sử dụng ``renderXXX``.
 * Giống với một action, một component có thể không có, có một, hoặc có nhiều view liên kết với nhau.
 
 ::
@@ -492,7 +494,7 @@ Về cơ bản, một component gần giống với một action và có các t�
 
   class CompoWithView extends Component {
     def render() = {
-      // Render associated view template, e.g. CompoWithView.jade
+      // Render associated view 	, e.g. CompoWithView.jade
       // Note that this is renderView, not respondView!
       renderView()
     }

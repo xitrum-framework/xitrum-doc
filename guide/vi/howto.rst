@@ -81,7 +81,7 @@ Ghi chú:
 Tệp properties
 ~~~~~~~~~~~~~~
 
-Bạn cũng có thể các tệp property, nhưng bạn nên sử dụng JSON. Tệp property không phải typesafe, không hỗ trợ UTF-8 và các cáu trúc lồng nhau v.v.
+Bạn cũng có thể các tệp property, nhưng bạn nên sử dụng JSON. Tệp property không phải typesafe, không hỗ trợ UTF-8 và các cấu trúc lồng nhau v.v.
 
 myconfig.properties:
 

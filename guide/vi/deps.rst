@@ -74,7 +74,7 @@ Plugins:
   Đây là template engine mặc định của Xitrum, preconfigured trong
   `Xitrum new project skeleton <https://github.com/xitrum-framework/xitrum-new>`_.
   Bạn có thể thay nó bằng các template engine khác, hoặc loại bỏ hoàng toàn nó
-  nếu project của bạn không cần bất kì template engine nào. No phụ thuộc vào
+  nếu project của bạn không cần bất kì template engine nào. Nó phụ thuộc vào
   `Scalate <http://scalate.fusesource.org/>`_ và
   `Scalamd <https://github.com/chirino/scalamd>`_.
 * `xitrum-hazelcast <https://github.com/xitrum-framework/xitrum-hazelcast>`_:

@@ -167,7 +167,7 @@ Tương tự với javac, javap, javaws:
   sudo update-alternatives --config javap
   sudo update-alternatives --config javaws
 
-Chạy Xitrum ở chế độ sản phẩm khi hệ thống khởi đôộng
+Chạy Xitrum ở chế độ sản phẩm khi hệ thống khởi động
 --------------------------------------------------------
 
 ``script/runner`` (cho các hệ thông Unix-like) và ``script/runner.bat`` (cho Windows) là các đoạn script

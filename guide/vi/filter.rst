@@ -77,12 +77,12 @@ Thứ tự thực hiện của các bộ lọc (filter)
 ----------------------------------------
 
 * Before filters được chạy đầu tiên, sau đó là  around filter, cuối cùng là after 
-filter.
+  filter.
 * Néu một trong nhưng before filter trả về false, các filter con lại ( bao gồm 
-around và after filter) sẽ không được chạy.
+  around và after filter) sẽ không được chạy.
 * After filters luôn được chạy nếu ít nhát có một around filter được chạy.
 * Nếu một around filter không gọi ``action``, các around filter lồng bên trong 
-filter này sẽ không được chạy.
+  filter này sẽ không được chạy.
 
 ::
 

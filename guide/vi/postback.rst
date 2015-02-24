@@ -8,6 +8,7 @@ Có 2 use case chính của ứng dụng web:
 
 Như một web framework thông thường, Xitrum hướng tới việc hỗ trợ giải quyết các use case một cách dễ dàng. Để giải quyết use case đầu tiền, bạn sử dụng :doc:`RESTful actions </restful>`. Để giải quyết use case thứ hai, bạn có thể sử dụng tính năng Ajax form postback của Xitrum.
 Bạn có thể xem thêm các trang dưới đây để biết thêm về postback:
+
 * http://en.wikipedia.org/wiki/Postback
 * http://nitrogenproject.com/doc/tutorial.html
 
