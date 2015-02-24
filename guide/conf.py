@@ -57,29 +57,29 @@ release = '3.22'
 current_folder_path, current_folder_name = os.path.split(os.getcwd())
 language = current_folder_name
 
-# Default (time) order of authors
-authors = [u'Ngoc Dao', u'Takeharu Oshida', u'Aleksander Guryanov', u'Andy Hwang', u'Son Hoang']
+# Ngoc Dao is the main author of the English version
+authors = [u'Ngoc Dao', u'Takeharu Oshida']
 authors_string = ', '.join(authors)
 
 # Oshida-san is the main author of the Japanese version
 # 英語→カタカナ変換機: http://www.sljfaq.org/cgi/e2k_ja.cgi
 if language == 'ja':
-    authors = [u'押田　丈治', u'Ngoc Dao', u'Aleksander Guryanov', u'Andy Hwang', u'Son Hoang']
+    authors = [u'押田　丈治', u'Ngoc Dao']
     authors_string = u'、'.join(authors)
 
-# Andy Hwang is the main author of the Russian version
+# Andy Hwang is the main author of the Korean version
 if language == 'ko':
-    authors = [u'황학범', u'Ngoc Dao', u'Takeharu Oshida', u'Aleksander Guryanov', u'Son Hoang']
+    authors = [u'황학범', u'Ngoc Dao']
     authors_string = ', '.join(authors)
 
 # Aleksander Guryanov is the main author of the Russian version
 if language == 'ru':
-    authors = [u'Aleksander Guryanov', u'Ngoc Dao', u'Takeharu Oshida', u'Andy Hwang', u'Son Hoang']
+    authors = [u'Aleksander Guryanov', u'Ngoc Dao']
     authors_string = ', '.join(authors)
 
 # Son Hoang is the main author of the Vietnamese version
 if language == 'vi':
-    authors = [u'Son Hoang', u'Ngoc Dao', u'Takeharu Oshida', u'Aleksander Guryanov', u'Andy Hwang']
+    authors = [u'Son Hoang', u'Ngoc Dao']
     authors_string = ', '.join(authors)
 
 # There are two options for replacing |today|: either, you set today to some
