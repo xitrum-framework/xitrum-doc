@@ -5,7 +5,7 @@
 Xitrum ガイド
 =============
 
-`Xitrum ガイドは英語版とロシア語版もあります。 <http://xitrum-framework.github.io/guide.html>`_
+`Xitrum ガイドは英語版、韓国語版、ロシア語版、ベトナム語版もあります。 <http://xitrum-framework.github.io/guide.html>`_
 
 .. toctree::
    :maxdepth: 4

@@ -5,7 +5,7 @@
 Xitrum Guide
 ============
 
-`Есть также английская и японская версии. <http://xitrum-framework.github.io/guide.html>`_
+`Есть также английский, японский, корейский и вьетнамский версии. <http://xitrum-framework.github.io/guide.html>`_
 
 .. toctree::
    :maxdepth: 4
