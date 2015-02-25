@@ -79,7 +79,7 @@ if language == 'ru':
 
 # Son Hoang is the main author of the Vietnamese version
 if language == 'vi':
-    authors = [u'Son Hoang', u'Ngoc Dao']
+    authors = [u'Hoàng Thanh Sơn', u'Đào Thanh Ngọc']
     authors_string = ', '.join(authors)
 
 # There are two options for replacing |today|: either, you set today to some
