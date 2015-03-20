@@ -1,13 +1,13 @@
-Tutorial
+Hướng dẫn
 ========
 
-Phần này trình bày một ngắn gọn cách tạo và chạy một project Xitrum.
+Chương này giới thiệu ngắn gọn cách tạo và chạy một project Xitrum.
 **Việc tạo project được thực hiện với giả định bạn sử dụng Linux và đã cài Java.**
 
 Tạo một project Xitrum mới
 ---------------------------------
 
-Để tạo một project Xitrum mới bạn chỉ cần tải về tập tin  
+Để tạo mới một project Xitrum bạn chỉ cần tải về tập tin
 `xitrum-new.zip <https://github.com/xitrum-framework/xitrum-new/archive/master.zip>`_:
 
 ::
@@ -20,12 +20,11 @@ Hoặc:
 
   curl -L -o xitrum-new.zip https://github.com/xitrum-framework/xitrum-new/archive/master.zip
 
-Chạy project Xitrum
+Khởi động project Xitrum
 -------------------
 
 Cách chuẩn nhất để build một project Scala là sử dụng
-`SBT <https://github.com/harrah/xsbt/wiki/Setup>`_. Các project mới được tạo đã có sẵn SBT 0.13 trong thư mục
-``sbt``. Nếu bạn muốn tự cài ``SBT``, bạn có thể xem hướng dẫn tại `đây <https://github.com/harrah/xsbt/wiki/Setup>`_.
+`SBT <https://github.com/harrah/xsbt/wiki/Setup>`_. Các project mới được tạo đã có sẵn SBT 0.13 trong thư mục ``sbt``. Nếu bạn muốn tự cài đặt SBT, bạn có thể xem `hướng dẫn cài đặt <https://github.com/harrah/xsbt/wiki/Setup>`_.
 
 Sử dụng terminal, chuyển đến thư mục của project mới tạo và chạy lệnh ``sbt/sbt run``:
 
@@ -108,38 +107,36 @@ IntelliJ cũng hỗ trợ rất tốt cho Scala.
 
   sbt/sbt gen-idea
 
-Autoreload
+Nạp lại tự động (Autoreload)
 ----------
 
-Bạn có thể autoreload các tập tin .class (hot swap) mà không cần phải khởi động lại chương 
-trình. Tuy nhiên, để tránh gặp phải các vấn đề về hiệu suất cũng như tính ổn định của chương
-trình, bạn chỉ nên autoreload các tập tin .class trong quá trình phát triển (development mode).
+Bạn có thể thiết lập nạp lại tự động các tập tin .class (hot swap) mà không cần phải khởi động lại chương trình. Tuy nhiên, để tránh gặp phải các vấn đề về hiệu suất cũng như tính ổn định của chương
+trình, bạn chỉ nên thiết lập nạp lại tự động các tập tin .class trong quá trình phát triển (development mode).
 
 Chạy project với IDEs
 ~~~~~~~~~~~~~~~~~~~~~
 
-Trong quá trình phát triển, khi bạn chạy project với các IDE như Eclipse hoặc IntelliJ,
-mặc định các IDE sẽ tự động tải lại mã nguồn.
+Trong quá trình phát triển, khi chạy project với các IDE cấp cao như Eclipse hoặc IntelliJ,
+code sẽ được tự động nạp lại bởi thiết lập mặc định của IDE.
 
 Chạy project với SBT
 ~~~~~~~~~~~~~~~~~~~~
 
-Khi bạn chạy project với SBT, bạn cần phải mở 2 cửa sổ dòng lênh:
+Khi bạn chạy project với SBT, bạn cần phải mở 2 cửa sổ dòng lệnh:
 
-* Một để chạy ``sbt/sbt run``. Câu lệnh này để chạy trương trình và tải lại các tập .class khi chúng
-  được thay đổi.
-* Một để chạy ``sbt/sbt ~compile``. Câu lệnh này để biên dịch mã nguồn thành các tập .class.
+* Một để chạy ``sbt/sbt run``. Câu lệnh này để chạy chương trình và tải lại các tập .class khi chúng được thay đổi.
+* Một để chạy ``sbt/sbt ~compile``. Mỗi khi bạn thay đổi các file mã nguồn, câu lệnh này sẽ biên dịch mã nguồn thành các file .class.
 
-Trong thư mục ``sbt``, có một tập tin `agent7.jar <https://github.com/xitrum-framework/agent7>`_.
-Tập tin này chịu trách nhiệm tải lại các tập .class trong thư mục và các thư mục con.
-Nếu bạn thấy đoạn script ``sbt/sbt``, bạn sẽ thấy tùy chọn như ``-javaagent:agent7.jar``.
+Thư mục sbt có chứa một tập tin là `agent7.jar <https://github.com/xitrum-framework/agent7>`_.
+Tập tin này chịu trách nhiệm tải lại các tập tin .class trong thư mục hiện hành (và các thư mục con).
+Nếu nhìn vào đoạn mã ``sbt/sbt``, bạn sẽ thấy tùy chọn ``-javaagent:agent7.jar``.
 
 DCEVM
 ~~~~~
 
 Thông thường JVM chỉ cho phép thay đổi nội dung của một method. Bạn có thể sử dụng
 `DCEVM <https://github.com/dcevm/dcevm>`_, một biến thể mã nguồn mở của máy ảo Java HotSpot
-VM cho phép bạn thoải mái định nghĩa lại các class đã được tải.
+VM cho phép bạn định nghĩa lại không hạn chế các class đã được tải.
 
 Bạn có thể cài DCEVM bằng 2 cách:
 
@@ -149,13 +146,13 @@ Bạn có thể cài DCEVM bằng 2 cách:
 
 Nếu bạn chọn cách sử dụng Patch:
 
-* Bạn có thể chạy DCEVM chạy mãi mãi.
-* Hoặc sử dụng như một JVM khác. Trong trường hợp này, để chạy DCEVM bạn cần chạy câu lệnh ``java`` với tùy chọn ``-XXaltjvm=dcevm``. 
+* Bạn có thể kích hoạt DCEVM chạy vĩnh viễn.
+* Hoặc sử dụng JVM thay thế ("alternative" JVM). Trong trường hợp này, để chạy DCEVM bạn cần chạy câu lệnh ``java`` với tùy chọn ``-XXaltjvm=dcevm``. 
   Ví dụ, bạn cần thêm tùy chọn ``-XXaltjvm=dcevm`` vào câu lệnh ``sbt/sbt``.
 
-Nếu bạn sử dụng IDE như Eclipse hoặc IntelliJ, bạn cần cài đặt IDE để sử dụng DCEVM (không phải JVM mặc định) để chạy project.
+Nếu bạn sử dụng IDE như Eclipse hoặc IntelliJ, bạn cần thiết lập IDE để sử dụng DCEVM (mà không phải JVM mặc định) để chạy project.
 
-Nếu bạn sử dụng SBT, bạn cần cài đặt biến môi trường ``PATH`` với đường dẫn câu lệnh ``java`` từ DCEVM (không phải bản JVM mặc định). Bạn vẫn có thể cần đến  ``javaagent`` trên đây, bởi vì mặc dù DCEVM hỗ trợ các tiện ích khi sửa đổi các class, nó không thể tự tải lại các class.
+Nếu bạn sử dụng SBT, bạn cần cài đặt biến môi trường ``PATH`` với đường dẫn câu lệnh ``java`` từ DCEVM (không phải bản JVM mặc định). Bạn vẫn có thể cần đến ``javaagent`` trên đây, bởi vì mặc dù DCEVM hỗ trợ các tiện ích khi sửa đổi class, bản thân nó không thể tự tải lại các class.
 
 Để có thêm thông tin chi tiết bạn có thể tham khảo `DCEVM - A JRebel free alternative <http://javainformed.blogspot.jp/2014/01/jrebel-free-alternative.html>`_.
 
@@ -163,7 +160,7 @@ Danh sách các tập tin bị bỏ qua
 ------------------------------
 
 Thông thường, những những tập tin này nên được `bỏ qua <https://github.com/xitrum-framework/xitrum-new/blob/master/.gitignore>`_
-(không commited đến các repository SVN or Git):
+(không commit lên SVN hoặc Git repository):
 
 ::
 
