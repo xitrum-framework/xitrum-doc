@@ -221,18 +221,30 @@ Chunked ответы имеют множество применений. Нап�
   val generator = new MyCsvGenerator
 
   generator.onFirstLine { line =>
-    if (channel.isOpen) respondText(header, "text/csv")
+    val future = respondText(header, "text/csv")
+    future.addListener(new ChannelFutureListener {
+      def operationComplete(future: ChannelFuture) {
+        if (future.isSuccess) generator.next()
+      }
+    }
   }
 
   generator.onNextLine { line =>
-    if (channel.isOpen) respondText(line)
+    val future = respondText(line)
+    future.addListener(new ChannelFutureListener {
+      def operationComplete(future: ChannelFuture) {
+        if (future.isSuccess) generator.next()
+      }
+    })
   }
 
   generator.onLastLine { line =>
-    if (channel.isOpen) {
-      respondText(line)
-      respondLastChunk()
-    }
+    val future = respondText(line)
+    future.addListener(new ChannelFutureListener {
+      def operationComplete(future: ChannelFuture) {
+        if (future.isSuccess) respondLastChunk()
+      }
+    })
   }
 
   generator.generate()
