@@ -138,6 +138,18 @@ Nếu bạn muốn sử dụng cũng một tệp trong cả 2 môi trường:
 
   script(src={webJarsUrl("underscorejs/1.6.0/underscore.js")})
 
+Khi thư viện này phụ thuộc vào thư viện kia, SBT sẽ tự động tải các thư viện
+liên quan về. Nếu thấy SBT không tải đúng phiên bản (có thể xác nhận bằng cách
+chạy lệnh `sbt xitrum-package`` rồi xem các tệp trong thư mục ``target/xitrum/lib``
+được tạo ra), bạn có thể ép SBT dùng đúng phiên bản bạn muốn bằng ``dependencyOverrides``.
+Ví dụ nếu bạn thấy SBT chọn thư viện jQuery phiên bản 2.x, mà bạn lại muốn
+dùng phiên bản 1.x để có thể hỗ trợ Internet Explorer 6, 7, hoặc 8, thì có
+thể khai báo như sau:
+
+::
+
+  dependencyOverrides += "org.webjars" % "jquery" % "1.11.3"
+
 Lưu resource file trong tệp .jar với WebJars convention
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
