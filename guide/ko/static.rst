@@ -135,8 +135,14 @@ Xitrum은 자동으로 개발환경에서  ``underscore.js`` 를 사용하고　
 
   script(src={webJarsUrl("underscorejs/1.6.0/underscore.js")})
 
+종속된 파일들은 자동으로 다운로드 됩니다. 버전충돌의 문제로 원하는 버전의 라이브러리가 선택되지 않았을경우(``sbt xitrum-package`` 명렁어를 통해 다음에 생성되는 디렉토리의 파일들을 보고 확인할 수 있습니다. ``target/xitrum/lib``), ``dependencyOverrides`` 에서 강제로 원하는 버전의 라이브러리를 추가할 수 있습니다. 예를들어,jQuery 2.x 이 선택되었지만,인터넷 익스플로러 6, 7, 8, 에서 강제로 jQuery 1.x 사용하기를 원할경우 다음과 같이 사용하면 됩니다:
+
+::
+
+  dependencyOverrides += "org.webjars" % "jquery" % "1.11.3"
+
 WebJars 형식으로 리소스 파일을 .jar 내에 저장하기 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 만약 라이브러리를 개발하여 라이브러리에 myimage.png를 추가하고 싶다면
 `WebJars <http://www.webjars.org/>`_ 의 형식으로 .jar 파일의 클래스패스에 
@@ -159,7 +165,7 @@ myimage.png를 넣을 수 있습니다:
   /webjars/mylib/1.0/myimage.png?xyz123
 
 클래스 패스내의 파일 응답
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 클래스 패스내의 `WebJars <http://www.webjars.org/>`_ 형식으로 저장되지 않은 파일의 응답:
 
