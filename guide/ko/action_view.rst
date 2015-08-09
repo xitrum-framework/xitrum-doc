@@ -181,7 +181,7 @@ Mustache에 대한 참고자료:
 * `Mustache syntax <http://mustache.github.com/mustache.5.html>`_
 * `Scalate implementation <http://scalate.fusesource.org/documentation/mustache.html>`_
 
-Mustach의 구문위반에 강력해서、Jade 에서 할 수 있는 작업중 일부는 사용할 수 없습니다.
+Mustach는 구문위반에 강력해서、Jade 에서 할 수 있는 작업중 일부는 사용할 수 없습니다.
 
 Action 에서 뭔가 값을 전달할 경우 、``at`` 메소드를 사용합니다.
 

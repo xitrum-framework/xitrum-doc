@@ -202,7 +202,7 @@ xitrum.util.LocalLruCache
   import xitrum.util.LocalLruCache
 
   // LRU (Least Recently Used) 캐쉬는 1000개만 저장합니다
-  // 키와 저장값은 String 타입으로 사용됩니
+  // 키와 저장값은 String 타입으로 사용됩니다
   val cache = LocalLruCache[String, String](1000)
 
 반환된 ``캐쉬`` 는 `java.util.LinkedHashMap <http://docs.oracle.com/javase/6/docs/api/java/util/LinkedHashMap.html>`_ 인스턴스이기 때문에 ``LinkedHashMap`` 방법을 사용하여 처리 할 수 있습니다.
