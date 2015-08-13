@@ -372,8 +372,8 @@ Xitrum은Swagger UI 를 내포하고 있으며、 ``/xitrum/swagger-ui`` 에서 
   import xitrum.annotation.{GET, Swagger}
 
   @Swagger(
-    Swagger.Resource("image", "APIs to create images"),
-    Swagger.Note("Dimensions should not be bigger than 2000 x 2000"),
+    Swagger.Tags("image", "APIs to create images"),
+    Swagger.Description("Dimensions should not be bigger than 2000 x 2000"),
     Swagger.OptStringQuery("text", "Text to render on the image, default: Placeholder"),
     Swagger.Produces("image/png"),
     Swagger.Response(200, "PNG image"),
@@ -385,7 +385,6 @@ Xitrum은Swagger UI 를 내포하고 있으며、 ``/xitrum/swagger-ui`` 에서 
 
   @GET("image/:width/:height")
   @Swagger(  // <-- Inherits other info from ImageApi
-    Swagger.Nickname("rect"),
     Swagger.Summary("Generate rectangle image"),
     Swagger.IntPath("width"),
     Swagger.IntPath("height")
@@ -400,7 +399,6 @@ Xitrum은Swagger UI 를 내포하고 있으며、 ``/xitrum/swagger-ui`` 에서 
 
   @GET("image/:width")
   @Swagger(  // <-- Inherits other info from ImageApi
-    Swagger.Nickname("square"),
     Swagger.Summary("Generate square image"),
     Swagger.IntPath("width")
   )
