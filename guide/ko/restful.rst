@@ -347,6 +347,7 @@ Example:
 
 ::
 
+  val myJValue = requestContentJValue  // => JSON4S (http://json4s.org) JValue
   val myMap = requestContentJson[Map[String, Int]]
 
 요청 전체를 컨트롤 하려면、 `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_ 을 사용하면 됩니다

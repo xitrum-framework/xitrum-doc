@@ -348,6 +348,7 @@ JSON:
 
 ::
 
+  val myJValue = requestContentJValue  // => JSON4S (http://json4s.org) JValue
   val myMap = requestContentJson[Map[String, Int]]
 
 Если вам нужно получить полный доступ к запросу, используйте `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_. Он возвращает `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_.

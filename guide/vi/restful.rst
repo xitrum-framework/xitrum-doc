@@ -326,6 +326,7 @@ Thông thường, nếu request content không phải là ``application/x-www-fo
 
 ::
 
+  val myJValue = requestContentJValue  // => JSON4S (http://json4s.org) JValue
   val myMap = requestContentJson[Map[String, Int]]
 
 Nếu bạn muốn kiểm soát toàn bộn, sử dụng `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_. Nó sẽ trả về một `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_.
