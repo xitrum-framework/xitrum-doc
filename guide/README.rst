@@ -25,6 +25,7 @@ Generate PDF version
 --------------------
 
 On Mac, install `MacTex <http://tug.org/mactex/>`_.
+Version 20150613 works for all languages in this guide.
 
 On Ubuntu, install these packages:
 
@@ -40,8 +41,11 @@ Then:
 
 xitrum.pdf will be put in ``<lang>/_build/latex`` directory.
 
-More info about generating PDF for Japanese language:
-http://sphinx-users.jp/cookbook/pdf/latex.html
+Special treatment for CJK languages:
+
+* Japanese: See http://sphinx-users.jp/cookbook/pdf/latex.html
+* Korean: See ko_latex_patch.sh
+* See make_latexpdf.sh, latexpdfja and latexpdfko in Makefile
 
 Update Xitrum Guide to Xitrum Homepage
 --------------------------------------

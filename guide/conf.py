@@ -72,6 +72,10 @@ if language == 'ko':
     authors = [u'황학범', u'Ngoc Dao']
     authors_string = ', '.join(authors)
 
+    # Babel doesn't know Korean language, see ko_latex_patch.sh
+    # and the generated file ko/_build/latex/xitrum.tex
+    language = 'en'
+
 # Aleksander Guryanov is the main author of the Russian version
 if language == 'ru':
     authors = [u'Aleksander Guryanov', u'Ngoc Dao']

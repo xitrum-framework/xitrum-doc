@@ -1,7 +1,8 @@
 #!/bin/sh
 
 make_latexpdf() {
-  cd $1
+  LANG_DIR=$1
+  cd $LANG_DIR
 
   rm -rf conf.py
   rm -rf Makefile
@@ -14,6 +15,11 @@ make_latexpdf() {
   if [ $1 = 'ja' ]
   then
     make latexpdfja
+  elif [ $1 = 'ko' ]
+  then
+    rm -rf ko_latex_patch.sh
+    ln -s ../ko_latex_patch.sh .
+    make latexpdfko
   else
     make latexpdf
   fi
@@ -26,6 +32,6 @@ make_latexpdf() {
 
 make_latexpdf en
 make_latexpdf ja
-#make_latexpdf ko
+make_latexpdf ko
 make_latexpdf ru
-#make_latexpdf vi
+make_latexpdf vi
