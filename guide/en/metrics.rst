@@ -146,7 +146,7 @@ Start JMX reporter:
   object Boot {
     def main(args: Array[String]) {
       Server.start()
-      JmxReporter.forRegistry(xitrum.Metrics).build().start()
+      JmxReporter.forRegistry(xitrum.Metrics.registry).build().start()
     }
   }
 
