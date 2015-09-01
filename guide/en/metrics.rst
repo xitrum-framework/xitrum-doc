@@ -5,7 +5,7 @@ Xitrum collects JVM heap memory, CPU, and actions' execution status from each
 node of your application's Akka cluster. It publishes the metrics as JSON data.
 Xitrum also lets you publish your own metrics.
 
-This metrics feature is based on the library `Coda Hale Metrics <http://metrics.codahale.com/>`_.
+This metrics feature is based on the library `Coda Hale Metrics <http://metrics.dropwizard.io/3.1.0/>`_.
 
 Collect metrics
 ---------------
@@ -30,7 +30,7 @@ Action metrics
 ~~~~~~~~~~~~~~
 
 Xitrum measure actions' execution status of each node as a
-`Histogram <http://metrics.codahale.com/getting-started/#histograms>`_.
+`Histogram <http://metrics.dropwizard.io/3.1.0/getting-started/#histograms>`_.
 You can know how many times actions were executed, and execution time of
 non-async actions.
 
@@ -46,7 +46,7 @@ Collect your custom metrics
 In addition to default metrics above, you can collect your custom metrics.
 ``xitrum.Metrics`` is a shortcut for ``gauge``, ``counter``, ``meter``,
 ``timer`` and ``histogram``. Please read about
-`Coda Hale Metrics <http://metrics.codahale.com/>`_ and
+`Coda Hale Metrics <http://metrics.dropwizard.io/3.1.0/>`_ and
 `its Scala implementation <https://github.com/erikvanoosten/metrics-scala>`_
 to know how to use them.
 
@@ -113,7 +113,7 @@ CPU:
     "PROCESSORS"        : Number
   }
 
-MetricsRegistry will be parsed with `metrics-json <http://metrics.codahale.com/manual/json/>`_.
+MetricsRegistry will be parsed with `metrics-json <http://metrics.dropwizard.io/3.1.0/manual/json/>`_.
 
 Xitrum default viewer
 ~~~~~~~~~~~~~~~~~~~~~
@@ -133,7 +133,7 @@ The URL can be generated with:
 Jconsole viewer
 ~~~~~~~~~~~~~~~
 
-You can see it with `JVM Reporter <http://metrics.codahale.com/getting-started/#reporting-via-jmx>`_.
+You can see it with `JVM Reporter <http://metrics.dropwizard.io/3.1.0/getting-started/#reporting-via-jmx>`_.
 
 .. image:: ../img/metrics_jconsole.png
 
@@ -146,7 +146,7 @@ Start JMX reporter:
   object Boot {
     def main(args: Array[String]) {
       Server.start()
-      JmxReporter.forRegistry(xitrum.Metrics).build().start()
+      JmxReporter.forRegistry(xitrum.Metrics.registry).build().start()
     }
   }
 

@@ -6,7 +6,7 @@ XitrumはあなたのアプリケーションのJVMのヒープメモリーとCP
 それらのデータはメトリクスとしてJSONデータで配信する事ができます。
 またメトリクスをカスタマイズすることも可能です。
 
-この機能は `Coda Hale Metrics <http://metrics.codahale.com/>`_ を使用しています。
+この機能は `Coda Hale Metrics <http://metrics.dropwizard.io/3.1.0/>`_ を使用しています。
 
 メトリクスの収集
 ----------------
@@ -28,7 +28,7 @@ CPU: プロセッサ数とロードアベレージ
 アクションの実行ステータス
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Xitrumは各ノードにおける各アクションの実行ステータスを `Histogram <http://metrics.codahale.com/getting-started/#histograms>`_ として収集します。
+Xitrumは各ノードにおける各アクションの実行ステータスを `Histogram <http://metrics.dropwizard.io/3.1.0/getting-started/#histograms>`_ として収集します。
 アクションの実行回数や実行時間についてをここから知ることができます。
 
 .. image:: ../img/metrics_action_count.png
@@ -42,7 +42,7 @@ Xitrumは各ノードにおける各アクションの実行ステータスを `
 
 上記のメトリクスに加えて収集するメトリクスをカスタムすることができます。
 ``xitrum.Metrics`` は ``gauge``, ``counter``, ``meter``, ``timer`` そして ``histogram`` にアクセスするためのショートカットです。
-これらの使い方は `Coda Hale Metrics <http://metrics.codahale.com/>`_ と `そのScala実装 <https://github.com/erikvanoosten/metrics-scala>`_ を参照ください。
+これらの使い方は `Coda Hale Metrics <http://metrics.dropwizard.io/3.1.0/>`_ と `そのScala実装 <https://github.com/erikvanoosten/metrics-scala>`_ を参照ください。
 
 例 Timer:
 
@@ -107,7 +107,7 @@ CPU:
     "PROCESSORS"        : Number
   }
 
-メトリクスレジストリは `metrics-json <http://metrics.codahale.com/manual/json/>`_ によってパースされます。.
+メトリクスレジストリは `metrics-json <http://metrics.dropwizard.io/3.1.0/manual/json/>`_ によってパースされます。.
 
 Xitrumデフォルトビューア
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,7 +127,7 @@ URLが動的に算出できます:
 Jconsoleビューア
 ~~~~~~~~~~~~~~~~
 
-`JVM Reporter <http://metrics.codahale.com/getting-started/#reporting-via-jmx>`_ を使用することも可能です。
+`JVM Reporter <http://metrics.dropwizard.io/3.1.0/getting-started/#reporting-via-jmx>`_ を使用することも可能です。
 
 .. image:: ../img/metrics_jconsole.png
 
@@ -140,7 +140,7 @@ JVM Reporterの開始方法:
   object Boot {
     def main(args: Array[String]) {
       Server.start()
-      JmxReporter.forRegistry(xitrum.Metrics).build().start()
+      JmxReporter.forRegistry(xitrum.Metrics.registry).build().start()
     }
   }
 
