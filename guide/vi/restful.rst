@@ -21,7 +21,7 @@ Bạn có thể tạo RESTful APIs cho ứng dụng trên iPhone,Android v.v m�
 Tương tự cho các method POST, PUT, PATCH, DELETE, và OPTIONS.
 Xitrum tự động kiểm soát phần HEAD như như một method GET với phần response body rỗng.
 
-Với các HTTP client như các trình duyệt web thông thường không hỗ trợ method PUT và DELETE, để mô phỏng PUT và DELETE, sử dụng thủ thuật gửi một method PÓST với ``_method=put`` hoặc ``_method=delete`` trong request body.  
+Với các HTTP client như các trình duyệt web thông thường không hỗ trợ method PUT và DELETE, để mô phỏng PUT và DELETE, sử dụng thủ thuật gửi một method PÓST với ``_method=put`` hoặc ``_method=delete`` trong request body.
 
 Khi các ứng dụng web được khởi chạy, Xitrum sẽ quét tất cả các annotation, xây dựng bảng định tuyến và ghi ra out put để thông báo cho bạn biết bạn có APIs nào:
 
@@ -327,7 +327,7 @@ Thông thường, nếu request content không phải là ``application/x-www-fo
 ::
 
   val myJValue = requestContentJValue  // => JSON4S (http://json4s.org) JValue
-  val myMap = requestContentJson[Map[String, Int]]
+  val myMap = xitrum.util.SeriDeseri.fromJValue[Map[String, Int]](myJValue)
 
 Nếu bạn muốn kiểm soát toàn bộn, sử dụng `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_. Nó sẽ trả về một `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_.
 

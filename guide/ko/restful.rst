@@ -348,7 +348,7 @@ Example:
 ::
 
   val myJValue = requestContentJValue  // => JSON4S (http://json4s.org) JValue
-  val myMap = requestContentJson[Map[String, Int]]
+  val myMap = xitrum.util.SeriDeseri.fromJValue[Map[String, Int]](myJValue)
 
 요청 전체를 컨트롤 하려면、 `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_ 을 사용하면 됩니다
 `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_ 타입으로 리턴합니다.
@@ -417,7 +417,7 @@ Xitrum은Swagger UI 를 내포하고 있으며、 ``/xitrum/swagger-ui`` 에서 
 
 Swagger UI는 이 JSON 정보를 바탕으로 인터랙티브한 API 문서를 만듭니다.
 
-여기에 있는 Swagger.IntPath、Swagger.OptStringQuery이 외에도、BytePath, IntQuery, OptStringForm 등이 
+여기에 있는 Swagger.IntPath、Swagger.OptStringQuery이 외에도、BytePath, IntQuery, OptStringForm 등이
 form에 명시되어 있습니다.
 
 * ``<Value type><Param type>`` (필수 값)

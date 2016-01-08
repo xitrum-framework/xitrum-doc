@@ -353,7 +353,7 @@ To get it as JSON:
 ::
 
   val myJValue = requestContentJValue  // => JSON4S (http://json4s.org) JValue
-  val myMap = requestContentJson[Map[String, Int]]
+  val myMap = xitrum.util.SeriDeseri.fromJValue[Map[String, Int]](myJValue)
 
 If you want to full control, use `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_.
 It returns a `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_.

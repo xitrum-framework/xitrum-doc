@@ -348,7 +348,7 @@ Xitrumは起動時に自動でルーティングを収集します。
 ::
 
   val myJValue = requestContentJValue  // => JSON4S (http://json4s.org) JValue
-  val myMap = requestContentJson[Map[String, Int]]
+  val myMap = xitrum.util.SeriDeseri.fromJValue[Map[String, Int]](myJValue)
 
 より詳細にリクエストを扱う場合、 `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_ を使用することで
 `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_ としてリクエストを取得することができます。
