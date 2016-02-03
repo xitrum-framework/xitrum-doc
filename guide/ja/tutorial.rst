@@ -97,19 +97,12 @@ Eclipseプロジェクトの作成
 ``build.sbt`` に記載されたプロジェクト設定に応じてEclipse用の ``.project`` ファイルが生成されます。
 Eclipseを起動してインポートしてください。
 
-IntelliJ IDEAプロジェクトの作成
+IntelliJ IDEAプロジェクトのインポート
 -------------------------------
 
-開発環境に `IntelliJ IDEA <http://www.jetbrains.com/idea/>`_ を仕様する場合
-
-プロジェクトディレクトリで以下のコマンドを実行します:
-
-::
-
-  sbt/sbt gen-idea
-
-``build.sbt`` に記載されたプロジェクト設定に応じてIntelliJ用の ``.idea`` ファイルが生成されます。
-IntelliJを起動してインポートしてください。
+開発環境に `IntelliJ IDEA <http://www.jetbrains.com/idea/>`_ を使用する場合、
+そのScalaプラグインをインストールして、SBTプロジェクトをそのままインポートしてください。
+Eclipseの場合のように事前にプロジェクトファイルを生成しなくてもいいです。
 
 自動リロード
 ------------

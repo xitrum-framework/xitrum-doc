@@ -86,7 +86,7 @@ SBT를 직접설치 하려면 、SBT의  `설치가이드 <https://github.com/ha
 Eclipse 프로젝트로 만들기
 -------------------
 
- `Eclipse <http://scala-ide.org/>`_ 개발환경 을 사용하는 경우
+`Eclipse <http://scala-ide.org/>`_ 개발환경 을 사용하는 경우
 
 프로젝트 디렉토리에서 다음 명령을 실행합니다 :
 
@@ -100,16 +100,10 @@ Eclipse를 열고 프로젝트를 임포트 합니다.
 IntelliJ IDEA프로젝트 만들기
 ------------------------
 
- `IntelliJ IDEA <http://www.jetbrains.com/idea/>`_ 개발환경을 사용하는 경우
+`IntelliJ IDEA <http://www.jetbrains.com/idea/>`_ 개발환경을 사용하는 경우
 
-프로젝트 디렉토리에서 다음 명령을 실행합니다:
-
-::
-
-  sbt/sbt gen-idea
-
-``build.sbt`` 에 기재된 프로젝트 설정에 따라 InteliJ용``.idea`` 파일이 생성됩니.
-IntelliJ를 열고 프로젝트를 임포트 합니다.
+그 스칼라 플러그인 설치 로、 간단하게、 당신의 SBT 프로젝트를 엽니 다
+는 프로젝트 파일 을 생성 할 필요가 없다.
 
 자동 리로드
 --------

@@ -94,20 +94,16 @@ From the project directory, run:
 
   sbt/sbt eclipse
 
-``.project`` file for Eclipse will be created from definitions in ``build.sbt``.
+``.project`` file for Eclipse will be generated from definitions in ``build.sbt``.
 Now open Eclipse, and import the project.
 
 Import the project to IntelliJ
 ------------------------------
 
-You can also use `IntelliJ <http://www.jetbrains.com/idea/>`_, which also
-has very good support for Scala.
+You can also use `IntelliJ <http://www.jetbrains.com/idea/>`_.
 
-To generate project files for IDEA, run:
-
-::
-
-  sbt/sbt gen-idea
+With its Scala plugin installed, simply open your SBT project,
+you don't need to generate project files as with Eclipse.
 
 Autoreload
 ----------

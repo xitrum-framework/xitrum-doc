@@ -98,14 +98,10 @@ Sau đó chạy Eclipse và import project.
 Import một project Xitrum vào IntelliJ
 --------------------------------------
 
-Bạn cũng có thể sử dụng `IntelliJ <http://www.jetbrains.com/idea/>`_ như Eclipse để viết code, 
-IntelliJ cũng hỗ trợ rất tốt cho Scala.
+Bạn cũng có thể sử dụng `IntelliJ <http://www.jetbrains.com/idea/>`_ như Eclipse để viết code.
 
-Để tạo một project chạy trên IDEA, cũng từ thư mục của project Xitrum, sử dụng lệnh:
-
-::
-
-  sbt/sbt gen-idea
+IntelliJ có Scala plugin rất tốt, chỉ cần mở project SBT là xong, không cần tạo trước
+project file như trường hợp Eclipse ở trên.
 
 Nạp lại tự động (Autoreload)
 ----------
@@ -140,14 +136,14 @@ VM cho phép bạn định nghĩa lại không hạn chế các class đã đư�
 
 Bạn có thể cài DCEVM bằng 2 cách:
 
-* Sử dụng bản `Patch <https://github.com/dcevm/dcevm/releases>`_ với bản Java đã được cài đặt sẵn trên máy của bạn. 
+* Sử dụng bản `Patch <https://github.com/dcevm/dcevm/releases>`_ với bản Java đã được cài đặt sẵn trên máy của bạn.
 
 * Cài đặt một bản `prebuilt <http://dcevm.nentjes.com/>`_ (cách dễ dàng hơn).
 
 Nếu bạn chọn cách sử dụng Patch:
 
 * Bạn có thể kích hoạt DCEVM chạy vĩnh viễn.
-* Hoặc sử dụng JVM thay thế ("alternative" JVM). Trong trường hợp này, để chạy DCEVM bạn cần chạy câu lệnh ``java`` với tùy chọn ``-XXaltjvm=dcevm``. 
+* Hoặc sử dụng JVM thay thế ("alternative" JVM). Trong trường hợp này, để chạy DCEVM bạn cần chạy câu lệnh ``java`` với tùy chọn ``-XXaltjvm=dcevm``.
   Ví dụ, bạn cần thêm tùy chọn ``-XXaltjvm=dcevm`` vào câu lệnh ``sbt/sbt``.
 
 Nếu bạn sử dụng IDE như Eclipse hoặc IntelliJ, bạn cần thiết lập IDE để sử dụng DCEVM (mà không phải JVM mặc định) để chạy project.
