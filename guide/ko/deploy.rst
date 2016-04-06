@@ -339,6 +339,30 @@ HAProxy 팁
 ------------
 
 HAProxy를 SockJS 위해 설정하려면 `샘플 <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_을 참조하십시오.
+
+::
+
+  defaults
+      mode http
+      timeout connect 10s
+      timeout client  10h  # Set to long time to avoid WebSocket connections being closed when there's no network activity
+      timeout server  10h  # Set to long time to avoid ERR_INCOMPLETE_CHUNKED_ENCODING on Chrome
+
+  frontend xitrum_with_discourse
+      bind 0.0.0.0:80
+
+      option forwardfor
+
+      acl is_discourse path_beg /forum
+      use_backend discourse if is_discourse
+      default_backend xitrum
+
+  backend xitrum
+      server srv_xitrum 127.0.0.1:8000
+
+  backend discourse
+      server srv_discourse 127.0.0.1:3000
+
 HAProxy를 다시 시작하지 않고 설정 파일을로드하려면 `토론 <http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server- to-haproxy-without-restarting-haproxy>`_을 참조하십시오.
 
 HAProxy는 Nginx보다 훨신 사용하기 쉽습니다.
@@ -446,4 +470,4 @@ Heroku에 푸시하기
 
 
 Heroku `Scala 공식문서 <https://devcenter.heroku.com/articles/getting-started-with-scala>`_ 를 참고하세요.
- 
+

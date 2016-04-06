@@ -348,6 +348,30 @@ HAProxy tips
 ------------
 
 HAProxyをSockJSのために設定するには、`こちらのサンプル <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_ を参照してください。
+
+::
+
+  defaults
+      mode http
+      timeout connect 10s
+      timeout client  10h  # Set to long time to avoid WebSocket connections being closed when there's no network activity
+      timeout server  10h  # Set to long time to avoid ERR_INCOMPLETE_CHUNKED_ENCODING on Chrome
+
+  frontend xitrum_with_discourse
+      bind 0.0.0.0:80
+
+      option forwardfor
+
+      acl is_discourse path_beg /forum
+      use_backend discourse if is_discourse
+      default_backend xitrum
+
+  backend xitrum
+      server srv_xitrum 127.0.0.1:8000
+
+  backend discourse
+      server srv_discourse 127.0.0.1:3000
+
 HAProxyを再起動せずに設定ファイルをロードするには、`こちらのディスカッション <http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy>`_ を参照してください。
 
 HAProxyはNginxより簡単に使うことができます。

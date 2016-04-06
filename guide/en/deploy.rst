@@ -356,7 +356,30 @@ To tune temporarily, you can do like this:
 HAProxy tips
 ------------
 
-To config HAProxy for SockJS, see `this example <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_.
+To config HAProxy for SockJS, see `this example <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_:
+
+::
+
+  defaults
+      mode http
+      timeout connect 10s
+      timeout client  10h  # Set to long time to avoid WebSocket connections being closed when there's no network activity
+      timeout server  10h  # Set to long time to avoid ERR_INCOMPLETE_CHUNKED_ENCODING on Chrome
+
+  frontend xitrum_with_discourse
+      bind 0.0.0.0:80
+
+      option forwardfor
+
+      acl is_discourse path_beg /forum
+      use_backend discourse if is_discourse
+      default_backend xitrum
+
+  backend xitrum
+      server srv_xitrum 127.0.0.1:8000
+
+  backend discourse
+      server srv_discourse 127.0.0.1:3000
 
 To have HAProxy reload config file without restarting, see `this discussion <http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy>`_.
 

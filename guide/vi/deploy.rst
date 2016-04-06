@@ -53,7 +53,7 @@ Xem `xitrum-package homepage <https://github.com/xitrum-framework/xitrum-package
 Kết nối Scala console đến một tiến trình JVM đang chạy
 ------------------------------------------------------
 
-Trong môi trường sản phẩm (production environment), nếu không có khởi tạo, bạn có 
+Trong môi trường sản phẩm (production environment), nếu không có khởi tạo, bạn có
 thể sử dụng `Scalive <https://github.com/xitrum-framework/scalive>`_
 để kết nối một Scala console đến một tiến trình JVM đang chạy để gỡ lỗi trực tiếp.
 
@@ -71,7 +71,7 @@ Chạy ``scalive`` trong thư mục script:
 Cài đặt Oracle JDK trên CentOS hoặc Ubuntu
 ------------------------------------------
 
-Dưới đây là hướng dẫn một cách đơn giản để cài đặt Java.Bạn có thể 
+Dưới đây là hướng dẫn một cách đơn giản để cài đặt Java.Bạn có thể
 cài đặt Java bằng cách sử dụng trình quản lý gói.
 
 Kiểm tra các phiên bản Java đã được cài đặt:
@@ -238,7 +238,7 @@ Bạn có thể thay đổi ``/etc/sysconfig/iptables`` với các lệnh sau đ
   iptables-save -c > /etc/sysconfig/iptables
   chmod 644 /etc/sysconfig/iptables
 
-Tất nhiên nếu Apache sử dụng cổng 80 và 443, bạn sẽ cần phải dùng Apache: 
+Tất nhiên nếu Apache sử dụng cổng 80 và 443, bạn sẽ cần phải dùng Apache:
 
 ::
 
@@ -281,7 +281,7 @@ Bạn cần đăng xuất và đăng nhập lại hệ thống để kết thúc
 ~~~~~~~~~~~~~~~~~
 
 
-Như được dẫn trong 
+Như được dẫn trong
 `A Million-user Comet Application with Mochiweb <http://www.metabrew.com/article/a-million-user-comet-application-with-mochiweb-part-1>`_,
 sửa tệp /etc/sysctl.conf:
 
@@ -321,7 +321,7 @@ Và hệ điều hành của phía máy chủ sẽ gửi lại các gói tin SYN
 Sau đó, khách hàng từ xa thiết lập một kết nối bằng cách gửi một gói tin ACK lại.
 Xitrum sẽ nhận được nó khi kết nối được thiết lập đầy đủ.
 
-Theo như 
+Theo như
 `Socket backlog tuning for Apache <https://sites.google.com/site/beingroot/articles/apache/socket-backlog-tuning-for-apache>`_,
 connection timeout xảy ra khi gói tin SYN bị mất bởi backlog queue của web server bị
 lấp đầy bởi các kết nối gửi SYN-ACK đến các client chậm.
@@ -357,7 +357,30 @@ hoặc:
 HAProxy tip
 -----------
 
-Để cấu hình HAProxy cho SockJS, xem `ví dụ <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_.
+Để cấu hình HAProxy cho SockJS, xem `ví dụ <https://github.com/sockjs/sockjs-node/blob/master/examples/haproxy.cfg>`_:
+
+::
+
+  defaults
+      mode http
+      timeout connect 10s
+      timeout client  10h  # Set to long time to avoid WebSocket connections being closed when there's no network activity
+      timeout server  10h  # Set to long time to avoid ERR_INCOMPLETE_CHUNKED_ENCODING on Chrome
+
+  frontend xitrum_with_discourse
+      bind 0.0.0.0:80
+
+      option forwardfor
+
+      acl is_discourse path_beg /forum
+      use_backend discourse if is_discourse
+      default_backend xitrum
+
+  backend xitrum
+      server srv_xitrum 127.0.0.1:8000
+
+  backend discourse
+      server srv_discourse 127.0.0.1:3000
 
 Để HAProxy tải lại tệp cấu hình mà không cần khởi động lại, xem `cuộc thảo luận <http://serverfault.com/questions/165883/is-there-a-way-to-add-more-backend-server-to-haproxy-without-restarting-haproxy>`_.
 
@@ -368,7 +391,7 @@ HAProxy thì dễ sử dụng hơn Nginx. Nó phù hợp với Xitrum bởi như
 
 Nginx tip
 ---------
- 
+
 Nếu bạn sửu dụng tính năng WebSocket hoặc SockJS trong Xitrum và muốn chạy Xitrum ẩn sau
 Nginx 1.2, bạn phải cài đặt thêm module như
 `nginx_tcp_proxy_module <https://github.com/yaoweibin/nginx_tcp_proxy_module>`_.
