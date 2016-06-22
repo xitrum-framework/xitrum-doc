@@ -17,7 +17,7 @@ Generate HTML version
 
 ::
 
-  ./make_html
+  ./make_html.sh
 
 The generated HTML files will be put in ``<lang>/_build/html`` directory.
 
@@ -37,7 +37,7 @@ Then:
 
 ::
 
-  ./make_latexpdf
+  ./make_latexpdf.sh
 
 xitrum.pdf will be put in ``<lang>/_build/latex`` directory.
 
