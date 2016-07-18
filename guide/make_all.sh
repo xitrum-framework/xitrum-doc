@@ -31,8 +31,8 @@ sed '/<\/a><\/h1>/ r download_pdf/ko.html' all/html/ko/index.html > t.html && mv
 sed '/<\/a><\/h1>/ r download_pdf/ru.html' all/html/ru/index.html > t.html && mv t.html all/html/ru/index.html
 sed '/<\/a><\/h1>/ r download_pdf/vi.html' all/html/vi/index.html > t.html && mv t.html all/html/vi/index.html
 
-sed '/<\/a><\/h1>/ r download_pdf/en.html' all/singlehtml/en/index.html > t.html && mv t.html all/html/en/index.html
-sed '/<\/a><\/h1>/ r download_pdf/ja.html' all/singlehtml/ja/index.html > t.html && mv t.html all/html/ja/index.html
-sed '/<\/a><\/h1>/ r download_pdf/ko.html' all/singlehtml/ko/index.html > t.html && mv t.html all/html/ko/index.html
-sed '/<\/a><\/h1>/ r download_pdf/ru.html' all/singlehtml/ru/index.html > t.html && mv t.html all/html/ru/index.html
-sed '/<\/a><\/h1>/ r download_pdf/vi.html' all/singlehtml/vi/index.html > t.html && mv t.html all/html/vi/index.html
+sed '/<\/a><\/h1>/ r download_pdf/en.html' all/singlehtml/en/index.html > t.html && mv t.html all/singlehtml/en/index.html
+sed '/<\/a><\/h1>/ r download_pdf/ja.html' all/singlehtml/ja/index.html > t.html && mv t.html all/singlehtml/ja/index.html
+sed '/<\/a><\/h1>/ r download_pdf/ko.html' all/singlehtml/ko/index.html > t.html && mv t.html all/singlehtml/ko/index.html
+sed '/<\/a><\/h1>/ r download_pdf/ru.html' all/singlehtml/ru/index.html > t.html && mv t.html all/singlehtml/ru/index.html
+sed '/<\/a><\/h1>/ r download_pdf/vi.html' all/singlehtml/vi/index.html > t.html && mv t.html all/singlehtml/vi/index.html
