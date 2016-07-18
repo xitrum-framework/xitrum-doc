@@ -112,7 +112,7 @@ WebSocket
 
 ::
 
-  val url = webSocketAbsUrl[EchoWebSocketActor]
+  val url = absWebSocketUrl[EchoWebSocketActor]
 
 SockJS
 ------

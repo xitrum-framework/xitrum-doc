@@ -118,7 +118,7 @@ To get URL to the above WebSocket action:
 ::
 
   // Probably you want to use this in Scalate view etc.
-  val url = webSocketAbsUrl[EchoWebSocketActor]
+  val url = absWebSocketUrl[EchoWebSocketActor]
 
 SockJS
 ------

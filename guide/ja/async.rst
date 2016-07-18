@@ -113,7 +113,7 @@ WebSocketフレームを送信するメソッド:
 ::
 
   // Scalateテンプレートファイルなどで
-  val url = webSocketAbsUrl[EchoWebSocketActor]
+  val url = absWebSocketUrl[EchoWebSocketActor]
 
 SockJS
 ------

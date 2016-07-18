@@ -29,7 +29,7 @@ Xitrum 은 자동으로 어떤 특정한 응답을 하지 않습니다.스스로
     // 이벤트로부터 자원을 해제합니다.
   }
 
-비동기 이므로 응답을 바로 전송하지 않습니다.``respondXXX`` 의 반환값은 
+비동기 이므로 응답을 바로 전송하지 않습니다.``respondXXX`` 의 반환값은
 `ChannelFuture <http://netty.io/4.0/api/io/netty/channel/ChannelFuture.html>`_
 를 사용합니다.이것을 통해 실제로 전송되는 콜백을 지정할 수 있습니다.
 
@@ -112,7 +112,7 @@ WebSocket 프레임을 전송하는 경우:
 ::
 
   // Scalate 템플릿 파일을 사용하기 원한다면
-  val url = webSocketAbsUrl[EchoWebSocketActor]
+  val url = absWebSocketUrl[EchoWebSocketActor]
 
 SockJS
 ------
@@ -188,7 +188,7 @@ SockJS 프레임으로 보내려면:
 
 ::
 
-  기본적으로 쿠키는 SockJS 모델과 맞지가 않습니다. 세션인증을 하려면 고유의 토큰을 SockJS를 
+  기본적으로 쿠키는 SockJS 모델과 맞지가 않습니다. 세션인증을 하려면 고유의 토큰을 SockJS를
   통해 서버측에서 검증을 해야 합니다. 이것이 본질적으로 쿠키의 작동원리 입니다
 
 SockJS클러스터링을 수정하려면 :doc:`Akka 클러스터링 </cluster>`을 참고하세요.
@@ -303,7 +303,7 @@ Event Source
 
 참고: http://dev.w3.org/html5/eventsource/
 
-Event Source는 특별한 경우 chunk응답을 보냄. 
+Event Source는 특별한 경우 chunk응답을 보냄.
 데이터는 UTF-8 이어야 함.
 
 Event Source를 응답하려면 ``respondEventSource`` 호출（필요한 만큼）:

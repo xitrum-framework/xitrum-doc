@@ -4,7 +4,7 @@ Async response
 Danh sách các method responding thông thường:
 
 * ``respondView``: respond tệp view, có hoặc không có layout.
-* ``respondInlineView``: respond template đã được nhúng(không tách rời các tệp template), có  
+* ``respondInlineView``: respond template đã được nhúng(không tách rời các tệp template), có
   hoặc không có layout.
 * ``respondText("hello")``: respond một string, không có layout
 * ``respondHtml("<html>...</html>")``: như trên, với content type đặt là "text/html"
@@ -120,7 +120,7 @@ khi nó nhận được ping frame.
 ::
 
   // Probably you want to use this in Scalate view etc.
-  val url = webSocketAbsUrl[EchoWebSocketActor]
+  val url = absWebSocketUrl[EchoWebSocketActor]
 
 SockJS
 ------
@@ -129,7 +129,7 @@ SockJS
 JavaScript cung cấp một WebSocket-like object, dành cho các trình duyệt không hỗ
 trợ WebSocket. Đầu tiên SockJS thử sử dụng WebSocket. Nếu không thành công, nó có thể sử dụng một số cách nhưng vẫn đưa về sử dụng WebSocket-like object.
 
-Nếu bạn muốn làm việc với WebSocket API trên mọi trình duyệt, bạn nên sử dụng 
+Nếu bạn muốn làm việc với WebSocket API trên mọi trình duyệt, bạn nên sử dụng
 SockJS và tránh sử dụng trực tiếp WebSocket directly.
 
 ::
@@ -200,7 +200,7 @@ Xem `Various issues and design considerations <https://github.com/sockjs/sockjs-
 
   Về cơ bản, cookie không phù hợp với mô hình SockJS. Nếu bạn muốn authorize cho một
   session, cũng cấp một token đặc biệt trên một page, gửi chúng như những thứ đầu tiên
-  qua kết nối SockJS và validate nó ở server. Về cơ bản thì đây là cách thức hoạt động của  
+  qua kết nối SockJS và validate nó ở server. Về cơ bản thì đây là cách thức hoạt động của
   cookie
 
 Để cấu hình SockJS clustering, xem :doc:`Clustering với Akka </cluster>`.
