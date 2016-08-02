@@ -15,6 +15,24 @@ Write internationalized messages in source code
   t("Message")
   tc("Context", "Message")
 
+  t("Hello %s").format("World")
+
+  // 1$ and 2$ are placeholders
+  t("%1$s says hello to %2$s, then %2$s says hello back to %1$s").format("Bill", "Hillary")
+
+  // {0} and {1} are placeholders
+  java.text.MessageFormat.format(t("{0} says hello to {1}, then {1} says hello back to {0}"), "Bill", "Hillary")
+
+  t("%,.3f").format(1234.5678)                                // => 1,234.568
+  t("%,.3f").formatLocal(java.util.Locale.FRENCH, 1234.5678)  // => 1 234,568
+
+::
+
+  // Above, you explicitly specify locale.
+  // If you want to implicitly use locale of the current action:
+  // when English => 1,234.568, when French => 1 234,568
+  t("%,.3f", 1234.5678)
+
 In a action or action, just call them.
 In other places like models, you need to pass the current action to them and
 call ``t`` and ``tc`` on it:
@@ -110,16 +128,16 @@ Set language
 ------------
 
 * To get languages set in the ``Accept-Language`` request header by the browser,
-  call ``browserLanguages``. The result is sorted by priority set by the brower,
+  call ``browserLanguageRanges``. The result is sorted by priority set by the brower,
   from high to low.
-* The default current language is "en". To set the current language, for example
-  Japanese, call ``language = "ja"``.
+* The default language is "en". To set language for the current action, for example
+  Japanese, call ``locale = java.util.Locale.JAPANESE``.
 * To autoset the most suitable language in resources, call
-  ``autosetLanguage(resourceLanguages)``, where
-  ``resourceLanguages`` is a list of available languages in
+  ``autosetLocale(availableLocales)``, where
+  ``availableLocales`` is a list of locales corresponding to .po files in
   ``resources/i18n`` directory and JAR files.
-  If there's no suitable language, the language is still the default "en".
-* To get the current language set above, use ``language``.
+  If there's no suitable language, the locale is still the default "en".
+* To get the current locale set above, use ``locale``.
 
 In your action, typically in a before filter, to set language:
 
@@ -128,8 +146,8 @@ In your action, typically in a before filter, to set language:
   beforeFilter {
     val lango: Option[String] = yourMethodToGetUserPreferenceLanguageInSession()
     lango match {
-      case None       => autosetLanguage("ja", "vi")
-      case Some(lang) => language = lang
+      case None       => autosetLocale(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
+      case Some(lang) => locale = Locale.forLanguageTag(lang)
     }
   }
 

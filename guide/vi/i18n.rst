@@ -1,7 +1,7 @@
 I18n
 ====
 
-Phong cách GNU gettext được sử dụng. Không giống như các i18n method khác, gettext 
+Phong cách GNU gettext được sử dụng. Không giống như các i18n method khác, gettext
 hỗ trợ đa số các form.
 
 .. image:: ../img/poedit.png
@@ -16,6 +16,24 @@ Viết các internationalized messages vào source code
 
   t("Message")
   tc("Context", "Message")
+
+  t("Hello %s").format("World")
+
+  // 1$ and 2$ are placeholders
+  t("%1$s says hello to %2$s, then %2$s says hello back to %1$s").format("Bill", "Hillary")
+
+  // {0} and {1} are placeholders
+  java.text.MessageFormat.format(t("{0} says hello to {1}, then {1} says hello back to {0}"), "Bill", "Hillary")
+
+  t("%,.3f").format(1234.5678)                                // => 1,234.568
+  t("%,.3f").formatLocal(java.util.Locale.FRENCH, 1234.5678)  // => 1 234,568
+
+::
+
+  // Above, you explicitly specify locale.
+  // If you want to implicitly use locale of the current action:
+  // when English => 1,234.568, when French => 1 234,568
+  t("%,.3f", 1234.5678)
 
 Bạn có thể gọi trực tiếp 2 method trên từ trong action.
 Tại một nơi khác như model, bạn cần truyền current action vào đó và gọi ``t`` và
@@ -44,7 +62,7 @@ project.
   touch i18n.pot
   sbt/sbt compile
 
-``sbt/sbt clean`` dùng để xóa tất cả các tệp .class , bắt SBT biên dịch lại cả 
+``sbt/sbt clean`` dùng để xóa tất cả các tệp .class , bắt SBT biên dịch lại cả
 project. Vì sau ``sbt/sbt clean``, SBT sẽ thử tải lại toàn bộ :doc:`dependencies </deps>`,
 bạn có thể tiến hành nhanh hơn một chút với lệnh ``find target -name *.class -delete``,
 nó sẽ xóa toàn bộ các tệp . class trong thư mục ``target``.
@@ -53,7 +71,7 @@ Sau khi biên dịch lại, i18n.pot sẽ được lấp đầy với các gette
 từ mã nguồn. Để làm điều này, `Scala compiler plugin technique <http://www.scala-lang.org/node/140>`_
 được sử dụng.
 
-Tuy nhiên, phương pháp này sẽ chỉ trích rút dữ liệu từ mã nguồn. Nếu bạn có các 
+Tuy nhiên, phương pháp này sẽ chỉ trích rút dữ liệu từ mã nguồn. Nếu bạn có các
 tệp Java, bạn có thể sử dụng câu lệnh ``xgettext`` để trích xuất dữ liệu:
 
 ::
@@ -109,25 +127,25 @@ Chọn ngôn ngữ
 -------------
 
 * Để lấy cấc ngôn ngữ trong ``Accept-Language`` request header bởi browser, gọi
-  ``browserLanguages``. Kết quả sẽ được sắp xếp theo mức ưu tiên đặt bởi trình duyệt
+  ``browserLanguageRanges``. Kết quả sẽ được sắp xếp theo mức ưu tiên đặt bởi trình duyệt
   từ cao xuống thấp.
-* Ngôn ngữ mặc định là "en". Để chuyển ngôn ngữ, ví dụ Nhật Bản, gọi ``language = "ja"``
+* Ngôn ngữ mặc định là "en". Để chuyển ngôn ngữ, ví dụ Nhật Bản, gọi ``locale = java.util.Locale.JAPANESE``
 * Để tự đặt ngôn ngữ phù hợp nhất trong resource, gọi
-  ``autosetLanguage(resourceLanguages)``, với
-  ``resourceLanguages`` là một list các ngôn ngữ có trong thư mục
+  ``autosetLocale(availableLocales)``, với
+  ``availableLocales`` là một list các ngôn ngữ có trong thư mục
   ``resources/i18n`` và các tệp JAR.
   Nếu không có ngôn ngữ nào phù hợp, ngôn ngữ vẫn mặc định là "en".
-* Để lấy ngôn ngữ hiện thời được đặt bên trên, sử dụng ``language``.
+* Để lấy ngôn ngữ hiện thời được đặt bên trên, sử dụng ``locale``.
 
-Trong action, thông thường trong một before filter, để đặt language:
+Trong action, thông thường trong một before filter, để đặt ngôn ngữ:
 
 ::
 
   beforeFilter {
     val lango: Option[String] = yourMethodToGetUserPreferenceLanguageInSession()
     lango match {
-      case None       => autosetLanguage("ja", "vi")
-      case Some(lang) => language = lang
+      case None       => autosetLocale(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
+      case Some(lang) => locale = Locale.forLanguageTag(lang)
     }
   }
 
@@ -172,7 +190,7 @@ Phần lớn các form thường nằm trong số sau:
 Định dạng ngày và số
 --------------------
 
-Nếu bạn sử dụng Scalate template engine, mặc định ngày và số sẽ được định dạng theo 
+Nếu bạn sử dụng Scalate template engine, mặc định ngày và số sẽ được định dạng theo
 ngôn ngữ hiện thời.
 
 Nếu bạn muốn sử dụng định dạng khác:

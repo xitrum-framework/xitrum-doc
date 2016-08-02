@@ -15,6 +15,24 @@ GNU gettext を使用します。gettextは他の国際化方法と異なり、�
   t("Message")
   tc("Context", "Message")
 
+  t("Hello %s").format("World")
+
+  // 1$ and 2$ are placeholders
+  t("%1$s says hello to %2$s, then %2$s says hello back to %1$s").format("Bill", "Hillary")
+
+  // {0} and {1} are placeholders
+  java.text.MessageFormat.format(t("{0} says hello to {1}, then {1} says hello back to {0}"), "Bill", "Hillary")
+
+  t("%,.3f").format(1234.5678)                                // => 1,234.568
+  t("%,.3f").formatLocal(java.util.Locale.FRENCH, 1234.5678)  // => 1 234,568
+
+::
+
+  // Above, you explicitly specify locale.
+  // If you want to implicitly use locale of the current action:
+  // when English => 1,234.568, when French => 1 234,568
+  t("%,.3f", 1234.5678)
+
 actionの中では、それらのメソッドを直接呼び出すことができます。
 modelのようにaction以外の場所では、``xitrum.I18n`` オブジェクトをインポートし、 ``t`` または ``tc`` メソッドを呼び出します:
 
@@ -104,13 +122,13 @@ poファイルは複数のJARに含めることができ、Xitrumはそれらを
 ------------
 
 * ブラウザからのリクエストに含まれる ``Accept-Language`` リクエストヘッダーを取得するには、
-  ``browserLanguages`` を実行します。結果はブラウザによって送信された優先順位の高い順にソートされて取得できます。
-* デフォルト値は "en" です。現在の言語を日本語に変更するには、 ``language = "ja"`` と実行します。
+  ``browserLanguageRanges`` を実行します。結果はブラウザによって送信された優先順位の高い順にソートされて取得できます。
+* デフォルト値は "en" です。現在の言語を日本語に変更するには、 ``locale = java.util.Locale.JAPANESE`` と実行します。
 * 適切な言語を言語リソースから自動でセットするには
-  ``autosetLanguage(resourceLanguages)`` を実行します。
-  ``resourceLanguages`` は ``resources/i18n`` ディレクトリーとJARファイル内に含まれる言語リソースのリストを指定します。
+  ``autosetLocale(availableLocales)`` を実行します。
+  ``availableLocales`` は ``resources/i18n`` ディレクトリーとJARファイル内に含まれる言語リソースのリストを指定します。
   もし指定された言語リソースが存在しない場合、言語設定は"en"が使用されます。
-* 設定された言語を確認するには、``language`` 変数にセットされた値を参照します。
+* 設定された言語を確認するには、``locale`` 変数にセットされた値を参照します。
 
 一般的にアクションではビフォアフィルターにおいて言語を設定します:
 
@@ -119,8 +137,8 @@ poファイルは複数のJARに含めることができ、Xitrumはそれらを
   beforeFilter {
     val lango: Option[String] = yourMethodToGetUserPreferenceLanguageInSession()
     lango match {
-      case None       => autosetLanguage("ja", "vi")
-      case Some(lang) => language = lang
+      case None       => autosetLocale(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
+      case Some(lang) => locale = Locale.forLanguageTag(lang)
     }
   }
 
