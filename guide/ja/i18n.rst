@@ -122,13 +122,13 @@ poファイルは複数のJARに含めることができ、Xitrumはそれらを
 ------------
 
 * ブラウザからのリクエストに含まれる ``Accept-Language`` リクエストヘッダーを取得するには、
-  ``browserLanguageRanges`` を実行します。結果はブラウザによって送信された優先順位の高い順にソートされて取得できます。
-* デフォルト値は "en" です。現在の言語を日本語に変更するには、 ``locale = java.util.Locale.JAPANESE`` と実行します。
+  ``browserLanguages`` を実行します。結果はブラウザによって送信された優先順位の高い順にソートされて取得できます。
+* デフォルト値は "en" です。現在の言語を日本語に変更するには、 ``language = "ja"`` と実行します。
 * 適切な言語を言語リソースから自動でセットするには
-  ``autosetLocale(availableLocales)`` を実行します。
-  ``availableLocales`` は ``resources/i18n`` ディレクトリーとJARファイル内に含まれる言語リソースのリストを指定します。
+  ``autosetLanguage(availableLanguages)`` を実行します。
+  ``availableLanguages`` は ``resources/i18n`` ディレクトリーとJARファイル内に含まれる言語リソースのリストを指定します。
   もし指定された言語リソースが存在しない場合、言語設定は"en"が使用されます。
-* 設定された言語を確認するには、``locale`` 変数にセットされた値を参照します。
+* 設定された言語を確認するには、``language`` 変数にセットされた値を参照します。
 
 一般的にアクションではビフォアフィルターにおいて言語を設定します:
 
@@ -137,8 +137,8 @@ poファイルは複数のJARに含めることができ、Xitrumはそれらを
   beforeFilter {
     val lango: Option[String] = yourMethodToGetUserPreferenceLanguageInSession()
     lango match {
-      case None       => autosetLocale(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
-      case Some(lang) => locale = Locale.forLanguageTag(lang)
+      case None       => autosetLanguage(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
+      case Some(lang) => language = lang
     }
   }
 

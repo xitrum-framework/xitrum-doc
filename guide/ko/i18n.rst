@@ -121,13 +121,13 @@ po 파일들은 여러 JAR파일들에 패키징할 수 있고, Xitrum은 실행
 ------
 
 * 브라우저의 요청 헤더의 ``Accept-Language``에서 언어 셋을 가져오려면,
-  ``browserLanguageRanges`` 를 호출하면 됩니다. 결과는 브라우저의 우선순위에 따라 정렬됩니다.
-* 기본 언어는 "en" 입니다. 현재의 언어로 세팅하기 위해서는, 예를 들어 일어일 경우 ``locale = java.util.Locale.JAPANESE`` 로 하면 됩니다.
+  ``browserLanguages`` 를 호출하면 됩니다. 결과는 브라우저의 우선순위에 따라 정렬됩니다.
+* 기본 언어는 "en" 입니다. 현재의 언어로 세팅하기 위해서는, 예를 들어 일어일 경우 ``language = "ja"`` 로 하면 됩니다.
 * 가장 적절한 언어를 리소스에서 찾아 자동세팅을 위해서는
-  ``autosetLocale(availableLocales)`` 을 호출하면 됩니다.
-  ``availableLocales`` 는 ``resources/i18n`` 디렉토리와 JAR파일들의 가능한 언어들의 리스트를 가지고 있습니다.
+  ``autosetLanguage(availableLanguages)`` 을 호출하면 됩니다.
+  ``availableLanguages`` 는 ``resources/i18n`` 디렉토리와 JAR파일들의 가능한 언어들의 리스트를 가지고 있습니다.
   만약, 적절한 언어가 없을경우 기본언어인 "en"으로 설정합니다.
-* 현재의 언어셋을 확인하려면 ``locale`` 를 사용하면 됩니다.
+* 현재의 언어셋을 확인하려면 ``language`` 를 사용하면 됩니다.
 
 일반적으로, 액션의 before 필터에서 언어를 세팅합니다:
 
@@ -136,8 +136,8 @@ po 파일들은 여러 JAR파일들에 패키징할 수 있고, Xitrum은 실행
   beforeFilter {
     val lango: Option[String] = yourMethodToGetUserPreferenceLanguageInSession()
     lango match {
-      case None       => autosetLocale(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
-      case Some(lang) => locale = Locale.forLanguageTag(lang)
+      case None       => autosetLanguage(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
+      case Some(lang) => language = lang
     }
     true
   }

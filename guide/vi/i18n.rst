@@ -127,15 +127,15 @@ Chọn ngôn ngữ
 -------------
 
 * Để lấy cấc ngôn ngữ trong ``Accept-Language`` request header bởi browser, gọi
-  ``browserLanguageRanges``. Kết quả sẽ được sắp xếp theo mức ưu tiên đặt bởi trình duyệt
+  ``browserLanguages``. Kết quả sẽ được sắp xếp theo mức ưu tiên đặt bởi trình duyệt
   từ cao xuống thấp.
-* Ngôn ngữ mặc định là "en". Để chuyển ngôn ngữ, ví dụ Nhật Bản, gọi ``locale = java.util.Locale.JAPANESE``
+* Ngôn ngữ mặc định là "en". Để chuyển ngôn ngữ, ví dụ Nhật Bản, gọi ``language = "ja"``
 * Để tự đặt ngôn ngữ phù hợp nhất trong resource, gọi
-  ``autosetLocale(availableLocales)``, với
-  ``availableLocales`` là một list các ngôn ngữ có trong thư mục
+  ``autosetLanguage(availableLanguages)``, với
+  ``availableLanguages`` là một list các ngôn ngữ có trong thư mục
   ``resources/i18n`` và các tệp JAR.
   Nếu không có ngôn ngữ nào phù hợp, ngôn ngữ vẫn mặc định là "en".
-* Để lấy ngôn ngữ hiện thời được đặt bên trên, sử dụng ``locale``.
+* Để lấy ngôn ngữ hiện thời được đặt bên trên, sử dụng ``language``.
 
 Trong action, thông thường trong một before filter, để đặt ngôn ngữ:
 
@@ -144,8 +144,8 @@ Trong action, thông thường trong một before filter, để đặt ngôn ng�
   beforeFilter {
     val lango: Option[String] = yourMethodToGetUserPreferenceLanguageInSession()
     lango match {
-      case None       => autosetLocale(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
-      case Some(lang) => locale = Locale.forLanguageTag(lang)
+      case None       => autosetLanguage(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
+      case Some(lang) => language = lang
     }
   }
 

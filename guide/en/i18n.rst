@@ -128,16 +128,16 @@ Set language
 ------------
 
 * To get languages set in the ``Accept-Language`` request header by the browser,
-  call ``browserLanguageRanges``. The result is sorted by priority set by the brower,
+  call ``browserLanguages``. The result is sorted by priority set by the brower,
   from high to low.
 * The default language is "en". To set language for the current action, for example
-  Japanese, call ``locale = java.util.Locale.JAPANESE``.
+  Japanese, call ``language = "ja"``.
 * To autoset the most suitable language in resources, call
-  ``autosetLocale(availableLocales)``, where
-  ``availableLocales`` is a list of locales corresponding to .po files in
+  ``autosetLanguage(availableLanguages)``, where
+  ``availableLanguages`` is a list of languages corresponding to .po files in
   ``resources/i18n`` directory and JAR files.
-  If there's no suitable language, the locale is still the default "en".
-* To get the current locale set above, use ``locale``.
+  If there's no suitable language, the language is still the default "en".
+* To get the current language set above, use ``language``.
 
 In your action, typically in a before filter, to set language:
 
@@ -146,8 +146,8 @@ In your action, typically in a before filter, to set language:
   beforeFilter {
     val lango: Option[String] = yourMethodToGetUserPreferenceLanguageInSession()
     lango match {
-      case None       => autosetLocale(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
-      case Some(lang) => locale = Locale.forLanguageTag(lang)
+      case None       => autosetLanguage(Locale.forLanguageTag("ja"), Locale.forLanguageTag("vi"))
+      case Some(lang) => language = lang
     }
   }
 
