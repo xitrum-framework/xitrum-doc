@@ -1,11 +1,18 @@
 #!/bin/sh
 
-./make_latexpdf.sh
-./make_html.sh
-
 rm -rf all
 mkdir -p all/html
 mkdir -p all/singlehtml
+
+./make_latexpdf.sh
+
+mv en/_build/latex/xitrum.pdf all/xitrum-en.pdf
+mv ja/_build/latex/xitrum.pdf all/xitrum-ja.pdf
+mv ko/_build/latex/xitrum.pdf all/xitrum-ko.pdf
+mv ru/_build/latex/xitrum.pdf all/xitrum-ru.pdf
+mv vi/_build/latex/xitrum.pdf all/xitrum-vi.pdf
+
+./make_html.sh
 
 mv en/_build/html all/html/en
 mv ja/_build/html all/html/ja
@@ -18,12 +25,6 @@ mv ja/_build/singlehtml all/singlehtml/ja
 mv ko/_build/singlehtml all/singlehtml/ko
 mv ru/_build/singlehtml all/singlehtml/ru
 mv vi/_build/singlehtml all/singlehtml/vi
-
-mv en/_build/latex/xitrum.pdf all/xitrum-en.pdf
-mv ja/_build/latex/xitrum.pdf all/xitrum-ja.pdf
-mv ko/_build/latex/xitrum.pdf all/xitrum-ko.pdf
-mv ru/_build/latex/xitrum.pdf all/xitrum-ru.pdf
-mv vi/_build/latex/xitrum.pdf all/xitrum-vi.pdf
 
 sed '/<\/a><\/h1>/ r download_pdf/en.html' all/html/en/index.html > t.html && mv t.html all/html/en/index.html
 sed '/<\/a><\/h1>/ r download_pdf/ja.html' all/html/ja/index.html > t.html && mv t.html all/html/ja/index.html
