@@ -155,18 +155,31 @@ Bạn cũng có thể thêm các parameter trong một form riêng biệt:
 
 ``#myform`` là một jQuery selector để chọn form có chứa các parameter được thêm vào.
 
-Hiện thị hình động khi load Ajax
+Hiện thị ảnh chờ khi load Ajax
 --------------------------------
 
-Nếu bạn muốn hiển thị hình ảnh như thế này khi load Ajax
+Mặc định, ảnh sau sẽ được hiển thị khi load Ajax:
 
 .. Use ../img/ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
 
 .. image:: ../img/ajax_loading.gif
 
-bạn có thể gọi JS snippet này sau khi đã include ``jsDefaults`` (đã include
+Để đổi ảnh, bạn có thể gọi JS snippet này sau khi đã include ``jsDefaults`` (đã include
 `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_) trong view template của bạn:
 
 ::
 
-  xitrum.ajaxLoadingImg = 'path/to/your/image';
+  // target: The element that triggered the postback
+  xitrum.ajaxLoading = function(target) {
+    // Called when the animation should be displayed when the Ajax postback is being sent.
+    var show = function() {
+      ...
+    };
+
+    // Called when the animation should be stopped after the Ajax postback completes.
+    var hide = function() {
+      ...
+    };
+
+    return {show: show, hide: hide};
+  };

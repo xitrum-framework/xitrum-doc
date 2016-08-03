@@ -160,19 +160,32 @@ You may also put extra params in a separate form:
 
 ``#myform`` is the jQuery selector to select the form that contains extra params.
 
-Display animation image while Ajax is loading
----------------------------------------------
+Customize animation image while Ajax is loading
+-----------------------------------------------
 
-If you want to display image like this while Ajax is loading
+By default, this animated GIF image is displayed while Ajax is loading:
 
 .. Use ../img/ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
 
 .. image:: ../img/ajax_loading.gif
 
-please call this JS snippet after including ``jsDefaults`` (which includes
+To customize, please call this JS snippet after including ``jsDefaults`` (which includes
 `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_)
 in your view template:
 
 ::
 
-  xitrum.ajaxLoadingImg = 'path/to/your/image';
+  // target: The element that triggered the postback
+  xitrum.ajaxLoading = function(target) {
+    // Called when the animation should be displayed when the Ajax postback is being sent.
+    var show = function() {
+      ...
+    };
+
+    // Called when the animation should be stopped after the Ajax postback completes.
+    var hide = function() {
+      ...
+    };
+
+    return {show: show, hide: hide};
+  };

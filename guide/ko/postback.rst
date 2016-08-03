@@ -161,14 +161,29 @@ form요소 이외의 경우 、다음과 같이 사용하면 됩니다:
 Ajax로딩중 이미지 로딩
 -----------------
 
-다음과 같은 이미지를 Ajax로딩중에 표시하고 싶은경우、
+By default, this animated GIF image is displayed while Ajax is loading:
 
-.. Use ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
+.. Use ../img/ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
 
 .. image:: ../img/ajax_loading.gif
 
-템플릿에서 、``jsDefault`` (이것은 `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_ 를 포함하는 함수 입니다) 다음에 표시하면 됩니다.
- 
+To customize, please call this JS snippet after including ``jsDefaults`` (which includes
+`xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_)
+in your view template:
+
 ::
 
-  xitrum.ajaxLoadingImg = 'path/to/your/image';
+  // target: The element that triggered the postback
+  xitrum.ajaxLoading = function(target) {
+    // Called when the animation should be displayed when the Ajax postback is being sent.
+    var show = function() {
+      ...
+    };
+
+    // Called when the animation should be stopped after the Ajax postback completes.
+    var hide = function() {
+      ...
+    };
+
+    return {show: show, hide: hide};
+  };
