@@ -47,7 +47,7 @@ Special treatment for CJK languages:
 * Korean: See ko_latex_patch.sh
 * See make_latexpdf.sh, latexpdfja and latexpdfko in Makefile
 
-Update Xitrum Guide to Xitrum Homepage
+Update Xitrum Guide to Xitrum homepage
 --------------------------------------
 
 `Xitrum Homepage <https://github.com/xitrum-framework/xitrum-framework.github.io>`_
@@ -65,3 +65,12 @@ Add to ``guide/index.html``:
     <a href="xitrum.pdf" title="PDF">Download PDF</a></p>
   </p>
   <div style="clear:both"></div>
+
+To do the above automatically, run:
+
+::
+
+  ./make_all.sh
+
+
+All output files will be put in directory `all`.
