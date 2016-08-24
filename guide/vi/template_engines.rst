@@ -1,11 +1,11 @@
 Template engines
 ================
 
-Template engine đã được cấu hình dẽ được gọi khi :doc:`renderView, renderFragment,
+Template engine đã được cấu hình sẽ được gọi khi :doc:`renderView, renderFragment,
 hoặc respondView </action_view>` được gọi tới.
 
 Cấu hình template engine
-----------------------
+------------------------
 
 Trong tệp `config/xitrum.conf <https://github.com/xitrum-framework/xitrum-new/blob/master/config/xitrum.conf>`_, template engine có thể cấu hình theo 2 mẫu dưới dây, phụ thuộc vào engine mà bạn sử dụng:
 
@@ -29,7 +29,7 @@ Template engine mặc định là `xitrum-scalate <https://github.com/xitrum-fra
 Xóa template engine
 -------------------
 
-Nếu bạn chỉ tạo RESTful APIs trong project, thông thường bạn không sử dụng method renderView, renderFragment, hoặc respondView. Trong trường hợp này, bạn còn có thể xóa template engine khỏi porject để project nhẹ hơn. Bạn chỉ cần xóa hoặc comment dòng ``templateEngine`` trong tệp config/xitrum.conf.
+Nếu bạn chỉ tạo RESTful APIs trong project, thông thường bạn không sử dụng method renderView, renderFragment, hoặc respondView. Trong trường hợp này, bạn còn có thể xóa template engine khỏi project để project nhẹ hơn. Bạn chỉ cần xóa hoặc comment dòng ``templateEngine`` trong tệp config/xitrum.conf.
 
 Sau đó bạn xóa các cấu hình template liên quan khỏi project của bạn.
 

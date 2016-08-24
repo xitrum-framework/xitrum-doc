@@ -4,7 +4,7 @@ XML
 Scala cho phép viết literal XML. Xitrum sử dụng tính năng này như "template engine":
 
 * Scala check cú pháp XML khi compile: Các View là typesafe.
-* Scala tự động bỏ qua XML: Các view ngăn chặn `XSS <http://en.wikipedia.org/wiki/Cross-site_scripting>`_.
+* Scala tự động bỏ qua XML: Các view được tránh `XSS <http://en.wikipedia.org/wiki/Cross-site_scripting>`_ theo mặc định.
 
 Dưới đây là một vài thủ thuật.
 
@@ -69,7 +69,7 @@ Các nhóm XML element
 Render XHTML
 ------------
 
-Xitrum tự động render view và layout như XHTML. 
+Xitrum tự động render view và layout sang XHTML. 
 Nếu bạn muốn tự render chúng (hiếm khi), chú ý đến các dòng code dưới đây.
 
 ::
