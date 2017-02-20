@@ -1,14 +1,14 @@
 Validation
 ==========
 
-Xitrum sử dụng `jQuery Validation plugin <http://bassistance.de/jquery-plugins/jquery-plugin-validation/>`_
-vào mục đích validation ở phía client và cung cấp các validation helper cho phía server.
+Xitrum bao gồm `jQuery Validation plugin <http://bassistance.de/jquery-plugins/jquery-plugin-validation/>`_
+để kiểm tra kiểu ở phía client và cung cấp các bộ kiểm tra kiểu cho phía server.
 
 Validator mặc định
 ------------------
 
-Xitrum cung cấp validator trong package ``xitrum.validator``.
-Chúng có những method sau: 
+Xitrum cung cấp sẵn validator trong package ``xitrum.validator``.
+Chúng có những hàm sau: 
 
 ::
 
@@ -16,8 +16,8 @@ Chúng có những method sau:
   message(name, value): Option[String]
   exception(name, value)
 
-Nếu validation báo lỗi, ``message`` sẽ trả về ``Some(error message)``,
-``exception`` sẽ throw ``xitrum.exception.InvalidInput(error message)``.
+Nếu validation báo lỗi, hàm ``message`` sẽ trả về ``Some(error message)``,
+hàm ``exception`` sẽ throw ``xitrum.exception.InvalidInput(error message)``.
 
 Bạn có thể sử dụng validator bất cứ đâu.
 
@@ -35,16 +35,16 @@ Ví dụ action:
       Required.exception("Title", title)
       Required.exception("Body",  body)
 
-      // Do with the valid title and body...
+      // Làm gì đó với title và body đúng...
     }
   }
 
 Nếu không sử dụng ``try`` và ``catch``, khi có lỗi trong quá trình validation 
 (not pass), Xitrum sẽ tự động ``catch`` các exception và respond thông báo lỗi 
 về phía client. Điều này giúp cho việc viết các web API hoặc sử dụng validation 
-ở phía client dễ dàng hơn. 
+ở phía client tiện lợi hơn. 
 
-Model example:
+Ví dụ model:
 
 ::
 

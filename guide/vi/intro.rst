@@ -20,7 +20,7 @@ Giới thiệu
   |      Your app      |
   +--------------------+
 
-Xitrum là một Scala web framework bất đồng bộ, `clustered` và cũng là một HTTPS(server) trên nền của 
+Xitrum là một Scala web framework bất đồng bộ, `clustered` và cũng là một HTTPS (server) trên nền của 
 `Netty <http://netty.io/>`_ và `Akka <http://akka.io/>`_.
 
 `Một người dùng Xiturm <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576d39>`_ đã nói rằng:
@@ -37,39 +37,39 @@ Xitrum là một Scala web framework bất đồng bộ, `clustered` và cũng l
 Tính năng
 --------
 
-* Typesafe, dựa trên tinh thần của Scala. Tất cả các APIs đều được thiết kế an toàn nhất có thể
-* Bất đồng bộ, theo tinh thần của Netty. Việc xử lý các yêu cầu (request) không cần phải đáp ứng (respond) ngay lập lức.
-  Long polling, chunked response (streaming), WebSocket, và SockJS.
+* Typesafe, theo tinh thần của Scala. Tất cả các API đều cố gắng trở thành an toàn kiểu (typesafe) nhất có thể.
+* Bất đồng bộ, theo tinh thần của Netty. Việc xử lý các yêu cầu (request) không cần phải đáp ứng (response) ngay lập lức.
+  Long polling, chunked response (streaming), WebSocket, và SockJS đều được hỗ trợ.
 * Tích hợp sẵn HTTP và HTTPS server có tốc độ nhanh dựa trên `Netty <http://netty.io/>`_
-  (HTTPS có thể sử dụng công nghệ Java hoặc công nghệ mã OpenSSL tự nhiên).
-  Tốc độ phục vụ tập tin tĩnh của Xitrum có thể đạt mức `tương đương Nginx <https://gist.github.com/3293596>`_.
+  (HTTPS có thể sử dụng nền tảng Java hoặc nền tảng OpenSSL).
+  Tốc độ phục vụ tập tin tĩnh của Xitrum `tương đương Nginx <https://gist.github.com/3293596>`_.
 * Tối ưu hóa cache cả ở phía máy chủ (server) và máy khách (client) để tăng tốc độ đáp ứng.
-  Ở tầng máy chủ web, các tập tin nhỏ được cache vào bộ nhớ, đối với các tập tin lớn thì sử dụng kỹ thuật 
+  Ở tầng máy chủ web, các tập tin nhỏ được cache thẳng vào bộ nhớ, đối với các tập tin lớn thì sử dụng kỹ thuật 
   zero copy của NIO. 
   Ở tầng web framework bạn có thể khai báo cache ở các mức page, action và object theo phong cách `Rails framework 
   <https://github.com/rails/rails>`_.
   `Tất cả thủ thuật mà Google khuyên nên dùng để tăng tốc trang web <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_ 
   như method GET có điều kiện được áp dụng để cache phía client.
-  Bạn cũng có thể buộc các trình duyệt để luôn gửi yêu cầu đến máy chủ để kiểm tra lại cache trước khi sử dụng.
+  Bạn cũng có thể buộc trình duyệt gửi yêu cầu đến máy chủ để kiểm tra lại cache trước khi sử dụng.
 * Tính năng `range request <http://en.wikipedia.org/wiki/Byte_serving>`_ hỗ trợ các tập tin tĩnh. 
-  Tính năng này cần cho việc cung cấp dịch vụ video cho điện thoại thông minh.
-  Bạn có thể tạm dừng/tiếp tục việc tải tập tin video.
+  Việc gửi trả video cho điện thoại thông minh cần tính năng này.
+  Khi đó, bạn có thể tạm dừng/tiếp tục việc tải tập tin video.
 * Hỗ trợ `CORS <http://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_.
-* Tính năng định tuyến được thực hiện tự động trên tinh thần của JAX-RS và Rails Engines. 
-  Bạn không cần phải được khai báo ở tất cả các tuyến kết nối tại cùng một điểm mà có thể tại nhiều điểm khác nhau.
-  Tính năng này có thể hiểu như định tuyến một cách phân tán. Bạn có thể cài cắm ứng dụng này vào ứng dụng khác.
-  Nếu bạn có một blog engine, bạn có thể đóng gói nó thành một tập tin JAR và đặt tập tin JAR đó trong một
-  ứng dụng khác, với cách làm như vậy ứng dụng đó sẽ có thêm tính năng blog.
-  Việc định tuyến thì bao gồm 2 chiều: bạn có thể tái tạo đường dẫn URL (reverse routing) một cách an toàn từ action.
-  Bạn có thể tạo tài liệu về các định tuyến bằng cách sử dụng `Swagger Doc <http://swagger.wordnik.com/>`_.
-* Các lớp và các đường định tuyến được tải lại một cách tự động trong chế độ phát triển (development mode).
-* Các View có thể viết bằng các tập tin mẫu `Scalate <http://scalate.fusesource.org/>`_
-  một các riêng biệt hoặc bằng Scala inline XML. Cả hai cách đều an toàn.
-* Phiên làm việc(Sessions) có thể lưu trữ ngay trong cookies(đáp ứng đuợc nhiều user cùng lúc hơn) hoặc lưu trữ bằng `Hazelcast <http://www.hazelcast.org/>`_ (tính bảo mật cao hơn).
-  Hazelcast cũng chạy ngay trong cùng process với việc sử dụng cache phân tán(do đó nhanh hơn và dễ sử dụng hơn) ,
-  vì vậy bạn không cần phải có một máy chủ cache riêng biệt. Điều này cũng đúng trong chức năng pubsub của Akka.
-* `jQuery Validation <http://jqueryvalidation.org/>`_ được tích hợp trong việc chuẩn hóa dữ liệu ở cả máy chủ(server) và máy khách
-  (client)
+* Tính năng định tuyến (route) được thực hiện tự động trên tinh thần của JAX-RS và Rails Engines. 
+  Bạn không cần phải khai báo mọi định tuyến tại một nơi.
+  Tuy nhiên, chúng được phân tán ra nhiều nơi. Và bạn có thể cài cắm ứng dụng này vào một ứng dụng khác.
+  Ví dụ như bạn tạo một blog engine, bạn có thể đóng gói nó thành một tập tin JAR và đưa tập tin JAR đó 
+  trong một ứng dụng khác, như vậy ứng dụng đó sẽ có thêm tính năng blog.
+  Việc định tuyến bao gồm 2 chiều: bạn có thể dựng lại đường dẫn URL (reverse routing) từ action cụ thể một cách an toàn.
+  Bạn còn có thể tạo tài liệu về các định tuyến của bạn bằng cách sử dụng `Swagger Doc <http://swagger.wordnik.com/>`_.
+* Các lớp (class) và định tuyến (route) được tải lại tự động trong lúc phát triển (development mode).
+* Các View có thể viết trong các tập tin mẫu dạng `Scalate <http://scalate.fusesource.org/>`_
+  hoặc bằng Scala inline XML. Cả hai cách đều an toàn.
+* Phiên làm việc (session) có thể lưu trữ ngay trong cookies (giúp dễ scale) hoặc lưu trữ bằng `Hazelcast <http://www.hazelcast.org/>`_ (tính bảo mật cao hơn).
+  Hazelcast cũng chạy ngay trong cùng process với việc sử dụng cache phân tán (do đó nhanh hơn và dễ sử dụng hơn) ,
+  vì vậy bạn không cần phải có một máy chủ cache riêng biệt. Điều này cũng tương tự trong chức năng pubsub của Akka.
+* `jQuery Validation <http://jqueryvalidation.org/>`_ được tích hợp trong việc chuẩn hóa dữ liệu ở cả 
+  máy chủ (server) và máy khách (client)
 * i18n theo phong cách `GNU gettext <http://en.wikipedia.org/wiki/GNU_gettext>`_.
   Việc trích các chuổi văn bản ra ngoài để thực hiện dịch được thực hiện tự động, bạn sẽ không cần làm thủ công với properties file.
   Bạn cũng có thể sử dụng các công cụ mạnh như `Poedit <http://www.poedit.net/screenshots.php>`_ để dịch và hợp nhất các bản dịch.

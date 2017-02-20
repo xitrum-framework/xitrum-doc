@@ -2,7 +2,7 @@ Hướng dẫn
 ========
 
 Chương này giới thiệu ngắn gọn cách tạo và chạy một project Xitrum.
-**Việc tạo project được thực hiện với giả định bạn sử dụng Linux và đã cài Java.**
+**Việc tạo project được thực hiện với giả định bạn sử dụng Linux và đã cài Java 8.**
 
 Tạo một project Xitrum mới
 ---------------------------------
@@ -34,7 +34,7 @@ Sử dụng terminal, chuyển đến thư mục của project mới tạo và c
   cd xitrum-new
   sbt/sbt run
 
-Câu lệnh này sẽ download tất cả :doc:`dependencies </deps>`, biên dịch toàn bộ project,
+Câu lệnh này sẽ download tất cả :doc:`thư viện liên quan </deps>`, biên dịch toàn bộ project,
 và khởi động web server qua class ``quickstart.Boot``. Trong cửa sổ dòng lệnh Terminal,
 bạn sẽ thấy tất cả các định tuyến:
 
@@ -71,8 +71,7 @@ bạn sẽ thấy tất cả các định tuyến:
   [INFO] Xitrum started in development mode
 
 Khi khởi động, tất cả các định tuyến (routers) sẽ được kiểm tra và lưu vào log. Bạn đã có luôn danh
-sách các định tuyến (routers), điều này rất thuận tiện với bạn để viết tài liệu về RESTful APIs của ứng dụng web
-cho bên thứ 3.
+sách các định tuyến (routers), điều này rất thuận tiện với bạn để viết tài liệu về RESTful APIs của ứng dụng web cho bên thứ 3.
 
 Truy cập đến đường dẫn http://localhost:8000/ hoặc https://localhost:4430/ bằng trình duyệt web. Trong cửa sổ
 dòng lệnh bạn sẽ thấy thông tin của các yêu cầu (request):
@@ -104,7 +103,7 @@ IntelliJ có Scala plugin rất tốt, chỉ cần mở project SBT là xong, kh
 project file như trường hợp Eclipse ở trên.
 
 Nạp lại tự động (Autoreload)
-----------
+----------------------------
 
 Bạn có thể thiết lập nạp lại tự động các tập tin .class (hot swap) mà không cần phải khởi động lại chương trình. Tuy nhiên, để tránh gặp phải các vấn đề về hiệu suất cũng như tính ổn định của chương
 trình, bạn chỉ nên thiết lập nạp lại tự động các tập tin .class trong quá trình phát triển (development mode).

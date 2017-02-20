@@ -2,7 +2,7 @@ Tutorial
 ========
 
 This chapter shortly describes how to create and run a Xitrum project.
-**It assumes that you are using Linux and you have installed Java.**
+**It assumes that you are using Linux and you have installed Java 8.**
 
 Create a new empty Xitrum project
 ---------------------------------

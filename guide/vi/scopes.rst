@@ -19,8 +19,8 @@ Các parameter được gộp thành kiểu ``textParams`` (từ 1 đến 3, ki�
 
 ``bodyFileParams`` thuộc kiểu scala.collection.mutable.Map[String, Seq[`FileUpload <http://netty.io/4.0/api/io/netty/handler/codec/http/multipart/FileUpload.html>`_]].
 
-Accesing parameter
-~~~~~~~~~~~~~~~~~~
+Truy xuất các parameter
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Từ một action, bạn có thể truy cập đến các parameter trực tiếp, hoặc bạn có thể 
 sử dụng các accessor method.
@@ -37,7 +37,7 @@ các text parameter thành các kiểu khác, override
 `convertTextParam <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala-2.11/xitrum/scope/request/ParamAccess.scala>`_.
 
 Với các file upload parameter: ``param[FileUpload]("x")``, ``params[FileUpload]("x")`` v.v.
-Để biết chi tiết, hãy xem :doc:`Upload chapter </upload>`.
+Để biết chi tiết, hãy xem :doc:`Chương Upload </upload>`.
 
 "at"
 ~~~~
@@ -88,7 +88,7 @@ AppAction.scala
 ~~~~~~~~
 
 ``atJson`` là một helper method tự động convert ``at("key")`` sang JSON.
-Nếu bạn chuyển model từ Scala sang JavaScript.
+Khi bạn cần chuyển model từ Scala sang JavaScript.
 
 
 ``atJson("key")`` tương đương với ``xitrum.util.SeriDeseri.toJson(at("key"))``:
@@ -175,7 +175,7 @@ Cookie
 Bạn có thể đọc thêm Wikipedia về `cookies <http://en.wikipedia.org/wiki/HTTP_cookie>`_.
 
 Trong một action, sử dụng ``requestCookies``, ``Map[String, String]``, để đọc cookie 
-gửi bởi browser.
+gửi bởi trình duyệt.
 
 ::
 
@@ -184,7 +184,7 @@ gửi bởi browser.
     case Some(string) => ...
   }
 
-Để gửi cookie đến browser, tạo một `DefaultCookie <http://netty.io/4.0/api/io/netty/handler/codec/http/DefaultCookie.html>`_
+Để gửi cookie đến trình duyệt, tạo một `DefaultCookie <http://netty.io/4.0/api/io/netty/handler/codec/http/DefaultCookie.html>`_
 và thêm nó vào ``responseCookies``, một ``ArrayBuffer`` đã bao gồm `Cookie <http://netty.io/4.0/api/io/netty/handler/codec/http/Cookie.html>`_.
 
 ::
@@ -194,33 +194,32 @@ và thêm nó vào ``responseCookies``, một ``ArrayBuffer`` đã bao gồm `Co
   responseCookies.append(cookie)
 
 Nếu bạn không set path của cookie bằng cách gọi ``cookie.setPath(cookiePath)``,
-đường path của nó sẽ được gán là root path của site (``xitrum.Config.withBaseUrl("/")``).
-Việc này đề phòng việc trùng lặp cookie.
+path của nó sẽ là root path của site (``xitrum.Config.withBaseUrl("/")``).
+Việc này để tránh việc trùng lặp cookie.
 
-Để xóa cookie gửi bởi browser, gửi một cookie trùng tên và đặt max age của 
-cookie này là 0. Browser sẽ giải phóng cookie này ngay lập tức. Để báo với browser 
-xóa cookie khi tắt browser, đặt max age thành ``Long.MinValue``:
+Để xóa cookie trên trình duyệt, gửi một cookie trùng tên và đặt max age của 
+cookie này là 0. Trình duyệt sẽ giải phóng cookie này ngay lập tức. Để báo với trình duyệt 
+xóa cookie khi tắt trình duyệt, đặt max age thành ``Long.MinValue``:
 
 ::
 
   cookie.setMaxAge(Long.MinValue)
 
 `Internet Explorer không hỗ trợ "max-age" <http://mrcoles.com/blog/cookies-max-age-vs-expires/>`_,
-nhưng Netty có thể nhận diện và xuất ra "max-age" hoặc "expires" một cách chính xác. Don't worry!
+nhưng Netty có thể nhận diện và xuất ra "max-age" hoặc "expires" một cách chính xác. Đừng lo!
 
-Browser sẽ không gửi các cookie attribute ngược trở lại server. Browser 
-sẽ `only send the cookie name-value pairs <http://en.wikipedia.org/wiki/HTTP_cookie#Cookie_attributes>`_.
+Trình duyệt sẽ không gửi các thuộc tính của cookie ngược trở lại server. Trình duyệt 
+sẽ `chỉ gửi cặp name-value của cookie thôi <http://en.wikipedia.org/wiki/HTTP_cookie#Cookie_attributes>`_.
 
 Nếu bạn muốn ngăn chặn các người dùng khác giả mạo cookie, sử dụng 
 ``xitrum.util.SeriDeseri.toSecureUrlSafeBase64`` và ``xitrum.util.SeriDeseri.fromSecureUrlSafeBase64``.
-Để biết thêm thông tin, xem :doc:`How to encrypt data </howto>`.
+Để biết thêm thông tin, xem :doc:`Làm sao mã hoá dữ liệu </howto>`.
 
 Sử dụng kí tự trong cookie
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Bạn không thế sử dụng 
-`các ký tự động trong cookie <http://stackoverflow.com/questions/1969232/allowed-characters-in-cookies>`_.
-Ví dụ, nếu bạn muốn sử dụng kí tự UTF-8, bạn cần phải encode, bằng cách sử 
+Bạn không thể sử dụng `các ký đặc biệt trong cookie <http://stackoverflow.com/questions/1969232/allowed-characters-in-cookies>`_.
+Ví dụ, nếu bạn cần sử dụng kí tự UTF-8, bạn cần phải encode, bằng cách sử 
 dụng ``xitrum.utill.UrlSafeBase64`` hoặc ``xitrum.util.SeriDeseri``.
 
 Viết cookie:
@@ -249,10 +248,10 @@ Viết cookie:
 Session
 -------
 
-Xitrum tự động quản lý Session bao gồm lưu trữ, trả về dữ liệu, mã hóa, v.v.
-Bạn không cần phải bận tâm đến Session.
+Việc tương tác Session bao gồm lưu trữ, trả về dữ liệu, mã hóa, v.v. được làm tự động trong Xitrum.
+Bạn không cần phải bận tâm về Session.
 
-Trong action, bạn có thể sử dụng action ``session``, một instance 
+Trong action, bạn có thể sử dụng biến ``session``, là một instance của 
 ``scala.collection.mutable.Map[String, Any]``. Mọi thứ lưu trữ trong ``session`` 
 phải serializable.
 
@@ -270,9 +269,9 @@ Sau đó, nếu bạn muốn kiểm tra người dùng đã đăng nhập hay ch
 
   if (session.isDefinedAt("userId")) println("This user has logged in")
 
-Lưu trữ user ID và lấy thông tin người dùng từ database mỗi lần truy cập thường 
-được sử dụng hơn, Cách này bạn có thể biết được thông tin người dùng đã được cập 
-nhất (bao gồm quyền và xác thực) ở mỗi lần truy cập.
+Việc lưu trữ user ID và lấy thông tin người dùng từ database mỗi lần truy cập thường 
+xuyên được sử dụng. Với cách này bạn sẽ luôn nhận được bản cập nhật thông tin người dùng 
+(bao gồm quyền và xác thực) ở mỗi lần truy cập.
 
 session.clear()
 ~~~~~~~~~~~~~~~
@@ -404,7 +403,7 @@ Lưu trữ Session ở Client hay Server
 Có 2 hình thức lưu trữ session:
 
 * Chỉ ở phía client
-* Kết hợp cả 2 : client và server
+* Kết hợp cả 2: client và server
 
 Với chỉ lưu trữ ở client:
 
@@ -413,7 +412,7 @@ Với chỉ lưu trữ ở client:
 * Khi có một request truyền tới, server sẽ tiến hành giải mã dữ liệu.
 
 
-Kết hợp cả 2 : client và server:
+Kết hợp cả 2, client và server:
 
 * Một session có 2 phần: session ID và session data.
 * Server lưu trữ dữ liệu trong session, theo cặp ID -> data
@@ -422,7 +421,7 @@ Kết hợp cả 2 : client và server:
 * Các này giống như sử dụng thẻ tín dụng. Số tiền không lưu trong thẻ tín dụng mà
 ở ID
 
-Trong cả 2 cách, client phải lưu trữ một vài thứ như cookie (dữ liệu được mã hóa
+Trong cả 2 cách, client phải lưu trữ một vài thứ trong cookie (dữ liệu được mã hóa
 và ID được mã hóa). "Lưu trữ session ở server" có nghĩa là lưu trữ dữ liệu của 
 session ở phía server.
 
@@ -446,6 +445,6 @@ Sử dụng ``object`` thay vì ``val``.
   }
 
 Đoạn code trên là đúng cú pháp và sẽ được biên dịch nhưng không chạy, bởi vì các
-Var bản thân chúng sử dụng class nameđể tìm kiếm. Khi sử dụng ``val``, ``title`` 
+Var bản thân chúng sử dụng class name để tìm kiếm. Khi sử dụng ``val``, ``title`` 
 và ``category`` sẽ có chung class name "xitrum.RequestVar". Tương tự với ``username``
 và ``isAdmin``.

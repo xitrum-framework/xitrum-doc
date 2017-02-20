@@ -1,19 +1,19 @@
 Metrics
 =======
 
-Xitrum thu thập bộ nhớ JVM heap, CPU, và tình trạng thực thi các action từ mỗi node
-Akka cluster của ứng dụng. Nó xuất ra các số liệu trong định dạng dữ liệu JSON. Xitrum cũng để
-bạn thu thập cách các dữ liệu khác.
+Xitrum thu thập thông tin bộ nhớ JVM heap, CPU, và tình trạng thực thi của các action từ mỗi node
+trong Akka cluster của ứng dụng. Nó xuất ra các số liệu trong định dạng dữ liệu JSON. Xitrum cũng
+cho phép bạn thu thập cách các dữ liệu khác.
 
-This metrics feature is based on the library `Coda Hale Metrics <http://metrics.dropwizard.io/3.1.0/>`_.
+Công cụ metrics này dựa theo thư viện `Coda Hale Metrics <http://metrics.dropwizard.io/3.1.0/>`_.
 
-Thu thập metrics
-----------------
+Thu thập thông tin
+------------------
 
 Bộ nhớ heap và CPU
 ~~~~~~~~~~~~~~~~~~
 
-Bộ nhớ JVM heap và CPU sẽ được thu thập như
+Bộ nhớ JVM heap và CPU sẽ được thu thập
 `NodeMetrics <http://doc.akka.io/api/akka/2.3.0/index.html#akka.cluster.NodeMetrics>`_
 từ mỗi node của hệ thống Akka actor.
 
@@ -31,7 +31,7 @@ Action metric
 
 Xitrum thu thập tình trạng thực thi các action của mỗi node như một
 `Histogram <http://metrics.dropwizard.io/3.1.0/getting-started/#histograms>`_.
-Bạn có thể biết chính các bao nhiêu lần action được thực thim và thời gian
+Bạn có thể biết chính các bao nhiêu lần action được thực thi và thời gian
 thực thi của những non-async action.
 
 .. image:: ../img/metrics_action_count.png
@@ -44,12 +44,12 @@ Thời gian thực hiện lần gần nhất của một action:
 Thu thập các số liệu tùy chỉnh
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ngoài các số liệu mặc định bên trên, bạn có thể thu thập các dữ liệu cho riêng mình.
+Ngoài các số liệu mặc định nêu trên, bạn có thể thu thập các dữ liệu cho riêng mình.
 ``xitrum.Metrics`` có thể truy cập vào ``gauge``, ``counter``, ``meter``,
 ``timer`` và ``histogram``. Vui lòng tham khảo
 `Coda Hale Metrics <http://metrics.dropwizard.io/3.1.0/>`_ và
-`its Scala implementation <https://github.com/erikvanoosten/metrics-scala>`_
-để biết cách sử dụng chúng.
+`bản hiện thực Scala của nó <https://github.com/erikvanoosten/metrics-scala>`_
+để biết cách sử dụng.
 
 Ví dụ về timer:
 
@@ -192,7 +192,7 @@ Lưu metric
 ~~~~~~~~~~
 
 Để tiết kiệm bộ nhớ, Xitrum không ghi nhớ các giá trị metric cũ. Nếu bạn muốn lưu metric vào
-cơ sở dữ liệu hoặc tệp, bạn cần implement vào subscriber của bạn.
+cơ sở dữ liệu hoặc tập tin nào đó, bạn cần implement vào subscriber của bạn.
 
 Ví dụ:
 
