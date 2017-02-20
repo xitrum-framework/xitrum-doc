@@ -75,12 +75,12 @@ Trong tệp build.sbt, có một dòng như sau:
 Dòng này có nghĩa rằng : mặc định `Logback <http://logback.qos.ch/>`_ được sử dụng.
 Tệp cấu hình Logback nằm tại ``config/logback.xml``.
 
-Bạn có thể thay thê Logback bằng bất kì implementation nào khác của `SLF4J <http://www.slf4j.org/>`_.
+Bạn có thể thay thế Logback bằng bất kì implementation nào khác của `SLF4J <http://www.slf4j.org/>`_.
 
 Log vào Fluentd
 --------------
 
-`Fluentd <http://www.fluentd.org/>`_ là một log collector phổ biến. Bạn có thể
+`Fluentd <http://www.fluentd.org/>`_ là một bộ thu thập log phổ biến. Bạn có thể
 cấu hình Logback để gửi log (từ nhiều nơi) đến một Fluentd server.
 
 Đầu tiên, thêm thư viện `logback-more-appenders <https://github.com/sndyuk/logback-more-appenders>`_
@@ -94,7 +94,7 @@ vào trong project:
 
   libraryDependencies += "com.sndyuk" % "logback-more-appenders" % "1.1.0"
 
-Sau đó trong tệp ``config/logback.xml``:
+Sau đó trong tập tin ``config/logback.xml``:
 
 ::
 

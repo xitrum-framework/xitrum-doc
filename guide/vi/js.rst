@@ -56,7 +56,7 @@ Respond JavaScript trực tiếp không sử dụng view
 
   jsRespond("$('#error').html(%s)".format(jsEscape(<p class="error">Could not login.</p>)))
 
-Một các trực tiếp:
+Đổi hướng:
 
 ::
 

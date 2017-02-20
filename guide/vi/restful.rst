@@ -1,7 +1,7 @@
 RESTful APIs
 ============
 
-Bạn có thể tạo RESTful APIs cho ứng dụng trên iPhone,Android v.v một cách rất dễ dàng.
+Bạn có thể tạo RESTful APIs cho ứng dụng trên iPhone, Android v.v một cách rất dễ dàng.
 
 ::
 
@@ -19,11 +19,11 @@ Bạn có thể tạo RESTful APIs cho ứng dụng trên iPhone,Android v.v m�
   }
 
 Tương tự cho các method POST, PUT, PATCH, DELETE, và OPTIONS.
-Xitrum tự động kiểm soát phần HEAD như như một method GET với phần response body rỗng.
+Xitrum tự động kiểm soát phần HEAD như một method GET với phần response body rỗng.
 
-Với các HTTP client như các trình duyệt web thông thường không hỗ trợ method PUT và DELETE, để mô phỏng PUT và DELETE, sử dụng thủ thuật gửi một method PÓST với ``_method=put`` hoặc ``_method=delete`` trong request body.
+Với các HTTP client như các trình duyệt web thông thường không hỗ trợ method PUT và DELETE, để mô phỏng PUT và DELETE, một thủ thuật được sử dụng là gửi một method POST với ``_method=put`` hoặc ``_method=delete`` trong request body.
 
-Khi các ứng dụng web được khởi chạy, Xitrum sẽ quét tất cả các annotation, xây dựng bảng định tuyến và ghi ra out put để thông báo cho bạn biết bạn có APIs nào:
+Khi các ứng dụng web được khởi chạy, Xitrum sẽ quét tất cả các annotation, xây dựng bảng định tuyến (route) và ghi ra output để thông báo cho bạn biết bạn có APIs nào:
 
 ::
 
@@ -31,7 +31,7 @@ Khi các ứng dụng web được khởi chạy, Xitrum sẽ quét tất cả c
   GET /articles     quickstart.action.ArticlesIndex
   GET /articles/:id quickstart.action.ArticlesShow
 
-Các Route được tự động gom lại theo tinh thần của JAX-RS và Rails Engines. Bạn không cần khai báo tất cả các route tại cùng một nơi. Hãy nghĩ về tính năng nay tương tự như distributed route. Bạn có thể sử dụng một ứng dụng trong một ứng dụng khác. Nếu bạn có một blog engine, bạn có thể đóng gói nó thành một tập tin JAR và đặt tập tin JAR đó trong một ứng dụng khác, với cách làm như vậy ứng dụng đó sẽ có thêm tính năng blog.
+Các Route được tự động gom lại theo tinh thần của JAX-RS và Rails Engines. Bạn không cần khai báo tất cả các route tại cùng một nơi. Hãy xem tính năng này tương tự như distributed route. Bạn có thể sử dụng một ứng dụng trong một ứng dụng khác. Nếu bạn có một blog engine, bạn có thể đóng gói nó thành một tập tin JAR và đặt tập tin JAR đó trong một ứng dụng khác, với cách làm như vậy ứng dụng đó sẽ có thêm tính năng blog.
 Việc định tuyến thì bao gồm 2 chiều: bạn có thể tái tạo đường dẫn URL (reverse routing) một cách an toàn từ action.
 Bạn có thể tạo tài liệu về các định tuyến bằng cách sử dụng `Swagger Doc <http://swagger.wordnik.com/>`_.
 
@@ -39,7 +39,7 @@ Route cache
 -----------
 
 Để khởi động nhanh hơn, route được cache trong file ``routes.cache``.
-Trong quá trình phát triển, các route trong các tệp ``*.class`` tại thư mục ``target`` sẽ không được cache. Nếu bạn thực hiện cập nhất các thư viện phụ thuộc có chứa route, bạn có thể cần phải xóa tệp ``routes.cache``. Tệp này không nên được commit đến kho mã nguồn.
+Trong quá trình phát triển, các route trong các tệp ``*.class`` tại thư mục ``target`` sẽ không được cache. Nếu bạn thực hiện cập nhật các thư viện phụ thuộc có chứa route, bạn có thể cần phải xóa tệp ``routes.cache``. Tệp này không nên được commit đến kho mã nguồn.
 
 Mức độ ưu tiên của các route (first, last)
 ------------------------------------------
@@ -52,7 +52,7 @@ Nếu bạn muốn các route như sau:
   /articles/new --> ArticlesNew
 
 Bạn phải chắc chắn rằng route thứ 2 sẽ được kiểm tra trước.
-Annotation ``@First`` sẽ được thêm vào:
+Nếu bạn muốn ngược lại, annotation ``@First`` sẽ được thêm vào:
 
 ::
 
@@ -69,7 +69,7 @@ Annotation ``@First`` sẽ được thêm vào:
     def execute() {...}
   }
 
-``Last`` is similar.
+Tương tự cho ``@Last``.
 
 Nhiều đường dẫn cho một action
 -----------------------------
@@ -84,7 +84,7 @@ Nhiều đường dẫn cho một action
     }
   }
 
-Dot trong route
+Dấu chấm trong route
 ---------------
 
 ::
@@ -131,7 +131,7 @@ Kí tự đặc biệt ``/`` không được phép có mặt trong tên của pa
 Liên kết đến một action
 -----------------------
 
-Để bảo toàn tính typesafe của Xitrum, bạn không nên sử dụng URL một cách thủ công, hãy sử dụng các dưới đây:
+Để bảo toàn tính typesafe của Xitrum, bạn không nên sử dụng URL một cách thủ công, hãy sử dụng cách dưới đây:
 
 ::
 
@@ -242,7 +242,7 @@ Các token sẽ được tự động include trong tất cả các non-GET Ajax
 antiCsrfInput và antiCsrfToken
 -------------------------------
 
-Xitrum lây CSRF token từ ``X-CSRF-Token`` request header. Nếu header không tồn tại, Xitrum sẽ lấy token từ parameter ``csrf-token`` tại request body (chú ý: không phải parameter trong URL).
+Xitrum lấy CSRF token từ ``X-CSRF-Token`` request header. Nếu header không tồn tại, Xitrum sẽ lấy token từ parameter ``csrf-token`` tại request body (chú ý: không phải parameter trong URL).
 
 Nếu bạn tự tạo form, và bạn không sử dụng thẻ meta và xitrum.js như đã trình bày ở trên, bạn cần sử dụng ``antiCsrfInput`` hoặc ``antiCsrfToken``:
 
@@ -281,7 +281,7 @@ Khi bạn tạo các APIs cho thiết bị, ví dụ điện thoại thông minh
 Kiểm soát các route
 -------------------
 
-Khi khởi động Xitrum sẽ tự động gom các route lại. Nếu bạn muốn điều khiển các route, bạn có thể sử dụng `xitrum.Config.routes <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.routing.RouteCollection>`_.
+Khi khởi động Xitrum sẽ tự động gom các route lại. Nếu bạn muốn điều khiển các route theo cách của mình, bạn có thể sử dụng `xitrum.Config.routes <http://xitrum-framework.github.io/api/3.17/index.html#xitrum.routing.RouteCollection>`_.
 
 Ví dụ:
 
@@ -329,7 +329,7 @@ Thông thường, nếu request content không phải là ``application/x-www-fo
   val myJValue = requestContentJValue  // => JSON4S (http://json4s.org) JValue
   val myMap = xitrum.util.SeriDeseri.fromJValue[Map[String, Int]](myJValue)
 
-Nếu bạn muốn kiểm soát toàn bộn, sử dụng `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_. Nó sẽ trả về một `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_.
+Nếu bạn muốn kiểm soát toàn bộ, sử dụng `request.getContent <http://netty.io/4.0/api/io/netty/handler/codec/http/FullHttpRequest.html>`_. Nó sẽ trả về một `ByteBuf <http://netty.io/4.0/api/io/netty/buffer/ByteBuf.html>`_.
 
 Viết tài liệu API với Swagger
 ----------------------------

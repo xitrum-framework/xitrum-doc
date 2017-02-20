@@ -6,7 +6,7 @@ Có 2 use case chính của ứng dụng web:
 * Để phục vụ các thiết bị: bạn cần tạo các RESTful APIs cho smartphones, web service cho các web site khác.
 * Để phục vụ các người dùng cuối: bạn cần tạo giao diện web.
 
-Như một web framework thông thường, Xitrum hướng tới việc hỗ trợ giải quyết các use case một cách dễ dàng. Để giải quyết use case đầu tiền, bạn sử dụng :doc:`RESTful actions </restful>`. Để giải quyết use case thứ hai, bạn có thể sử dụng tính năng Ajax form postback của Xitrum.
+Như một web framework thông thường, Xitrum hướng tới việc hỗ trợ giải quyết các use case một cách dễ dàng. Để giải quyết use case đầu tiên, xem :doc:`RESTful APIs </restful>`. Để giải quyết use case thứ hai, bạn có thể sử dụng tính năng Ajax form postback của Xitrum.
 Bạn có thể xem thêm các trang dưới đây để biết thêm về postback:
 
 * http://en.wikipedia.org/wiki/Postback
@@ -155,7 +155,7 @@ Bạn cũng có thể thêm các parameter trong một form riêng biệt:
 
 ``#myform`` là một jQuery selector để chọn form có chứa các parameter được thêm vào.
 
-Hiện thị ảnh chờ khi load Ajax
+Hiển thị ảnh chờ khi load Ajax
 --------------------------------
 
 Mặc định, ảnh sau sẽ được hiển thị khi load Ajax:
@@ -164,7 +164,7 @@ Mặc định, ảnh sau sẽ được hiển thị khi load Ajax:
 
 .. image:: ../img/ajax_loading.gif
 
-Để đổi ảnh, bạn có thể gọi JS snippet này sau khi đã include ``jsDefaults`` (đã include
+Để hiển thị ảnh, bạn có thể gọi JS snippet này sau khi đã include ``jsDefaults`` (đã include
 `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_) trong view template của bạn:
 
 ::

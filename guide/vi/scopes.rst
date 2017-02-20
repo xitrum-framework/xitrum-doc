@@ -403,7 +403,7 @@ Lưu trữ Session ở Client hay Server
 Có 2 hình thức lưu trữ session:
 
 * Chỉ ở phía client
-* Kết hợp cả 2 : client và server
+* Kết hợp cả 2: client và server
 
 Với chỉ lưu trữ ở client:
 
@@ -412,7 +412,7 @@ Với chỉ lưu trữ ở client:
 * Khi có một request truyền tới, server sẽ tiến hành giải mã dữ liệu.
 
 
-Kết hợp cả 2 : client và server:
+Kết hợp cả 2, client và server:
 
 * Một session có 2 phần: session ID và session data.
 * Server lưu trữ dữ liệu trong session, theo cặp ID -> data
@@ -421,7 +421,7 @@ Kết hợp cả 2 : client và server:
 * Các này giống như sử dụng thẻ tín dụng. Số tiền không lưu trong thẻ tín dụng mà
 ở ID
 
-Trong cả 2 cách, client phải lưu trữ một vài thứ như cookie (dữ liệu được mã hóa
+Trong cả 2 cách, client phải lưu trữ một vài thứ trong cookie (dữ liệu được mã hóa
 và ID được mã hóa). "Lưu trữ session ở server" có nghĩa là lưu trữ dữ liệu của 
 session ở phía server.
 
@@ -445,6 +445,6 @@ Sử dụng ``object`` thay vì ``val``.
   }
 
 Đoạn code trên là đúng cú pháp và sẽ được biên dịch nhưng không chạy, bởi vì các
-Var bản thân chúng sử dụng class nameđể tìm kiếm. Khi sử dụng ``val``, ``title`` 
+Var bản thân chúng sử dụng class name để tìm kiếm. Khi sử dụng ``val``, ``title`` 
 và ``category`` sẽ có chung class name "xitrum.RequestVar". Tương tự với ``username``
 và ``isAdmin``.
