@@ -161,15 +161,14 @@ form요소 이외의 경우 、다음과 같이 사용하면 됩니다:
 Ajax로딩중 이미지 로딩
 -----------------
 
-By default, this animated GIF image is displayed while Ajax is loading:
+아래의 로딩 이미지가 Ajax 통신중에 표시 됩니다:
 
 .. Use ../img/ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
 
 .. image:: ../img/ajax_loading.gif
 
-To customize, please call this JS snippet after including ``jsDefaults`` (which includes
-`xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_)
-in your view template:
+커스터마이즈 시에 템플릿 내에 ``jsDefaults`` (이것은 `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_
+를 포함하기 위한 함수입니다.)의 뒤에 다음 내용을 추가합니다:
 
 ::
 
