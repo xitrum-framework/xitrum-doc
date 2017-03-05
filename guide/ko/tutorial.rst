@@ -145,7 +145,7 @@ DCEVM은 다음의 두 가지 방법으로 설치 할 수 있습니다:
 * DCEVM를 항상 활성화 할 수 있습니다.
 * 또는 DCEVM 를 "alternative" JVM으로 적용할 수 있습니다.
   이 경우에는 ``java`` 명령에 ``-XXaltjvm=dcevm`` 옵션을 지정하여 DCEVM를 사용할 수 있습니다.
-  예를 들어、 ``sbt/sbt`` 스크립트 파일에 ``-XXaltjvm=dcevm`` 를 추가해야 합니다.
+  예를 들어, ``sbt/sbt`` 스크립트 파일에 ``-XXaltjvm=dcevm`` 를 추가해야 합니다.
 
 Eclipse나 IntelliJ와 같은 IDE를 사용하는 경우에는 DCEVM은 프로젝트의 실행 JVM를 지정해야 합니다.
 

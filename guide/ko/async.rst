@@ -3,7 +3,7 @@
 
 Action에서 클라이언트로 응답을 반환하려면 다음과 같은 방법을 사용합니다.
 
-* ``respondView``: 레이아웃 파일을 사용 또는 사용하지 않고, View의 템플릿 파일을 보냅니다.
+* ``respondView``: 레이아웃 파일을 사용 또는 사용하지 않고 View의 템플릿 파일을 보냅니다.
 * ``respondInlineView``: 레이아웃 파일을 사용 또는 사용하지 않고 인라인 작성된 템플릿을 보냅니다.
 * ``respondText("hello")``: 레이아웃 파일을 사용하지 않고 텍스트를 보냅니다.
 * ``respondHtml("<html>...</html>")``: 위와 같이 contentType을 "text/html"로 보냅니다.
@@ -29,7 +29,7 @@ Xitrum은 자동으로 어떤 특정한 응답을 하지 않습니다. 스스로
     // 이벤트로부터 자원을 해제합니다.
   }
 
-비동기 방식이므로 응답을 바로 전송하지 않습니다. ``respondXXX`` 의 반환 값은
+비동기 방식이므로 응답을 바로 전송하지 않습니다. ``respondXXX`` 의 반환값은
 `ChannelFuture <http://netty.io/4.0/api/io/netty/channel/ChannelFuture.html>`_
 를 사용합니다. 이것을 통해 실제로 전송되는 콜백을 지정할 수 있습니다.
 

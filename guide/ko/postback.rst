@@ -96,8 +96,8 @@ Articles.scala
     }
   }
 
-``submit`` 이벤트가 JavaScript 에서 실행될때、폼은 ``ArticlesCreate`` 으로 postback을 보냅니다.
-``<form>`` 의 ``action`` 속성은 암호화 되고、암호화된 URL은 CSRF토큰 대신 사용하게 됩니다.
+``submit`` 이벤트가 JavaScript 에서 실행될 때, 폼은 ``ArticlesCreate`` 으로 postback을 보냅니다.
+``<form>`` 의 ``action`` 속성은 암호화 되고 암호화된 URL은 CSRF토큰 대신 사용하게 됩니다.
 
 
 form 이외의 사용
@@ -111,7 +111,7 @@ form 이외의 사용
 
   <a href="#" data-postback="click" action={url[LogoutAction]}>Logout</a>
 
-링크를 클릭하게 되면 LogoutAction 으로 포스트백 메세지를 보냅니다.
+링크를 클릭하게 되면 LogoutAction으로 포스트백 메세지를 보냅니다.
 
 확인 다이얼로그
 -----------
@@ -129,9 +129,9 @@ form 이외의 사용
 매개 변수 추가
 -----------
 
-form의 요소중  ``<input type="hidden"...`` 를 추가하여 추가 매개변수를 postback메세지로 보낼 수 있습니다 .
+form의 요소중  ``<input type="hidden"...`` 를 추가하여 추가 매개변수를 postback메세지로 보낼 수 있습니다.
 
-form요소 이외의 경우 、다음과 같이 사용하면 됩니다:
+form요소 이외의 경우에는 다음과 같이 사용하면 됩니다:
 
 ::
 

@@ -38,7 +38,7 @@ Package 디렉토리
 사용자 정의 xitrum-package
 -----------------------
 
-기본적으로 ``sbt/sbt xitrum-package`` 명령은 수정된 ``config`` 、 ``public`` 그리고 ``script`` 를 ``target/xitrum`` 복사합니다
+기본적으로 ``sbt/sbt xitrum-package`` 명령은 수정된 ``config`` , ``public`` 그리고 ``script`` 를 ``target/xitrum`` 복사합니다
 복사할 파일이나 디렉토리를 추가하려면 ``build.sbt`` 파일을 수정하면 됩니다:
 
 ::

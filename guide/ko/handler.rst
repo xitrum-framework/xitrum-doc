@@ -4,8 +4,8 @@ Netty 핸들러
 이번 챕터는 숙련자용으로 Xitrum을 보통으로 사용하시는 분은 읽지 않아도 됩니다.
 이해를 위해서는 `Netty <http://netty.io/>`_ 를 반드시 숙지해야 합니다.
 
-`Rack <http://en.wikipedia.org/wiki/Rack_(Web_server_interface)>`_ 、
-`WSGI <http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_ 、
+`Rack <http://en.wikipedia.org/wiki/Rack_(Web_server_interface)>`_ ,
+`WSGI <http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_ ,
 `PSGI <http://en.wikipedia.org/wiki/PSGI>`_ 라는 미들웨어 아키텍처가 있습니다.
 Xitrum은 `Netty <http://netty.io/>`_ 를 기본으로 하고 같은 핸들러를 사용합니다.
 핸들러를 생성하여 추가할 수 있고 채널의 파이프라인을 수정하여 케이스별 서버의 성능을 극대화 할 수 있습니다.

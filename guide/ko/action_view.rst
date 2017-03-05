@@ -20,7 +20,7 @@ Normal Action
   }
 
 요청은 Netty의 IO스레드로 직접로 처리되므로 시간이 걸리는 처리(블록처리)를 포함하면 안됩니다.
-Netty의 IO쓰레드를 오래 사용하게 되면 Netty는 새로운 연결을 할 수 없거나 응답을 회신할 수 없게 되기 때문입니다.
+Netty의 IO스레드를 오래 사용하게 되면 Netty는 새로운 연결을 할 수 없거나 응답을 회신할 수 없게 되기 때문입니다.
 
 FutureAction
 ------------
@@ -70,24 +70,24 @@ Actor 인스턴스는 요청이 발생할때 생성됩니다. 이 actor 인스�
 ``respondText``, ``respondView`` 등의 메소드를 통해 응답을 얻을때 중지됩니다.
 청크응답의 경우 즉시 중지되지 않고 마지막 청크가 전송된 시점에서 중지됩니다.
 
-요청은 "xitrum" 이라고 불리는 Akka actor 시스템 스레드 풀에서 처리됩니다.
+요청은 "xitrum"이라고 불리는 Akka actor 시스템 스레드 풀에서 처리됩니다.
 
 클라이언트로의 전송
 --------------
 
 Action으로 부터 클라이언트로 응답을 전송하려면 다음과 같은 방법을 사용합니다
 
-* ``respondView``: 레이아웃을 포함하거나 포함하지 않고、View 템플릿을 전송합니다
+* ``respondView``: 레이아웃을 포함하거나 포함하지 않고 View 템플릿을 전송합니다
 * ``respondInlineView``: 레이아웃을 포함하거나 포함하지 않고 인라인으로 작성된 템플릿을 전송합니다
 * ``respondText("hello")``: 레이아웃 파일을 사용하지 않고 문자열을 보냅니다
-* ``respondHtml("<html>...</html>")``: contentType 을 "text/html" 형식으로 문자열을 보냅니다
-* ``respondJson(List(1, 2, 3))``: Scala 객체를 JSON 으로 변환하여、contentType 을 "application/json" 형식으로 보냅니다
-* ``respondJs("myFunction([1, 2, 3])")`` contentType 을 "application/javascript" 으로 문자열을 보냅니다
-* ``respondJsonP(List(1, 2, 3), "myFunction")``: 위 두가지를 조합하여 JSONP로 보냅니다
-* ``respondJsonText("[1, 2, 3]")``: contentType 을 "application/javascript" 으로 문자열을 보냅니다
-* ``respondJsonPText("[1, 2, 3]", "myFunction")``: `respondJs`, `respondJsonText` 의 두가지 조합을 JSONP로 보냅니
+* ``respondHtml("<html>...</html>")``: contentType을 "text/html" 형식으로 문자열을 보냅니다
+* ``respondJson(List(1, 2, 3))``: Scala 객체를 JSON으로 변환하여 contentType을 "application/json" 형식으로 보냅니다
+* ``respondJs("myFunction([1, 2, 3])")`` contentType을 "application/javascript"으로 문자열을 보냅니다
+* ``respondJsonP(List(1, 2, 3), "myFunction")``: 위 두 가지를 조합하여 JSONP로 보냅니다
+* ``respondJsonText("[1, 2, 3]")``: contentType을 "application/javascript"으로 문자열을 보냅니다
+* ``respondJsonPText("[1, 2, 3]", "myFunction")``: `respondJs`, `respondJsonText`의 두 가지 조합을 JSONP로 보냅니다
 * ``respondBinary``: 바이트 배열로 보냅니다
-* ``respondFile``: 디스크에서 파일을 직접보냅니다. `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_ 를 사용하기 때문에 매우 빠릅니다.
+* ``respondFile``: 디스크에서 파일을 직접 보냅니다. `zero-copy <http://www.ibm.com/developerworks/library/j-zerocopy/>`_ 를 사용하기 때문에 매우 빠릅니다.
 * ``respondEventSource("data", "event")``: 청크응답을 보냅니다
 
 템플릿 View 파일 응답
@@ -139,7 +139,7 @@ scr/main/scalate/mypackage/MyAction.jade:
 * ``jsForView`` ``jsAddToView`` 에 의해 추가된 javascript가 출력됩니다. 레이아웃의 끝에 명시해야 합니다.
 
 템플릿 파일에서 `xitrum.Action <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/Action.scala>`_ 클래스의 모든 파일을 사용할 수 있습니다.
-또한, ``unescape`` 같은 Scalate 유틸리티도 사용할 수 있습니다.Scalate 의 유틸리티는 `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_　를 참고하세요.
+또한, ``unescape`` 같은 Scalate 유틸리티도 사용할 수 있습니다. Scalate의 유틸리티는 `Scalate doc <http://scalate.fusesource.org/documentation/index.html>`_　를 참고하세요.
 
 Scalate 템플릿의 기본 유형은 `Jade <http://scalate.fusesource.org/documentation/jade.html>`_ 를 사용하고 있습니다.
 또한 `Mustache <http://scalate.fusesource.org/documentation/mustache.html>`_ ,
@@ -208,7 +208,7 @@ CoffeeScript
 ~~~~~~~~~~~~
 
 `:coffeescript filter <http://scalate.fusesource.org/documentation/jade-syntax.html#filters>`_ 를 사용하여
-CoffeeScript 템플릿에 배포 할 수 있습니다.
+CoffeeScript 템플릿에 배포할 수 있습니다.
 
 ::
 
@@ -249,15 +249,15 @@ Xitrum은 결과 문자열을 ``renderedView`` 변수로 설정합니다.
 그리고 현재 Action의 ``layout`` 메소드가 실행됩니다.
 브라우저에 전송되는 데이터는 결국 이 메소드의 결과가 표시됩니다.
 
-기본적으로、``layout`` 메소드는 단지 ``renderedView`` 를 호출합니다.
-만약、이 처리방법에 무언가를 추가하려면 재정의가 필요합니다. 만약 ``renderedView`` 메소드에 포함하려는 경우에는
+기본적으로 ``layout`` 메소드는 단지 ``renderedView`` 를 호출합니다.
+만약 이 처리방법에 무언가를 추가하려면 재정의가 필요합니다. 만약 ``renderedView`` 메소드에 포함하려는 경우에는
 이 View의 레이아웃의 일부로 포함됩니다.
 
-포인트는  ``layout`` 현재의 Action View가 실행된 후라는 것입니다.
-거기에서 반환되는 값이 브라우저에 전달이 되는것 입니다.
+포인트는 ``layout`` 현재의 Action View가 실행된 후라는 것입니다.
+여기에서 반환되는 값이 브라우저에 전달이 되는것 입니다.
 
 이 메커니즘은 매우 간단하고 마법이 없습니다. 간단하게 Xitrum 에는 레이아웃이 존재하지 않는다고 생각할 수 있습니다.
-거기에는 단지 ``layout`` 메소드가 있을 뿐 모두 이 방법으로 표현할 수 있습니다.
+여기에는 단지 ``layout`` 메소드가 있을 뿐 모두 이 방법으로 표현할 수 있습니다.
 
 
 전형적인 예로 일반적인 레이아웃을 부모 클래스로 사용하는 패턴을 보여줍니다.

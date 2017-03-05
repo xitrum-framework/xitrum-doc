@@ -51,7 +51,7 @@ PUT과 DELETE를 구현하려면 응답 본문에 ``_method=put`` 나 ``_method=
 만약 루트를 포함하여 라이브러리가 업데이트 된 경우에는 ``routes.cache`` 파일을 삭제하세요.
 또한, 이 파일은 소스 저장소에 커밋되지 않도록 주의해야 합니다.
 
-루트의 우선순위(first、last)
+루트의 우선순위(first, last)
 ------------------------
 
 다음과 같은 루트를 만든 경우
@@ -428,5 +428,5 @@ Value type: Byte, Int, Int32, Int64, Long, Number, Float, Double, String, Boolea
 Param type: Path, Query, Body, Header, Form
 
 
-자세한 내용은 `value type <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_ 、
+자세한 내용은 `value type <https://github.com/wordnik/swagger-core/wiki/Datatypes>`_ ,
 `param type <https://github.com/wordnik/swagger-core/wiki/Parameters>`_ 를 참고하세요.
