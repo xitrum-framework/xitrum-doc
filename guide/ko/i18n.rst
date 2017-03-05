@@ -1,14 +1,14 @@
 I18n
 ====
 
-GNU gettext 가 사용됩니.gettext는 다른 국제화 방법과는 다르게、복수형을 지원합니다.
+GNU gettext 가 사용됩니다. gettext는 다른 국제화 방법과는 다르게 복수형을 지원합니다.
 
 .. image:: http://poedit.net/images/home_image2-big.png
 
 소스코드에 국제화 메세지 작성
 ---------------------
 
-``xitrum.Action`` 은 ``xitrum.I18n`` 확장했으며, 다음의 메소드가 있습니다:
+``xitrum.Action`` 은 ``xitrum.I18n`` 확장했으며 다음의 메소드가 있습니다:
 
 ::
 
@@ -33,8 +33,8 @@ GNU gettext 가 사용됩니.gettext는 다른 국제화 방법과는 다르게�
   // when English => 1,234.568, when French => 1 234,568
   t("%,.3f", 1234.5678)
 
-action 안에서나 혹은 액션에서 호출 할 수 있습니다.
-model과 같은 곳에서의 사용은、 현재의 액션에서 ``t`` 나 ``tc`` 를 호출하여 넘겨줘야 합니다:
+action 안에서나 혹은 액션에서 호출할 수 있습니다.
+model과 같은 곳에서의 사용은 현재의 액션에서 ``t`` 나 ``tc`` 를 호출하여 넘겨줘야 합니다:
 
 ::
 
@@ -50,7 +50,7 @@ model과 같은 곳에서의 사용은、 현재의 액션에서 ``t`` 나 ``tc`
 pot에 메세지 추출하기
 ----------------
 
-프로젝트 루트에 빈i18n.pot 파일을 생성하여, 전체 프로젝트를 다시 컴파일 하면 됩니다.
+프로젝트 루트에 빈 i18n.pot 파일을 생성하여 전체 프로젝트를 다시 컴파일 하면 됩니다.
 
 ::
 
@@ -59,15 +59,15 @@ pot에 메세지 추출하기
   touch i18n.pot
   sbt/sbt compile
 
-``sbt/sbt clean`` 는 모든 .class파일을 삭제하고, 전체를 다시 컴파일 합니다.
-``sbt/sbt clean`` 명령은、SBT가 모든 :doc:`의존된 </deps>` 라이브러리를 다운받기 때문에
-``find target -name *.class -delete`` 명령이 조금 더 빠르지만,
+``sbt/sbt clean`` 는 모든 .class파일을 삭제하고 전체를 다시 컴파일 합니다.
+``sbt/sbt clean`` 명령은 SBT가 모든 :doc:`의존된 </deps>` 라이브러리를 다운받기 때문에
+``find target -name *.class -delete`` 명령이 조금 더 빠르지만
 ``target`` 내부의 .class 파일을 삭제하는것은 동일합니다.
 
-재컴파일후에, i18n.pot는 소스코드로 부터 추출된 gettext 메세지를 채웁니다.
+재컴파일 후에 i18n.pot는 소스코드로 부터 추출된 gettext 메세지를 채웁니다.
 마법같은 이 동작은 `Scala compiler plugin technique <http://www.scala-lang.org/node/140>`_ 에 기술되어 있습니다.
 
-한가지 이 메소드의 주의점은 gettext는 Scala 소스 코드로부터 메세지를 추출합니다. 만약 자바 파일을 사용한다면, 다음과 같이 ``xgettext``
+한 가지 이 메소드의 주의점은 gettext는 Scala 소스 코드로부터 메세지를 추출합니다. 만약 자바 파일을 사용한다면 다음과 같이 ``xgettext``
 커맨드 라인을 사용하여야 합니다.
 
 
@@ -75,15 +75,15 @@ pot에 메세지 추출하기
 
   xgettext -kt -ktc:1c,2 -ktn:1,2 -ktcn:1c,2,3 -o i18n_java.pot --from-code=UTF-8 $(find src/main/java -name "*.java")
 
-그러고 나서, 수동으로 i18n_java.pot 파일과 i18n.pot파일을 병합해야 합니다.
+그리고 나서 수동으로 i18n_java.pot 파일과 i18n.pot파일을 병합해야 합니다.
 
 po 파일 저장위치
 ------------
 
 i18n.pot은 임시 파일입니다. 파일들을 <language>.po 로 복사하여 번역해야 합니다.
 
-Xitrum은 클래스 패스상의 ``i18n`` 디렉토리를 모니터링 합니다.
-만약 런타임시 디렉토리 상의 <language>.po 파일이 변경되거나 추가된다면,
+Xitrum은 클래스 패스상의 ``i18n`` 디렉토리를 모니터링합니다.
+만약 런타임시 디렉토리 상의 <language>.po 파일이 변경되거나 추가된다면
 Xitrum은 자동으로 <language>.po 파일들을 다시 로드합니다.
 
 ::
@@ -101,7 +101,7 @@ Xitrum은 자동으로 <language>.po 파일들을 다시 로드합니다.
 po 파일을 수정하기 위해서는 `Poedit <http://www.poedit.net/>`_ 와 같은 툴을 사용하면 됩니다.
 툴을 사용하여 새로운 pot 파일을 기존의 po 파일에 추가 할수 있습니다.
 
-po 파일들은 여러 JAR파일들에 패키징할 수 있고, Xitrum은 실행시에 자동으로 병합합니다.
+po 파일들은 여러 JAR파일들에 패키징할 수 있고 Xitrum은 실행시에 자동으로 병합합니다.
 
 ::
 
@@ -120,16 +120,16 @@ po 파일들은 여러 JAR파일들에 패키징할 수 있고, Xitrum은 실행
 언어설정
 ------
 
-* 브라우저의 요청 헤더의 ``Accept-Language``에서 언어 셋을 가져오려면,
+* 브라우저의 요청 헤더의 ``Accept-Language`` 에서 언어 셋을 가져오려면
   ``browserLanguages`` 를 호출하면 됩니다. 결과는 브라우저의 우선순위에 따라 정렬됩니다.
-* 기본 언어는 "en" 입니다. 현재의 언어로 세팅하기 위해서는, 예를 들어 일어일 경우 ``language = "ja"`` 로 하면 됩니다.
+* 기본 언어는 "en" 입니다. 현재의 언어로 세팅하기 위해서는, 예를 들어, 일어일 경우 ``language = "ja"`` 로 하면 됩니다.
 * 가장 적절한 언어를 리소스에서 찾아 자동세팅을 위해서는
   ``autosetLanguage(availableLanguages)`` 을 호출하면 됩니다.
   ``availableLanguages`` 는 ``resources/i18n`` 디렉토리와 JAR파일들의 가능한 언어들의 리스트를 가지고 있습니다.
-  만약, 적절한 언어가 없을경우 기본언어인 "en"으로 설정합니다.
+  만약 적절한 언어가 없을 경우에는 기본언어인 "en"으로 설정합니다.
 * 현재의 언어셋을 확인하려면 ``language`` 를 사용하면 됩니다.
 
-일반적으로, 액션의 before 필터에서 언어를 세팅합니다:
+일반적으로 액션의 before 필터에서 언어를 세팅합니다:
 
 ::
 
@@ -146,10 +146,10 @@ po 파일들은 여러 JAR파일들에 패키징할 수 있고, Xitrum은 실행
 --------
 
 jQuery Validation 플러그인은 `i18n error messages <https://github.com/jzaefferer/jquery-validation/tree/master/src/localization>`_
-제공합니다
+제공합니다.
 Xitrum은 자동으로 현재의 언어에 상응하는 메세지를 가져옵니다.
 
-서버의 기본 검증인 ``xitrum.validator`` 패키지 또한,
+서버의 기본 검증인 ``xitrum.validator`` 패키지, 또한
 Xitrum은 제공하고 있습니다.
 
 복수형
@@ -165,7 +165,7 @@ Xitrum은 다음에 정의된 복수형만을 사용합니다:
 * `What are plural forms <http://www.gnu.org/software/gettext/manual/html_node/Plural-forms.html#Plural-forms>`_
 * `Translating plural forms <http://www.gnu.org/software/gettext/manual/html_node/Translating-plural-forms.html#Translating-plural-forms>`_
 
-복수형은 다음중 하나를 사용해야 합니다:
+복수형은 다음 중 하나를 사용해야 합니다:
 
 ::
 
@@ -184,7 +184,7 @@ Xitrum은 다음에 정의된 복수형만을 사용합니다:
 날짜와 시간 포멧
 ------------
 
-만약 Scalate 템플릿 엔진을 사용한다면, 날짜와 시간 포멧은 현재 액션의 언어 포멧을 따르게 됩니다.
+만약 Scalate 템플릿 엔진을 사용한다면 날짜와 시간 포멧은 현재 액션의 언어 포멧을 따르게 됩니다.
 
 다른 포멧을 사용하고자 하는 경우:
 

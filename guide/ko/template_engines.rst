@@ -29,13 +29,13 @@
 템플릿 엔진 제거
 ------------
 
-단지 RESTful API만을 만들경우、renderView、renderFragment、respondView를 호출 할 필요가 없습니.이 경우 템플릿 엔진을 프로젝트에서 삭제해서 프로젝트를 더 가볍게 만들 수 있습니다.
-방법은 config/xitrum.conf 에서 ``templateEngine`` 을 지우거나 주석처리 하세요.
+단지 RESTful API만을 만들 경우에 renderView, renderFragment, respondView를 호출할 필요가 없습니다. 이 경우 템플릿 엔진을 프로젝트에서 삭제해서 프로젝트를 더 가볍게 만들 수 있습니다.
+방법은 config/xitrum.conf 에서 ``templateEngine`` 을 지우거나 주석 처리하세요.
 
 템플릿 엔진 만들기
 --------------
 
-나민의 템플릿 엔진을 만들려、 `xitrum.view.TemplateEngine <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/view/TemplateEngine.scala>`_ 을 상속받아 클라스를 만들고.
-그러고 나서 config/xitrum.conf 에 명시하면 됩니다.
+나민의 템플릿 엔진을 만들려면 `xitrum.view.TemplateEngine <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/view/TemplateEngine.scala>`_ 을 상속받아 클래스를 만듭니다.
+그리고 나서 config/xitrum.conf 에 명시하면 됩니다.
 
 예제: `xitrum-scalate <https://github.com/xitrum-framework/xitrum-scalate>`_

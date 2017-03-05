@@ -5,7 +5,7 @@
 Xitrum 가이드
 =============
 
-`Xitrum는 영어, 일본어, 러시아어, 베트남어 버전 형태로도 주문 가능합니다. <http://xitrum-framework.github.io/guide.html>`_
+`Xitrum 가이드는 영어, 일본어, 러시아어, 베트남어 버전으로 제공됩니다. <http://xitrum-framework.github.io/guide.html>`_
 
 .. toctree::
    :maxdepth: 4

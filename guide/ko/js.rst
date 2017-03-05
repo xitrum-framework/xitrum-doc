@@ -4,14 +4,14 @@ JavaScript 와 JSON
 JavaScript
 ----------
 
-Xitrum 은 jQuery를 내포하고 있습니다.
+Xitrum은 jQuery를 내포하고 있습니다.
 
 또한 일부 jsXXX 헬퍼도 제공하고 있습니다.
 
-JavaScript 조각을 View 에 추가하는 방법
+JavaScript 조각을 View에 추가하는 방법
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-액션내에서 ``jsAddToView`` 를 호출합니다.（필요한 경우 여러번 호출이 가능합니다）:
+액션 내에서 ``jsAddToView`` 를 호출합니다.（필요한 경우 여러 번 호출이 가능합니다）:
 
 ::
 
@@ -49,7 +49,7 @@ JavaScript 조각을 View 에 추가하는 방법
       </html>
     )
 
-JavaScript를 직접호출 하는 경우
+JavaScript를 직접 호출하는 경우
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Javascript의 응답:
@@ -58,7 +58,7 @@ Javascript의 응답:
 
   jsRespond("$('#error').html(%s)".format(jsEscape(<p class="error">Could not login.</p>)))
 
-Javascript로 리다이렉션 하는 경우:
+Javascript로 리다이렉션하는 경우:
 
 ::
 
@@ -69,7 +69,7 @@ JSON
 ----
 
 Xitrum은  `JSON4S <https://github.com/json4s/json4s>`_ 를 내포하고 있습니다.
-JSON의 파싱과 생성은 JSON4S 을 읽어보세요.
+JSON의 파싱과 생성은 JSON4S을 읽어보세요.
 
 Scala의 case 객체를 JSON으로 변환하는 경우:
 
@@ -89,7 +89,7 @@ JSON의 응답:
   val scalaData = List(1, 2, 3)  // An example
   respondJson(scalaData)
 
-JSON은 중접된 구조로 되어 있는 문장을 만들기에 적합합니다.
+JSON은 중첩된 구조로 되어 있는 문장을 만들기에 적합합니다.
 
 참고 :doc:`설정 파일 읽어들이기 </howto>`
 

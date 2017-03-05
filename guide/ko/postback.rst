@@ -1,7 +1,7 @@
 포스트백
 ======
 
-Web어플리케이션은 다음과 같은 두가지 경우로 많이 사용됩니다.
+Web 어플리케이션은 다음과 같은 두 가지 경우로 많이 사용됩니다.
 
 * 서버를 위해 사용하는 경우: 스마트폰을 위한 RESTful API를 만들거나, 다른 웹사이트를 위한 웹서비
 
@@ -161,7 +161,7 @@ form요소 이외의 경우 、다음과 같이 사용하면 됩니다:
 Ajax로딩중 이미지 로딩
 -----------------
 
-아래의 로딩 이미지가 Ajax 통신중에 표시 됩니다:
+아래의 로딩 이미지가 Ajax 통신중에 표시됩니다:
 
 .. Use ../img/ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
 
