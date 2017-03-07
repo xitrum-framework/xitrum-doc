@@ -103,7 +103,7 @@ Xitrum will automatically reload that <language>.po file.
           ...
 
 Use a tool like `Poedit <http://www.poedit.net/>`_ to edit po files.
-You can use it to merge newly created pot file to existing po files.
+You can use it to merge newly created po file to existing po files.
 
 .. image:: ../img/update_from_pot.png
 
