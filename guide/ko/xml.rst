@@ -1,10 +1,10 @@
 XML
 ===
 
-Scala는 리터럴 문자를 표시할 수 있습니다.Xitrum에서는 이 기능을 템플릿 엔진으로 설명하고 있습니다.
+Scala는 리터럴 문자를 표시할 수 있습니다. Xitrum에서는 이 기능을 템플릿 엔진으로 사용하고 있습니다.
 
-* Scala 는 XML구문을 컴파일때 체크합니다: View 는 typesafe합니다.
-* Scala는 XML을 자동으로 빠져나갑니다 `XSS <http://en.wikipedia.org/wiki/Cross-site_scripting>`_　공격을 방지합니다.
+* Scala는 XML 구문을 컴파일 때 체크합니다: View는 typesafe합니다.
+* Scala는 XML의 자동적으로 이스케이프하여 `XSS <http://en.wikipedia.org/wiki/Cross-site_scripting>`_　공격을 방지합니다.
 
 일부 팁이 있습니다.
 
@@ -21,7 +21,7 @@ XML의 이스케이프
     {Unparsed("if (1 < 2) alert('Xitrum rocks');")}
   </script>
 
-``<xml:unparsed>`` 를 사용하는 경:
+``<xml:unparsed>`` 를 사용하는 경우:
 
 ::
 
@@ -57,7 +57,7 @@ XML 요소의 그룹화
       </xml:group>}
   </div>
 
-``<xml:group>`` 는 실제 출력에 포함되지 않습니다.예를 들어 사용자가 로그인 한 경우:
+``<xml:group>`` 는 실제 출력에 포함되지 않습니다. 예를 들어 사용자가 로그인한 경우:
 
 ::
 
@@ -71,12 +71,12 @@ XHTML 렌더링
 -----------
 
 Xitrum은 view 와 레이아웃을 자동으로 XHTML로 출력합니다.
-이것을 직접 출력으로 표시할경우 드믈지만 、다음 코드가 나타나는 것을 주의하세.
+이것을 직접 출력으로 표시할경우 드믈지만 다음 코드가 나타나는 것을 주의하세요.
 
 ::
 
   import scala.xml.Xhtml
 
   val br = <br />
-  br.toString            // => <br></br>, 이 경우 브라우저는 br이 두개가 있다고 판단합니다.
+  br.toString            // => <br></br>, 이 경우에 브라우저는 br태그가 두 개 있다고 판단합니다.
   Xhtml.toXhtml(<br />)  // => "<br />"

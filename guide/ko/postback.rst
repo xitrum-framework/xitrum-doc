@@ -1,7 +1,7 @@
 포스트백
 ======
 
-Web어플리케이션은 다음과 같은 두가지 경우로 많이 사용됩니다.
+Web 어플리케이션은 다음과 같은 두 가지 경우로 많이 사용됩니다.
 
 * 서버를 위해 사용하는 경우: 스마트폰을 위한 RESTful API를 만들거나, 다른 웹사이트를 위한 웹서비
 
@@ -96,8 +96,8 @@ Articles.scala
     }
   }
 
-``submit`` 이벤트가 JavaScript 에서 실행될때、폼은 ``ArticlesCreate`` 으로 postback을 보냅니다.
-``<form>`` 의 ``action`` 속성은 암호화 되고、암호화된 URL은 CSRF토큰 대신 사용하게 됩니다.
+``submit`` 이벤트가 JavaScript 에서 실행될 때, 폼은 ``ArticlesCreate`` 으로 postback을 보냅니다.
+``<form>`` 의 ``action`` 속성은 암호화 되고 암호화된 URL은 CSRF토큰 대신 사용하게 됩니다.
 
 
 form 이외의 사용
@@ -111,7 +111,7 @@ form 이외의 사용
 
   <a href="#" data-postback="click" action={url[LogoutAction]}>Logout</a>
 
-링크를 클릭하게 되면 LogoutAction 으로 포스트백 메세지를 보냅니다.
+링크를 클릭하게 되면 LogoutAction으로 포스트백 메세지를 보냅니다.
 
 확인 다이얼로그
 -----------
@@ -129,9 +129,9 @@ form 이외의 사용
 매개 변수 추가
 -----------
 
-form의 요소중  ``<input type="hidden"...`` 를 추가하여 추가 매개변수를 postback메세지로 보낼 수 있습니다 .
+form의 요소중  ``<input type="hidden"...`` 를 추가하여 추가 매개변수를 postback메세지로 보낼 수 있습니다.
 
-form요소 이외의 경우 、다음과 같이 사용하면 됩니다:
+form요소 이외의 경우에는 다음과 같이 사용하면 됩니다:
 
 ::
 
@@ -161,15 +161,14 @@ form요소 이외의 경우 、다음과 같이 사용하면 됩니다:
 Ajax로딩중 이미지 로딩
 -----------------
 
-By default, this animated GIF image is displayed while Ajax is loading:
+아래의 로딩 이미지가 Ajax 통신중에 표시됩니다:
 
 .. Use ../img/ajax_loading.png for PDF (make latexpdf) because it can't include animation GIF
 
 .. image:: ../img/ajax_loading.gif
 
-To customize, please call this JS snippet after including ``jsDefaults`` (which includes
-`xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_)
-in your view template:
+커스터마이즈 시에 템플릿 내에 ``jsDefaults`` (이것은 `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/main/scala/xitrum/js.scala>`_
+를 포함하기 위한 함수입니다.)의 뒤에 다음 내용을 추가합니다:
 
 ::
 

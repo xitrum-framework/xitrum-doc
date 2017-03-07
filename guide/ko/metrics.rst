@@ -1,7 +1,7 @@
 매트릭스
 ======
 
-Xitrum은 어플리케이션의 JVM의 힙 메모리, CPU, 그리고 액션의 수행상태를 Akka 클러스터의 각 노드로 부터 수집합니다.
+Xitrum은 어플리케이션의 JVM의 힙 메모리, CPU, 액션의 수행 상태를 Akka 클러스터의 각 노드로부터 수집합니다.
 또한, 이 데이터들은 JSON 데이터로 전달됩니다.
 Xitrum은 매트릭스의 정의도 가능합니다.
 
@@ -29,7 +29,7 @@ CPU: 프로세스의 갯수와 부하
 ~~~~~~~~~~
 
 Xitrum은 각 노드에서의 액션의 실행상태를 `Histogram <http://metrics.dropwizard.io/3.1.0/getting-started/#histograms>`_ 을 통해 측정합니다.
-여기에서 액션의 실행 횟수와, 비동기 액션의 수행시간을 알 수 있습니다.
+여기에서 액션의 실행 횟수와 비동기 액션의 수행시간을 알 수 있습니다.
 
 .. image:: ../img/metrics_action_count.png
 
@@ -40,7 +40,7 @@ Xitrum은 각 노드에서의 액션의 실행상태를 `Histogram <http://metri
 수정된 매트릭스 수집
 ~~~~~~~~~~~~~~~
 
-위에 정의된 기본적인 매트릭스 수집방법에 추가로, 매트릭스를 수정하여 수집할 수 있습니다.
+위에 정의된 기본적인 매트릭스 수집방법에 추가로 매트릭스를 수정하여 수집할 수 있습니다.
 ``xitrum.Metrics`` 은 ``gauge``, ``counter``, ``meter``, ``timer`` , ``histogram`` 에 관한 정보의 단축키 입니다.
 `Coda Hale Metrics <http://metrics.dropwizard.io/3.1.0/>`_ 와 `its Scala implementation <https://github.com/erikvanoosten/metrics-scala>`_ 를 통해 사용법을 익힐 수 있습니다.
 
@@ -71,7 +71,7 @@ Timer 예제:
 매트릭스 배포
 ----------
 
-Xitrum은 일정주기로 최근의 매트릭스 값을 JSON 포멧으로 제공합니다.
+Xitrum은 일정 주기로 최근의 매트릭스 값을 JSON 포멧으로 제공합니다.
 데이터는 휘발성이며 영구적으로 저장되지 않습니다.
 
 힙 메모:
@@ -112,7 +112,7 @@ CPU:
 Xitrum 기본 뷰어
 ~~~~~~~~~~~~~~
 
-Xitrum은 기본 매트릭스 뷰어로 ``/xitrum/metrics/viewer?api_key=<xitrum.confの中のキー>`` 을 제공합니다.
+Xitrum은 기본 매트릭스 뷰어로 ``/xitrum/metrics/viewer?api_key=<xitrum.conf 파일 안의 키>`` 을 제공합니다.
 이 URL은 위의 정보를  `D3.js <http://d3js.org/>`_ 로 생성하여 그래프로 보여줍니다.
 
 URL 생성방법:
@@ -149,10 +149,9 @@ JVM Reporter 시작하기:
 사용자 정의 매트릭스 뷰어
 ~~~~~~~~~~~~~~~~~~
 
-매트릭스는 JSON 의 형식으로 SockJS URL ``xitrum/metrics/channel`` 에 배포됩니다.
+매트릭스는 JSON의 형식으로 SockJS URL ``xitrum/metrics/channel`` 에 배포됩니다.
 ``jsAddMetricsNameSpace`` 은 Xitrum이 제공하는 편리한 자바스크립트 단편입니다. 앤드포인트에 생성된 커넥션을 연결합니다.
-
-JSON 핸들러를 구현하려면, 핸들러에 ``initMetricsChannel`` 를 호출하면 됩니다.
+JSON 핸들러를 구현하려면 핸들러에 ``initMetricsChannel`` 를 호출하면 됩니다.
 
 액션 예제:
 
@@ -181,8 +180,8 @@ JSON 핸들러를 구현하려면, 핸들러에 ``initMetricsChannel`` 를 호�
 매트릭스 저장
 ~~~~~~~~~~
 
-메모리를 절약하기 위해, Xitrum은 이전 매트릭스 값을 저장하지 않습니다. 만약 매트릭스값을 사용하기 위해
-데이터베이스나 파일에 저장하려면, subscriber를 직접 구현해야 합니다.
+메모리를 절약하기 위해 Xitrum은 이전 매트릭스 값을 저장하지 않습니다. 만약 매트릭스값을 사용하기 위해
+데이터베이스나 파일에 저장하려면 subscriber를 직접 구현해야 합니다.
 
 예:
 
