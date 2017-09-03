@@ -20,10 +20,10 @@ Normal action
   }
 
 Debido a que la acción se ejecutará directamente en el hilo (subproceso) de Netty IO,
-esto no debería provocar
-Because the action will run on directly Netty's IO thread, it should not do blocking
-processing that may take a long time, otherwise Netty can't accept new connections
-or send response back to clients.
+esto no debería provocar bloqueo en el procesamiento de operaciones que puedan tomar
+mucho tiempo, de lo contrario Netty no podrá aceptar nuevas conexiones o enviar
+respuesta a los clientes.
+
 
 FutureAction
 ------------
@@ -40,13 +40,13 @@ FutureAction
     }
   }
 
-The action will run on the same thread pool for ``ActorAction`` (see below),
-separated from the thread pool of Netty.
+Esta acción se ejecutará en el mismo pool (conjunto) de hilos que ``ActorAction`` (ver abajo),
+un pool de hilos separados al pool de hilos de Netty.
 
 Actor action
 ------------
 
-If you want your action to be an Akka actor, extend ``ActorAction``:
+Si quieres que tu acción sea un actor de Akka, extender de ``ActorAction``:
 
 ::
 
@@ -70,12 +70,12 @@ If you want your action to be an Akka actor, extend ``ActorAction``:
     }
   }
 
-An actor instance will be created when there's request. It will be stopped when the
-connection is closed or when the response has been sent by ``respondText``,
-``respondView`` etc. methods. For chunked response, it is not stopped right away.
-It is stopped when the last chunk is sent.
+Una instancia del actor es invocada una vez se haga un request. Esta va a ser detenida
+una vez la conexión sea cerrada o cuando la respuesta haya sido enviada hacía los métodos ``respondText``,
+``respondView`` etc. Para una respuesta por partes, esta no se detiene inmediatamente.
+Esta es detenida cuando la última parte (chunk) es enviada.
 
-The actor will run on the thread pool of the Akka actor system named "xitrum".
+El actor se ejecutará en el conjunto de hilos (thread pool) del sistema de actores akka llamado "xitrum".
 
 Respond to client
 -----------------

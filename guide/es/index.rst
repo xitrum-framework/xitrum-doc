@@ -2,10 +2,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Xitrum Guide
+Guía de Xitrum.
 ============
 
-`There are also Japanese, Korean, Russian, and Vietnamese versions. <http://xitrum-framework.github.io/guide.html>`_
+`Esta guía también está disponible en Inglés, Japonés, Koreano, Ruso, y Vietnamita. <http://xitrum-framework.github.io/guide.html>`_
 
 .. toctree::
    :maxdepth: 4

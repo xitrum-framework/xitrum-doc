@@ -14,91 +14,92 @@ Introduction
   | +----------------+ |
   | | HTTP(S) Server | |
   | |----------------| |
-  | | Web framework  | |  <- Akka, Hazelcast -> Other instances
+  | | Web framework  | |  <- Akka, Hazelcast -> Otras instancias
   | +----------------+ |
   +--------------------+
-  |      Your app      |
+  |   Tu aplicación    |
   +--------------------+
 
-Xitrum is an async and clustered Scala web framework and HTTP(S) server fusion
-on top of `Netty <http://netty.io/>`_ and `Akka <http://akka.io/>`_.
+Xitrum es un framework web de scala, asíncrono y agrupable (clustered), provee fusión de server HTTP(s)
+que se ejecuta sobre `Netty <http://netty.io/>`_ y `Akka <http://akka.io/>`_.
 
-From `a user <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576d39>`_:
+Dicho por `un usuario <https://groups.google.com/group/xitrum-framework/msg/d6de4865a8576d39>`_:
 
-  Wow, this is a really impressive body of work, arguably the most
-  complete Scala framework outside of Lift (but much easier to use).
+  Wow, este es un cuerpo de trabajo realmente impresionante, posiblemente el mas completo
+  framework de scala, a parte de Lift (pero mucho mas fácil de utilizar).
 
-  `Xitrum <http://xitrum-framework.github.io/>`_ is truly a full stack web framework, all the bases are covered,
-  including wtf-am-I-on-the-moon extras like ETags, static file cache
-  identifiers & auto-gzip compression. Tack on built-in JSON converter,
-  before/around/after interceptors, request/session/cookie/flash scopes,
-  integrated validation (server & client-side, nice), built-in cache
-  layer (`Hazelcast <http://www.hazelcast.org/>`_), i18n a la GNU gettext, Netty (with Nginx, hello
-  blazing fast), etc. and you have, wow.
+  `Xitrum <http://xitrum-framework.github.io/>`_ es realemente un framework web full stack,
+  Todos los principios están cubierno, incluyendo el WTF-am-I-on-the-moon(Que demonios, estoy en la luna),
+  con extras como ETags, identificadores de caché de archivos estáticos y
+  compresión de automática en gzip. Seguimiento en el convertidor JSON incorporado,
+  intersecciones antes/durante/después, de los siguientes ámbitos request/session/cookie/flash,
+  Validación integrada (servidor & lado del cliente, bonita), capa de caché
+  incorporada (`Hazelcast <http://www.hazelcast.org/>`_), i18n GNU gettext, Netty (con Nginx, hello,
+  realmente rápido), etc. y te quedas como que, wow.
 
-Features
+Características
 --------
 
-* Typesafe, in the spirit of Scala. All the APIs try to be as typesafe as possible.
-* Async, in the spirit of Netty. Your request proccessing action does not have
-  to respond immediately. Long polling, chunked response (streaming), WebSocket,
-  and SockJS are supported.
-* Fast built-in HTTP and HTTPS web server based on `Netty <http://netty.io/>`_
-  (HTTPS can use Java engine or native OpenSSL engine).
-  Xitrum's static file serving speed is `similar to that of Nginx <https://gist.github.com/3293596>`_.
-* Extensive client-side and server-side caching for faster responding.
-  At the web server layer, small files are cached in memory, big files are sent
-  using NIO's zero copy.
-  At the web framework layer you have can declare page, action, and object cache
-  in the Rails style.
-  `All Google's best practices <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_
-  like conditional GET are applied for client-side caching.
-  You can also force browsers to always send request to server to revalidate cache before using.
-* `Range requests <http://en.wikipedia.org/wiki/Byte_serving>`_ support
-  for static files. Serving movie files for smartphones requires this feature.
-  You can pause/resume file download.
-* `CORS <http://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_ support.
-* Routes are automatically collected in the spirit of JAX-RS
-  and Rails Engines. You don't have to declare all routes in a single place.
-  Think of this feature as distributed routes. You can plug an app into another app.
-  If you have a blog engine, you can package it as a JAR file, then you can put
-  that JAR file into another app and that app automatically has blog feature!
-  Routing is also two-way: you can recreate URLs (reverse routing) in a typesafe way.
-  You can document routes using `Swagger Doc <http://swagger.wordnik.com/>`_.
-* Classes and routes are automatically reloaded in development mode.
-* Views can be written in a separate `Scalate <http://scalate.fusesource.org/>`_
-  template file or Scala inline XML. Both are typesafe.
-* Sessions can be stored in cookies (more scalable) or clustered `Hazelcast <http://www.hazelcast.org/>`_ (more secure).
-  Hazelcast also gives in-process (thus faster and simpler to use) distribued cache,
-  you don't need separate cache servers. The same is for pubsub feature in Akka.
-* `jQuery Validation <http://jqueryvalidation.org/>`_ is integrated
-  for browser side and server side validation.
-* i18n using `GNU gettext <http://en.wikipedia.org/wiki/GNU_gettext>`_.
-  Translation text extraction is done automatically.
-  You don't have to manually mess with properties files.
-  You can use powerful tools like `Poedit <http://www.poedit.net/screenshots.php>`_
-  for translating and merging translations.
-  gettext is unlike most other solutions, both singular and plural forms are supported.
+* Typesafe, en la esencia de Scala. Todas las APIs tratan de ser, lo mas posible como typesafe.
+* Async, en la esencia Netty. Tu consulta al procesar una acción no tiene que
+  responder inmediatamente. Largo polling, respuestas por partes (streaming), WebSocket,
+  y SockJS son soportados.
+* Rápida construcción HTTP y HTTPS servidor web basado en `Netty <http://netty.io/>`_
+  (HTTPS puede user el engine de java o el engine nativo OpenSSL).
+  El servir archivos estáticos en Xitrum tiene una velocidad `similar a esta de Nginx <https://gist.github.com/3293596>`_.
+* Caché extensivo del lado del cliente y el servidor para respuestas rápidas.
+  En el lado de servidor, los archivos pequeños son cacheados en memoria, y los archivos grande son
+  enviados usando el "zero copy" de NIO.
+  En la capa de framework web, tu puede declarar página, acciçon, y caché de objeto
+  al estilo de Rails.
+  `Todas las mejores práctigas de google <http://code.google.com/speed/page-speed/docs/rules_intro.html>`_
+  como los GET condicionales que son aplicados por la caché del lado del cliente.
+  También puede forzar los navegadores para que siempre envié un request al servidor para revalidar la caché antes usarla.
+* `Rango de consultas <http://en.wikipedia.org/wiki/Byte_serving>`_ soportadas
+  para archivos estáticos. Servir archivos de vídeos para smartphones requiere esta característica.
+  Tu puede pausar/readninar la descarga de archivos.
+* `CORS <http://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_ soportado.
+* Las rutas son automáticamente recolectadas por JAX-RS
+  y Rails Engines. No tienes que declarar todas las rutas en un solo luar.
+  Esta carácterística fué pensada como rutas distribuidas. Tu puedes conectar una aplicación dentro de otra.
+  ¡Si tu tienes un motor de un blog, tu puede empaquetar esto dentro de un archivo JAR, entonces podrás meter
+  ese archivo JAR dentro de otra aplicación y esa aplicación automáticamente tendrá ese motor de blog!
+  El routing se puede definir de dos formas: tu puedes regresar las URLs ruta invesa(reverse routing) en una forma typesafe.
+  Tu puedes documentar rutas usando `Swagger Doc <http://swagger.wordnik.com/>`_.
+* Las clases y rutas son automáticamente recargadas en el modo de desarrollador.
+* Las vistas pueden ser escrits por separado usando un archivo template
+  `Scalate <http://scalate.fusesource.org/>`_  o en Scala inline XML. Ambos son typesafe.
+* Sessiones, pueden ser almacenada en cookies (mas escalable) o en un cluster de `Hazelcast <http://www.hazelcast.org/>`_ (mas seguro).
+  Hazelcast también proporciona caché distibuída in-process (así de rápido y fácil de usar).
+  Tu no tienes que separar los servidores de caché. lo mísmo para la característica pubsub (publición/subscipción) en Akka.
+* `La validación de jQuery <http://jqueryvalidation.org/>`_ es integrada para el lado del navegador y
+  validación del lado del servidor.
+* i18n usando `GNU gettext <http://en.wikipedia.org/wiki/GNU_gettext>`_.
+  La extracción de textos de traducción es hecha automáticamente.
+  Tu notiees que lidiar manualmente con un archivo de propiedades.
+  Puedes usar herramientas poderosas como `Poedit <http://www.poedit.net/screenshots.php>`_
+  para traducción y combinar traducciones.
+  gettext no es como la mayoría de soluciones, ambas formas, singulares y plural son soportadas.
 
-Xitrum tries to fill the spectrum between `Scalatra <https://github.com/scalatra/scalatra>`_
-and `Lift <http://liftweb.net/>`_: more powerful than Scalatra and easier to
-use than Lift. You can easily create both RESTful APIs and postbacks. `Xitrum <http://xitrum-framework.github.io/>`_
-is controller-first like Scalatra, not
-`view-first <http://www.assembla.com/wiki/show/liftweb/View_First>`_ like Lift.
-Most people are familliar with controller-first style.
+Xitrum trata de cubrir el espacio entre `Scalatra <https://github.com/scalatra/scalatra>`_
+y `Lift <http://liftweb.net/>`_: mas poderoso que Scalatra y mas fácil de usar
+que Lift. Puedes crear fácilmente APIs RESTful y postbacks (petición de post a la misma página del formulario). `Xitrum <http://xitrum-framework.github.io/>`_
+es primero-controlador como Scalatra, no
+`primero-vista <http://www.assembla.com/wiki/show/liftweb/View_First>`_ como en Lift.
+Muchas personas están familiarizadas con el estilo primero-controlador.
 
-See :doc:`related projects </deps>` for a list of demos, plugins etc.
+Ver :doc:`Proyectos relacionados </deps>` para una lista de demos, plugins y mas.
 
-Contributors
+Contribuidores.
 ------------
 
-`Xitrum <http://xitrum-framework.github.io/>`_ is `open source <https://github.com/xitrum-framework/xitrum>`_,
-please join its `Google group <http://groups.google.com/group/xitrum-framework>`_.
+`Xitrum <http://xitrum-framework.github.io/>`_ es `open source <https://github.com/xitrum-framework/xitrum>`_,
+Por favor, únete a nuestro `grupo de Google <http://groups.google.com/group/xitrum-framework>`_.
 
 Contributors are listed in the order of their
 `first contribution <https://github.com/xitrum-framework/xitrum/graphs/contributors>`_.
 
-(*): Currently active core members.
+(*): Miembros del core actualmente activos.
 
 * `Ngoc Dao (*) <https://github.com/ngocdaothanh>`_
 * `Linh Tran <https://github.com/alide>`_
