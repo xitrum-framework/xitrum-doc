@@ -14,7 +14,7 @@ Hoăc behind a load balancer như HAProxy, hoặc reverse proxy như Apache hay 
   Browser ------ Load balancer/Reverse proxy -+---- Xitrum instance1
                                               +---- Xitrum instance2
 
-Đóng gí thư mục
+Đóng gói thư mục
 ---------------
 
 Chạy ``sbt/sbt xitrum-package`` để chuẩn bị cho thư mục ``target/xitrum`` sẵn sàng
@@ -80,7 +80,7 @@ Kiểm tra các phiên bản Java đã được cài đặt:
 
   sudo update-alternatives --list java
 
-Output example:
+Ví dụ output:
 
 ::
 
@@ -93,7 +93,7 @@ Kiểm tra môi trường (32 bit hay 64 bit):
 
   file /sbin/init
 
-Output example:
+Ví dụ output:
 
 ::
 
@@ -129,7 +129,7 @@ Chọn đường dẫn đến phiên bản Java
 
   sudo update-alternatives --config java
 
-Output example:
+Ví dụ output:
 
 ::
 
@@ -151,7 +151,7 @@ Kiểm tra phiên bản Java:
 
   java -version
 
-Output example:
+Ví dụ output:
 
 ::
 
