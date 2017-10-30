@@ -75,7 +75,7 @@ Load:
 
 Ghi chú:
 
-* Các Key and string phải được dùng dấu nháy kép ``"``.
+* Các key hoặc string phải được dùng dấu nháy kép ``"``.
 * Hiện tại, bạn không thể viết comment trong tệp JSON
 
 Tệp properties
@@ -150,7 +150,7 @@ Nếu bạn muốn lưu tệp:
   import xitrum.util.Loader
   Loader.bytesToFile(bytes, "myObject.bin")
 
-To load from the file:
+Để load từ file:
 
 ::
 
@@ -220,7 +220,7 @@ sẽ được sử dụng.
 Nhiều site với cùng một tên miền
 --------------------------------
 
-Neus bạn muốn sử dụng một reverse proxy như Nginx để chạy nhiều site khác nhau
+Nếu bạn muốn sử dụng một reverse proxy như Nginx để chạy nhiều site khác nhau
 tại cùng một tên miền:
 
 ::
@@ -239,10 +239,10 @@ trong `xitrum.js <https://github.com/xitrum-framework/xitrum/blob/master/src/mai
   # /site1/path/to/my/action
   xitrum.withBaseUrl('/path/to/my/action')
 
-Convert Markdown sang HTML
+Chuyển từ Markdown sang HTML
 --------------------------
 
-Nếu bạn đã configured project để sử dụng :doc:`Scalate template engine </template_engines>`,
+Nếu bạn đã cấu hình project để sử dụng :doc:`Scalate template engine </template_engines>`,
 Bạn chỉ cần phải làm như sau:
 
 ::
