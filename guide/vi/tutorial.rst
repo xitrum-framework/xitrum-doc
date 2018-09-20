@@ -26,13 +26,13 @@ Khởi động project Xitrum
 Cách chuẩn nhất để build một project Scala là sử dụng
 `SBT <https://github.com/harrah/xsbt/wiki/Setup>`_. Các project mới được tạo đã có sẵn SBT 0.13 trong thư mục ``sbt``. Nếu bạn muốn tự cài đặt SBT, bạn có thể xem `hướng dẫn cài đặt <https://github.com/harrah/xsbt/wiki/Setup>`_.
 
-Sử dụng terminal, chuyển đến thư mục của project mới tạo và chạy lệnh ``sbt/sbt run``:
+Sử dụng terminal, chuyển đến thư mục của project mới tạo và chạy lệnh ``sbt/sbt fgRun``:
 
 ::
 
   unzip xitrum-new.zip
   cd xitrum-new
-  sbt/sbt run
+  sbt/sbt fgRun
 
 Câu lệnh này sẽ download tất cả :doc:`thư viện liên quan </deps>`, biên dịch toàn bộ project,
 và khởi động web server qua class ``quickstart.Boot``. Trong cửa sổ dòng lệnh Terminal,
@@ -119,7 +119,7 @@ Chạy project với SBT
 
 Khi bạn chạy project với SBT, bạn cần phải mở 2 cửa sổ dòng lệnh:
 
-* Một để chạy ``sbt/sbt run``. Câu lệnh này để chạy chương trình và tải lại các tập .class khi chúng được thay đổi.
+* Một để chạy ``sbt/sbt fgRun``. Câu lệnh này để chạy chương trình và tải lại các tập .class khi chúng được thay đổi.
 * Một để chạy ``sbt/sbt ~compile``. Mỗi khi bạn thay đổi các file mã nguồn, câu lệnh này sẽ biên dịch mã nguồn thành các file .class.
 
 Thư mục sbt có chứa một tập tin là `agent7.jar <https://github.com/xitrum-framework/agent7>`_.

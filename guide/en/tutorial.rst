@@ -28,13 +28,13 @@ The de facto stardard way of building Scala projects is using
 has already included SBT 0.13 in ``sbt`` directory. If you want to install
 SBT yourself, see its `setup guide <https://github.com/harrah/xsbt/wiki/Setup>`_.
 
-Change to the newly created project directory and run ``sbt/sbt run``:
+Change to the newly created project directory and run ``sbt/sbt fgRun``:
 
 ::
 
   unzip xitrum-new.zip
   cd xitrum-new
-  sbt/sbt run
+  sbt/sbt fgRun
 
 This command will download all :doc:`dependencies </deps>`, compile the project,
 and run the class ``quickstart.Boot``, which starts the web server. In the console,
@@ -123,7 +123,7 @@ Run with SBT
 
 When you run with SBT, you need to open 2 console windows:
 
-* One to run ``sbt/sbt run``. This will run the program and reload .class files
+* One to run ``sbt/sbt fgRun``. This will run the program and reload .class files
   when they are changed.
 * One to run ``sbt/sbt ~compile``. Whenever you edit source code files, this
   will compile the source code to .class files.

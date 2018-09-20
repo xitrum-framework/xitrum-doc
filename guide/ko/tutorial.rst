@@ -28,13 +28,13 @@ Scala 빌드 도구로써 사실상의 표준인 `SBT <https://github.com/harrah
 방금 다운로드한 프로젝트에는 이미 SBT 0.13 이 ``sbt`` 디렉토리에 포함되어 있습니다.
 SBT를 직접설치 하려면 SBT의 `설치가이드 <https://github.com/harrah/xsbt/wiki/Setup>`_ 를 참고하세요.
 
-생성한 프로젝트의 루트 디렉토리에 ``sbt/sbt run`` 을 실행하면 Xitrum이 시작됩니다:
+생성한 프로젝트의 루트 디렉토리에 ``sbt/sbt fgRun`` 을 실행하면 Xitrum이 시작됩니다:
 
 ::
 
   unzip xitrum-new.zip
   cd xitrum-new
-  sbt/sbt run
+  sbt/sbt fgRun
 
 
 이 명령은 의존 라이브러리( :doc:`dependencies </deps>` )의 다운로드 및 프로젝트 컴파일 후에
@@ -121,7 +121,7 @@ SBT를 사용하는 경우
 
 SBT를 사용하는 경우에는 두 가지의 콘솔 창을 준비하여야 합니다:
 
-* 하나는 ``sbt/sbt run`` 을 실행합니다. 이 명령은 프로그램을 실행하여 .class 파일에 변경이 있을 경우에만 다시 로드합니다.
+* 하나는 ``sbt/sbt fgRun`` 을 실행합니다. 이 명령은 프로그램을 실행하여 .class 파일에 변경이 있을 경우에만 다시 로드합니다.
 * 다른 하나는 ``sbt/sbt ~compile`` 를 실행합니다. 이 명령은 소스 코드의 변경을 감지하여 변경이 있을 경우에만 .class 파일로 컴파일합니다.
 
 sbt 디렉토리 `agent7.jar <https://github.com/xitrum-framework/agent7>`_ 이 포함되어 있습니다.

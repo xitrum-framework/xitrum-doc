@@ -28,13 +28,13 @@ Scalaのビルドツールとしてデファクトスタンダードである `S
 先ほどダウンロードしたプロジェクトには既に SBT 0.13 が ``sbt`` ディレクトリに梱包されています。
 SBTを自分でインストールするには、SBTの `セットアップガイド <https://github.com/harrah/xsbt/wiki/Setup>`_ を参照してください。
 
-作成したプロジェクトのルートディレクトリで ``sbt/sbt run`` と実行することでXitrumが起動します:
+作成したプロジェクトのルートディレクトリで ``sbt/sbt fgRun`` と実行することでXitrumが起動します:
 
 ::
 
   unzip xitrum-new.zip
   cd xitrum-new
-  sbt/sbt run
+  sbt/sbt fgRun
 
 
 このコマンドは依存ライブラリ( :doc:`dependencies </deps>` )のダウンロード, およびプロジェクトのコンパイルを実行後、
@@ -121,7 +121,7 @@ SBTを使用する場合
 
 SBTを使用する場合、2つのコンソールを用意する必要があります:
 
-* 一つ目は ``sbt/sbt run`` を実行します。 このコマンドはプログラムを起動して、 .classファイルに変更があった場合にリロードを行います。
+* 一つ目は ``sbt/sbt fgRun`` を実行します。 このコマンドはプログラムを起動して、 .classファイルに変更があった場合にリロードを行います。
 * もう一方は ``sbt/sbt ~compile`` を実行します。 このコマンドはソースコードの変更を監視して、変更があった場合に .classファイルにコンパイルします。
 
 sbtディレクトリには `agent7.jar <https://github.com/xitrum-framework/agent7>`_ が含まれます。
