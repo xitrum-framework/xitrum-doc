@@ -250,27 +250,6 @@ build.sbtに以下の依存ライブラリを追記する必要があります:
 
   libraryDependencies += "org.fusesource.scalamd" %% "scalamd" % "1.6"
 
-ファイル監視
-------------
-
-ファイルやディレクトリの `StandardWatchEventKinds <http://docs.oracle.com/javase/7/docs/api/java/nio/file/StandardWatchEventKinds.html>`_ に対してコールバックを設定することができます。
-
-::
-
-  import java.nio.file.Paths
-  import xitrum.util.FileMonitor
-
-  val target = Paths.get("absolute_path_or_path_relative_to_application_directory").toAbsolutePath
-  FileMonitor.monitor(FileMonitor.MODIFY, target, { path =>
-    // コールバックでは path を使用することができます
-    println(s"File modified: $path")
-
-    // 監視が不要な場合
-    FileMonitor.unmonitor(FileMonitor.MODIFY, target)
-  })
-
-``FileMonitor`` は `Schwatcher <https://github.com/lloydmeta/schwatcher>`_ を使用しています。
-
 一時ディレクトリ
 ------------------
 

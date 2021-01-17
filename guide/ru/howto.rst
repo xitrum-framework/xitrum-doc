@@ -255,29 +255,6 @@ Xitrum предоставляет встроенное шифрование:
 
   libraryDependencies += "org.fusesource.scalamd" %% "scalamd" % "1.6"
 
-Мониторинг изменений файлов
----------------------------
-
-Вы можете зарегистрировать слушателя изменений файлов и директорий
-`StandardWatchEventKinds <http://docs.oracle.com/javase/7/docs/api/java/nio/file/StandardWatchEventKinds.html>`_.
-
-::
-
-  import java.nio.file.Paths
-  import xitrum.util.FileMonitor
-
-  val target = Paths.get("absolute_path_or_path_relative_to_application_directory").toAbsolutePath
-  FileMonitor.monitor(FileMonitor.MODIFY, target, { path =>
-    // Do some callback with path
-    println(s"File modified: $path")
-
-    // And stop monitoring if necessary
-    FileMonitor.unmonitor(FileMonitor.MODIFY, target)
-  })
-
-``FileMonitor`` внутри себя использует
-`Schwatcher <https://github.com/lloydmeta/schwatcher>`_.
-
 Временные директории
 --------------------
 

@@ -245,28 +245,6 @@ Markdown 텍스트를 HTML로 변환
 
   libraryDependencies += "org.fusesource.scalamd" %% "scalamd" % "1.6"
 
-파일의 모니터링
-------------
-
-파일이나 디렉토리의 `StandardWatchEventKinds <http://docs.oracle.com/javase/7/docs/api/java/nio/file/StandardWatchEventKinds.html>`_ 에
-콜백을 설정할 수 있습니다.
-
-::
-
-  import java.nio.file.Paths
-  import xitrum.util.FileMonitor
-
-  val target = Paths.get("absolute_path_or_path_relative_to_application_directory").toAbsolutePath
-  FileMonitor.monitor(FileMonitor.MODIFY, target, { path =>
-    // Do some callback with path
-    println(s"File modified: $path")
-
-    // And stop monitoring if necessary
-    FileMonitor.unmonitor(FileMonitor.MODIFY, target)
-  })
-
-``FileMonitor`` 는 `Schwatcher <https://github.com/lloydmeta/schwatcher>`_ 를 사용하고 있습니다.
-
 임시 디렉토리
 ----------
 

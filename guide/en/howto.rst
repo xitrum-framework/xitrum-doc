@@ -259,30 +259,6 @@ Otherwise, you need to add this dependency to your project's build.sbt:
 
   libraryDependencies += "org.fusesource.scalamd" %% "scalamd" % "1.6"
 
-Monitor file change
--------------------
-
-You can register callback(s) for
-`StandardWatchEventKinds <http://docs.oracle.com/javase/7/docs/api/java/nio/file/StandardWatchEventKinds.html>`_
-on files or directories.
-
-::
-
-  import java.nio.file.Paths
-  import xitrum.util.FileMonitor
-
-  val target = Paths.get("absolute_path_or_path_relative_to_application_directory").toAbsolutePath
-  FileMonitor.monitor(FileMonitor.MODIFY, target, { path =>
-    // Do some callback with path
-    println(s"File modified: $path")
-
-    // And stop monitoring if necessary
-    FileMonitor.unmonitor(FileMonitor.MODIFY, target)
-  })
-
-Under the hood, ``FileMonitor`` uses
-`Schwatcher <https://github.com/lloydmeta/schwatcher>`_.
-
 Temporary directory
 -------------------
 
