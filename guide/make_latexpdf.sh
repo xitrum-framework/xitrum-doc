@@ -14,7 +14,9 @@ make_latexpdf() {
 
   if [ $1 = 'ja' ]
   then
-    make latexpdfja
+    # On Mac Catalina, "make latexpdfja" doesn't work
+    # make latexpdfja
+    make latexpdf
   elif [ $1 = 'ko' ]
   then
     rm -rf ko_latex_patch.sh

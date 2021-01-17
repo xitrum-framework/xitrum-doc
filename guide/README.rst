@@ -72,5 +72,4 @@ To do the above automatically, run:
 
   ./make_all.sh
 
-
 All output files will be put in directory `all`.
