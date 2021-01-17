@@ -140,7 +140,7 @@ Nếu bạn muốn sử dụng cũng một tập tin trong cả 2 môi trường
 
 Khi thư viện này phụ thuộc vào thư viện kia, SBT sẽ tự động tải các thư viện
 liên quan về. Nếu thấy SBT không tải đúng phiên bản (có thể xác nhận bằng cách
-chạy lệnh ``sbt xitrum-package`` rồi xem các tập tin trong thư mục ``target/xitrum/lib``
+chạy lệnh ``sbt xitrumPackage`` rồi xem các tập tin trong thư mục ``target/xitrum/lib``
 được tạo ra), bạn có thể ép SBT dùng đúng phiên bản bạn muốn bằng ``dependencyOverrides``
 Ví dụ nếu bạn thấy SBT chọn thư viện jQuery phiên bản 2.x, mà bạn lại muốn
 dùng phiên bản 1.x để có thể hỗ trợ Internet Explorer 6, 7, hoặc 8, thì có
@@ -214,25 +214,25 @@ nhiều ETag khác nhau, nhưng nó vẫn tốt hơn là không sử dụng ETag
   webJarsUrl("jquery/2.1.1/jquery.min.js")
   => /webjars/jquery/2.1.1/jquery.min.js?0CHJg71ucpG0OlzB-y6-mQ
 
-Xitrum cũng đặt ``max-age`` và ``Exprires`` header thành 
-`one year <https://developers.google.com/speed/docs/best-practices/caching>`_. Bạn không 
-cần lo lắng rằng trình duyệt không chọn tập tin mới nhất khi bạn sửa đổi. Bởi vì khi một tập tin 
-trên ổ đĩa được sửa, thuộc tính ``modified time`` của tập tin đó sẽ thay đổi, do đó URL tạo 
-ra bởi ``publicUrl`` và ``webJarUrl`` cũng thay đổi theo. ETag cache của tập tin cũng sẽ thay 
+Xitrum cũng đặt ``max-age`` và ``Exprires`` header thành
+`one year <https://developers.google.com/speed/docs/best-practices/caching>`_. Bạn không
+cần lo lắng rằng trình duyệt không chọn tập tin mới nhất khi bạn sửa đổi. Bởi vì khi một tập tin
+trên ổ đĩa được sửa, thuộc tính ``modified time`` của tập tin đó sẽ thay đổi, do đó URL tạo
+ra bởi ``publicUrl`` và ``webJarUrl`` cũng thay đổi theo. ETag cache của tập tin cũng sẽ thay
 đổi bởi cache key thay đổi.
 
 GZIP
 ----
 
-Xitrum thực hiện việc nén GZIP tự động. Thuộc tính ``Content-Type`` tại header sẽ cho biết 
+Xitrum thực hiện việc nén GZIP tự động. Thuộc tính ``Content-Type`` tại header sẽ cho biết
 định dạng của respond là ``text/html`` hay ``xml/application`` v.v.
 
-Xitrum luôn tự động nén GZIP với các tập tin tĩnh, nhưng định dạng responses được tùy biến, để 
+Xitrum luôn tự động nén GZIP với các tập tin tĩnh, nhưng định dạng responses được tùy biến, để
 tối ưu hóa, Xitrum chỉ thực hiện GZIP với các response lớn hơn 1KB.
 
 Cache ở phía Server
 -------------------
 
-Để hạn chế load tập tin từ đĩa, Xitrum cache các tập tin tĩnh nhỏ trong bộ nhớ với quy tắc LRU (Lần cuối 
+Để hạn chế load tập tin từ đĩa, Xitrum cache các tập tin tĩnh nhỏ trong bộ nhớ với quy tắc LRU (Lần cuối
 sử dụng xa nhất). Xem ``small_static_file_size_in_kb`` và ``max_cached_small_static_files``
 trong ``config/xitrum.conf``.

@@ -17,7 +17,7 @@ HAProxyのようなロードバランサーや、ApacheやNginxのようなリ�
 ディレクトリのパッケージ化
 --------------------------
 
-``sbt/sbt xitrum-package`` を実行することで、プロダクション環境へデプロイ可能な ``target/xitrum`` ディレクトリが生成されます:
+``sbt/sbt xitrumPackage`` を実行することで、プロダクション環境へデプロイ可能な ``target/xitrum`` ディレクトリが生成されます:
 
 ::
 
@@ -38,7 +38,7 @@ HAProxyのようなロードバランサーや、ApacheやNginxのようなリ�
 xitrum-packageのカスタマイズ
 ----------------------------
 
-デフォルトでは ``sbt/sbt xitrum-package`` コマンドは、
+デフォルトでは ``sbt/sbt xitrumPackage`` コマンドは、
 
 ``config`` 、 ``public`` および ``script`` ディレクトリを ``target/xitrum`` 以下にコピーします。
 コピーするディレクトリを追加したい場合は、以下のように ``build.sbt`` を編集します:
@@ -535,7 +535,7 @@ openshiftへpush時に実行されるスクリプトを以下のように修正�
     mkdir -p $IVY_DIR
     chown $OPENSHIFT_GEAR_UUID.$OPENSHIFT_GEAR_UUID -R "$IVY_DIR"
     cd $OPENSHIFT_REPO_DIR/app
-    sbt/sbt xitrum-package
+    sbt/sbt xitrumPackage
     nohup $OPENSHIFT_REPO_DIR/app/target/xitrum/script/runner quickstart.Boot >> nohup.out 2>&1 & echo $! > $OPENSHIFT_REPO_DIR/xitrum.pid &
 
 

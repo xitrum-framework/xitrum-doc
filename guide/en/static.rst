@@ -139,7 +139,7 @@ If you want to use the same file for both environments:
   script(src={webJarsUrl("underscorejs/1.6.0/underscore.js")})
 
 Dependencies of a dependency are automatically downloaded. If you see that the
-version you want is not selected (you can confirm by running ``sbt xitrum-package``
+version you want is not selected (you can confirm by running ``sbt xitrumPackage``
 and see files in the created directory ``target/xitrum/lib``), you can force it with
 ``dependencyOverrides``. For example, if you see that jQuery 2.x is selected,
 but you want to support Internet Explorer 6, 7, or 8, you need to force jQuery 1.x

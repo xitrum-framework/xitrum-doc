@@ -17,7 +17,7 @@ Or behind a load balancer like HAProxy, or reverse proxy like Apache or Nginx:
 Package directory
 -----------------
 
-Run ``sbt/sbt xitrum-package`` to prepare ``target/xitrum`` directory, ready to
+Run ``sbt/sbt xitrumPackage`` to prepare ``target/xitrum`` directory, ready to
 deploy to production server:
 
 ::
@@ -39,7 +39,7 @@ deploy to production server:
 Customize xitrum-package
 ------------------------
 
-By default ``sbt/sbt xitrum-package`` command is configured to copy directories
+By default ``sbt/sbt xitrumPackage`` command is configured to copy directories
 ``config``, ``public``, and ``script`` to ``target/xitrum``. If you want it to
 copy additional directories or files change ``build.sbt`` like this:
 
@@ -468,13 +468,13 @@ Create alias for ``xitrum-package``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 At deploy time, Heroku runs ``sbt/sbt clean compile stage``. So you need to add alias
-for ``xitrum-package``.
+for ``xitrumPackage``.
 
 build.sbt:
 
 ::
 
-  addCommandAlias("stage", ";xitrum-package")
+  addCommandAlias("stage", ";xitrumPackage")
 
 
 Push to Heroku

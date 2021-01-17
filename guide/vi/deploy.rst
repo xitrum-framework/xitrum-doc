@@ -17,7 +17,7 @@ Hoăc behind a load balancer như HAProxy, hoặc reverse proxy như Apache hay 
 Đóng gói thư mục
 ---------------
 
-Chạy ``sbt/sbt xitrum-package`` để chuẩn bị cho thư mục ``target/xitrum`` sẵn sàng
+Chạy ``sbt/sbt xitrumPackage`` để chuẩn bị cho thư mục ``target/xitrum`` sẵn sàng
 triển khai tại server sản phẩm:
 
 ::
@@ -39,7 +39,7 @@ triển khai tại server sản phẩm:
 Customize xitrum-package
 ------------------------
 
-Mặc định câu lệnh ``sbt/sbt xitrum-package`` được cấu hình để sao chép các thư mục
+Mặc định câu lệnh ``sbt/sbt xitrumPackage`` được cấu hình để sao chép các thư mục
 ``config``, ``public``, và ``script`` đến ``target/xitrum``. Nếu bạn muốn câu lệnh
 đó sao chép các thư mục hoặc tệp khác sửa tệp ``build.sbt`` như sau:
 

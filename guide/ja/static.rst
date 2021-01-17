@@ -138,7 +138,7 @@ Xitrumによって自動的に選択されます。
 
   script(src={webJarsUrl("underscorejs/1.6.0/underscore.js")})
 
-バージョンの競合が発生した場合（``sbt xitrum-package``コマンドを実行して生成されるディレクトリ``target/xitrum/lib``の
+バージョンの競合が発生した場合（``sbt xitrumPackage``コマンドを実行して生成されるディレクトリ``target/xitrum/lib``の
 中のファイルを見て確認できます）、``dependencyOverrides``で正しいバージョンを強制的に指定できます。
 例えば、Internet Explorer 6, 7, 8対応のためにjQuery 1.xを指定したい場合：
 
